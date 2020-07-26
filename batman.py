@@ -84,23 +84,15 @@ def lstm(inputs):
     lstm_output = LSTM(78, dropout=0.2501,recurrent_dropout=0.3719,
                 kernel_regularizer='l2',recurrent_regularizer='l2',
                 return_sequences=True,return_state=False)(embedded)
-    return lstm_output
-def lstm_model():
-    onehot_embedded = RepeatVector(62)(onehot_embedded)
-    onehot_embedded = Lambda(lambda inp: K.permute_dimensions(inp,(0,2,1)),name='onehot')(onehot_embedded)
-    x = Multiply(name='pospoint')([embedded,onehot_embedded])
-
-    x = Flatten()(x)
-
-    
+    return lstm_output    
 
 def model(batch_size=90, epochs=400,learning_rate=0.001):
-    onehot_input = Input(name = 'onehot_input', shape = (21, 4, 1,))
+    onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     biological_input = Input(name = 'bio_input', shape = (x_train_biofeat.shape[1],))
     sequence_input = Input(name = 'seq_input', shape = (21,))
     ######CNN######
     cnn_output = cnn(onehot_input)
-    onehot_embedded = mlp(cnn_output,output_layer_activation='tanh',output_dim=21,
+    onehot_embedded = mlp(cnn_output,output_layer_activation='sigmoid',output_dim=21,
             hidden_layer_num=1,hidden_layer_units_num=241,
             hidden_layer_activation='relu',dropout=0.2753,
             name='cnn_output')
@@ -118,12 +110,11 @@ def model(batch_size=90, epochs=400,learning_rate=0.001):
                                       output_layer_activation='tanh',output_dim=21,
                                       hidden_layer_num=1,hidden_layer_units_num=100,
                                       hidden_layer_activation='relu',dropout=0.25,
-                                      name='lstm_output_'+str(i))
-        time_lstm_embeddedat[i] = dot([time_lstm_embeddedat[i],onehot_embedded],axes=-1)
+                                      name='lstm_output_at_'+str(i))
+        time_lstm_embeddedat[i] = dot([time_lstm_embeddedat[i],onehot_embedded],axes=-1,name='position_score_at_'+str(i))
 
-    x = keras.layers.concatenate(time_lstm_embeddedat)
+    x = keras.layers.concatenate(time_lstm_embeddedat,name='position_score')
     ######Biofeat######
-    #可能分层输入更好？
     x = keras.layers.concatenate([x, biological_input])
     
     output = mlp(x,output_layer_activation='sigmoid',output_dim=1,
@@ -157,4 +148,3 @@ def train(batch_size=90,epochs=200,learning_rate=0.0001):
 
 
 train()
-
