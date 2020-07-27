@@ -31,7 +31,43 @@ def get_score_at_test(model):
 
 
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
-
+params = {
+    'train_batch_size':70,
+    'cnn_fc_hidden_layer_num':1,
+    'cnn_fc_hidden_layer_units_num':241,
+    'cnn_fc_dropout':0.2753,
+    'lstm_embedding_output':62,
+    'lstm_embedding_dropout':0.4006,
+    'lstm_unit_num':78,
+    'lstm_dropout':0.2501,
+    'lstm_recurrent_dropout':0.3719,
+    'lstm_fc_hidden_layer_num':1,
+    'lstm_fc_hidden_layer_units_num':100,
+    'lstm_fc_dropout':0.25,
+    'bio_fc_hidden_layer_num':1,
+    'bio_fc_hidden_layer_units_num':100,
+    'bio_fc_dropout':0.25
+    }
+params_range = {
+    'train_batch_size_min':40,
+    'train_batch_size_max':100,
+    'cnn_fc_hidden_layer_num_min':1,
+    'cnn_fc_hidden_layer_num_max':5,
+    'cnn_fc_hidden_layer_units_num_min':50,
+    'cnn_fc_hidden_layer_units_num_max':300,
+    'lstm_embedding_output_min':40,
+    'lstm_embedding_output_max':80,
+    'lstm_unit_num_min':50,
+    'lstm_unit_num_max':100,
+    'lstm_fc_hidden_layer_num_min':1,
+    'lstm_fc_hidden_layer_num_max':5,
+    'lstm_fc_hidden_layer_units_num_min':50,
+    'lstm_fc_hidden_layer_units_num_max':300,
+    'bio_fc_hidden_layer_num_min':0,
+    'bio_fc_hidden_layer_num_max':4,
+    'bio_fc_hidden_layer_units_num_min':50,
+    'bio_fc_hidden_layer_units_num_max':300
+    }
 import keras
 from keras.preprocessing import text,sequence
 from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
@@ -79,11 +115,11 @@ def cnn(inputs):
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def lstm(inputs):
-    embedding_layer = Embedding(7,62,input_length=21)
+    embedding_layer = Embedding(7,params['lstm_embedding_output'],input_length=21)
     embedded = embedding_layer(inputs)
-    embedded = SpatialDropout1D(0.4006)(embedded)
+    embedded = SpatialDropout1D(params['lstm_embedding_dropout'])(embedded)
     #(?,21,units)
-    lstm_output = LSTM(78, dropout=0.2501,recurrent_dropout=0.3719,
+    lstm_output = LSTM(params['lstm_unit_num'], dropout=params['lstm_dropout'],recurrent_dropout=params['lstm_recurrent_dropout'],
                 kernel_regularizer='l2',recurrent_regularizer='l2',
                 return_sequences=True,return_state=False)(embedded)
     return lstm_output    
@@ -95,8 +131,8 @@ def model():
     ######CNN######
     cnn_output = cnn(onehot_input)
     onehot_embedded = mlp(cnn_output,output_layer_activation='sigmoid',output_dim=21,output_use_bias=False,
-            hidden_layer_num=1,hidden_layer_units_num=241,
-            hidden_layer_activation='relu',dropout=0.2753,
+            hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
+            hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
             name='cnn_embedding')
     ######LSTM######
     lstm_output = lstm(sequence_input)
@@ -110,16 +146,16 @@ def model():
             )
         time_lstm_embeddedat[i] = mlp(time_lstm_embeddedat[i],
                                       output_layer_activation='tanh',output_dim=1,output_use_bias=True,
-                                      hidden_layer_num=1,hidden_layer_units_num=100,
-                                      hidden_layer_activation='relu',dropout=0.25,
+                                      hidden_layer_num=params['lstm_fc_hidden_layer_num'],hidden_layer_units_num=params['lstm_fc_hidden_layer_units_num'],
+                                      hidden_layer_activation='relu',dropout=params['lstm_fc_dropout'],
                                       name='lstm_output_at_'+str(i))
     lstm_embedded = keras.layers.concatenate(time_lstm_embeddedat,name='lstm_embedding')
     x = dot([lstm_embedded,onehot_embedded],axes=-1,name='position_score')
     ######Biofeat######
     x_bio = mlp(biological_input,
                 output_layer_activation='sigmoid',output_dim=1,output_use_bias=True,
-                hidden_layer_num=1,hidden_layer_units_num=100,
-                hidden_layer_activation='relu',dropout=0.25,
+                hidden_layer_num=params['bio_fc_hidden_layer_num'],hidden_layer_units_num=params['bio_fc_hidden_layer_units_num'],
+                hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
                 name='biofeat_embedding')
 
     output = dot([x,x_bio],axes=-1,name='score')
@@ -127,10 +163,10 @@ def model():
                  outputs=[output])
     return model
 
-def train(batch_size=70,epochs=50,learning_rate=0.01):
+def train(epochs=25,learning_rate=0.001):
     m = model()
     np.random.seed(1337)
-
+    batch_size = params['train_batch_size']
     batch_end_callback = LambdaCallback(
         on_epoch_end=lambda batch,logs: print(get_score_at_test(m))
         )
@@ -145,9 +181,46 @@ def train(batch_size=70,epochs=50,learning_rate=0.01):
                  verbose=2,
                  validation_split=0.1,
                  callbacks=[batch_end_callback])    
-    m.save('./hellbat_50.h5')
+    #m.save('./hellbat_50.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
-
-train()
+def train_with(hyperparameters):
+    uniform2int = lambda t,min,max: int(min+(max-min)*t)
+    params['train_batch_size'] = uniform2int(hyperparameters['train_batch_size'],
+                                             params_range['train_batch_size_min'],
+                                             params_range['train_batch_size_max'])
+    params['cnn_fc_hidden_layer_num'] = uniform2int(hyperparameters['cnn_fc_hidden_layer_num'],
+                                                    params_range['cnn_fc_hidden_layer_num_min'],
+                                                    params_range['cnn_fc_hidden_layer_num_max'])
+    params['cnn_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['cnn_fc_hidden_layer_units_num'],
+                                                          params_range['cnn_fc_hidden_layer_units_num_min'],
+                                                          params_range['cnn_fc_hidden_layer_units_num_max'])
+    params['cnn_fc_dropout'] = hyperparameters['cnn_fc_dropout']
+    params['lstm_embedding_output'] = uniform2int(hyperparameters['lstm_embedding_output'],
+                                                  params_range['lstm_embedding_output_min'],
+                                                  params_range['lstm_embedding_output_max'])
+    params['lstm_embedding_dropout'] = hyperparameters['lstm_embedding_dropout']
+    params['lstm_unit_num'] = uniform2int(hyperparameters['lstm_unit_num'],
+                                          params_range['lstm_unit_num_min'],
+                                          params_range['lstm_unit_num_max'])
+    params['lstm_dropout'] = hyperparameters['lstm_dropout']
+    params['lstm_recurrent_dropout'] = hyperparameters['lstm_recurrent_dropout']
+    params['lstm_fc_hidden_layer_num'] = uniform2int(hyperparameters['lstm_fc_hidden_layer_num'],
+                                                     params_range['lstm_fc_hidden_layer_num_min'],
+                                                     params_range['lstm_fc_hidden_layer_num_max'])
+    params['lstm_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['lstm_fc_hidden_layer_units_num'],
+                                                           params_range['lstm_fc_hidden_layer_units_num_min'],
+                                                           params_range['lstm_fc_hidden_layer_units_num_max'])
+    
+    params['lstm_fc_dropout'] = hyperparameters['lstm_fc_dropout']
+    params['bio_fc_hidden_layer_num'] = uniform2int(hyperparameters['bio_fc_hidden_layer_num'],
+                                                    params_range['bio_fc_hidden_layer_num_min'],
+                                                    params_range['bio_fc_hidden_layer_num_max'])
+    params['bio_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['bio_fc_hidden_layer_units_num'],
+                                                          params_range['bio_fc_hidden_layer_units_num_min'],
+                                                          params_range['bio_fc_hidden_layer_units_num_max'])
+    params['lstm_fc_dropout'] = hyperparameters['lstm_fc_dropout']
+    train()
+if __name__=='__main__':
+    train()
