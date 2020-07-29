@@ -21,12 +21,14 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+				float4 normal : NORMAL;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+				float4 normal : TEXCOORD1;
             };
 
             sampler2D _MainTex;
@@ -37,6 +39,7 @@
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = float2(v.vertex.x,v.vertex.y)+0.5;
+				o.normal = v.normal;
                 //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
@@ -45,7 +48,7 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                return col+0.2;
+                return col+0.6*i.normal.x;
             }
             ENDCG
         }

@@ -6,12 +6,14 @@ using UnityEngine.Rendering;
 public class BlendCamera : MonoBehaviour
 {
     public RenderTexture rt_posteff;
+    public Camera posteffcam;
     public Shader blend;
     private Material m_blend;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rt_posteff = new RenderTexture(Screen.width, Screen.height, 0);
+        posteffcam.targetTexture = rt_posteff;
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
