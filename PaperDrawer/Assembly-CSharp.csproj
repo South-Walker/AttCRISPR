@@ -67,6 +67,7 @@
     <Compile Include="Assets\PostEffectsBase.cs" />
     <None Include="Assets\Chapter13-EdgeDetectNormalAndDepth.shader" />
     <None Include="Assets\one-hot.shader" />
+    <None Include="Assets\Prefab\embedding.shader" />
     <None Include="Assets\Blend.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/lenovo/Desktop/AttCRISPR/PaperDrawer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 [ExecuteInEditMode]
+[RequireComponent(typeof(Camera))]
 public class BlendCamera : MonoBehaviour
 {
     public RenderTexture rt_posteff;
     public Camera posteffcam;
     public Shader blend;
     private Material m_blend;
+
+    private int camwidth, camheight;
+    private Camera cam;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        rt_posteff = new RenderTexture(Screen.width, Screen.height, 0);
+        cam = GetComponent<Camera>();
+        camwidth = cam.pixelWidth;
+        camheight = cam.pixelHeight;
+        rt_posteff = new RenderTexture(camwidth, camheight, 0);
         posteffcam.targetTexture = rt_posteff;
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -28,6 +35,12 @@ public class BlendCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (cam.pixelHeight != camheight || cam.pixelWidth != camwidth)
+        {
+            camwidth = cam.pixelWidth;
+            camheight = cam.pixelHeight;
+            rt_posteff = new RenderTexture(camwidth, camheight, 0);
+            posteffcam.targetTexture = rt_posteff;
+        }
     }
 }

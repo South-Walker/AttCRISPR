@@ -74,14 +74,27 @@ namespace EmbeddingTexture
     {
         static StringBuilder rootpath { get { return new StringBuilder(@"../../../../../PSD/"); } }
         static string circlepath = rootpath.Append(@"Circle.png").ToString();
+        static Bitmap circle = (Bitmap)Bitmap.FromFile(circlepath);
         static string deepsoildcolsavepath = rootpath.Append(@"deepfilled.png").ToString();
         static string soildcolsavepath = rootpath.Append(@"filled.png").ToString();
         static string withlinesavepath1 = rootpath.Append(@"withline1.png").ToString();
         static string withlinesavepath2 = rootpath.Append(@"withline2.png").ToString();
-        static string[] all = new string[] { circlepath, deepsoildcolsavepath, withlinesavepath1, withlinesavepath2 };
+        static string mergepath = rootpath.Append(@"{0}merge.png").ToString();
+        static string nowworkingmergepath;
+        static Dictionary<char, Color> base2color = new Dictionary<char, Color>
+        {
+            {'A',Color.Red },
+            {'G',Color.Blue },
+            {'C',Color.Green },
+            {'T',Color.FromArgb(255,255,128,0) }
+        };
         static void Main(string[] args)
         {
-            Pipeline(Color.Red);
+            foreach (var item in base2color) 
+            {
+                nowworkingmergepath = string.Format(mergepath, item.Key);
+                Pipeline(item.Value);
+            }
             Console.WriteLine(Directory.GetCurrentDirectory());
         }
         static void Pipeline(Color color)
@@ -89,25 +102,50 @@ namespace EmbeddingTexture
             HSI hsi = HSI.fromRGBA(color);
             hsi.S *= 0.5;
             Color deepcolor = hsi.toRGBA();
-            Bitmap filledcircle = FillCircle(color);
-            filledcircle.Save(soildcolsavepath);
+            //Bitmap filledcircle = FillCircle(color);
+            //filledcircle.Save(soildcolsavepath);
             
             Bitmap deepfilledcircle = FillCircle(deepcolor);
-            deepfilledcircle.Save(deepsoildcolsavepath);
+            //deepfilledcircle.Save(deepsoildcolsavepath);
             Bitmap fillwithline1 = FillCircleWithLine(color,true);
-            fillwithline1.Save(withlinesavepath1);
+            //fillwithline1.Save(withlinesavepath1);
             Bitmap fillwithline2 = FillCircleWithLine(color, false);
-            fillwithline2.Save(withlinesavepath2);
-            merget();
+            //fillwithline2.Save(withlinesavepath2);
+            Bitmap[] imgs = new Bitmap[] { deepfilledcircle, circle, fillwithline1, fillwithline2 };
+            Bitmap merget = Merget(imgs);
+            merget.Save(nowworkingmergepath);
         }
-        //todo
-        static void merget()
+        static Bitmap Merget(Bitmap[] imgs)
         {
-            Bitmap[] imgs = new Bitmap[all.Length];
-            for (int i = 0; i < all.Length; i++)
+            double exwidth = 1;
+            double exheight = 0.2;
+            double distance = exwidth / (imgs.Length + 1);
+            int circlewidth = imgs[0].Width;
+            int circleheight = imgs[0].Height;
+            Bitmap merget = new Bitmap((int)(imgs.Length + exwidth) * circlewidth,
+                (int)(circleheight * (1 + exheight)));
+            for (int x = 0; x < merget.Width; x++)
             {
-                //todo
+                for (int y = 0; y < merget.Height; y++)
+                {
+                    merget.SetPixel(x, y, Color.White);
+                }
             }
+            int xbeginat = (int)(circlewidth * distance);
+            int ybeginat = (int)(circleheight * exheight / 2);
+            for (int i = 0; i < imgs.Length; i++)
+            {
+                for (int x = 0; x < imgs[i].Width; x++)
+                {
+                    for (int y = 0; y < imgs[i].Height; y++)
+                    {
+                        merget.SetPixel(xbeginat + x, ybeginat + y,
+                            imgs[i].GetPixel(x, y));
+                    }
+                }
+                xbeginat += circlewidth + (int)(circlewidth * distance);
+            }
+            return merget;
         }
         static bool isinline(int x, int y, int distancestep, int distancelimit, int stepnum)
         {
@@ -136,7 +174,6 @@ namespace EmbeddingTexture
             int distancelimit = 20;
             //偶数好像算错呢
             int stepnum = 5;
-            Bitmap circle = (Bitmap)Bitmap.FromFile(circlepath);
             int limit = 50;
             int circlewidth = circle.Width;
             int circleheight = circle.Height;
@@ -201,7 +238,6 @@ namespace EmbeddingTexture
         static Bitmap FillCircle(Color color)
         {
             int limit = 50;
-            Bitmap circle = (Bitmap)Bitmap.FromFile(circlepath);
             int circlewidth = circle.Width;
             int circleheight = circle.Height;
             Bitmap filledcircle = new Bitmap(circlewidth, circleheight);
