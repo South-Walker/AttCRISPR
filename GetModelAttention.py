@@ -5,6 +5,8 @@ import numpy as np
 from keras.models import *
 import scipy as sp
 from sklearn.model_selection import train_test_split
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 pkl = open('alldata.pkl','rb')
 x_onehot =  pickle.load(pkl)
@@ -30,10 +32,15 @@ x_attention_onehot = x_train_onehot
 x_attention_biofeat = x_train_biofeat
 x_attention_seq = x_train_seq
 y_attention = y_train
-def get_spatial_attention(model):
+def get_spatial_attention(model,usebiofeat=True):
     spatial_layer_model = Model(
-        inputs=load_model.input, outputs=model.get_layer('cnn_embedding').output)
-    spatial_value = spatial_layer_model.predict([x_attention_onehot,x_attention_biofeat,x_attention_seq])
+        inputs=load_model.input, outputs=model.get_layer('rnn_embedding').output)
+    if usebiofeat:
+        input = [x_attention_onehot,x_attention_biofeat,x_attention_seq]
+    else:
+        input = [x_attention_onehot,x_attention_seq]
+    spatial_value = spatial_layer_model.predict(input)
+
     weights = [0 for x in range(0,21)]
     for w in range(len(spatial_value)):
         for i in range(21):
@@ -44,7 +51,8 @@ def get_spatial_attention(model):
     for i in range(21):
         weights[i] = weights[i] / total
     return weights;
-def get_temporal_attention(model):
+def get_temporal_attention(model,usebiofeat=True):
+    weight = get_spatial_attention(model,usebiofeat);
     base_code_dict = {'T': 1, 'A': 2, 'C': 3, 'G': 4,'START': 0} 
     code_base_dict = {1: 'T', 2: 'A', 3: 'C', 4: 'G'}
     at_pos_temporal_weights_of = {'A':[0 for x in range(0,21)],'C':[0 for x in range(0,21)],
@@ -52,23 +60,29 @@ def get_temporal_attention(model):
     at_pos_count_of = {'A':[0 for x in range(0,21)],'C':[0 for x in range(0,21)],
                        'G':[0 for x in range(0,21)],'T':[0 for x in range(0,21)]}
     temporal_layer_model = Model(
-        inputs=load_model.input, outputs=model.get_layer('lstm_embedding').output)
-    temporal_value = temporal_layer_model.predict([x_attention_onehot,x_attention_biofeat,x_attention_seq])
+        inputs=load_model.input, outputs=model.get_layer('cnn_embedding').output)
+    if usebiofeat:
+        input = [x_attention_onehot,x_attention_biofeat,x_attention_seq]
+    else:
+        input = [x_attention_onehot,x_attention_seq]
+    temporal_value = temporal_layer_model.predict(input)
     for i in range(len(x_attention_seq)):
         for basepos in range(21):
             base = code_base_dict[x_attention_seq[i][basepos]]
             at_pos_count_of[base][basepos]+=1
-            at_pos_temporal_weights_of[base][basepos]+=temporal_value[i][basepos]*y_attention[i]
+            at_pos_temporal_weights_of[base][basepos]+=temporal_value[i][basepos]*y_attention[i]*weight[basepos]
     for k in at_pos_temporal_weights_of.keys():
         for basepos in range(21):
             at_pos_temporal_weights_of[k][basepos]/=max(at_pos_count_of[k][basepos],1)
     return at_pos_temporal_weights_of;
-load_model = load_model('./hellbat_50.h5')
+load_model = load_model('./test.h5')
 batch_end_print_callback = LambdaCallback(
     on_epoch_end=lambda batch,logs: print(getscore(load_model,y_test)))
 
-spatial_weights = get_spatial_attention(load_model)
-temporal_weights = get_temporal_attention(load_model)
+spatial_weights = get_spatial_attention(load_model,False)
+temporal_weights = get_temporal_attention(load_model,False)
 print(spatial_weights)
-print(temporal_weights)
+print()
+for k in temporal_weights.keys():
+    print(temporal_weights[k])
 print('end')
