@@ -80,7 +80,9 @@ namespace EmbeddingTexture
         static string withlinesavepath1 = rootpath.Append(@"withline1.png").ToString();
         static string withlinesavepath2 = rootpath.Append(@"withline2.png").ToString();
         static string mergepath = rootpath.Append(@"{0}merge.png").ToString();
-        static string nowworkingmergepath;
+        static string crosspath = rootpath.Append(@"{0}cross.png").ToString();
+        static string hiddenvectorpath = rootpath.Append(@"hiddenvector.png").ToString();
+        static string nowworkingmergepath,nowcrosspath;
         static Dictionary<char, Color> base2color = new Dictionary<char, Color>
         {
             {'A',Color.Red },
@@ -90,30 +92,74 @@ namespace EmbeddingTexture
         };
         static void Main(string[] args)
         {
+            HiddenVectorPipeline("GTTG");
+            HiddenVectorPipeline("AAC");
             foreach (var item in base2color) 
             {
                 nowworkingmergepath = string.Format(mergepath, item.Key);
-                Pipeline(item.Value);
+                nowcrosspath = string.Format(crosspath, item.Key);
+                EmbeddingPipeline(item.Value);
             }
+            HiddenVectorPipeline("GTTGAGAAGGACCGCCACAAC");
             Console.WriteLine(Directory.GetCurrentDirectory());
         }
-        static void Pipeline(Color color)
+        static void HiddenVectorPipeline(string sgRNA)
+        {
+            Dictionary<char, Bitmap> base2img = new Dictionary<char, Bitmap>();
+            foreach (var kv in base2color) 
+            {
+                Bitmap crossimg = FillCircleWithLine(kv.Value, 100, 20, 2, 50, true, true);
+                base2img.Add(kv.Key, crossimg);
+            }
+            List<Bitmap> imgs = new List<Bitmap>();
+
+            for (int i = 0; i < sgRNA.Length; i++)
+            {
+                char cbase = sgRNA[i];
+                imgs.Add(base2img[cbase]);
+            }
+            int distance = base2img['A'].Width;
+            int preWidth = sgRNA.Length * base2img['A'].Width + distance * (sgRNA.Length - 1);
+            Bitmap merge = new Bitmap(preWidth,
+                base2img['A'].Height);
+
+            for (int x = 0; x < merge.Width; x++)
+            {
+                for (int y = 0; y < merge.Height; y++)
+                {
+                    merge.SetPixel(x, y, Color.White);
+                }
+            }
+
+            int beginx = 0;
+            for (int i = 0; i < imgs.Count; i++)
+            {
+                for (int dx = 0; dx < imgs[i].Width; dx++)
+                {
+                    for (int dy = 0; dy < imgs[i].Height; dy++)
+                    {
+                        merge.SetPixel(dx + beginx, dy,
+                            imgs[i].GetPixel(dx, dy));
+                    }
+                }
+                beginx += imgs[i].Width + distance;
+            }
+            merge.Save(hiddenvectorpath);
+        }
+        static void EmbeddingPipeline(Color color)
         {
             HSI hsi = HSI.fromRGBA(color);
             hsi.S *= 0.5;
             Color deepcolor = hsi.toRGBA();
-            //Bitmap filledcircle = FillCircle(color);
-            //filledcircle.Save(soildcolsavepath);
-            
             Bitmap deepfilledcircle = FillCircle(deepcolor);
-            //deepfilledcircle.Save(deepsoildcolsavepath);
-            Bitmap fillwithline1 = FillCircleWithLine(color,true);
-            //fillwithline1.Save(withlinesavepath1);
-            Bitmap fillwithline2 = FillCircleWithLine(color, false);
-            //fillwithline2.Save(withlinesavepath2);
+            Bitmap fillwithline1 = FillCircleWithLine(color, 100, 20, 5, 50, true, false);
+            Bitmap fillwithline2 = FillCircleWithLine(color, 100, 20, 5, 50, false, true);
             Bitmap[] imgs = new Bitmap[] { deepfilledcircle, circle, fillwithline1, fillwithline2 };
             Bitmap merget = Merget(imgs);
             merget.Save(nowworkingmergepath);
+            Bitmap cross = FillCircleWithLine(color, 100, 20, 2, 50, true, true);
+            cross.Save(nowcrosspath);
+
         }
         static Bitmap Merget(Bitmap[] imgs)
         {
@@ -168,13 +214,11 @@ namespace EmbeddingTexture
             }
             return false;
         }
-        static Bitmap FillCircleWithLine(Color color, bool isbottomtotop = true)
+        static Bitmap FillCircleWithLine(Color color,
+            int distancestep = 100, int distancelimit = 20, int stepnum = 5, int limit = 50,
+            bool isbottomtotop = true, bool istoptobottom = true)
         {
-            int distancestep = 100;
-            int distancelimit = 20;
             //偶数好像算错呢
-            int stepnum = 5;
-            int limit = 50;
             int circlewidth = circle.Width;
             int circleheight = circle.Height;
             Bitmap filledwithlinecircle = new Bitmap(circlewidth, circleheight);
@@ -203,10 +247,14 @@ namespace EmbeddingTexture
                     }
                     if (isincircle && !isinedge)
                     {
+                        // if (
+                        //   (isbottomtotop) ?
+                        // isinline(w, h, distancestep, distancelimit, stepnum) :
+                        //isinline(w, circleheight - h, distancestep, distancelimit, stepnum)
                         if (
-                            (isbottomtotop) ?
-                            isinline(w, h, distancestep, distancelimit, stepnum) :
-                            isinline(w, circleheight - h, distancestep, distancelimit, stepnum))  
+                            (isbottomtotop && isinline(w, h, distancestep, distancelimit, stepnum)) ||
+                            (istoptobottom && isinline(w, circleheight - h, distancestep, distancelimit, stepnum))
+                            )
                         {
                             filledwithlinecircle.SetPixel(w, h, Color.Black);
                         }
