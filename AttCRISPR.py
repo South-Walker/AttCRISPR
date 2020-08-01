@@ -65,8 +65,8 @@ params_range = {
     'rnn_fc_hidden_layer_units_num_max':300,
     'bio_fc_hidden_layer_num_min':0,
     'bio_fc_hidden_layer_num_max':4,
-    'bio_fc_hidden_layer_units_num_min':50,
-    'bio_fc_hidden_layer_units_num_max':300
+    'bio_fc_hidden_layer_units_num_min':20,
+    'bio_fc_hidden_layer_units_num_max':120
     }
 import keras
 from keras.preprocessing import text,sequence
@@ -97,7 +97,8 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
         x = Dense(hidden_layer_units_num, activation=hidden_layer_activation)(inputs)
         x = Dropout(dropout)(x)
     if output_layer_activation == 'sigmoid' or output_layer_activation == 'tanh':
-        x = Dense(output_dim,use_bias=output_use_bias)(x)
+        x = Dense(output_dim,use_bias=output_use_bias,
+                  kernel_regularizer='l2',activity_regularizer=output_regularizer)(x)
         x = Activation(output_layer_activation,name=name)(BatchNormalization()(x))
         return x
     x = Dense(output_dim,activation=output_layer_activation,
@@ -106,13 +107,16 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
     return x
 
 def cnn(inputs):
-    conv_1 = Conv2D(10, (1, 4), padding='same', activation='relu')(inputs)
-    conv_2 = Conv2D(10, (2, 4), padding='same', activation='relu')(inputs)
-    conv_3 = Conv2D(10, (3, 4), padding='same', activation='relu')(inputs)
-    conv_4 = Conv2D(10, (4, 4), padding='same', activation='relu')(inputs)
-    conv_output = keras.layers.concatenate([conv_1, conv_2, conv_3, conv_4])
-    bn_output = BatchNormalization()(conv_output)
-    pooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(bn_output)
+    filtersnum=20
+    conv_1 = Conv2D(filtersnum, (1, 4), padding='same', activation='relu')(inputs)
+    conv_2 = Conv2D(filtersnum, (2, 4), padding='same', activation='relu')(inputs)
+    conv_3 = Conv2D(filtersnum, (3, 4), padding='same', activation='relu')(inputs)
+    conv_4 = Conv2D(filtersnum, (4, 4), padding='same', activation='relu')(inputs)
+    conv_output = keras.layers.concatenate([conv_1, conv_2, conv_3, conv_4],name='conv_output')
+    conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
+    maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
+    avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
+    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output],name='pooling_output')
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
@@ -132,22 +136,21 @@ def model():
     ######CNN######
     cnn_output = cnn(onehot_input)
     onehot_embedded = mlp(cnn_output,output_layer_activation='sigmoid',output_dim=21,output_use_bias=False,
-            hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
-            hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
-            name='cnn_embedding')
+                          hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
+                          hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
+                          name='cnn_embedding')
     ######RNN######
     rnn_output = rnn(sequence_input)
     ######Attention######
     time_rnn_embeddedat = []
     for i in range(21):
         time_rnn_embeddedat.append(
-            #some are rnn_flatten
             Flatten(name='rnn_flatten_'+str(i))(
                 Cropping1D(cropping=(i,21-1-i))(rnn_output)
                 )
             )
         time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
-                                     output_layer_activation='sigmoid',output_dim=1,output_use_bias=False,
+                                     output_layer_activation='tanh',output_dim=1,output_use_bias=False,
                                      hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
                                      hidden_layer_activation='relu',dropout=params['rnn_fc_dropout'],
                                      name='rnn_output_at_'+str(i))
@@ -166,15 +169,13 @@ def model():
                  outputs=[output])
     return model
 
-def train(epochs=1000,learning_rate=0.00005):
+def train(epochs=50,learning_rate=0.0005):
     m = model()
     np.random.seed(1337)
     batch_size = params['train_batch_size']
     batch_end_callback = LambdaCallback(
         on_epoch_end=lambda batch,logs: print(get_score_at_test(m))
         )
-
-    #batch_end_print_callback2 = LambdaCallback(on_epoch_end=lambda batch,logs: print(list(intermediate_layer_model.predict([x_test_onehot,x_test_biofeat,x_test_seq]))))
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
     m.compile(loss='mse', optimizer=optimizer(lr=learning_rate))
     m.fit([x_train_onehot,x_train_biofeat,x_train_seq], 
@@ -184,7 +185,7 @@ def train(epochs=1000,learning_rate=0.00005):
                  verbose=2,
                  validation_split=0.1,
                  callbacks=[batch_end_callback])    
-    m.save('./attwithbio_1000.h5')
+    m.save('./new_50.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 

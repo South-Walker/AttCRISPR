@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-pkl = open('alldata.pkl','rb')
+pkl = open('alldata.pkl','rb') 
 x_onehot =  pickle.load(pkl)
 x_biofeat = pickle.load(pkl)
 y = pickle.load(pkl)
@@ -40,7 +40,6 @@ def get_spatial_attention(model,usebiofeat=True):
     else:
         input = [x_attention_onehot,x_attention_seq]
     spatial_value = spatial_layer_model.predict(input)
-
     weights = [0 for x in range(0,21)]
     for w in range(len(spatial_value)):
         for i in range(21):
@@ -75,12 +74,50 @@ def get_temporal_attention(model,usebiofeat=True):
         for basepos in range(21):
             at_pos_temporal_weights_of[k][basepos]/=max(at_pos_count_of[k][basepos],1)
     return at_pos_temporal_weights_of;
-load_model = load_model('./test.h5')
+def map_temporal_attention_to_sum0(temporal_attention):
+    for pos in range(21):
+        total = 0
+        nonzero = 0
+        for k in temporal_attention.keys():
+            total += temporal_attention[k][pos]
+            if temporal_attention[k][pos] != 0:
+                nonzero += 1
+        offset = (total)/max(nonzero,1)
+        for k in temporal_attention.keys():
+            if temporal_attention[k][pos] != 0:
+                temporal_attention[k][pos] -= offset
+def SinglePred(usebiofeat=True):
+    onepkl = open('GTTGAGAAGGACCGCCACAAC.pkl','rb')
+    onex_seq = pickle.load(onepkl)
+    onex_onehot =  pickle.load(onepkl)
+    onex_biofeat = pickle.load(onepkl)
+    layer_model = Model(
+        inputs=load_model.input, outputs=load_model.get_layer('conv_output').output)
+    if usebiofeat:
+        input = [onex_onehot,onex_biofeat,onex_seq]
+    else:
+        input = [onex_onehot,onex_onehot]
+    values = layer_model.predict(input)
+    begin = 0
+    step = 20
+    for i in range(4):
+        now = begin + step*i
+        value = values[:,:,:,now:now+1]
+        value.tofile('single'+str(i)+'.out',sep=',', format='%s') 
+        print(values)
+
+load_model = load_model('./new_50.h5')
+SinglePred()
+
+
+
 batch_end_print_callback = LambdaCallback(
     on_epoch_end=lambda batch,logs: print(getscore(load_model,y_test)))
 
-spatial_weights = get_spatial_attention(load_model,False)
-temporal_weights = get_temporal_attention(load_model,False)
+isusebiofeat = True
+spatial_weights = get_spatial_attention(load_model,isusebiofeat)
+temporal_weights = get_temporal_attention(load_model,isusebiofeat)
+map_temporal_attention_to_sum0(temporal_weights)
 print(spatial_weights)
 print()
 for k in temporal_weights.keys():
