@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-pkl = open('alldata.pkl','rb')
+pkl = open('alldata.pkl','rb') 
 x_onehot =  pickle.load(pkl)
 x_biofeat = pickle.load(pkl)
 y = pickle.load(pkl)
@@ -86,8 +86,31 @@ def map_temporal_attention_to_sum0(temporal_attention):
         for k in temporal_attention.keys():
             if temporal_attention[k][pos] != 0:
                 temporal_attention[k][pos] -= offset
+def SinglePred(usebiofeat=True):
+    onepkl = open('GTTGAGAAGGACCGCCACAAC.pkl','rb')
+    onex_seq = pickle.load(onepkl)
+    onex_onehot =  pickle.load(onepkl)
+    onex_biofeat = pickle.load(onepkl)
+    layer_model = Model(
+        inputs=load_model.input, outputs=load_model.get_layer('conv_output').output)
+    if usebiofeat:
+        input = [onex_onehot,onex_biofeat,onex_seq]
+    else:
+        input = [onex_onehot,onex_onehot]
+    values = layer_model.predict(input)
+    begin = 0
+    step = 20
+    for i in range(4):
+        now = begin + step*i
+        value = values[:,:,:,now:now+1]
+        value.tofile('single'+str(i)+'.out',sep=',', format='%s') 
+        print(values)
 
-load_model = load_model('./new_500.h5')
+load_model = load_model('./new_50.h5')
+SinglePred()
+
+
+
 batch_end_print_callback = LambdaCallback(
     on_epoch_end=lambda batch,logs: print(getscore(load_model,y_test)))
 

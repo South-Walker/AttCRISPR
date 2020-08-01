@@ -107,11 +107,13 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
     return x
 
 def cnn(inputs):
-    conv_1 = Conv2D(10, (1, 4), padding='same', activation='relu')(inputs)
-    conv_2 = Conv2D(10, (2, 4), padding='same', activation='relu')(inputs)
-    conv_3 = Conv2D(10, (3, 4), padding='same', activation='relu')(inputs)
-    conv_4 = Conv2D(10, (4, 4), padding='same', activation='relu')(inputs)
-    conv_output = keras.layers.concatenate([conv_1, conv_2, conv_3, conv_4])
+    filtersnum=20
+    conv_1 = Conv2D(filtersnum, (1, 4), padding='same', activation='relu')(inputs)
+    conv_2 = Conv2D(filtersnum, (2, 4), padding='same', activation='relu')(inputs)
+    conv_3 = Conv2D(filtersnum, (3, 4), padding='same', activation='relu')(inputs)
+    conv_4 = Conv2D(filtersnum, (4, 4), padding='same', activation='relu')(inputs)
+    conv_output = keras.layers.concatenate([conv_1, conv_2, conv_3, conv_4],name='conv_output')
+    conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
     maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
     avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
     pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output],name='pooling_output')
@@ -167,7 +169,7 @@ def model():
                  outputs=[output])
     return model
 
-def train(epochs=500,learning_rate=0.00005):
+def train(epochs=50,learning_rate=0.0005):
     m = model()
     np.random.seed(1337)
     batch_size = params['train_batch_size']
@@ -183,7 +185,7 @@ def train(epochs=500,learning_rate=0.00005):
                  verbose=2,
                  validation_split=0.1,
                  callbacks=[batch_end_callback])    
-    m.save('./new_500.h5')
+    m.save('./new_50.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
