@@ -38,7 +38,7 @@
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv = float2(v.vertex.x,v.vertex.y)+0.5;
+				o.uv = float2(v.vertex.y,-v.vertex.x)+0.5;
 				o.normal = v.normal;
                 //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
@@ -48,7 +48,7 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                return col+0.6*i.normal.x;
+                return col+0.5-0.1*abs(i.normal.x);
             }
             ENDCG
         }
