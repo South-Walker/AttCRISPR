@@ -62,15 +62,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BlendCamera.cs" />
     <Compile Include="Assets\CurveDrawer.cs" />
-    <Compile Include="Assets\EdgeDetectNormalsAndDepth.cs" />
-    <Compile Include="Assets\PostEffectsBase.cs" />
-    <None Include="Assets\Chapter13-EdgeDetectNormalAndDepth.shader" />
+    <Compile Include="Assets\Script\BlendCamera.cs" />
+    <Compile Include="Assets\Script\BlendOP.cs" />
+    <Compile Include="Assets\Script\EdgeDetectNormalsAndDepth.cs" />
+    <Compile Include="Assets\Script\PostEffectsBase.cs" />
+    <None Include="Assets\Shader\Chapter13-EdgeDetectNormalAndDepth.shader" />
     <None Include="Assets\one-hot.shader" />
+    <None Include="Assets\Shader\TextureWithoutline.shader" />
+    <None Include="Assets\Shader\Solidwithoutline.shader" />
     <None Include="Assets\Prefab\embedding.shader" />
+    <None Include="Assets\Shader\BlendOP.shader" />
+    <None Include="Assets\Shader\Pooling.shader" />
     <None Include="Assets\white.shader" />
-    <None Include="Assets\Blend.shader" />
+    <None Include="Assets\Shader\Blend.shader" />
+    <None Include="Assets\Shader\Conv.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/lenovo/Desktop/AttCRISPR/PaperDrawer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
