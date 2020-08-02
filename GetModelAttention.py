@@ -100,13 +100,10 @@ def SinglePred(usebiofeat=True):
     values = layer_model.predict(input)
     begin = 0
     step = 20
-    for i in range(4):
-        now = begin + step*i
-        value = values[:,:,:,now:now+1]
-        value.tofile('single'+str(i)+'.out',sep=',', format='%s') 
-        print(values)
 
-load_model = load_model('./new_50.h5')
+    values.tofile('singleall.out',sep=',',format='%s')
+
+load_model = load_model('./conv_50.h5')
 SinglePred()
 
 

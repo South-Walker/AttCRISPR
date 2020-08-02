@@ -33,9 +33,12 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
+    'train_epochs_num':50,
+    'train_base_learning_rate':0.0001,
     'cnn_fc_hidden_layer_num':3,
     'cnn_fc_hidden_layer_units_num':140,
     'cnn_fc_dropout':0.2839,
+    'cnn_filters_num':20,
     'rnn_embedding_output':60,
     'rnn_embedding_dropout':0.4872,
     'rnn_unit_num':80,
@@ -56,9 +59,9 @@ params_range = {
     'cnn_fc_hidden_layer_units_num_min':50,
     'cnn_fc_hidden_layer_units_num_max':300,
     'rnn_embedding_output_min':40,
-    'rnn_embedding_output_max':80,
+    'rnn_embedding_output_max':120,
     'rnn_unit_num_min':50,
-    'rnn_unit_num_max':100,
+    'rnn_unit_num_max':120,
     'rnn_fc_hidden_layer_num_min':1,
     'rnn_fc_hidden_layer_num_max':5,
     'rnn_fc_hidden_layer_units_num_min':50,
@@ -74,19 +77,17 @@ from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multi
 from keras.layers.core import *
 from keras.models import *
 from keras.layers.recurrent import LSTM,GRU
-from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback,LambdaCallback
+from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback,LambdaCallback,LearningRateScheduler
 from keras.optimizers import *
 import keras.backend as K
 import scipy as sp
 import pandas as pd
 
 
-fc_activation_dict = {'1':'relu','2':'tanh', '3':'sigmoid', '4':'hard_sigmoid', '0':'elu'}
 initializer_dict = {'1':'lecun_uniform','2':'normal', '3':'he_normal', '0':'he_uniform'}
 optimizer_dict = {'1':SGD,'2':RMSprop, '3':Adagrad, '4':Adadelta,'5':Adam,'6':Adamax,'0':Nadam}
 
-fc_activation = fc_activation_dict['3']
-optimizer = optimizer_dict['6']
+optimizer = optimizer_dict['5']
 
 
 def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
@@ -107,12 +108,10 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
     return x
 
 def cnn(inputs):
-    filtersnum=20
-    conv_1 = Conv2D(filtersnum, (1, 4), padding='same', activation='relu')(inputs)
-    conv_2 = Conv2D(filtersnum, (2, 4), padding='same', activation='relu')(inputs)
-    conv_3 = Conv2D(filtersnum, (3, 4), padding='same', activation='relu')(inputs)
-    conv_4 = Conv2D(filtersnum, (4, 4), padding='same', activation='relu')(inputs)
-    conv_output = keras.layers.concatenate([conv_1, conv_2, conv_3, conv_4],name='conv_output')
+    conv_1 = Conv2D(params['cnn_filters_num'], (2, 4), padding='same', activation='relu')(inputs)
+    conv_2 = Conv2D(params['cnn_filters_num'], (3, 4), padding='same', activation='relu')(inputs)
+    conv_3 = Conv2D(params['cnn_filters_num'], (4, 4), padding='same', activation='relu')(inputs)
+    conv_output = keras.layers.concatenate([ conv_1, conv_2, conv_3],name='conv_output')
     conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
     maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
     avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
@@ -169,62 +168,55 @@ def model():
                  outputs=[output])
     return model
 
-def train(epochs=50,learning_rate=0.0005):
+def train():
     m = model()
     np.random.seed(1337)
     batch_size = params['train_batch_size']
+    learningrate = params['train_base_learning_rate']
+    epochs = params['train_epochs_num']
     batch_end_callback = LambdaCallback(
         on_epoch_end=lambda batch,logs: print(get_score_at_test(m))
         )
+    learningrate_scheduler = LearningRateScheduler(
+        schedule=lambda epoch : 
+        learningrate if epoch<epochs*2/5 else (learningrate*0.1 if epoch < epochs*4/5 else learningrate*0.01)
+        )
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
-    m.compile(loss='mse', optimizer=optimizer(lr=learning_rate))
+    m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
     m.fit([x_train_onehot,x_train_biofeat,x_train_seq], 
                  y_train,
                  batch_size=batch_size,
                  epochs=epochs,
                  verbose=2,
                  validation_split=0.1,
-                 callbacks=[batch_end_callback])    
-    m.save('./new_50.h5')
+                 callbacks=[batch_end_callback,early_stopping,learningrate_scheduler])
+
+    #m.save('./conv_'+str(epochs)+'.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
 def train_with(hyperparameters):
     uniform2int = lambda t,min,max: int(min+(max-min)*t)
-    params['train_batch_size'] = uniform2int(hyperparameters['train_batch_size'],
-                                             params_range['train_batch_size_min'],
-                                             params_range['train_batch_size_max'])
-    params['cnn_fc_hidden_layer_num'] = uniform2int(hyperparameters['cnn_fc_hidden_layer_num'],
-                                                    params_range['cnn_fc_hidden_layer_num_min'],
-                                                    params_range['cnn_fc_hidden_layer_num_max'])
+    params['cnn_filters_num'] = hyperparameters['cnn_filters_num']
+    params['cnn_fc_hidden_layer_num'] = hyperparameters['cnn_fc_hidden_layer_num']
     params['cnn_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['cnn_fc_hidden_layer_units_num'],
                                                           params_range['cnn_fc_hidden_layer_units_num_min'],
                                                           params_range['cnn_fc_hidden_layer_units_num_max'])
-    params['cnn_fc_dropout'] = hyperparameters['cnn_fc_dropout']
     params['rnn_embedding_output'] = uniform2int(hyperparameters['rnn_embedding_output'],
                                                   params_range['rnn_embedding_output_min'],
                                                   params_range['rnn_embedding_output_max'])
-    params['rnn_embedding_dropout'] = hyperparameters['rnn_embedding_dropout']
     params['rnn_unit_num'] = uniform2int(hyperparameters['rnn_unit_num'],
                                           params_range['rnn_unit_num_min'],
                                           params_range['rnn_unit_num_max'])
-    params['rnn_dropout'] = hyperparameters['rnn_dropout']
-    params['rnn_recurrent_dropout'] = hyperparameters['rnn_recurrent_dropout']
-    params['rnn_fc_hidden_layer_num'] = uniform2int(hyperparameters['rnn_fc_hidden_layer_num'],
-                                                     params_range['rnn_fc_hidden_layer_num_min'],
-                                                     params_range['rnn_fc_hidden_layer_num_max'])
+    params['rnn_fc_hidden_layer_num'] = hyperparameters['rnn_fc_hidden_layer_num']
     params['rnn_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['rnn_fc_hidden_layer_units_num'],
                                                            params_range['rnn_fc_hidden_layer_units_num_min'],
                                                            params_range['rnn_fc_hidden_layer_units_num_max'])
     
-    params['rnn_fc_dropout'] = hyperparameters['rnn_fc_dropout']
-    params['bio_fc_hidden_layer_num'] = uniform2int(hyperparameters['bio_fc_hidden_layer_num'],
-                                                    params_range['bio_fc_hidden_layer_num_min'],
-                                                    params_range['bio_fc_hidden_layer_num_max'])
+    params['bio_fc_hidden_layer_num'] = hyperparameters['bio_fc_hidden_layer_num']
     params['bio_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['bio_fc_hidden_layer_units_num'],
                                                           params_range['bio_fc_hidden_layer_units_num_min'],
                                                           params_range['bio_fc_hidden_layer_units_num_max'])
-    params['rnn_fc_dropout'] = hyperparameters['rnn_fc_dropout']
     return train()
 if __name__=='__main__':
     train()
