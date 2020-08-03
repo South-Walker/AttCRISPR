@@ -24,7 +24,7 @@ public class BlendOP : MonoBehaviour
         mainCam = GetComponent<Camera>();
         camwidth = mainCam.pixelWidth;
         camheight = mainCam.pixelHeight;
-        rt_posteff = new RenderTexture(camwidth*4, camheight*4, 0);
+        rt_posteff = new RenderTexture(camwidth, camheight,0);
         posteffCam.targetTexture = rt_posteff;
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)

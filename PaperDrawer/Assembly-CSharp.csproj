@@ -65,6 +65,7 @@
     <Compile Include="Assets\CurveDrawer.cs" />
     <Compile Include="Assets\Script\BlendCamera.cs" />
     <Compile Include="Assets\Script\BlendOP.cs" />
+    <Compile Include="Assets\Script\ConnectRect.cs" />
     <Compile Include="Assets\Script\EdgeDetectNormalsAndDepth.cs" />
     <Compile Include="Assets\Script\PostEffectsBase.cs" />
     <None Include="Assets\Shader\Chapter13-EdgeDetectNormalAndDepth.shader" />
