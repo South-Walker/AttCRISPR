@@ -24,20 +24,23 @@ public class ConnectRect : MonoBehaviour
     }
     private void OnGUI()
     {
+        GUI.Button(new Rect(cude1FrontBottomRightinScreen.x, maincam.pixelHeight - cude1FrontBottomRightinScreen.y, 100, 100),"hi");
     }
     private void OnPostRender()
     {
         GL.PushMatrix();
         GL.LoadOrtho();
+        GL.Color(Color.white);
         mat.SetPass(0);
         GL.Begin(GL.LINES);
 
-        GL.Vertex3(cude1FrontTopRightinScreen.x / maincam.pixelWidth, 1-cude1FrontTopRightinScreen.y / maincam.pixelHeight, 0);
-        GL.Vertex3(cude2FrontTopLeftScreen.x / maincam.pixelWidth, 1-0.5f-cude2FrontTopLeftScreen.y / maincam.pixelHeight, 0);
-
+        GL.Vertex3(cude1FrontTopRightinScreen.x / maincam.pixelWidth, 1-cude1FrontTopRightinScreen.y / maincam.pixelHeight, -9);
+        GL.Vertex3(0, 0, 9);
+        //GL.Vertex3(cude2FrontTopLeftScreen.x / maincam.pixelWidth, 1-cude2FrontTopLeftScreen.y / maincam.pixelHeight,-9);
         GL.End();
         GL.PopMatrix();
     }
+    
     Vector2 GetScreenPos(Vector4 objectpos, GameObject game, Camera cam)
     {
         return GetScreenPos(objectpos, game, cam, Vector2.zero);

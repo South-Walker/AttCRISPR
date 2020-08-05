@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: bigadd
+  m_Name: bigsigmoid
   m_Shader: {fileID: 4800000, guid: f8034c5267574794e9aed266d044b6db, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bee43f28491267946aad0f16f2809370, type: 3}
+        m_Texture: {fileID: 2800000, guid: 366fc8fe220be424599bcc1edb8ae30d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

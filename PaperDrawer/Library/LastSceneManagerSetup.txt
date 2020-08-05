@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CNNStructure.unity
+- path: Assets/Scenes/NetworkStructure.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
