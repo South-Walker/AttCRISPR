@@ -119,7 +119,7 @@ def cnn(inputs):
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
-    embedding_layer = Embedding(7,params['rnn_embedding_output'],input_length=21)
+    embedding_layer = Embedding(21,params['rnn_embedding_output'],input_length=21)
     embedded = embedding_layer(inputs)
     embedded = SpatialDropout1D(params['rnn_embedding_dropout'])(embedded)
     #(?,21,units)
@@ -191,7 +191,7 @@ def train():
                  validation_split=0.1,
                  callbacks=[batch_end_callback,early_stopping,learningrate_scheduler])
 
-    #m.save('./conv_'+str(epochs)+'.h5')
+    m.save('./conv_'+str(epochs)+'.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
