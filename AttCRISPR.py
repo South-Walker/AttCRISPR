@@ -125,7 +125,8 @@ def rnn(inputs):
     #(?,21,units)
     rnn_output = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
                      kernel_regularizer='l2',recurrent_regularizer='l2',
-                     return_sequences=True,return_state=False,name='rnn_output')(embedded)
+                     return_sequences=True,return_state=False,name='rnn_output')
+    rnn_output = Bidirectional(rnn_output)(embedded)
     return rnn_output    
 
 def model():
