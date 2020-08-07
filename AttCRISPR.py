@@ -33,8 +33,8 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':50,
-    'train_base_learning_rate':0.0001,
+    'train_epochs_num':100,
+    'train_base_learning_rate':0.0005,
     'cnn_fc_hidden_layer_num':3,
     'cnn_fc_hidden_layer_units_num':140,
     'cnn_fc_dropout':0.2839,
@@ -73,7 +73,7 @@ params_range = {
     }
 import keras
 from keras.preprocessing import text,sequence
-from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
+from keras.layers import Input, Dense, Conv2D, Conv1D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
 from keras.layers.core import *
 from keras.models import *
 from keras.layers.recurrent import LSTM,GRU
@@ -113,9 +113,12 @@ def cnn(inputs):
     conv_3 = Conv2D(params['cnn_filters_num'], (4, 4), padding='same', activation='relu')(inputs)
     conv_output = keras.layers.concatenate([ conv_1, conv_2, conv_3],name='conv_output')
     conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
-    maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
-    avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
-    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output],name='pooling_output')
+
+    avgpooling_output = Lambda(lambda inp: K.mean(inp,axis=3,keepdims=True))(conv_output)
+    maxpooling_output = Lambda(lambda inp: K.max(inp,axis=3,keepdims=True))(conv_output)
+    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output,inputs],name='pooling_output')
+    #cnn_output = Conv2D(1,(2,4),strides=(1,4),padding='same',activation='sigmoid',name='cnn_output')(pooling_output)
+    #resnet?
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
@@ -139,6 +142,7 @@ def model():
                           hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
+    #onehot_embedded = cnn_output
     ######RNN######
     rnn_output = rnn(sequence_input)
     ######Attention######
@@ -164,7 +168,7 @@ def model():
                 name='biofeat_embedding')
 
     output = dot([x,x_bio],axes=-1,name='score')
-    #output=x
+    output=x
     model = Model(inputs=[onehot_input, biological_input,sequence_input],
                  outputs=[output])
     return model
