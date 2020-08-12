@@ -33,22 +33,22 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':100,
-    'train_base_learning_rate':0.0005,
-    'cnn_fc_hidden_layer_num':3,
-    'cnn_fc_hidden_layer_units_num':140,
+    'train_epochs_num':50,
+    'train_base_learning_rate':0.0001,
+    'cnn_fc_hidden_layer_num':2,
+    'cnn_fc_hidden_layer_units_num':289,
     'cnn_fc_dropout':0.2839,
-    'cnn_filters_num':20,
-    'rnn_embedding_output':60,
+    'cnn_filters_num':25,
+    'rnn_embedding_output':48,
     'rnn_embedding_dropout':0.4872,
-    'rnn_unit_num':80,
+    'rnn_unit_num':94,
     'rnn_dropout':0.5608,
     'rnn_recurrent_dropout':0.4310,
     'rnn_fc_hidden_layer_num':2,
-    'rnn_fc_hidden_layer_units_num':118,
+    'rnn_fc_hidden_layer_units_num':139,
     'rnn_fc_dropout':0.5868,
-    'bio_fc_hidden_layer_num':0,
-    'bio_fc_hidden_layer_units_num':70,
+    'bio_fc_hidden_layer_num':1,
+    'bio_fc_hidden_layer_units_num':67,
     'bio_fc_dropout':0.6433
     }
 params_range = {
@@ -73,7 +73,7 @@ params_range = {
     }
 import keras
 from keras.preprocessing import text,sequence
-from keras.layers import Input, Dense, Conv2D, Conv1D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
+from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
 from keras.layers.core import *
 from keras.models import *
 from keras.layers.recurrent import LSTM,GRU
@@ -113,23 +113,21 @@ def cnn(inputs):
     conv_3 = Conv2D(params['cnn_filters_num'], (4, 4), padding='same', activation='relu')(inputs)
     conv_output = keras.layers.concatenate([ conv_1, conv_2, conv_3],name='conv_output')
     conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
-
-    avgpooling_output = Lambda(lambda inp: K.mean(inp,axis=3,keepdims=True))(conv_output)
-    maxpooling_output = Lambda(lambda inp: K.max(inp,axis=3,keepdims=True))(conv_output)
-    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output,inputs],name='pooling_output')
-    #cnn_output = Conv2D(1,(2,4),strides=(1,4),padding='same',activation='sigmoid',name='cnn_output')(pooling_output)
-    #resnet?
+    maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
+    avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
+    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output],name='pooling_output')
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
-    embedding_layer = Embedding(21,params['rnn_embedding_output'],input_length=21)
+    embedding_layer = Embedding(7,params['rnn_embedding_output'],input_length=21)
     embedded = embedding_layer(inputs)
     embedded = SpatialDropout1D(params['rnn_embedding_dropout'])(embedded)
     #(?,21,units)
-    rnn_output = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
+    gru_layer = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
                      kernel_regularizer='l2',recurrent_regularizer='l2',
                      return_sequences=True,return_state=False,name='rnn_output')
-    rnn_output = Bidirectional(rnn_output)(embedded)
+    gru_layer = Bidirectional(gru_layer,merge_mode='sum')
+    rnn_output = gru_layer(embedded)
     return rnn_output    
 
 def model():
@@ -142,7 +140,6 @@ def model():
                           hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
-    #onehot_embedded = cnn_output
     ######RNN######
     rnn_output = rnn(sequence_input)
     ######Attention######
@@ -166,9 +163,14 @@ def model():
                 hidden_layer_num=params['bio_fc_hidden_layer_num'],hidden_layer_units_num=params['bio_fc_hidden_layer_units_num'],
                 hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
                 name='biofeat_embedding')
-
-    output = dot([x,x_bio],axes=-1,name='score')
-    output=x
+    xwithbiofeat = keras.layers.concatenate([x,x_bio])
+    output = mlp(xwithbiofeat,
+                 output_layer_activation='linear',output_dim=1,output_use_bias=True,
+                 hidden_layer_num=0,hidden_layer_units_num=0,
+                 hidden_layer_activation='relu',dropout=0,
+                 name='score')
+    #output = dot([x,x_bio],axes=-1,name='score')
+    #output=x
     model = Model(inputs=[onehot_input, biological_input,sequence_input],
                  outputs=[output])
     return model
