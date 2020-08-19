@@ -95,6 +95,33 @@ def bezierdim1(t,points,pointsnum=4):
         return t*t*t*points[2]+3*t*t*(1-t)*points[2]+3*t*(1-t)*(1-t)*points[1]+(1-t)*(1-t)*(1-t)*points[0]
         #return t*t*points[2]+2*t*(1-t)*points[1]+(1-t)*(1-t)*points[0]
     return 0
+def rec(n,m):
+    if m == n:
+        return 1
+    elif m == 1:
+        return n
+    else:
+        return rec(n-1,m-1)+rec(n-1,m)
+    
+def bezier(t,points,pointsnum): 
+    tpow = []
+    oneminuestpow = []
+    cnums = []
+    for i in range(pointsnum):
+        if i==0:
+            tpow.append(1)
+            oneminuestpow.append(1)
+            cnums.append(1)
+        else :
+            tpow.append(t*tpow[i-1])
+            oneminuestpow.append((1-t)*oneminuestpow[i-1])
+            cnums.append(rec((pointsnum-1),i))
+    r = 0
+    for i in range(pointsnum):
+        r+=points[i]*tpow[i]*oneminuestpow[pointsnum-1-i]*cnums[i]
+
+    return r
+
 def Plot3D(spatial_attention):
     base_code_dict = {'T': 1, 'A': 2, 'C': 3, 'G': 4} 
     code_base_dict = {1: 'T', 2: 'A', 3: 'C', 4: 'G'}
@@ -124,19 +151,19 @@ def Plot3D(spatial_attention):
         if nowposy > endat:
             beginat+=2
             endat=min(20,beginat+3)
-        u = float(nowposy-beginat)/float(endat-beginat)
-        point0 = bezierdim1(u,spatial_attention[code_base_dict[1]][beginat:endat+1],
-                            pointsnum=endat-beginat+1)
-        point1 = bezierdim1(u,spatial_attention[code_base_dict[2]][beginat:endat+1],
-                            pointsnum=endat-beginat+1)
-        point2 = bezierdim1(u,spatial_attention[code_base_dict[3]][beginat:endat+1],
-                            pointsnum=endat-beginat+1)
-        point3 = bezierdim1(u,spatial_attention[code_base_dict[4]][beginat:endat+1],
-                            pointsnum=endat-beginat+1)
+        
+        u = float(nowposy)/float(yend-ybegin)
+
+        point0 = bezier(u,spatial_attention[code_base_dict[1]],21)
+        point1 = bezier(u,spatial_attention[code_base_dict[2]],21)
+        point2 = bezier(u,spatial_attention[code_base_dict[3]],21)
+        point3 = bezier(u,spatial_attention[code_base_dict[4]],21)
+        print(u)
+
         for j in range(Z.shape[1]):
             nowposx = xbegin+j*xstep
             v = (nowposx-xbegin)/(xend-xbegin)
-            Z[i][j] = bezierdim1(v,[point0,point1,point2,point3],pointsnum=4)
+            Z[i][j] = bezier(v,[point0,point1,point2,point3],4)
             minvalue = Z[i][j] if Z[i][j]<minvalue else minvalue
             maxvalue = Z[i][j] if Z[i][j]>maxvalue else maxvalue
     x_scale_ls = [i+1 for i in range(4)]

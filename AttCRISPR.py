@@ -17,12 +17,11 @@ test_size = 0.15
 
 x_train_onehot, x_test_onehot, y_train, y_test = train_test_split(x_onehot, y, test_size=test_size, random_state=random_state)
 x_train_biofeat, x_test_biofeat, y_train, y_test = train_test_split(x_biofeat, y, test_size=test_size, random_state=random_state)
-x_train_seq, x_test_seq, y_train, y_test = train_test_split(x_seq, y, test_size=test_size, random_state=random_state)
 def get_spearman(model):
-    y_test_pred = model.predict([x_test_onehot,x_test_biofeat,x_test_seq])
+    y_test_pred = model.predict([x_test_onehot,x_test_biofeat])
     return sp.stats.spearmanr(y_test, y_test_pred)[0]  
 def get_score_at_test(model):
-    y_test_pred = model.predict([x_test_onehot,x_test_biofeat,x_test_seq])
+    y_test_pred = model.predict([x_test_onehot,x_test_biofeat])
     mse = mean_squared_error(y_test, y_test_pred)
     spearmanr = sp.stats.spearmanr(y_test, y_test_pred)[0]    
     r2 = r2_score(y_test, y_test_pred)
@@ -33,22 +32,22 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':50,
+    'train_epochs_num':100,
     'train_base_learning_rate':0.0001,
-    'cnn_fc_hidden_layer_num':3,
-    'cnn_fc_hidden_layer_units_num':140,
+    'cnn_fc_hidden_layer_num':2,
+    'cnn_fc_hidden_layer_units_num':289,
     'cnn_fc_dropout':0.2839,
-    'cnn_filters_num':20,
-    'rnn_embedding_output':60,
+    'cnn_filters_num':25,
+    'rnn_embedding_output':48,
     'rnn_embedding_dropout':0.4872,
-    'rnn_unit_num':80,
+    'rnn_unit_num':94,
     'rnn_dropout':0.5608,
     'rnn_recurrent_dropout':0.4310,
     'rnn_fc_hidden_layer_num':2,
-    'rnn_fc_hidden_layer_units_num':118,
+    'rnn_fc_hidden_layer_units_num':139,
     'rnn_fc_dropout':0.5868,
-    'bio_fc_hidden_layer_num':0,
-    'bio_fc_hidden_layer_units_num':70,
+    'bio_fc_hidden_layer_num':1,
+    'bio_fc_hidden_layer_units_num':67,
     'bio_fc_dropout':0.6433
     }
 params_range = {
@@ -93,14 +92,20 @@ optimizer = optimizer_dict['5']
 def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
         hidden_layer_num,hidden_layer_units_num,hidden_layer_activation,dropout,
         name=None,output_regularizer=None):
+    if output_layer_activation == 'sigmoid' or output_layer_activation == 'tanh':
+        hidden_layer_num-=1
     x = inputs
     for l in range(hidden_layer_num):
         x = Dense(hidden_layer_units_num, activation=hidden_layer_activation)(inputs)
         x = Dropout(dropout)(x)
     if output_layer_activation == 'sigmoid' or output_layer_activation == 'tanh':
+        x = Dense(hidden_layer_units_num)(x)
+        
+        x = keras.layers.concatenate([x,inputs])
+        x = Activation(hidden_layer_activation)(x)
         x = Dense(output_dim,use_bias=output_use_bias,
                   kernel_regularizer='l2',activity_regularizer=output_regularizer)(x)
-        x = Activation(output_layer_activation,name=name)(BatchNormalization()(x))
+        x = Activation(output_layer_activation,name=name)(x)
         return x
     x = Dense(output_dim,activation=output_layer_activation,
               kernel_regularizer='l2',activity_regularizer=output_regularizer,
@@ -112,26 +117,24 @@ def cnn(inputs):
     conv_2 = Conv2D(params['cnn_filters_num'], (3, 4), padding='same', activation='relu')(inputs)
     conv_3 = Conv2D(params['cnn_filters_num'], (4, 4), padding='same', activation='relu')(inputs)
     conv_output = keras.layers.concatenate([ conv_1, conv_2, conv_3],name='conv_output')
-    conv_output = BatchNormalization(name='cnn_batchnormal')(conv_output)
     maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
-    avgpooling_output = keras.layers.AvgPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
-    pooling_output = keras.layers.concatenate([maxpooling_output,avgpooling_output],name='pooling_output')
+    pooling_output = maxpooling_output
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
-    embedding_layer = Embedding(7,params['rnn_embedding_output'],input_length=21)
-    embedded = embedding_layer(inputs)
-    embedded = SpatialDropout1D(params['rnn_embedding_dropout'])(embedded)
+    embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(inputs)
+    embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
     #(?,21,units)
-    rnn_output = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
+    gru_layer = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
                      kernel_regularizer='l2',recurrent_regularizer='l2',
-                     return_sequences=True,return_state=False,name='rnn_output')(embedded)
+                     return_sequences=True,return_state=False,name='rnn_output')
+    gru_layer = Bidirectional(gru_layer,merge_mode='sum')
+    rnn_output = gru_layer(embedded)
     return rnn_output    
 
 def model():
     onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     biological_input = Input(name = 'bio_input', shape = (x_train_biofeat.shape[1],))
-    sequence_input = Input(name = 'seq_input', shape = (21,))
     ######CNN######
     cnn_output = cnn(onehot_input)
     onehot_embedded = mlp(cnn_output,output_layer_activation='sigmoid',output_dim=21,output_use_bias=False,
@@ -139,7 +142,7 @@ def model():
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
     ######RNN######
-    rnn_output = rnn(sequence_input)
+    rnn_output = rnn(onehot_input)
     ######Attention######
     time_rnn_embeddedat = []
     for i in range(21):
@@ -161,10 +164,13 @@ def model():
                 hidden_layer_num=params['bio_fc_hidden_layer_num'],hidden_layer_units_num=params['bio_fc_hidden_layer_units_num'],
                 hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
                 name='biofeat_embedding')
-
-    output = dot([x,x_bio],axes=-1,name='score')
+    output = keras.layers.concatenate([x,x_bio])
+    output = mlp(output,
+                output_layer_activation='linear',output_dim=1,output_use_bias=True,
+                hidden_layer_num=0,hidden_layer_units_num=0,
+                hidden_layer_activation='relu',dropout=0)
     #output=x
-    model = Model(inputs=[onehot_input, biological_input,sequence_input],
+    model = Model(inputs=[onehot_input, biological_input],
                  outputs=[output])
     return model
 
@@ -179,11 +185,11 @@ def train():
         )
     learningrate_scheduler = LearningRateScheduler(
         schedule=lambda epoch : 
-        learningrate if epoch<epochs*2/5 else (learningrate*0.1 if epoch < epochs*4/5 else learningrate*0.01)
+        learningrate if epoch<epochs*2/5 else (learningrate*0.5 if epoch < epochs*4/5 else learningrate*0.25)
         )
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
     m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
-    m.fit([x_train_onehot,x_train_biofeat,x_train_seq], 
+    m.fit([x_train_onehot,x_train_biofeat], 
                  y_train,
                  batch_size=batch_size,
                  epochs=epochs,
@@ -191,7 +197,7 @@ def train():
                  validation_split=0.1,
                  callbacks=[batch_end_callback,early_stopping,learningrate_scheduler])
 
-    #m.save('./conv_'+str(epochs)+'.h5')
+    m.save('./conv_'+str(epochs)+'.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
