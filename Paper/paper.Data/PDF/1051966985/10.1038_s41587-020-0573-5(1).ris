@@ -1,0 +1,26 @@
+TY  - JOUR
+AU  - Song, Myungjae
+AU  - Kim, Hui Kwon
+AU  - Lee, Sungtae
+AU  - Kim, Younggwang
+AU  - Seo, Sang-Yeon
+AU  - Park, Jinman
+AU  - Choi, Jae Woo
+AU  - Jang, Hyewon
+AU  - Shin, Jeong Hong
+AU  - Min, Seonwoo
+AU  - Quan, Zhejiu
+AU  - Kim, Ji Hun
+AU  - Kang, Hoon Chul
+AU  - Yoon, Sungroh
+AU  - Kim, Hyongbum Henry
+PY  - 2020
+DA  - 2020/07/06
+TI  - Sequence-specific prediction of the efficiencies of adenine and cytosine base editors
+JO  - Nature Biotechnology
+AB  - Base editors, including adenine base editors (ABEs)1 and cytosine base editors (CBEs)2,3, are widely used to induce point mutations. However, determining whether a specific nucleotide in its genomic context can be edited requires time-consuming experiments. Furthermore, when the editable window contains multiple target nucleotides, various genotypic products can be generated. To develop computational tools to predict base-editing efficiency and outcome product frequencies, we first evaluated the efficiencies of an ABE and a CBE and the outcome product frequencies at 13,504 and 14,157 target sequences, respectively, in human cells. We found that there were only modest asymmetric correlations between the activities of the base editors and Cas9 at the same targets. Using deep-learning-based computational modeling, we built tools to predict the efficiencies and outcome frequencies of ABE- and CBE-directed editing at any target sequence, with Pearson correlations ranging from 0.50 to 0.95. These tools and results will facilitate modeling and therapeutic correction of genetic diseases by base editing.
+SN  - 1546-1696
+UR  - https://doi.org/10.1038/s41587-020-0573-5
+DO  - 10.1038/s41587-020-0573-5
+ID  - Song2020
+ER  - 
