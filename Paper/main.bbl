@@ -1,0 +1,76 @@
+\begin{thebibliography}{}
+
+\bibitem[Cong {\em et~al.}(2013)Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu,
+  Jiang, Marraffini, {\em et~al.}]{cong2013multiplex}
+Cong, L., Ran, F.~A., Cox, D.~D., Lin, S., Barretto, R. P.~J., Habib, N., Hsu,
+  P., Wu, X., Jiang, W., Marraffini, L.~A., {\em et~al.} (2013).
+\newblock Multiplex genome engineering using crispr/cas systems.
+\newblock {\em Science\/}, {\bf 339}(6121), 819--823.
+
+\bibitem[Ishii(2017)Ishii]{ishii2017reproductive}
+Ishii, T. (2017).
+\newblock Reproductive medicine involving genome editing: clinical
+  uncertainties and embryological needs.
+\newblock {\em Reproductive Biomedicine Online\/}, {\bf 34}(1), 27--31.
+
+\bibitem[Jinek {\em et~al.}(2012)Jinek, Chylinski, Fonfara, Hauer, Doudna, and
+  Charpentier]{jinek2012a}
+Jinek, M., Chylinski, K., Fonfara, I., Hauer, M., Doudna, J.~A., and
+  Charpentier, E. (2012).
+\newblock A programmable dual-rna-guided dna endonuclease in adaptive bacterial
+  immunity.
+\newblock {\em Science\/}, {\bf 337}(6096), 816--821.
+
+\bibitem[Kang {\em et~al.}(2016)Kang, He, Huang, Yu, Chen, Gao, Sun, and
+  Fan]{kang2016introducing}
+Kang, X., He, W., Huang, Y., Yu, Q., Chen, Y., Gao, X., Sun, X., and Fan, Y.
+  (2016).
+\newblock Introducing precise genetic modifications into human 3pn embryos by
+  crispr/cas-mediated genome editing.
+\newblock {\em Journal of Assisted Reproduction and Genetics\/}, {\bf 33}(5),
+  581--588.
+
+\bibitem[Kleinstiver {\em et~al.}(2016)Kleinstiver, Pattanayak, Prew, Tsai,
+  Nguyen, Zheng, and Joung]{kleinstiver2016high-fidelity}
+Kleinstiver, B.~P., Pattanayak, V., Prew, M.~S., Tsai, S.~Q., Nguyen, N.~T.,
+  Zheng, Z., and Joung, J.~K. (2016).
+\newblock High-fidelity crispr–cas9 nucleases with no detectable genome-wide
+  off-target effects.
+\newblock {\em Nature\/}, {\bf 529}(7587), 490--495.
+
+\bibitem[Liang {\em et~al.}(2015)Liang, Xu, Zhang, Ding, Huang, Zhang, Lv, Xie,
+  Chen, Li, {\em et~al.}]{liang2015crispr/cas9-mediated}
+Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
+  Chen, Y., Li, Y., {\em et~al.} (2015).
+\newblock Crispr/cas9-mediated gene editing in human tripronuclear zygotes.
+\newblock {\em Protein \& Cell\/}, {\bf 6}(5), 363--372.
+
+\bibitem[Liu {\em et~al.}(2019)Liu, He, and Xie]{Liu2019}
+Liu, Q., He, D., and Xie, L. (2019).
+\newblock Prediction of off-target specificity and cell-specific fitness of
+  crispr-cas system using attention boosted deep learning and network-based
+  gene feature.
+\newblock {\em PLoS computational biology\/}, {\bf 15}(10), e1007480--e1007480.
+\newblock 31658261[pmid].
+
+\bibitem[Mali {\em et~al.}(2013)Mali, Yang, Esvelt, Aach, Guell, Dicarlo,
+  Norville, and Church]{mali2013rnaguided}
+Mali, P., Yang, L., Esvelt, K.~M., Aach, J., Guell, M., Dicarlo, J.~E.,
+  Norville, J.~E., and Church, G.~M. (2013).
+\newblock Rna-guided human genome engineering via cas9.
+\newblock {\em Science\/}, {\bf 339}(6121), 823--826.
+
+\bibitem[Rubeis and Steger(2018)Rubeis and Steger]{rubeis2018risks}
+Rubeis, G. and Steger, F. (2018).
+\newblock Risks and benefits of human germline genome editing: An ethical
+  analysis.
+\newblock {\em Asian Bioethics Review\/}, {\bf 10}(2), 133--141.
+
+\bibitem[Slaymaker {\em et~al.}(2016)Slaymaker, Gao, Zetsche, Scott, Yan, and
+  Zhang]{slaymaker2016rationally}
+Slaymaker, I.~M., Gao, L., Zetsche, B., Scott, D.~A., Yan, W.~X., and Zhang, F.
+  (2016).
+\newblock Rationally engineered cas9 nucleases with improved specificity.
+\newblock {\em Science\/}, {\bf 351}(6268), 84--88.
+
+\end{thebibliography}

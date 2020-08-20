@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: natbib.bst
+Database file #1: bibtex.bib
+Warning--I'm ignoring Liu2019's extra "note" field
+--line 321 of file bibtex.bib
+Warning--I'm ignoring Liu2019's extra "note" field
+--line 323 of file bibtex.bib
+Warning--I didn't find a database entry for "Boffelli03"
+You've used 10 entries,
+            2378 wiz_defined-function locations,
+            601 strings with 6492 characters,
+and the built_in function-call counts, 6130 in all, are:
+= -- 523
+> -- 473
+< -- 2
++ -- 147
+- -- 145
+* -- 665
+:= -- 1087
+add.period$ -- 53
+call.type$ -- 10
+change.case$ -- 61
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 204
+empty$ -- 349
+format.name$ -- 157
+if$ -- 1165
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 54
+num.names$ -- 40
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 61
+quote$ -- 0
+skip$ -- 123
+stack$ -- 0
+substring$ -- 408
+swap$ -- 42
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 90
+warning$ -- 0
+while$ -- 49
+width$ -- 0
+write$ -- 134
+(There were 3 warnings)
