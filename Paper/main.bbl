@@ -1,5 +1,18 @@
 \begin{thebibliography}{}
 
+\bibitem[Bauer {\em et~al.}(2007)Bauer, Klau, and Reinert]{Boffelli03}
+Bauer, M., Klau, G.~W., and Reinert, K. (2007).
+\newblock {Accurate multiple sequence-structure alignment of RNA sequences
+  using combinatorial optimization.}
+\newblock {\em BMC Bioinformatics\/}, {\bf 8}, 271.
+
+\bibitem[Chuai {\em et~al.}(2018)Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu,
+  Chen, Duan, {\em et~al.}]{chuai2018deepcrispr}
+Chuai, G., Ma, H., Yan, J., Chen, M., Hong, N., Xue, D., Zhou, C., Zhu, C.,
+  Chen, K., Duan, B., {\em et~al.} (2018).
+\newblock Deepcrispr : optimized crispr guide rna design by deep learning.
+\newblock {\em Genome Biology\/}, {\bf 19}(1), 1--18.
+
 \bibitem[Cong {\em et~al.}(2013)Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu,
   Jiang, Marraffini, {\em et~al.}]{cong2013multiplex}
 Cong, L., Ran, F.~A., Cox, D.~D., Lin, S., Barretto, R. P.~J., Habib, N., Hsu,
@@ -30,6 +43,21 @@ Kang, X., He, W., Huang, Y., Yu, Q., Chen, Y., Gao, X., Sun, X., and Fan, Y.
 \newblock {\em Journal of Assisted Reproduction and Genetics\/}, {\bf 33}(5),
   581--588.
 
+\bibitem[Kim {\em et~al.}(2018)Kim, Min, Song, Jung, Choi, Kim, Lee, Yoon, and
+  Kim]{kim2018deep}
+Kim, H.~K., Min, S., Song, M., Jung, S., Choi, J.~W., Kim, Y., Lee, S., Yoon,
+  S., and Kim, H. (2018).
+\newblock Deep learning improves prediction of crispr-cpf1 guide rna activity.
+\newblock {\em Nature Biotechnology\/}, {\bf 36}(3), 239--241.
+
+\bibitem[Kim {\em et~al.}(2019)Kim, Kim, Lee, Min, Bae, Choi, Park, Jung, Yoon,
+  and Kim]{kim2019spcas9}
+Kim, H.~K., Kim, Y., Lee, S., Min, S., Bae, J.~Y., Choi, J.~W., Park, J., Jung,
+  D., Yoon, S., and Kim, H. (2019).
+\newblock Spcas9 activity prediction by deepspcas9, a deep learning–based
+  model with high generalization performance.
+\newblock {\em Science Advances\/}, {\bf 5}(11).
+
 \bibitem[Kleinstiver {\em et~al.}(2016)Kleinstiver, Pattanayak, Prew, Tsai,
   Nguyen, Zheng, and Joung]{kleinstiver2016high-fidelity}
 Kleinstiver, B.~P., Pattanayak, V., Prew, M.~S., Tsai, S.~Q., Nguyen, N.~T.,
@@ -45,13 +73,25 @@ Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
 \newblock Crispr/cas9-mediated gene editing in human tripronuclear zygotes.
 \newblock {\em Protein \& Cell\/}, {\bf 6}(5), 363--372.
 
-\bibitem[Liu {\em et~al.}(2019)Liu, He, and Xie]{Liu2019}
-Liu, Q., He, D., and Xie, L. (2019).
+\bibitem[Liu {\em et~al.}(2019a)Liu, Zhang, and Zhang]{liu2019computational}
+Liu, G., Zhang, Y., and Zhang, T. (2019a).
+\newblock Computational approaches for effective crispr guide rna design and
+  evaluation.
+\newblock {\em Computational and structural biotechnology journal\/}, {\bf 18},
+  35--44.
+
+\bibitem[Liu {\em et~al.}(2019b)Liu, He, and Xie]{Liu2019}
+Liu, Q., He, D., and Xie, L. (2019b).
 \newblock Prediction of off-target specificity and cell-specific fitness of
   crispr-cas system using attention boosted deep learning and network-based
   gene feature.
 \newblock {\em PLoS computational biology\/}, {\bf 15}(10), e1007480--e1007480.
 \newblock 31658261[pmid].
+
+\bibitem[Lundberg and Lee(2017)Lundberg and Lee]{lundberg2017a}
+Lundberg, S. and Lee, S. (2017).
+\newblock A unified approach to interpreting model predictions.
+\newblock pages 4768--4777.
 
 \bibitem[Mali {\em et~al.}(2013)Mali, Yang, Esvelt, Aach, Guell, Dicarlo,
   Norville, and Church]{mali2013rnaguided}
@@ -60,11 +100,26 @@ Mali, P., Yang, L., Esvelt, K.~M., Aach, J., Guell, M., Dicarlo, J.~E.,
 \newblock Rna-guided human genome engineering via cas9.
 \newblock {\em Science\/}, {\bf 339}(6121), 823--826.
 
+\bibitem[Muhammad~Rafid {\em et~al.}(2020)Muhammad~Rafid, Toufikuzzaman,
+  Rahman, and Rahman]{MuhammadRafid2020}
+Muhammad~Rafid, A.~H., Toufikuzzaman, M., Rahman, M.~S., and Rahman, M.~S.
+  (2020).
+\newblock Crisprpred(seq): a sequence-based method for sgrna on target activity
+  prediction using traditional machine learning.
+\newblock {\em BMC Bioinformatics\/}, {\bf 21}(1), 223.
+
 \bibitem[Rubeis and Steger(2018)Rubeis and Steger]{rubeis2018risks}
 Rubeis, G. and Steger, F. (2018).
 \newblock Risks and benefits of human germline genome editing: An ethical
   analysis.
 \newblock {\em Asian Bioethics Review\/}, {\bf 10}(2), 133--141.
+
+\bibitem[Slack {\em et~al.}(2019)Slack, Hilgard, Jia, Singh, and
+  Lakkaraju]{slack2019fooling}
+Slack, D., Hilgard, S., Jia, E., Singh, S., and Lakkaraju, H. (2019).
+\newblock Fooling lime and shap: Adversarial attacks on post hoc explanation
+  methods.
+\newblock {\em arXiv: Learning\/}.
 
 \bibitem[Slaymaker {\em et~al.}(2016)Slaymaker, Gao, Zetsche, Scott, Yan, and
   Zhang]{slaymaker2016rationally}
@@ -72,5 +127,22 @@ Slaymaker, I.~M., Gao, L., Zetsche, B., Scott, D.~A., Yan, W.~X., and Zhang, F.
   (2016).
 \newblock Rationally engineered cas9 nucleases with improved specificity.
 \newblock {\em Science\/}, {\bf 351}(6268), 84--88.
+
+\bibitem[Song {\em et~al.}(2020)Song, Kim, Lee, Kim, Seo, Park, Choi, Jang,
+  Shin, Min, Quan, Kim, Kang, Yoon, and Kim]{Song2020}
+Song, M., Kim, H.~K., Lee, S., Kim, Y., Seo, S.-Y., Park, J., Choi, J.~W.,
+  Jang, H., Shin, J.~H., Min, S., Quan, Z., Kim, J.~H., Kang, H.~C., Yoon, S.,
+  and Kim, H.~H. (2020).
+\newblock Sequence-specific prediction of the efficiencies of adenine and
+  cytosine base editors.
+\newblock {\em Nature Biotechnology\/}.
+
+\bibitem[Wang {\em et~al.}(2019)Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou,
+  Shi, Lan, {\em et~al.}]{wang2019optimized}
+Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
+  Shi, L., Lan, F., {\em et~al.} (2019).
+\newblock Optimized crispr guide rna design for two high-fidelity cas9 variants
+  by deep learning.
+\newblock {\em Nature Communications\/}, {\bf 10}(1), 4284--4284.
 
 \end{thebibliography}

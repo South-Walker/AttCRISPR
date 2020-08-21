@@ -2,51 +2,51 @@ This is BibTeX, Version 0.99d (TeX Live 2020/W32TeX)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: natbib.bst
-Database file #1: bibtex.bib
+Database file #1: document.bib
 Warning--I'm ignoring Liu2019's extra "note" field
---line 321 of file bibtex.bib
+--line 134 of file document.bib
 Warning--I'm ignoring Liu2019's extra "note" field
---line 323 of file bibtex.bib
-Warning--I didn't find a database entry for "Boffelli03"
-You've used 10 entries,
+--line 135 of file document.bib
+Warning--empty journal in lundberg2017a
+You've used 20 entries,
             2378 wiz_defined-function locations,
-            601 strings with 6492 characters,
-and the built_in function-call counts, 6130 in all, are:
-= -- 523
-> -- 473
-< -- 2
-+ -- 147
-- -- 145
-* -- 665
-:= -- 1087
-add.period$ -- 53
-call.type$ -- 10
-change.case$ -- 61
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 204
-empty$ -- 349
-format.name$ -- 157
-if$ -- 1165
-int.to.chr$ -- 1
+            657 strings with 9049 characters,
+and the built_in function-call counts, 12205 in all, are:
+= -- 1008
+> -- 1011
+< -- 4
++ -- 316
+- -- 311
+* -- 1309
+:= -- 2190
+add.period$ -- 105
+call.type$ -- 20
+change.case$ -- 122
+chr.to.int$ -- 19
+cite$ -- 21
+duplicate$ -- 417
+empty$ -- 658
+format.name$ -- 335
+if$ -- 2316
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 10
-newline$ -- 54
-num.names$ -- 40
-pop$ -- 56
+missing$ -- 20
+newline$ -- 104
+num.names$ -- 80
+pop$ -- 126
 preamble$ -- 1
-purify$ -- 61
+purify$ -- 122
 quote$ -- 0
-skip$ -- 123
+skip$ -- 260
 stack$ -- 0
-substring$ -- 408
-swap$ -- 42
-text.length$ -- 0
+substring$ -- 701
+swap$ -- 92
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 90
-warning$ -- 0
-while$ -- 49
+type$ -- 180
+warning$ -- 1
+while$ -- 92
 width$ -- 0
-write$ -- 134
+write$ -- 261
 (There were 3 warnings)

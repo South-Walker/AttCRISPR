@@ -1,18 +1,18 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 AUG 2020 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 AUG 2020 20:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex
-(c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex
+**c:/Users/50683/Desktop/AttCRISPR/Paper/temp/main.tex
+(c:/Users/50683/Desktop/AttCRISPR/Paper/temp/main.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06> (c:/Users/50683/Desktop/AttCRISPR/Paper/bioinfo.cls
+L3 programming layer <2020-03-06> (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/bioinfo.cls
 Document Class: bioinfo 2003/02/08 0.1
 (c:/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/crop.sty
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/crop.sty
 Package: crop 2001/11/16 v1.6 cropmarks (mf)
 \CROP@width=\dimen134
 \CROP@height=\dimen135
@@ -30,9 +30,9 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \CROP@offset=\count168
 Package crop Info: Local config file crop.cfg used on input line 344.
- (c:/Users/50683/Desktop/AttCRISPR/Paper/crop.cfg))
+ (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/crop.cfg))
 Package crop Info: using pdf(la)tex graphics driver on input line 31.
- (c:/Users/50683/Desktop/AttCRISPR/Paper/graphicx.sty
+ (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
@@ -94,14 +94,14 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/array.sty
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/array.sty
 Package: array 1998/05/13 v2.3m Tabular extension package (FMi)
 \col@sep=\dimen147
 \extrarowheight=\dimen148
 \NC@list=\toks23
 \extratabsurround=\skip50
 \backup@length=\skip51
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/color.sty
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/color.sty
 Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
  (c:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -116,7 +116,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (c:/Users/50683/Desktop/AttCRISPR/Paper/flushend.sty
+)) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/flushend.sty
 Package: flushend 1997/10/01
 \@aaa=\box47
 \@ccc=\box48
@@ -125,7 +125,7 @@ Package: flushend 1997/10/01
 \atColsBreak=\toks24
 \@extra@skip=\dimen149
 \@nd@page@rule=\dimen150
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/stfloats.sty
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/stfloats.sty
 Package: stfloats 1999/10/22
 \@dblbotnum=\count181
 \c@dblbotnumber=\count182
@@ -140,7 +140,7 @@ Package: amsthm 2017/10/31 v2.20.4
 \thm@postskip=\skip53
 \thm@headsep=\skip54
 \dth@everypar=\toks30
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/chngpage.sty
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/chngpage.sty
 Package: chngpage 2001/01/31 v1.1b change page layout
 \c@cp@cnt=\count183
 \c@cp@tempcnt=\count184
@@ -299,7 +299,7 @@ File: ly1ptm.fd 2001/02/01 font definitions for LY1/ptm using Berry names.
 \rotdimen=\dimen151
 \tempdime=\dimen152
 \temptbox=\box51
- (c:/Users/50683/Desktop/AttCRISPR/Paper/natbib.sty
+ (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/natbib.sty
 Package: natbib 2000/07/24 7.0a (PWD)
 \bibhang=\skip60
 \bibsep=\skip61
@@ -309,7 +309,7 @@ LaTeX Info: Redefining \cite on input line 508.
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count193
 \l__pdf_internal_box=\box52
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -347,7 +347,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for LY1+phv on input line 34.
+LaTeX Font Info:    Trying to load font information for LY1+phv on input line 37.
  (c:/texlive/2020/texmf-dist/tex/latex/ly1/ly1phv.fd
 File: ly1phv.fd 2001/02/01 scalable font definitions for LY1/phv using Berry names.
 
@@ -379,80 +379,100 @@ Package epstopdf Info: Source file: <OUP_First_SBk_Bot_8401.eps>
 (epstopdf)                    date: 2015-11-25 11:49:46
 (epstopdf)                    size: 9259 bytes
 (epstopdf)             Command: <repstopdf --outfile=OUP_First_SBk_Bot_8401-eps-converted-to.pdf OUP_First_SBk_Bot_8401.eps>
-(epstopdf)             \includegraphics on input line 34.
+(epstopdf)             \includegraphics on input line 37.
 Package epstopdf Info: Output file is already uptodate.
 <OUP_First_SBk_Bot_8401-eps-converted-to.pdf, id=1, 54.2025pt x 54.2025pt>
 File: OUP_First_SBk_Bot_8401-eps-converted-to.pdf Graphic file (type pdf)
 <use OUP_First_SBk_Bot_8401-eps-converted-to.pdf>
-Package pdftex.def Info: OUP_First_SBk_Bot_8401-eps-converted-to.pdf  used on input line 34.
+Package pdftex.def Info: OUP_First_SBk_Bot_8401-eps-converted-to.pdf  used on input line 37.
 (pdftex.def)             Requested size: 54.20236pt x 54.20236pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 37.
 
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 34.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 37.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 37.
 
 LaTeX Font Info:    Font shape `LY1/phv/m/it' in size <9> not available
-(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 34.
+(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 37.
 
-Underfull \hbox (badness 10000) detected at line 34
+Underfull \hbox (badness 10000) detected at line 37
 []
  []
 
 
-Overfull \hbox (11.24806pt too wide) in paragraph at lines 38--47
-\LY1/ptm/m/n/8 Clustered regularly interspaced short palindromic repeats (CRISPR)/CRIPSR-
- []
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 56.
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 38--47
-\LY1/ptm/m/it/8 et al.\LY1/ptm/m/n/8 , 2016), been developed and bring a significant volume of
- []
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 67.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 72.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 90.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 95.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 100.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 105.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 113.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 118.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 123.
+
+
+LaTeX Warning: Reference `fig:02' on page 1 undefined on input line 128.
 
 
 Overfull \hbox (1.12001pt too wide) has occurred while \output is active
@@ -463,81 +483,96 @@ Overfull \hbox (1.12001pt too wide) has occurred while \output is active
 
 
 
- <c:/Users/50683/Desktop/AttCRISPR/Paper/OUP_First_SBk_Bot_8401-eps-converted-to.pdf>]
+ <c:/Users/50683/Desktop/AttCRISPR/Paper/temp/OUP_First_SBk_Bot_8401-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 72.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 90.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 137.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 95.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 142.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 100.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 147.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 113.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 118.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 123.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 128.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 136.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 141.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 146.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 151.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 155.
 
 
 LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 160.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 165.
-
-
 LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 170.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 178.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 175.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 183.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 180.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 193.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 185.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 198.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 190.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 203.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 195.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 208.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 200.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 213.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 211.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 218.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 216.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 223.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 221.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 229.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 234.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 239.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 247.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 252.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 257.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 262.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 267.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 272.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 277.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 288.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 293.
+
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 298.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `LY1/phv/m/it' in size <8> not available
-(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 230.
+(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 301.
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
@@ -545,43 +580,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 
 [2]
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 234.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 239.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 244.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 252.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 257.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 262.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 270.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 275.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 280.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 285.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 290.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 295.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 300.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 306.
 
 
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 311.
@@ -590,29 +589,25 @@ LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 311.
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 316.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 321.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 323.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 328.
 
 
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 329.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 334.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 333.
 
 
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 339.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 346.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 344.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 350.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 349.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 356.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 354.
 
 
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 363.
@@ -678,7 +673,37 @@ LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 409.
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 414.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 423.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 428.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 433.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 445.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 450.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 459.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 461.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 463.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 490.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 495.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 500.
 
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
@@ -686,39 +711,6 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [3]
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 423.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 428.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 433.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 445.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 450.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 459.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 461.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 463.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 490.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 495.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 500.
-
 
 LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 507.
 
@@ -732,73 +724,48 @@ LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 524.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (252.0pt too wide) has occurred while \output is active
-[][] 
+
+LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 533.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 575--578
+[]\LY1/ptm/m/n/7 Crenshaw, B.,III, and Jones, W.B.,Jr (2003) The future of clinical
  []
 
-[4]
 
-LaTeX Warning: Reference `fig:02' on page 5 undefined on input line 533.
+Underfull \hbox (badness 10000) in paragraph at lines 575--578
+\LY1/ptm/m/n/7 cancer management: one tumor, one chip. \LY1/ptm/m/it/7 Bioinformatics\LY1/ptm/m/n/7 ,
+ []
 
-(c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 398.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 399.25949pt
+Extra height:28.0pt when 285.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 400.25949pt
+Extra height:28.0pt when 286.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 401.25949pt
+Extra height:28.0pt when 287.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 402.25949pt
+Extra height:28.0pt when 288.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 403.25949pt
+Extra height:0.0pt when 289.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 404.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 405.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 406.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 407.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 408.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 409.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 410.25949pt
-Extra height:0.0pt when 411.25949pt
-(2)Left:411.25949pt Right:390.519pt Output:411.25949pt
+(2)Left:289.368pt Right:281.0pt Output:289.368pt
 - LAST -
 Extra skip:0.0pt
-Left:411.25949pt
-Right:390.519pt
-Output:411.25949pt
+Left:289.368pt
+Right:281.0pt
+Output:289.368pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -807,7 +774,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[5] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+[4] (c:/Users/50683/Desktop/AttCRISPR/Paper/temp/main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.25pt have occurred.
@@ -820,18 +787,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3579 strings out of 480608
- 44686 string characters out of 5907536
- 305592 words of memory out of 5000000
- 19400 multiletter control sequences out of 15000+600000
+ 3562 strings out of 480608
+ 44409 string characters out of 5907536
+ 299121 words of memory out of 5000000
+ 19386 multiletter control sequences out of 15000+600000
  590691 words of font info for 119 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 39i,10n,35p,423b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,10n,35p,309b,390s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (5 pages, 138286 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/temp/main.pdf (4 pages, 124043 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
