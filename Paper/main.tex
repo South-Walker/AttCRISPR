@@ -47,11 +47,12 @@ Clustered regularly interspaced short palindromic repeats (CRISPR)/CRIPSR-associ
 
 The activity of chosen sgRNA sequence determines the success of genome editing, however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system.
  Some optimum sgRNAs can hit almost all targers alleles, while anothers don't even show activity \citep{wang2019optimized}.
- This fact indicates that it's meaningful to explore an efficient method to guide sgRNA design. 
+ This fact indicates that it's meaningful to explore an efficient approaches to guide sgRNA design. 
  In practice, there have been a number of application and toolkit applied in this task. In the earlier studies, methods in silico are categorized into three types: 
  (1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
  Recently we noticed that the last type of method seems to be getting more attention because of huger and huger data set \citep{liu2019computational}. 
- Learning-based method, which designed to predict the activity of sgRNAs, is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
+
+Learning-based method, which designed to predict the activity of sgRNAs, is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
  Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
  Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
  In short, what was needed for developer is to trade-off accuracy and interpretability. 

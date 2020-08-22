@@ -1,103 +1,89 @@
-Clustered regularly interspaced short palindromic repeats (CRISPR)/CRIPSR-associated  protein 9 (Cas) systems is preferred over other biological research and human medicine technologies now, beacuse of it's efficiency, robustness and programmability. Cas9 nucleases can be directed by short guide RNAs (sgRNAs) to introduce site-specific DNA double-stranded breaks in target，so to enable editing site-specific within the mammalian genome【1-3]. CRISPR/Cas9, to a large extent, has developed genetic therapies at the cellular level, while there are still severe medical disadvantage even now which has greatly hindered the further clinical application of the CRISPR/Cas9 systems. One of these disadvantage is due to point mutations caused by off-target effects. 【4-7】To overcome this disadvantage, a solution is to engineer CRISPR/Cas9 with higher specificities. That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)) ,Cas9-High Fidelity (SpCas9-HF1)【8-9】, hyper-accurate Cas9 (HypaCas9)【10】, been developed and bring a significant volume of experimental data, that is to say researchers have to face the difficulty of analyzing such huge and heterogeneous data.
+Clustered regularly interspaced short palindromic repeats (CRISPR)/CRIPSR-associated  protein 9 (Cas9) systems is preferred over other biological research and human medicine technologies now, beacuse of it's efficiency, 
+ robustness and programmability.  Cas9 nucleases can be directed by short guide RNAs (sgRNAs) to introduce site-specific DNA double-stranded breaks in target, 
+ so to enable editing site-specific within the mammalian genome \citep{jinek2012a,cong2013multiplex,mali2013rnaguided}. CRISPR/Cas9, to a large extent, has developed genetic therapies at the cellular level, 
+ while there are still severe medical disadvantage even now which has greatly hindered the further clinical application of the CRISPR/Cas9 systems. 
+ One of these disadvantage is due to point mutations caused by off-target effects \citep{rubeis2018risks,kang2016introducing,ishii2017reproductive,liang2015crispr/cas9-mediated}. 
+ To overcome this disadvantage, a solution is to engineer CRISPR/Cas9 with higher specificities. 
+ That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)), 
+ Cas9-High Fidelity (SpCas9-HF1) \citep{ishii2017reproductive,slaymaker2016rationally}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
+ been developed and bring a significant volume of experimental data, that is to say researchers have to face the difficulty of analyzing such huge and heterogeneous data.
+
+The activity of chosen sgRNA sequence determines the success of genome editing, however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system.
+ Some optimum sgRNAs can hit almost all targers alleles, while anothers don't even show activity \citep{wang2019optimized}.
+ This fact indicates that it's meaningful to explore an efficient approaches to guide sgRNA design. 
+ In practice, there have been a number of application and toolkit applied in this task. In the earlier studies, methods in silico are categorized into three types: 
+ (1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
+ Recently we noticed that the last type of method seems to be getting more attention because of huger and huger data set \citep{liu2019computational}. 
+
+Learning-based method, which designed to predict the activity of sgRNAs, is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
+ Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
+ Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
+ In short, what was needed for developer is to trade-off accuracy and interpretability. 
+ Muhammad Rafidet al. consider deep-learning-based models as black boxs and believe they lack interpretability, motivated by the empirical assertion, they turn to build a model based conventional machine learning to compete with state of the art deep learning models \citep{MuhammadRafid2020}. 
+ On the other hand, input perturbation based feature importance analysis become a preferred components to reveal the importance of features in deep learning models. Liu et al. use a sliding window of length 2 to extract dimeric as input and rank the position of dimeric by contribution to final output \citep{Liu2019}. 
+ One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. Further, SHAP, one of the most prominent of model explain techniques, has been widely used to understand the decision made by the model. 
+ Wang et al. develope DeepHF, a deep learning based model, and use Deep SHAP to revealed nucleotide contributions \citep{wang2019optimized}. 
+ Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks \citep{lundberg2017a}. 
+ In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
+ Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases \citep{slack2019fooling}, in other word, they could be unreliable and misleading, even on model with excellent performance. 
+ In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, but also be comparable to conventional machine learning algorithms in interpretability.
 
 
+Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems【21】. Most of the deep neural network existing are the combination of recurrent neural network (RNN), convolutional neural network (CNN), fully connected neural network(FNN), and their variants. 我们发现大抵可以把近年来应用在sgRNA活性预测任务上（even in off-target）的深度神经网络模型分为如下两类，根据对输入碱基序列编码方法.
+(1) Methods in spatial domain. Some previous studies have used model based CNN to predict gRNA on-target activity or off-target effects【23,24,25】. They process sgRNA base sequence inputs with the help of one-hot encoding idea. In other words, they regard it as two-dimensional image data, and use convolution layer to extracte potential features in spatial domain, It is worth noting that XXX et al adds bidirectional gated recurrent unit (BGRU, in short), a RNN variant, after pooling layer of classic CNN network【27】. Our explanation is that BGRU assists CNN to extract spatial features in one dimension, under this belief it belong to this category.
+ (2) Methods in temporal domain. Although RNN-based network have been shown effective to improve the performance of the model with sequential input, especially in natural language processing and sequential recommendation【22】, RNN be not used for gRNA activity prediction, until recently【14,26,13】.
 
-The activity of chosen sgRNA sequence determines the success of genome editing, however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system. Some optimum sgRNAs can hit almost all targers alleles, while anothers don't even show activity【14】. This fact indicates that it's meaningful to explore an efficient method to guide sgRNA design. In practice, there have been a number of application and toolkit applied in this task. In the earlier studies, methods in silico are categorized into three types: (1) alignment-based, (2) hypothesis-driven and (3) learning-based【17】. Recently we noticed that the last type of method seems to be getting more attention because of huger and huger data set【18】. Learning-based method, which designed to predict the activity of sgRNAs, is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. Some studies on HT_ABE and HT_CBE have shown that deep-learning-based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level【11，19，20】. Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. In short, what was needed for developer is to trade-off accuracy and interpretability. xxx et al. consider deep-learning-based models as black boxs and believe they lack interpretability, motivated by the empirical assertion, they turn to build a model based conventional machine learning to compete with state of the art deep learning models【12】. On the one hand, input perturbation based feature importance analysis become a preferred components to reveal the importance of features in deep learning models. xxx et al. use a sliding window of length 2 to extract dimeric as input and rank the position of dimeric by contribution to final output 【13】. One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. Further, SHAP, one of the most prominent of model explain techniques, has been widely used to understand the decision made by the model. xxx et al. develope DeepHF, a deep learning based model, and use Deep SHAP to revealed nucleotide contributions【14】. Deep SHAP is a compositional approximation of SHAP values since it's challenged to computate SHAP values exactly, especially for a complex deep neural networks【15】. In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases【16】, in other word, they could be unreliable and misleading, even on model with excellent performance. In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance，but also be comparable to conventional machine learning algorithms in interpretability.
-
-
-
-
-
-RNN- CNN 在这一任务上的能力已经得到了充分检验，rnn与CNN都是局部模型，RNN可以捕捉时间域上连续数据的隐含特征并编码为本征向量，cnn通过卷积提取空间域上的局部特征，根据对输入sgRNA碱基序列编码方式的不同，大抵可以把近年来应用在sgRNA活性预测任务上（even in off-target）的深度神经网络模型分为如下两类（1）xxx等人使用onehot编码处理sgRNA碱基序列将其视为空间域上的2维图像数据，通过卷积层提取其空间域上潜在的特征,值得注意的是xxx证明了在经典cnn网络的池化层后加入BGRU层，可以增加模型性能，对此我们的解释是，BGRU在一个维度上辅助了卷积神经网络提取空间特征，并仍将他归于此类（2）xxx等人使用nlp中嵌入的思想，将离散的sgRNA编码通过训练得到的一个射影矩阵（？）转换到连续的n维向量空间中，将其视为时间域上连续的多个输入向量，并使用rnn-based提取其时间域上潜在的特征（本征向量）。除此之外，xxx等人将base dimeric embedding为词向量后，在其上并行地使用了rnn-based与cnn提取特征，我们有理由怀疑在词嵌入向量上使用卷积提取到的特征是极度不可解释的（与在onehot编码上直接使用卷积提取到的特征比较），而且他们并没有深度探究cnn与rnn输出之间的关联，而是粗暴的将其输入到全连接层，单就网络结构而言，我们发现很难将它单独划分到上述两类之中，然而从对碱基序列输入的处理方法方面讨论，其与第二类在很大程度上相似。
-
-
+RNN可以捕捉时间域上连续数据的隐含特征并编码为本征向量，cnn通过卷积提取空间域上的局部特征，根据对输入sgRNA碱基序列编码方式的不同，（2）xxx等人使用nlp中嵌入的思想，将离散的sgRNA编码通过训练得到的一个射影矩阵（？）转换到连续的n维向量空间中，将其视为时间域上连续的多个输入向量，并使用rnn-based提取其时间域上潜在的特征（本征向量）。除此之外，xxx等人将base dimeric embedding为词向量后，在其上并行地使用了rnn-based与cnn提取特征，我们有理由怀疑在词嵌入向量上使用卷积提取到的特征是极度不可解释的（与在onehot编码上直接使用卷积提取到的特征比较），而且他们并没有深度探究cnn与rnn输出之间的关联，而是粗暴的将其输入到全连接层，单就网络结构而言，我们发现很难将它单独划分到上述两类之中，然而从对碱基序列输入的处理方法方面讨论，其与第二类在很大程度上相似。
 
 注意力机制是近年来在nlp cv上被广泛使用的模块，有很多工作已经证明其可以在很大程度上提高深度神经网络模型的性能，其分类有多种，大体可以抽象成如下公式，在这一方面我们关注到与我们工作最相近的工作是xxx等人提出的xx模型，使用transformer注意力模块代替rnn层用于提高时间域上的特征提取能力，与其不同的是在我们的工作中，我们并不特别关心注意力机制带来的性能提高，相反，我们认为注意力机制给模型带来的可解释性更具有价值
 
-
-
 在本篇论文中，我们假设碱基序列在时间域与空间域上的特征有一定关联性，并构建深度神经网络AttCRISPR分别提取时间域与空间域上的特征，最后基于注意力机制（具体类别）将其组合为一个伪线性模型，从而获得简单模型的可解释性
-
-
 
 最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。除此之外我们还注意到由于，
 
-
-
 in this paper，我们主要的工作如下。
-
 1 present a novel deep-learning-based model基于RNN与CNN并行地在时间域与空间域提取sgRNA碱基序列特征
-
 2 构造的伪线性模型不需要基于输入扰动的事后技术，即可获得具体到碱基位置级别的时间域可解释性，及具体到碱基类别的空间域解释
-
-3
-
+3 构造了多种网络架构，尝试了包括。。。在内的多种组件，并在DeepHF 达到了  SOA
 （resnet 迁移 注意力 rnn+cnn）
 
-
-
 （我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured 
-
 （Streptococcus pyogenes (SpCas9) 目前主要Cas9系统考虑的来源）
-
 (end2end 模型可以 that the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence.)
-
 (offtarget 为什么要开发 ontarget 算法 从nc 和bmc 几篇里 看一下)
-
 （数据量的增长使得基于深度学习的算法相较于传统机器学习有了更好的性能，Sequence-specific prediction of the efficiencies of adenine and cytosine base editors 找到了分界线）
-
 （可解释性：shap deepshap 输入扰动）
-
 （注意力机制曾经在ontarget任务中被使用，但是没有拓展到可解释性的意义上）
-
 （rnn-base&cnn是两套思路，前者时间序列，后者图像（空间）数据，曾经结合过，但是由于使用的是串联,rnn捕获到的时间序列特征被坍塌为一维向量，失去了基于时序数据的可解释性）
-
 （残差思想首次在该任务中运用）
-
 (为了解决rnn-base 网络收敛较慢的问题，时序上pretrain)
-
 （特征嵌入）
 
-
-
 【1】A Programmable Dual-RNA–Guided DNA Endonuclease in Adaptive Bacterial Immunity
-
 【2】Multiplex Genome Engineering Using CRISPR/Cas Systems
-
 【3】RNA-Guided Human Genome Engineering via Cas9
-
 【4】Risks and benefits of human germline genome editing: An ethical analysis
-
 【5】 CRISPR/Cas9-mediated gene editing in human tripronuclear zygotes.
-
 【6】 Introducing precise genetic modifications into human 3PN-embryos by CRISPR/Cas-mediated genome editing.
-
 【7】. Reproductive medicine involving genome editing: clinical uncertainties and embryological needs
-
 【8】Rationally engineered Cas9 nucleases with improved specificity
-
 【9】 High-fidelity CRISPR-Cas9 nucleases with no detectable genome-wide off-target effects.
-
 【10】Enhanced proofreading governs CRISPR-Cas9 targeting accuracy
 
-
-
 【11】Sequence-specific prediction of the efficiencies of adenine and cytosine base editors（太新了，现在引不了）
-
 【12】CRISPRpred(SEQ): a sequence-based method for sgRNA on target activity prediction using traditional machine learning
-
 【13】Prediction of off-target specificity and cellspecific fitness of CRISPR-Cas System using attention boosted deep learning and networkbased gene feature
-
 【14】Optimized CRISPR guide RNA design for two high-fidelity Cas9 variants by deep learning
-
 【15】A Unified Approach to Interpreting Model Predictions
-
 【16】Fooling LIME and SHAP: Adversarial Attacks on Post hoc Explanation Methods
-
 【17】DeepCRISPR: optimized CRISPR guide RNA design by deep learning
-
 【18】Computational approaches for effective CRISPR guide RNA design and evaluation
-
 【19】Deep learning improves prediction of CRISPR-Cpf1 guide RNA activity
-
 【20】 a deep learning-based model with high generalization performance.
+【21】Computational approaches for effective CRISPR guide RNA design and evaluation
+【22】Improving Sequential Recommendation with Knowledge-Enhanced Memory Networks
+【23】Off-target predictions in CRISPR-Cas9 gene editing using deep learning
+【24】 Deep learning improves prediction of CRISPR-Cpf1 guide RNA activity. 
+【25】DeepCRISPR: optimized CRISPR guide RNA design by deep learning
+【26】Deep learning improves the ability of sgRNA off-target propensity prediction
+【27】C-RNNCrispr: Prediction of CRISPR/Cas9 sgRNA activity using convolutional and recurrent neural networks
