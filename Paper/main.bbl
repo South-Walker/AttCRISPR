@@ -20,6 +20,13 @@ Cong, L., Ran, F.~A., Cox, D.~D., Lin, S., Barretto, R. P.~J., Habib, N., Hsu,
 \newblock Multiplex genome engineering using crispr/cas systems.
 \newblock {\em Science\/}, {\bf 339}(6121), 819--823.
 
+\bibitem[Huang {\em et~al.}(2018)Huang, Zhao, Dou, Wen, and
+  Chang]{huang2018improving}
+Huang, J., Zhao, W.~X., Dou, H., Wen, J., and Chang, E.~Y. (2018).
+\newblock Improving sequential recommendation with knowledge-enhanced memory
+  networks.
+\newblock pages 505--514.
+
 \bibitem[Ishii(2017)Ishii]{ishii2017reproductive}
 Ishii, T. (2017).
 \newblock Reproductive medicine involving genome editing: clinical
@@ -73,6 +80,12 @@ Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
 \newblock Crispr/cas9-mediated gene editing in human tripronuclear zygotes.
 \newblock {\em Protein \& Cell\/}, {\bf 6}(5), 363--372.
 
+\bibitem[Lin and Wong(2018)Lin and Wong]{lin2018off-target}
+Lin, J. and Wong, K. (2018).
+\newblock Off-target predictions in crispr-cas9 gene editing using deep
+  learning.
+\newblock {\em Bioinformatics\/}, {\bf 34}(17).
+
 \bibitem[Liu {\em et~al.}(2019a)Liu, Zhang, and Zhang]{liu2019computational}
 Liu, G., Zhang, Y., and Zhang, T. (2019a).
 \newblock Computational approaches for effective crispr guide rna design and
@@ -87,6 +100,12 @@ Liu, Q., He, D., and Xie, L. (2019b).
   gene feature.
 \newblock {\em PLoS computational biology\/}, {\bf 15}(10), e1007480--e1007480.
 \newblock 31658261[pmid].
+
+\bibitem[Liu {\em et~al.}(2020)Liu, Cheng, Liu, Li, and Liu]{liu2020deep}
+Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
+\newblock Deep learning improves the ability of sgrna off-target propensity
+  prediction.
+\newblock {\em BMC Bioinformatics\/}, {\bf 21}(1), 51.
 
 \bibitem[Lundberg and Lee(2017)Lundberg and Lee]{lundberg2017a}
 Lundberg, S. and Lee, S. (2017).
@@ -144,5 +163,12 @@ Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
 \newblock Optimized crispr guide rna design for two high-fidelity cas9 variants
   by deep learning.
 \newblock {\em Nature Communications\/}, {\bf 10}(1), 4284--4284.
+
+\bibitem[Zhang {\em et~al.}(2020)Zhang, Dai, and Dai]{zhang2020c-rnncrispr:}
+Zhang, G., Dai, Z., and Dai, X. (2020).
+\newblock C-rnncrispr: Prediction of crispr/cas9 sgrna activity using
+  convolutional and recurrent neural networks.
+\newblock {\em Computational and structural biotechnology journal\/}, {\bf 18},
+  344--354.
 
 \end{thebibliography}

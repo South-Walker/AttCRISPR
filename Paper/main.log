@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 AUG 2020 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  23 AUG 2020 14:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -312,22 +312,22 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 ) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
  (c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count194
@@ -347,7 +347,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for LY1+phv on input line 34.
+LaTeX Font Info:    Trying to load font information for LY1+phv on input line 36.
  (c:/texlive/2020/texmf-dist/tex/latex/ly1/ly1phv.fd
 File: ly1phv.fd 2001/02/01 scalable font definitions for LY1/phv using Berry names.
 
@@ -379,72 +379,72 @@ Package epstopdf Info: Source file: <OUP_First_SBk_Bot_8401.eps>
 (epstopdf)                    date: 2015-11-25 11:49:46
 (epstopdf)                    size: 9259 bytes
 (epstopdf)             Command: <repstopdf --outfile=OUP_First_SBk_Bot_8401-eps-converted-to.pdf OUP_First_SBk_Bot_8401.eps>
-(epstopdf)             \includegraphics on input line 34.
+(epstopdf)             \includegraphics on input line 36.
 Package epstopdf Info: Output file is already uptodate.
 <OUP_First_SBk_Bot_8401-eps-converted-to.pdf, id=1, 54.2025pt x 54.2025pt>
 File: OUP_First_SBk_Bot_8401-eps-converted-to.pdf Graphic file (type pdf)
 <use OUP_First_SBk_Bot_8401-eps-converted-to.pdf>
-Package pdftex.def Info: OUP_First_SBk_Bot_8401-eps-converted-to.pdf  used on input line 34.
+Package pdftex.def Info: OUP_First_SBk_Bot_8401-eps-converted-to.pdf  used on input line 36.
 (pdftex.def)             Requested size: 54.20236pt x 54.20236pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 34.
+(Font)              size <6> substituted on input line 36.
 
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 34.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 36.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 34.
+(Font)              size <8> substituted on input line 36.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.25> not available
-(Font)              size <5> substituted on input line 34.
+(Font)              size <5> substituted on input line 36.
 
 LaTeX Font Info:    Font shape `LY1/phv/m/it' in size <9> not available
-(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 34.
+(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 36.
 
-Underfull \hbox (badness 10000) detected at line 34
+Underfull \hbox (badness 10000) detected at line 36
 []
  []
 
 
-Overfull \hbox (11.24806pt too wide) in paragraph at lines 38--47
+Overfull \hbox (11.24806pt too wide) in paragraph at lines 40--49
 \LY1/ptm/m/n/8 Clustered regularly interspaced short palindromic repeats (CRISPR)/CRIPSR-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 38--47
+Underfull \hbox (badness 1590) in paragraph at lines 40--49
 \LY1/ptm/m/it/8 et al.\LY1/ptm/m/n/8 , 2016), been developed and bring a significant volume of
  []
 
@@ -464,80 +464,34 @@ Overfull \hbox (1.12001pt too wide) has occurred while \output is active
 
 
  <c:/Users/50683/Desktop/AttCRISPR/Paper/OUP_First_SBk_Bot_8401-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 72.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 90.
+Underfull \hbox (badness 1210) in paragraph at lines 73--76
+\LY1/ptm/m/n/8 and its improved Systems (Liu \LY1/ptm/m/it/8 et al.\LY1/ptm/m/n/8 , 2019a). Most of the deep
+ []
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 95.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 98.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 100.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 113.
+
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 116.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 118.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 121.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 123.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 126.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 128.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 139.
 
 
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 136.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 141.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 146.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 151.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 160.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 165.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 170.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 178.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 183.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 193.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 198.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 203.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 208.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 213.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 218.
-
-
-LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 223.
+LaTeX Warning: Reference `fig:02' on page 2 undefined on input line 144.
 
 LaTeX Font Info:    Font shape `LY1/phv/m/it' in size <8> not available
-(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 230.
+(Font)              Font shape `LY1/phv/m/sl' tried instead on input line 146.
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
@@ -545,10 +499,94 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 
 [2]
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 234.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 151.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 239.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 159.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 162.
+
+
+Underfull \hbox (badness 2376) in paragraph at lines 159--166
+\LY1/ptm/m/n/8 Text Text Text Text Text Text Text. Bauer \LY1/ptm/m/it/8 et al.\LY1/ptm/m/n/8 , 2007 might
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 159--166
+\LY1/ptm/m/n/8 method Text Text Text Text Text Text Text Text Text Text Text
+ []
+
+
+Underfull \hbox (badness 2932) in paragraph at lines 159--166
+\LY1/ptm/m/n/8 Text. Bauer \LY1/ptm/m/it/8 et al.\LY1/ptm/m/n/8 , 2007 might want to know about text text
+ []
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 170.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 178.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 183.
+
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 193.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 193.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 193.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 193.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 193.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 193.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 193.
+
+LaTeX Font Info:    Trying to load font information for LY1+phb on input line 193.
+LaTeX Font Info:    No file LY1phb.fd. on input line 193.
+
+LaTeX Font Warning: Font shape `LY1/phb/m/n' undefined
+(Font)              using `LY1/ptm/m/n' instead on input line 193.
+
+
+LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
+(Font)              using `LY1/phb/m/n' instead on input line 193.
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 193--193
+[]$[]$ 
+ []
+
+
+Overfull \hbox (1.0pt too wide) in paragraph at lines 201--203
+[][][][][][][] 
+ []
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 213.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 218.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 223.
+
+
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 232.
 
 
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 244.
@@ -557,125 +595,25 @@ LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 244.
 LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 252.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 257.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 254.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 262.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 256.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 270.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 279.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 275.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 284.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 280.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 289.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 285.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 301.
 
 
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 290.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 295.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 300.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 311.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 316.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 321.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 329.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 334.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 339.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 346.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 350.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 356.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 363.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 368.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 373.
-
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 384.
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 384.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 384.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 384.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 384.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 384.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 384.
-
-LaTeX Font Info:    Trying to load font information for LY1+phb on input line 384.
-LaTeX Font Info:    No file LY1phb.fd. on input line 384.
-
-LaTeX Font Warning: Font shape `LY1/phb/m/n' undefined
-(Font)              using `LY1/ptm/m/n' instead on input line 384.
-
-
-LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
-(Font)              using `LY1/phb/m/n' instead on input line 384.
-
-
-Overfull \hbox (12.0pt too wide) in paragraph at lines 384--384
-[]$[]$ 
- []
-
-
-Overfull \hbox (1.0pt too wide) in paragraph at lines 392--394
-[][][][][][][] 
- []
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 404.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 409.
-
-
-LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 414.
+LaTeX Warning: Reference `fig:02' on page 3 undefined on input line 306.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -687,118 +625,23 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 
 [3]
 
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 423.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 428.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 433.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 445.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 450.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 459.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 461.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 463.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 490.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 495.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 500.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 507.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 519.
-
-
-LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 524.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (252.0pt too wide) has occurred while \output is active
-[][] 
- []
-
-[4]
-
-LaTeX Warning: Reference `fig:02' on page 5 undefined on input line 533.
+LaTeX Warning: Reference `fig:02' on page 4 undefined on input line 315.
 
 (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 398.25949pt
+Extra height:10.0pt when 443.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 399.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 400.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 401.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 402.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 403.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 404.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 405.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 406.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 407.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 408.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 409.25949pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 410.25949pt
-Extra height:0.0pt when 411.25949pt
-(2)Left:411.25949pt Right:390.519pt Output:411.25949pt
+Extra height:10.0pt when 444.25949pt
+Extra height:0.0pt when 445.25949pt
+(2)Left:445.25949pt Right:444.519pt Output:445.25949pt
 - LAST -
 Extra skip:0.0pt
-Left:411.25949pt
-Right:390.519pt
-Output:411.25949pt
+Left:445.25949pt
+Right:444.519pt
+Output:445.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -807,7 +650,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[5] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+[4] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.25pt have occurred.
@@ -820,18 +663,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3579 strings out of 480608
- 44686 string characters out of 5907536
- 305592 words of memory out of 5000000
- 19400 multiletter control sequences out of 15000+600000
+ 3583 strings out of 480608
+ 44761 string characters out of 5907536
+ 311465 words of memory out of 5000000
+ 19404 multiletter control sequences out of 15000+600000
  590691 words of font info for 119 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,10n,35p,423b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (5 pages, 138286 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (4 pages, 138587 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
