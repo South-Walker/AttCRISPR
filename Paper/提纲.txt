@@ -55,10 +55,10 @@ Deep neural network has shown its power in the study of CRISPR/Cas9 and its impr
 Attention mechanism has demonstrated its power in Natural Language Processing, Statistical Learning, Speech and Computer Vision【28】. It makes model tends to focus selectively on parts of the input which is help in performing the task effectively. Previous observation have shown that Cas9 preferentially binds sgRNAs containing purines but not pyrimidines【29】and multiple thymine in the spacer impairing sgRNA activity【30】, that is to say some specific nucleotide and base position need more attention compared to others. The above is the premise of introducing attention mechanism. Strictly speaking, we are not the first to bring attention mechanisms into this field. The most similar approach to ours is the work based on transformer by xxx et al . They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, hence,enhance the performance of their model【13，31】. In our work,the interpretability benefit from attention mechanism is more focused.
 
 
-in this paper，我们主要的工作如下。
-1 present a novel deep-learning-based model并行地提取潜在的temporal feature and spatial feature representation of sgRNA sequence  in both spatial and temporal domain,which 不属于我们给现存方法划分的任何一类
-2 基于注意力机制构造了AttCRISPR.  AttCRISPR不需要基于输入扰动的事后技术，即可获得具体到碱基位置级别的时间域可解释性，及具体到碱基类别的空间域解释
-用XXX等人的理论解释，就是approximate it with a 线性回归模型，从而将深度学习模型从black box model 转换为了 an intrinsically interpretable model【32】
+In this paper, our main contributions are as follows.
+1 Present AttCRISPR, a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. It doesn't belong to any of the categories of the existing approaches
+2 Introduce attention mechanism into AttCRISPR.  As a result, AttCRISPR does not need post hoc explanations techniques based on input perturbation to explain itself. 即可获得具体到碱基位置级别的时间域可解释性，及具体到碱基类别的空间域解释
+用XXX等人的理论解释，it is approximated with a 线性回归模型，从而将深度学习模型从black box model 转换为了 an intrinsically interpretable model【32】
 3 测试了多种可行的架构，尝试了包括残差块，双向rnn，pretrain在内的多种组件与方法，其中表现最优的模型在deepHf数据集上取得了SOA的性能
 
 
