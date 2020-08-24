@@ -56,28 +56,16 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
 
 
 In this paper, our main contributions are as follows.
-1 Present AttCRISPR, a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. It doesn't belong to any of the categories of the existing approaches
-2 Introduce attention mechanism into AttCRISPR.  As a result, AttCRISPR does not need post hoc explanations techniques based on input perturbation to explain itself. 即可获得具体到碱基位置级别的时间域可解释性，及具体到碱基类别的空间域解释
-用XXX等人的理论解释，it is approximated with a 线性回归模型，从而将深度学习模型从black box model 转换为了 an intrinsically interpretable model【32】
-3 测试了多种可行的架构，尝试了包括残差块，双向rnn，pretrain在内的多种组件与方法，其中表现最优的模型在deepHf数据集上取得了SOA的性能
+1 Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. It doesn't belong to any of the above categories of existing approaches.
+2 Introduce attention mechanism into our model.  As a result, It does not need post hoc explanations techniques based on input perturbation to explain itself. It is intrinsic interpretable at the nucleotide level in the temporal and spatial domains.
+Explaining with the theory of XXX et al, it is approximated with a linear regression model 【32】, thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model.
+3 Throught abation analysis and testing a series of possible network structure, we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR which could outperform the current state-of-the-art tool on deepHF dataset.
 
 
-最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。除此之外我们还注意到由于，
-
-具有自解释性的 deep learning model
-固有的Intrinsic or 事后解释的 post hoc
-which based post hoc explanations techniques
-（resnet 迁移 注意力 rnn+cnn）
-
+最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
 （我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )
 ( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence.,出于这一信念我们一开始先构建的end2end模型)
-（残差思想首次在该任务中运用）
 (为了解决rnn-base 网络收敛较慢的问题，时序上pretrain)
-
-temporal feature representation of sgRNA
-spatial feature representation of sgRNA
-the hidden sequential preference representation (i.e., ) is used to dynamically generate a set of attention weights
-
 
 【1】A Programmable Dual-RNA–Guided DNA Endonuclease in Adaptive Bacterial Immunity
 【2】Multiplex Genome Engineering Using CRISPR/Cas Systems
