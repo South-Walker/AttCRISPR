@@ -6,6 +6,18 @@ Bauer, M., Klau, G.~W., and Reinert, K. (2007).
   using combinatorial optimization.}
 \newblock {\em BMC Bioinformatics\/}, {\bf 8}, 271.
 
+\bibitem[Chaudhari {\em et~al.}(2019)Chaudhari, Polatkan, Ramanath, and
+  Mithal]{chaudhari2019an}
+Chaudhari, S., Polatkan, G., Ramanath, R., and Mithal, V. (2019).
+\newblock An attentive survey of attention models.
+\newblock {\em arXiv: Learning\/}.
+
+\bibitem[Chen(2020)Chen]{DBLP:phd/basesearch/Chen20d}
+Chen, C. (2020).
+\newblock {\em Interpretability by Design: New Interpretable Machine Learning
+  Models and Methods\/}.
+\newblock Ph.D. thesis, Duke University, Durham, NC, {USA}.
+
 \bibitem[Chuai {\em et~al.}(2018)Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu,
   Chen, Duan, {\em et~al.}]{chuai2018deepcrispr}
 Chuai, G., Ma, H., Yan, J., Chen, M., Hong, N., Xue, D., Zhou, C., Zhu, C.,
@@ -156,6 +168,13 @@ Song, M., Kim, H.~K., Lee, S., Kim, Y., Seo, S.-Y., Park, J., Choi, J.~W.,
   cytosine base editors.
 \newblock {\em Nature Biotechnology\/}.
 
+\bibitem[Vaswani {\em et~al.}(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
+  Gomez, Kaiser, and Polosukhin]{vaswani2017attention}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N.,
+  Kaiser, L., and Polosukhin, I. (2017).
+\newblock Attention is all you need.
+\newblock pages 5998--6008.
+
 \bibitem[Wang {\em et~al.}(2019)Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou,
   Shi, Lan, {\em et~al.}]{wang2019optimized}
 Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
@@ -163,6 +182,20 @@ Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
 \newblock Optimized crispr guide rna design for two high-fidelity cas9 variants
   by deep learning.
 \newblock {\em Nature Communications\/}, {\bf 10}(1), 4284--4284.
+
+\bibitem[Wang {\em et~al.}(2014)Wang, Wei, Sabatini, and
+  Lander]{wang2014genetic}
+Wang, T., Wei, J.~J., Sabatini, D.~M., and Lander, E.~S. (2014).
+\newblock Genetic screens in human cells using the crispr/cas9 system.
+\newblock {\em Science\/}, {\bf 343}(6166), 80--84.
+
+\bibitem[Wu {\em et~al.}(2014)Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng,
+  Trevino, Konermann, Chen, {\em et~al.}]{wu2014genome-wide}
+Wu, X., Scott, D.~A., Kriz, A.~J., Chiu, A.~C., Hsu, P., Dadon, D.~B., Cheng,
+  A.~W., Trevino, A.~E., Konermann, S., Chen, S., {\em et~al.} (2014).
+\newblock Genome-wide binding of the crispr endonuclease cas9 in mammalian
+  cells.
+\newblock {\em Nature Biotechnology\/}, {\bf 32}(7), 670--676.
 
 \bibitem[Zhang {\em et~al.}(2020)Zhang, Dai, and Dai]{zhang2020c-rnncrispr:}
 Zhang, G., Dai, Z., and Dai, X. (2020).
