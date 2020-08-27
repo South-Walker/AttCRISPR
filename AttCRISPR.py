@@ -11,7 +11,8 @@ x_seq = pickle.load(pkl)
 
 from sklearn.metrics import  mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-
+import os
+#os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 random_state=40
 test_size = 0.15
 
@@ -32,44 +33,32 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':100,
+    'train_epochs_num':200,
     'train_base_learning_rate':0.0001,
     'cnn_fc_hidden_layer_num':2,
-    'cnn_fc_hidden_layer_units_num':289,
-    'cnn_fc_dropout':0.2839,
-    'cnn_filters_num':25,
-    'rnn_embedding_output':48,
-    'rnn_embedding_dropout':0.4872,
-    'rnn_unit_num':94,
-    'rnn_dropout':0.5608,
-    'rnn_recurrent_dropout':0.4310,
+    'cnn_fc_hidden_layer_units_num':421,
+    'cnn_fc_dropout':0.5,
+    'cnn_filters_num':40,
+    'rnn_embedding_output':75,
+    'rnn_embedding_dropout':0.5,
+    'rnn_unit_num':125,
+    'rnn_dropout':0.5,
+    'rnn_recurrent_dropout':0.5,
     'rnn_fc_hidden_layer_num':2,
-    'rnn_fc_hidden_layer_units_num':139,
-    'rnn_fc_dropout':0.5868,
+    'rnn_fc_hidden_layer_units_num':135,
+    'rnn_fc_dropout':0.5,
     'bio_fc_hidden_layer_num':1,
-    'bio_fc_hidden_layer_units_num':67,
-    'bio_fc_dropout':0.6433
+    'bio_fc_hidden_layer_units_num':40,
+    'bio_fc_dropout':0.5
     }
 params_range = {
-    'train_batch_size_min':40,
-    'train_batch_size_max':100,
-    'cnn_fc_hidden_layer_num_min':1,
-    'cnn_fc_hidden_layer_num_max':5,
-    'cnn_fc_hidden_layer_units_num_min':50,
-    'cnn_fc_hidden_layer_units_num_max':300,
-    'rnn_embedding_output_min':40,
-    'rnn_embedding_output_max':120,
-    'rnn_unit_num_min':50,
-    'rnn_unit_num_max':120,
-    'rnn_fc_hidden_layer_num_min':1,
-    'rnn_fc_hidden_layer_num_max':5,
-    'rnn_fc_hidden_layer_units_num_min':50,
-    'rnn_fc_hidden_layer_units_num_max':300,
-    'bio_fc_hidden_layer_num_min':0,
-    'bio_fc_hidden_layer_num_max':4,
-    'bio_fc_hidden_layer_units_num_min':20,
-    'bio_fc_hidden_layer_units_num_max':120
-    }
+    'cnn_fc_hidden_layer_units_num':[188,488],
+    'cnn_filters_num':[5,45],
+    'rnn_embedding_output':[20,100],
+    'rnn_unit_num':[4,184],
+    'rnn_fc_hidden_layer_units_num':[19,259],
+    'bio_fc_hidden_layer_units_num':[16,116]
+}
 import keras
 from keras.preprocessing import text,sequence
 from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
@@ -125,11 +114,14 @@ def rnn(inputs):
     embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(inputs)
     embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
     #(?,21,units)
-    gru_layer = GRU(params['rnn_unit_num'],dropout=params['rnn_dropout'],recurrent_dropout=params['rnn_recurrent_dropout'],
-                     kernel_regularizer='l2',recurrent_regularizer='l2',
-                     return_sequences=True,return_state=False,name='rnn_output')
-    gru_layer = Bidirectional(gru_layer,merge_mode='sum')
-    rnn_output = gru_layer(embedded)
+    encoder = LSTM(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
+    encoder = Bidirectional(encoder,merge_mode='sum',name='encoder_output')
+    encoder_outputs = encoder(embedded)
+    encoder_outputs = keras.layers.concatenate([embedded,encoder_outputs])
+    decoder = LSTM(params['rnn_unit_num'],dropout=0.25,recurrent_dropout=0.25,
+                     return_sequences=True,return_state=False,name='last_gru_output',unroll=True)
+    decoder = Bidirectional(decoder,merge_mode='sum',name='last_bgru_output')
+    rnn_output = decoder(encoder_outputs)
     return rnn_output    
 
 def model():
@@ -142,6 +134,7 @@ def model():
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
     ######RNN######
+    from keras.models import load_model
     rnn_output = rnn(onehot_input)
     ######Attention######
     time_rnn_embeddedat = []
@@ -185,7 +178,7 @@ def train():
         )
     learningrate_scheduler = LearningRateScheduler(
         schedule=lambda epoch : 
-        learningrate if epoch<epochs*2/5 else (learningrate*0.5 if epoch < epochs*4/5 else learningrate*0.25)
+        learningrate if epoch<epochs*3/5 else (learningrate*0.5 if epoch < epochs*4/5 else learningrate*0.25)
         )
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
     m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
@@ -195,34 +188,23 @@ def train():
                  epochs=epochs,
                  verbose=2,
                  validation_split=0.1,
-                 callbacks=[batch_end_callback,early_stopping,learningrate_scheduler])
+                 callbacks=[batch_end_callback,learningrate_scheduler])
 
     m.save('./conv_'+str(epochs)+'.h5')
     sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
 def train_with(hyperparameters):
-    uniform2int = lambda t,min,max: int(min+(max-min)*t)
-    params['cnn_filters_num'] = hyperparameters['cnn_filters_num']
-    params['cnn_fc_hidden_layer_num'] = hyperparameters['cnn_fc_hidden_layer_num']
-    params['cnn_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['cnn_fc_hidden_layer_units_num'],
-                                                          params_range['cnn_fc_hidden_layer_units_num_min'],
-                                                          params_range['cnn_fc_hidden_layer_units_num_max'])
-    params['rnn_embedding_output'] = uniform2int(hyperparameters['rnn_embedding_output'],
-                                                  params_range['rnn_embedding_output_min'],
-                                                  params_range['rnn_embedding_output_max'])
-    params['rnn_unit_num'] = uniform2int(hyperparameters['rnn_unit_num'],
-                                          params_range['rnn_unit_num_min'],
-                                          params_range['rnn_unit_num_max'])
-    params['rnn_fc_hidden_layer_num'] = hyperparameters['rnn_fc_hidden_layer_num']
-    params['rnn_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['rnn_fc_hidden_layer_units_num'],
-                                                           params_range['rnn_fc_hidden_layer_units_num_min'],
-                                                           params_range['rnn_fc_hidden_layer_units_num_max'])
-    
-    params['bio_fc_hidden_layer_num'] = hyperparameters['bio_fc_hidden_layer_num']
-    params['bio_fc_hidden_layer_units_num'] = uniform2int(hyperparameters['bio_fc_hidden_layer_units_num'],
-                                                          params_range['bio_fc_hidden_layer_units_num_min'],
-                                                          params_range['bio_fc_hidden_layer_units_num_max'])
+    name2params = lambda name: int(
+        hyperparameters[name]*(params_range[name][1]-params_range[name][0])
+        +params_range[name][0]
+        )
+    params['bio_fc_hidden_layer_units_num'] = name2params('bio_fc_hidden_layer_units_num')
+    params['cnn_fc_hidden_layer_units_num'] = name2params('cnn_fc_hidden_layer_units_num')
+    params['cnn_filters_num'] = name2params('cnn_filters_num')
+    params['rnn_fc_hidden_layer_units_num'] = name2params('rnn_fc_hidden_layer_units_num')
+    params['rnn_unit_num'] = name2params('rnn_unit_num')
+    params['rnn_embedding_output'] = name2params('rnn_embedding_output')
     return train()
 if __name__=='__main__':
     train()
