@@ -33,15 +33,16 @@ def get_score_at_test(model):
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':200,
+    'train_epochs_num':100,
     'train_base_learning_rate':0.0001,
     'cnn_fc_hidden_layer_num':2,
     'cnn_fc_hidden_layer_units_num':421,
     'cnn_fc_dropout':0.5,
-    'cnn_filters_num':40,
+    'cnn_filters_num':50,
+    'cnn_conv_num':3,
     'rnn_embedding_output':75,
     'rnn_embedding_dropout':0.5,
-    'rnn_unit_num':125,
+    'rnn_unit_num':64,
     'rnn_dropout':0.5,
     'rnn_recurrent_dropout':0.5,
     'rnn_fc_hidden_layer_num':2,
@@ -61,7 +62,7 @@ params_range = {
 }
 import keras
 from keras.preprocessing import text,sequence
-from keras.layers import Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
+from keras.layers import Softmax,Input, Dense, Conv2D, Flatten, BatchNormalization,Multiply,Cropping1D,dot,merge, Embedding, Bidirectional,RepeatVector
 from keras.layers.core import *
 from keras.models import *
 from keras.layers.recurrent import LSTM,GRU
@@ -102,12 +103,13 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
     return x
 
 def cnn(inputs):
-    conv_1 = Conv2D(params['cnn_filters_num'], (2, 4), padding='same', activation='relu')(inputs)
-    conv_2 = Conv2D(params['cnn_filters_num'], (3, 4), padding='same', activation='relu')(inputs)
-    conv_3 = Conv2D(params['cnn_filters_num'], (4, 4), padding='same', activation='relu')(inputs)
-    conv_output = keras.layers.concatenate([ conv_1, conv_2, conv_3],name='conv_output')
-    maxpooling_output = keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1,4), padding='valid')(conv_output)
-    pooling_output = maxpooling_output
+    convs = []
+    for i in range(params['cnn_conv_num']):
+        convs.append(
+            Conv2D(params['cnn_filters_num'],(i+2,4),strides=(1,4),padding='same',activation='relu')(inputs)
+            )
+    conv_output = keras.layers.concatenate(convs,name='conv_output')
+    pooling_output = conv_output
     cnn_output = Flatten()(pooling_output)
     return cnn_output
 def rnn(inputs):
@@ -116,12 +118,52 @@ def rnn(inputs):
     #(?,21,units)
     encoder = LSTM(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
     encoder = Bidirectional(encoder,merge_mode='sum',name='encoder_output')
-    encoder_outputs = encoder(embedded)
-    encoder_outputs = keras.layers.concatenate([embedded,encoder_outputs])
+    encoder_output = encoder(embedded)
+    
+    encoderat = []
+    for i in range(21):
+        encoderat.append(
+            Flatten()(
+                Cropping1D(cropping=(i,21-1-i))(encoder_output)
+                )
+            )
+    decoder_input = keras.layers.concatenate([embedded,encoder_output])
     decoder = LSTM(params['rnn_unit_num'],dropout=0.25,recurrent_dropout=0.25,
                      return_sequences=True,return_state=False,name='last_gru_output',unroll=True)
     decoder = Bidirectional(decoder,merge_mode='sum',name='last_bgru_output')
-    rnn_output = decoder(encoder_outputs)
+    decoder_output = decoder(decoder_input)
+    
+    decoderat = []
+    for i in range(21):
+        decoderat.append(
+            Flatten()(
+                Cropping1D(cropping=(i,21-1-i))(decoder_output)
+                )
+            )
+
+    for i in range(21):
+        decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
+
+    aat = []
+    for i in range(21):
+        atat = []
+        for j in range(21):
+            atat.append(
+                Softmax(axis=-1)(dot([encoderat[j],decoderat[i]],axes=-1))
+                )
+        aat.append(
+            Reshape((21,1,))(keras.layers.concatenate(atat))
+            )
+        
+    ctat = []
+    for i in range(21):
+        weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
+        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
+        ctat.append(
+            Reshape((1,params['rnn_unit_num'],))(weightavg)
+            )
+    rnn_output = keras.layers.concatenate(ctat,axis=-2)
+    rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
     return rnn_output    
 
 def model():
@@ -188,7 +230,7 @@ def train():
                  epochs=epochs,
                  verbose=2,
                  validation_split=0.1,
-                 callbacks=[batch_end_callback,learningrate_scheduler])
+                 callbacks=[batch_end_callback])
 
     m.save('./conv_'+str(epochs)+'.h5')
     sp = get_spearman(m)
@@ -206,5 +248,4 @@ def train_with(hyperparameters):
     params['rnn_unit_num'] = name2params('rnn_unit_num')
     params['rnn_embedding_output'] = name2params('rnn_embedding_output')
     return train()
-if __name__=='__main__':
-    train()
+train()
