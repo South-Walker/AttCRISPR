@@ -12,12 +12,15 @@ x_seq = pickle.load(pkl)
 from sklearn.metrics import  mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 import os
-#os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 random_state=40
 test_size = 0.15
 
 x_train_onehot, x_test_onehot, y_train, y_test = train_test_split(x_onehot, y, test_size=test_size, random_state=random_state)
 x_train_biofeat, x_test_biofeat, y_train, y_test = train_test_split(x_biofeat, y, test_size=test_size, random_state=random_state)
+
+best = -1
+
 def get_spearman(model):
     y_test_pred = model.predict([x_test_onehot,x_test_biofeat])
     return sp.stats.spearmanr(y_test, y_test_pred)[0]  
@@ -26,14 +29,16 @@ def get_score_at_test(model):
     mse = mean_squared_error(y_test, y_test_pred)
     spearmanr = sp.stats.spearmanr(y_test, y_test_pred)[0]    
     r2 = r2_score(y_test, y_test_pred)
-    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2)
+    global best
+    best = spearmanr if spearmanr > best else best
+    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(best)
 
 
 
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':44,
-    'train_epochs_num':100,
+    'train_epochs_num':3,
     'train_base_learning_rate':0.0001,
     'cnn_fc_hidden_layer_num':2,
     'cnn_fc_hidden_layer_units_num':421,
@@ -224,6 +229,8 @@ def train():
         )
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
     m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
+    global best
+    best = -1
     m.fit([x_train_onehot,x_train_biofeat], 
                  y_train,
                  batch_size=batch_size,
@@ -233,7 +240,8 @@ def train():
                  callbacks=[batch_end_callback])
 
     m.save('./conv_'+str(epochs)+'.h5')
-    sp = get_spearman(m)
+    sp = best
+    print('best:'+str(best))
     return {'loss': -1*sp, 'status': STATUS_OK}
 
 def train_with(hyperparameters):
