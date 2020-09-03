@@ -15,12 +15,11 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 random_state=40
 test_size = 0.15
-
-x_train_onehot, x_test_onehot, y_train, y_test = train_test_split(x_onehot, y, test_size=test_size, random_state=random_state)
-x_train_biofeat, x_test_biofeat, y_train, y_test = train_test_split(x_biofeat, y, test_size=test_size, random_state=random_state)
-
-best = -1
-
+validate_size = 0.1
+x_train_validate_onehot, x_test_onehot, y_train_validate, y_test = train_test_split(x_onehot, y, test_size=test_size, random_state=random_state)
+x_train_validate_biofeat, x_test_biofeat, y_train_validate, y_test = train_test_split(x_biofeat, y, test_size=test_size, random_state=random_state)
+x_train_onehot, x_validate_onehot,y_train, y_validate = train_test_split(x_train_validate_onehot, y_train_validate, test_size=validate_size, random_state=random_state)
+x_train_biofeat, x_validate_biofeat,y_train, y_validate = train_test_split(x_train_validate_biofeat, y_train_validate, test_size=validate_size, random_state=random_state)
 def get_spearman(model):
     y_test_pred = model.predict([x_test_onehot,x_test_biofeat])
     return sp.stats.spearmanr(y_test, y_test_pred)[0]  
@@ -29,17 +28,46 @@ def get_score_at_test(model):
     mse = mean_squared_error(y_test, y_test_pred)
     spearmanr = sp.stats.spearmanr(y_test, y_test_pred)[0]    
     r2 = r2_score(y_test, y_test_pred)
-    global best
-    best = spearmanr if spearmanr > best else best
-    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(best)
+    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2)
 
 
 
+
+from random import randint
+import copy
+l_x_train_onehot = x_train_onehot.tolist()
+l_x_train_biofeat = x_train_biofeat.tolist()
+l_y_train = y_train.tolist()
+
+x=0
+for i in range(len(l_x_train_onehot)):
+    if randint(0,100) < 32:
+        j = randint(4,16)
+        for k in range(4):
+            if l_x_train_onehot[i][j][k][0] == 1:
+                x = k
+        offset = randint(1,4)
+        noise_x = (x+offset)%4
+        newx = copy.deepcopy(l_x_train_onehot[i])
+        newx[j][x][0] = 0.75
+        newx[j][noise_x][0] = 0.25
+        l_x_train_onehot.append(newx)
+        l_x_train_biofeat.append(copy.deepcopy(l_x_train_biofeat[i]))
+        l_y_train.append(copy.deepcopy(l_y_train[i]))
+t_x_train_onehot = np.array(l_x_train_onehot).reshape(-1,21,4,1)
+t_x_train_biofeat = np.array(l_x_train_biofeat).reshape(-1,11)
+t_y_train = np.array(l_y_train).reshape(-1)
+
+index=np.arange(len(l_x_train_onehot))
+np.random.shuffle(index)
+x_train_onehot=t_x_train_onehot[index,:,:,:]
+x_train_biofeat=t_x_train_biofeat[index,:] 
+y_train=t_y_train[index]
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
-    'train_batch_size':44,
-    'train_epochs_num':3,
-    'train_base_learning_rate':0.0001,
+    'train_batch_size':16,
+    'train_epochs_num':150,
+    'train_base_learning_rate':0.00002,
     'cnn_fc_hidden_layer_num':2,
     'cnn_fc_hidden_layer_units_num':421,
     'cnn_fc_dropout':0.5,
@@ -176,7 +204,7 @@ def model():
     biological_input = Input(name = 'bio_input', shape = (x_train_biofeat.shape[1],))
     ######CNN######
     cnn_output = cnn(onehot_input)
-    onehot_embedded = mlp(cnn_output,output_layer_activation='sigmoid',output_dim=21,output_use_bias=False,
+    onehot_embedded = mlp(cnn_output,output_layer_activation='tanh',output_dim=21,output_use_bias=False,
                           hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
@@ -197,7 +225,20 @@ def model():
                                      hidden_layer_activation='relu',dropout=params['rnn_fc_dropout'],
                                      name='rnn_output_at_'+str(i))
     rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='rnn_embedding')
-    x = dot([rnn_embedded,onehot_embedded],axes=-1,name='position_score')
+    rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
+    x_rnn = mlp(rnn_embedded,
+            output_layer_activation='linear',output_dim=1,output_use_bias=False,
+            hidden_layer_num=0,hidden_layer_units_num=0,
+            hidden_layer_activation='relu',dropout=0)
+    x_cnn = mlp(onehot_embedded,
+            output_layer_activation='linear',output_dim=1,output_use_bias=False,
+            hidden_layer_num=0,hidden_layer_units_num=0,
+            hidden_layer_activation='relu',dropout=0)
+    x = keras.layers.concatenate([x_rnn,x_cnn])
+    x = mlp(x,
+            output_layer_activation='linear',output_dim=1,output_use_bias=True,
+            hidden_layer_num=0,hidden_layer_units_num=0,
+            hidden_layer_activation='relu',dropout=0)
     ######Biofeat######
     x_bio = mlp(biological_input,
                 output_layer_activation='sigmoid',output_dim=1,output_use_bias=True,
@@ -229,19 +270,16 @@ def train():
         )
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
     m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
-    global best
-    best = -1
     m.fit([x_train_onehot,x_train_biofeat], 
                  y_train,
                  batch_size=batch_size,
                  epochs=epochs,
                  verbose=2,
-                 validation_split=0.1,
+                 validation_data=([x_validate_onehot,x_validate_biofeat],y_validate),
                  callbacks=[batch_end_callback])
 
     m.save('./conv_'+str(epochs)+'.h5')
-    sp = best
-    print('best:'+str(best))
+    sp = get_spearman(m)
     return {'loss': -1*sp, 'status': STATUS_OK}
 
 def train_with(hyperparameters):
