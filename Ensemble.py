@@ -12,7 +12,7 @@ best = -1
 from sklearn.metrics import  mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 import os
-#os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 random_state=40
 test_size = 0.15
 validate_size = 0.1
@@ -31,7 +31,7 @@ def get_score_at_test(model):
     global best
     if best<spearmanr:
         best = spearmanr
-        model.save('./bestRNN.h5')
+        model.save('./bestEnsemble.h5')
         print('save')
     return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(best)
 
@@ -54,8 +54,8 @@ for i in range(len(l_x_train_onehot)):
         offset = randint(1,4)
         noise_x = (x+offset)%4
         newx = copy.deepcopy(l_x_train_onehot[i])
-        newx[j][x][0] = 0.9
-        newx[j][noise_x][0] = 0.1
+        newx[j][x][0] = 0.75
+        newx[j][noise_x][0] = 0.25
         l_x_train_onehot.append(newx)
         l_x_train_biofeat.append(copy.deepcopy(l_x_train_biofeat[i]))
         l_y_train.append(copy.deepcopy(l_y_train[i]))
@@ -65,9 +65,9 @@ t_y_train = np.array(l_y_train).reshape(-1)
 
 index=np.arange(len(l_x_train_onehot))
 np.random.shuffle(index)
-x_train_onehot=t_x_train_onehot[index,:,:,:]
-x_train_biofeat=t_x_train_biofeat[index,:] 
-y_train=t_y_train[index]
+#x_train_onehot=t_x_train_onehot[index,:,:,:]
+#x_train_biofeat=t_x_train_biofeat[index,:] 
+#y_train=t_y_train[index]
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 params = {
     'train_batch_size':16,
@@ -140,111 +140,19 @@ def mlp(inputs,output_layer_activation,output_dim,output_use_bias,
               use_bias=output_use_bias,name=name)(x)
     return x
 
-def cnn(inputs):
-    convs = []
-    for i in range(params['cnn_conv_num']):
-        convs.append(
-            Conv2D(params['cnn_filters_num'],(i+2,4),strides=(1,4),padding='same',activation='relu')(inputs)
-            )
-    conv_output = keras.layers.concatenate(convs,name='conv_output')
-    pooling_output = conv_output
-    cnn_output = Flatten()(pooling_output)
-    return cnn_output
-def rnn(inputs):
-    embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(inputs)
-    embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
-    #(?,21,units)
-    encoder = LSTM(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
-    encoder = Bidirectional(encoder,merge_mode='sum',name='encoder_output')
-    encoder_output = encoder(embedded)
-    
-    encoderat = []
-    for i in range(21):
-        encoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(encoder_output)
-                )
-            )
-    decoder_input = keras.layers.concatenate([embedded,encoder_output])
-    decoder = LSTM(params['rnn_unit_num'],dropout=0.25,recurrent_dropout=0.25,
-                     return_sequences=True,return_state=False,name='last_gru_output',unroll=True)
-    decoder = Bidirectional(decoder,merge_mode='sum',name='last_bgru_output')
-    decoder_output = decoder(decoder_input)
-    
-    decoderat = []
-    for i in range(21):
-        decoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(decoder_output)
-                )
-            )
-
-    for i in range(21):
-        decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
-
-    aat = []
-    for i in range(21):
-        atat = []
-        for j in range(21):
-            atat.append(
-                Softmax(axis=-1)(dot([encoderat[j],decoderat[i]],axes=-1))
-                )
-        aat.append(
-            Reshape((21,1,))(keras.layers.concatenate(atat))
-            )
-        
-    ctat = []
-    for i in range(21):
-        weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
-        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
-        ctat.append(
-            Reshape((1,params['rnn_unit_num'],))(weightavg)
-            )
-    rnn_output = keras.layers.concatenate(ctat,axis=-2)
-    rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
-    return rnn_output    
-
 def model():
     onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     biological_input = Input(name = 'bio_input', shape = (x_train_biofeat.shape[1],))
-    ######CNN######
-    cnn_output = cnn(onehot_input)
-    onehot_embedded = mlp(cnn_output,output_layer_activation='tanh',output_dim=21,output_use_bias=False,
-                          hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
-                          hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
-                          name='cnn_embedding')
-    ######RNN######
-    from keras.models import load_model
-    rnn_output = rnn(onehot_input)
-    ######Attention######
-    time_rnn_embeddedat = []
-    for i in range(21):
-        time_rnn_embeddedat.append(
-            Flatten(name='rnn_flatten_'+str(i))(
-                Cropping1D(cropping=(i,21-1-i))(rnn_output)
-                )
-            )
-        time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
-                                     output_layer_activation='tanh',output_dim=1,output_use_bias=False,
-                                     hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
-                                     hidden_layer_activation='relu',dropout=params['rnn_fc_dropout'],
-                                     name='rnn_output_at_'+str(i))
-    rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='rnn_embedding')
-    rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    x_rnn = mlp(rnn_embedded,
-            output_layer_activation='linear',output_dim=1,output_use_bias=False,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
-    x_cnn = mlp(onehot_embedded,
-            output_layer_activation='linear',output_dim=1,output_use_bias=False,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
+
+    cnnmodel = load_model('./bestCNN.h5')
+    rnnmodel = load_model('./bestRNN.h5')
+    x_rnn = rnnmodel(onehot_input)
+    x_cnn = cnnmodel(onehot_input)
     x = keras.layers.concatenate([x_rnn,x_cnn])
     x = mlp(x,
             output_layer_activation='linear',output_dim=1,output_use_bias=True,
             hidden_layer_num=0,hidden_layer_units_num=0,
             hidden_layer_activation='relu',dropout=0)
-    x = x_rnn
     ######Biofeat######
     x_bio = mlp(biological_input,
                 output_layer_activation='sigmoid',output_dim=1,output_use_bias=True,
@@ -256,7 +164,7 @@ def model():
                 output_layer_activation='linear',output_dim=1,output_use_bias=True,
                 hidden_layer_num=0,hidden_layer_units_num=0,
                 hidden_layer_activation='relu',dropout=0)
-    output=x
+    #output=x
     model = Model(inputs=[onehot_input, biological_input],
                  outputs=[output])
     return model

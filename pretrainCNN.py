@@ -31,7 +31,7 @@ def get_score_at_test(model):
     global best
     if best<spearmanr:
         best = spearmanr
-        model.save('./bestRNN.h5')
+        model.save('./bestCNN.h5')
         print('save')
     return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(best)
 
@@ -150,60 +150,6 @@ def cnn(inputs):
     pooling_output = conv_output
     cnn_output = Flatten()(pooling_output)
     return cnn_output
-def rnn(inputs):
-    embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(inputs)
-    embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
-    #(?,21,units)
-    encoder = LSTM(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
-    encoder = Bidirectional(encoder,merge_mode='sum',name='encoder_output')
-    encoder_output = encoder(embedded)
-    
-    encoderat = []
-    for i in range(21):
-        encoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(encoder_output)
-                )
-            )
-    decoder_input = keras.layers.concatenate([embedded,encoder_output])
-    decoder = LSTM(params['rnn_unit_num'],dropout=0.25,recurrent_dropout=0.25,
-                     return_sequences=True,return_state=False,name='last_gru_output',unroll=True)
-    decoder = Bidirectional(decoder,merge_mode='sum',name='last_bgru_output')
-    decoder_output = decoder(decoder_input)
-    
-    decoderat = []
-    for i in range(21):
-        decoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(decoder_output)
-                )
-            )
-
-    for i in range(21):
-        decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
-
-    aat = []
-    for i in range(21):
-        atat = []
-        for j in range(21):
-            atat.append(
-                Softmax(axis=-1)(dot([encoderat[j],decoderat[i]],axes=-1))
-                )
-        aat.append(
-            Reshape((21,1,))(keras.layers.concatenate(atat))
-            )
-        
-    ctat = []
-    for i in range(21):
-        weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
-        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
-        ctat.append(
-            Reshape((1,params['rnn_unit_num'],))(weightavg)
-            )
-    rnn_output = keras.layers.concatenate(ctat,axis=-2)
-    rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
-    return rnn_output    
-
 def model():
     onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     biological_input = Input(name = 'bio_input', shape = (x_train_biofeat.shape[1],))
@@ -213,52 +159,12 @@ def model():
                           hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
-    ######RNN######
-    from keras.models import load_model
-    rnn_output = rnn(onehot_input)
-    ######Attention######
-    time_rnn_embeddedat = []
-    for i in range(21):
-        time_rnn_embeddedat.append(
-            Flatten(name='rnn_flatten_'+str(i))(
-                Cropping1D(cropping=(i,21-1-i))(rnn_output)
-                )
-            )
-        time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
-                                     output_layer_activation='tanh',output_dim=1,output_use_bias=False,
-                                     hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
-                                     hidden_layer_activation='relu',dropout=params['rnn_fc_dropout'],
-                                     name='rnn_output_at_'+str(i))
-    rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='rnn_embedding')
-    rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    x_rnn = mlp(rnn_embedded,
-            output_layer_activation='linear',output_dim=1,output_use_bias=False,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
     x_cnn = mlp(onehot_embedded,
             output_layer_activation='linear',output_dim=1,output_use_bias=False,
             hidden_layer_num=0,hidden_layer_units_num=0,
             hidden_layer_activation='relu',dropout=0)
-    x = keras.layers.concatenate([x_rnn,x_cnn])
-    x = mlp(x,
-            output_layer_activation='linear',output_dim=1,output_use_bias=True,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
-    x = x_rnn
-    ######Biofeat######
-    x_bio = mlp(biological_input,
-                output_layer_activation='sigmoid',output_dim=1,output_use_bias=True,
-                hidden_layer_num=params['bio_fc_hidden_layer_num'],hidden_layer_units_num=params['bio_fc_hidden_layer_units_num'],
-                hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
-                name='biofeat_embedding')
-    output = keras.layers.concatenate([x,x_bio])
-    output = mlp(output,
-                output_layer_activation='linear',output_dim=1,output_use_bias=True,
-                hidden_layer_num=0,hidden_layer_units_num=0,
-                hidden_layer_activation='relu',dropout=0)
-    output=x
     model = Model(inputs=[onehot_input, biological_input],
-                 outputs=[output])
+                 outputs=[x_cnn],name='cnn')
     return model
 
 def train():
@@ -294,10 +200,5 @@ def train_with(hyperparameters):
         +params_range[name][0]
         )
     params['bio_fc_hidden_layer_units_num'] = name2params('bio_fc_hidden_layer_units_num')
-    params['cnn_fc_hidden_layer_units_num'] = name2params('cnn_fc_hidden_layer_units_num')
-    params['cnn_filters_num'] = name2params('cnn_filters_num')
-    params['rnn_fc_hidden_layer_units_num'] = name2params('rnn_fc_hidden_layer_units_num')
-    params['rnn_unit_num'] = name2params('rnn_unit_num')
-    params['rnn_embedding_output'] = name2params('rnn_embedding_output')
     return train()
 train()
