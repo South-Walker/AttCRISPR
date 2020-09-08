@@ -50,7 +50,7 @@ def model(params):
                 Softmax(axis=-1)(dot([encoderat[j],decoderat[i]],axes=-1))
                 )
         aat.append(
-            Reshape((21,1,))(keras.layers.concatenate(atat))
+            Reshape((21,1,),name='temporal_attention_'+str(i))(keras.layers.concatenate(atat))
             )
         
     ctat = []
@@ -75,14 +75,11 @@ def model(params):
                                      hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
                                      hidden_layer_activation='relu',dropout=0,
                                      name='rnn_output_at_'+str(i))
-    rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='rnn_embedding')
+    rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='temporal_pos_score')
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    x_rnn = mlp(rnn_embedded,
-            output_layer_activation='linear',output_dim=1,output_use_bias=False,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
+    output = Dense(units=1,kernel_regularizer='l2',name='temporal_score')(rnn_embedded)
     model = Model(inputs=[onehot_input],
-                 outputs=[x_rnn])
+                 outputs=[output],name='rnn')
     return model
 
 def train(params,train_input,train_label,validate_input,validate_label,test_input,test_label):

@@ -1,6 +1,6 @@
 import keras
 from keras.preprocessing import text,sequence
-from keras.layers import Input
+from keras.layers import Input, BatchNormalization, Softmax
 from keras.layers.core import *
 from keras.models import *
 from keras.callbacks import Callback,LambdaCallback
@@ -9,13 +9,13 @@ import keras.backend as K
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from LearnUtil import *
 
-def model(params):
+def model(params,cnn_trainable=False,rnn_trainable=False,load_weight=False):
     onehot_input = Input(name='onehot_input', shape = (21,4, 1,))
     biological_input = Input(name='bio_input', shape = (11,))
     cnnmodel = load_model(params['cnn_load_file'])
     rnnmodel = load_model(params['rnn_load_file'])
-    cnnmodel.trainable = False
-    rnnmodel.trainable = False
+    cnnmodel.trainable = cnn_trainable
+    rnnmodel.trainable = rnn_trainable
     x_cnn = cnnmodel(onehot_input)
     x_rnn = rnnmodel(onehot_input)
     x = keras.layers.concatenate([x_rnn,x_cnn])
@@ -26,21 +26,22 @@ def model(params):
                 hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
                 name='biofeat_embedding')
     output = keras.layers.concatenate([x,x_bio])
-    output = mlp(output,
-                output_layer_activation='linear',output_dim=1,output_use_bias=True,
-                hidden_layer_num=0,hidden_layer_units_num=0,
-                hidden_layer_activation='relu',dropout=0,output_regularizer='l2')
+    output = Dense(units=1,kernel_initializer=keras.initializers.RandomNormal(mean=0.3, stddev=0.05),bias_initializer='zero')(output)
     model = Model(inputs=[onehot_input, biological_input],
                  outputs=[output])
+    if load_weight:
+        model.load_weights(params['ensemble_load_file']) 
     return model
 
 def train(params,
           train_input,train_biofeat,train_label,
           validate_input,validate_biofeat,validate_label,
-          test_input,test_biofeat,test_label):
+          test_input,test_biofeat,test_label,
+          cnn_trainable=False,rnn_trainable=False,load_weight=False):
     global best
     best = -1
-    m = model(params)
+    m = model(params,
+              cnn_trainable=cnn_trainable,rnn_trainable=rnn_trainable,load_weight=load_weight)
     batch_size = params['train_batch_size']
     learningrate = params['train_base_learning_rate']
     epochs = params['train_epochs_num']

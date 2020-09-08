@@ -16,8 +16,8 @@ def model(params):
     maxpooling_spatial = Lambda(lambda inp: K.max(inp,axis=3,keepdims=True))(conv_0)
     attention_spatial = keras.layers.concatenate([maxpooling_spatial,avgpooling_spatial],axis=3)
     attention_spatial = BatchNormalization()(attention_spatial)
-    attention_spatial = Conv2D(1, (3, 2), padding='same', activation='sigmoid')(attention_spatial)
-    conv_output = Lambda(lambda inp: inp[0]*inp[1])( [onehot_input,attention_spatial])
+    attention_spatial = Conv2D(1, (3, 2), padding='same', activation='sigmoid',name='spatial_attention')(attention_spatial)
+    conv_output = Lambda(lambda inp: inp[0]*inp[1],name='spatial_attention_result')( [onehot_input,attention_spatial])
 
     convs = []
     for i in range(params['cnn_conv_num']):
@@ -32,10 +32,7 @@ def model(params):
                           hidden_layer_num=params['cnn_fc_hidden_layer_num'],hidden_layer_units_num=params['cnn_fc_hidden_layer_units_num'],
                           hidden_layer_activation='relu',dropout=params['cnn_fc_dropout'],
                           name='cnn_embedding')
-    output = mlp(onehot_embedded,
-            output_layer_activation='linear',output_dim=1,output_use_bias=False,
-            hidden_layer_num=0,hidden_layer_units_num=0,
-            hidden_layer_activation='relu',dropout=0)
+    output = Dense(units=1,kernel_regularizer='l2',name='spatial_score')(onehot_embedded)
     model = Model(inputs=[onehot_input],
                  outputs=[output],name='cnn')
     return model

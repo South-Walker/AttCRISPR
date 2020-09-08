@@ -1,5 +1,5 @@
 \documentclass{bioinfo}
-\copyrightyear{2015} \pubyear{2015}
+\copyrightyear{2020} \pubyear{2020}
 
 \access{Advance Access Publication Date: Day Month Year}
 \appnotes{Manuscript Category}
@@ -7,9 +7,10 @@
 \begin{document}
 \firstpage{1}
 
-\subtitle{Subject Section}
+\subtitle{Genome analysis}
 
-\title[short Title]{This is a title}
+\title[short Title]{AttCRISPR : an spacetime interpretable model for sgRNA efficiency prediction
+}
 \author[Sample \textit{et~al}.]{Corresponding Author\,$^{\text{\sfb 1,}*}$, Co-Author\,$^{\text{\sfb 2}}$ and Co-Author\,$^{\text{\sfb 2,}*}$}
 \address{$^{\text{\sf 1}}$Department, Institution, City, Post Code, Country and \\
 $^{\text{\sf 2}}$Department, Institution, City, Post Code,
@@ -69,6 +70,9 @@ Learning-based method, which designed to predict the activity of sgRNAs, is esse
  Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks \citep{lundberg2017a}. 
  In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
  Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases \citep{slack2019fooling}, in other word, they could be unreliable and misleading, even on model with excellent performance. 
+ In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position (for example, the guanine (G) adjacent to PAM has a positive effect on sgRNA activity), which we'll call the first-order preference in our paper.  
+ However they didn't analyzed the preference for sgRNA at the overall level, which we'll call the second-order preference in our paper (for example, could a thymine (T) at 2 bases upstream of the G adjacent to PAM affect the degree of preference for the G?)
+ We agree that base on the first-order influence and Bayesian formula can obtain the second-order preference in a statistical sense. However, it is obviously time-consuming task with exponential time complexity.
  In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, but also be comparable to conventional machine learning algorithms in interpretability.
 
 Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems \citep{liu2019computational}. 
@@ -107,13 +111,14 @@ In this paper, our main contributions are as follows:\vspace*{1pt}
 
 \begin{itemize}
     \item Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
+    Finally, the ensemble learning method is used to combine the two to achieve better performance.
     It doesn't belong to any of the above categories of existing approaches.
     \item Introduce attention mechanism into our model. 
     As a result, It does not need post hoc explanations techniques based on input perturbation to explain itself. 
-    It is intrinsic interpretable at the nucleotide level in the temporal and spatial domains. 
-    The model we built could be approximated with a linear regression model, thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
-    This seems to has something in common with the idea of two-layer additive models, built by \citeauthor{DBLP:phd/basesearch/Chen20d}. 
-    He uses linear modeling with positive coefficients for feature, but inserts (interpretable) nonlinearities in several places to make the model more flexible and accurate \citep{DBLP:phd/basesearch/Chen20d}.
+    It is intrinsic interpretable in both temporal and spatial domains.
+    In the spatial domain it's at the nucleotide level, in our word, first-order interpretable, 
+    while at the overall level in the temporal domain, in our word, second-order interpretable. 
+    Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
     \item Throught abation analysis and testing a series of possible network structure, 
     we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
     which could outperform the current state-of-the-art tool on deepHF dataset.\vspace*{1pt}
