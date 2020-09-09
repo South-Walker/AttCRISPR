@@ -1,18 +1,19 @@
-best = -1
+class Result(object):
+    Best = -1
 from sklearn.metrics import  mean_squared_error, r2_score
 import scipy as sp
-def get_score_at_test(model,input,label,issave=True,savepath=None):
+def get_score_at_test(model,input,result,label,issave=True,savepath=None):
     pred_label = model.predict(input)
     mse = mean_squared_error(label, pred_label)
     spearmanr = sp.stats.spearmanr(label, pred_label)[0]    
     r2 = r2_score(label, pred_label)
-    global best
-    if best<spearmanr:
-        best = spearmanr
+    
+    if result.Best<spearmanr:
+        result.Best = spearmanr
         if issave:
             model.save(savepath)
         print('best')
-    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(best)
+    return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2), 'best:' + str(result.Best)
 
 
 import keras

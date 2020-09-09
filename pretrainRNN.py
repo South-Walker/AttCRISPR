@@ -47,11 +47,9 @@ def model(params):
         atat = []
         for j in range(21):
             atat.append(
-                Softmax(axis=-1)(dot([encoderat[j],decoderat[i]],axes=-1))
+                dot([encoderat[j],decoderat[i]],axes=-1)
                 )
-        aat.append(
-            Reshape((21,1,),name='temporal_attention_'+str(i))(keras.layers.concatenate(atat))
-            )
+        aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(keras.layers.concatenate(atat)))
         
     ctat = []
     for i in range(21):
@@ -61,7 +59,7 @@ def model(params):
             Reshape((1,params['rnn_unit_num'],))(weightavg)
             )
     rnn_output = keras.layers.concatenate(ctat,axis=-2)
-    rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
+    #rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
 
     time_rnn_embeddedat = []
     for i in range(21):
@@ -83,8 +81,7 @@ def model(params):
     return model
 
 def train(params,train_input,train_label,validate_input,validate_label,test_input,test_label):
-    global best
-    best = -1
+    result = Result()
     m = model(params)
     batch_size = params['train_batch_size']
     learningrate = params['train_base_learning_rate']
@@ -93,7 +90,7 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
 
     batch_end_callback = LambdaCallback(on_epoch_end=
                                         lambda batch,logs: 
-                                        print(get_score_at_test(m,test_input,test_label,
+                                        print(get_score_at_test(m,test_input,result,test_label,
                                                                 issave=True,savepath=params['rnn_save_file'])))
 
     m.fit(train_input,train_label,
@@ -102,4 +99,4 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
           verbose=2,
           validation_data=([validate_input],validate_label), 
           callbacks=[batch_end_callback])
-    return {'loss': -1*best, 'status': STATUS_OK}
+    return {'loss': -1*result.Best, 'status': STATUS_OK}

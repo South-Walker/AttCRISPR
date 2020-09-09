@@ -2,10 +2,6 @@ import ParamsUtil
 from ParamsUtil import *
 ######
 
-best = -1
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 def AddNoise(onehot,biofeat,label,rate=50,intensity=0.30):
     from random import randint
     import copy
@@ -43,44 +39,41 @@ def AddNoise(onehot,biofeat,label,rate=50,intensity=0.30):
 
     return onehot,biofeat,label
 
-
+from pretrainRNN import train as RNN
 from PretrainCNN import train as CNN
-from PretrainRNN import train as RNN
 from Ensemble import train as Ensemble
 
-def Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=False):
+def Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuning=False):
     data = Read_Data()
     input = data['input']
     label = data['label']
-    global best
-    best = -1
+    r = None
     if pretrainCNN:
         input_train_onehot = input['train']['onehot']
         y_train = label['train']
         input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                                   label['train'],rate=50,intensity=0.3)
-        CNN(params['CNNParams'],input_train_onehot,y_train,
+        r = CNN(params['CNNParams'],input_train_onehot,y_train,
              input['validate']['onehot'],label['validate'],
              input['test']['onehot'],label['test'])
-    best = -1
     if pretrainRNN:
         input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                                   label['train'],rate=50,intensity=0.3)
-        RNN(params['RNNParams'],input_train_onehot,y_train,
+        r = RNN(params['RNNParams'],input_train_onehot,y_train,
              input['validate']['onehot'],label['validate'],
              input['test']['onehot'],label['test'])
-    best = -1
     if ensemble:
-        Ensemble(params['EnsembleParams'],
+        r = Ensemble(params['EnsembleParams'],
                  input['train']['onehot'],input['train']['biofeat'],label['train'],
                  input['validate']['onehot'],input['validate']['biofeat'],label['validate'],
                  input['test']['onehot'],input['test']['biofeat'],label['test'],
                  cnn_trainable=False,rnn_trainable=False)
-    best = -1
-    Ensemble(params['FineTuning'],
-             input['train']['onehot'],input['train']['biofeat'],label['train'],
-             input['validate']['onehot'],input['validate']['biofeat'],label['validate'],
-             input['test']['onehot'],input['test']['biofeat'],label['test'],
-             cnn_trainable=True,rnn_trainable=True,load_weight=True)
+    if fineTuning:
+        r = Ensemble(params['FineTuning'],
+                input['train']['onehot'],input['train']['biofeat'],label['train'],
+                input['validate']['onehot'],input['validate']['biofeat'],label['validate'],
+                input['test']['onehot'],input['test']['biofeat'],label['test'],
+                cnn_trainable=True,rnn_trainable=True,load_weight=True)
+    return r
 if __name__ == "__main__":
-    Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=False)
+    Pipeline(pretrainCNN=False,pretrainRNN=True,ensemble=False,fineTuning=False) 

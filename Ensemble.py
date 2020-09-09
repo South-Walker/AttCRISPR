@@ -38,8 +38,7 @@ def train(params,
           validate_input,validate_biofeat,validate_label,
           test_input,test_biofeat,test_label,
           cnn_trainable=False,rnn_trainable=False,load_weight=False):
-    global best
-    best = -1
+    result = Result()
     m = model(params,
               cnn_trainable=cnn_trainable,rnn_trainable=rnn_trainable,load_weight=load_weight)
     batch_size = params['train_batch_size']
@@ -49,7 +48,7 @@ def train(params,
     
     batch_end_callback = LambdaCallback(on_epoch_end=
                                         lambda batch,logs: 
-                                        print(get_score_at_test(m,[test_input,test_biofeat],test_label,
+                                        print(get_score_at_test(m,[test_input,test_biofeat],result,test_label,
                                                                 issave=True,savepath=params['ensemble_save_file'])))
     m.fit([train_input,train_biofeat],train_label,
           batch_size=batch_size,
@@ -57,5 +56,6 @@ def train(params,
           verbose=2,
           validation_data=([validate_input,validate_biofeat],validate_label),
           callbacks=[batch_end_callback])
-    return {'loss': -1*best, 'status': STATUS_OK}
+    return {'loss': -1*result.Best, 'status': STATUS_OK}
+
 

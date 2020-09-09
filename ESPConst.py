@@ -16,7 +16,7 @@ RNNParams = {
     'train_base_learning_rate':0.001,
     'rnn_save_file':'ESPBestRNN.h5',
     'rnn_embedding_output':97,
-    'rnn_unit_num':99,
+    'rnn_unit_num':45,
     'rnn_fc_hidden_layer_num':1,
     'rnn_fc_hidden_layer_units_num':166
     }
@@ -36,17 +36,32 @@ FineTuning = {
     'rnn_load_file':'ESPBestRNN.h5',
     'ensemble_load_file':'ESPEnsemble.h5',
     'ensemble_save_file':'ESPFineTuning.h5',
-    'train_batch_size':64,
+    'train_batch_size':16,
     'train_epochs_num':300,
-    'train_base_learning_rate':0.001,
+    'train_base_learning_rate':0.00002,
     'bio_fc_hidden_layer_num':1,
     'bio_fc_hidden_layer_units_num':87,
     'bio_fc_dropout':0.05
     }
+ParamsRanges = {
+    'CNNParams':
+    {
+        'cnn_fc_hidden_layer_units_num':[200,600],
+        'cnn_filters_num':[30,70],
+        'cnn_last_layer_units_num':[10,110]
+    },
+    'RNNParams':
+    {
+        'rnn_embedding_output':[40,140],
+        'rnn_unit_num':[30,130],
+        'rnn_fc_hidden_layer_units_num':[66,266],
+    }
+    }
 Params = {
-    'data_file':'espalldata.pkl',
+    'data_file':'ESPData.pkl',
     'CNNParams':CNNParams,
     'RNNParams':RNNParams,
     'EnsembleParams':EnsembleParams,
-    'FineTuning':FineTuning
+    'FineTuning':FineTuning,
+    'ParamsRanges':ParamsRanges
     }

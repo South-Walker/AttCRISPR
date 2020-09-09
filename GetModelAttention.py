@@ -26,9 +26,17 @@ x_attention_onehot = x_train_onehot
 x_attention_biofeat = x_train_biofeat
 x_attention_seq = x_train_seq
 y_attention = y_train
-def get_temporal_attention(model,usebiofeat=True):
-    return 1
-def get_spatial_attention(model,usebiofeat=True):
+def get_temporal_attention(model):
+    temporal_layer_models = []
+    temporal_values = []
+    for i in range(21):
+        print(i)
+        temporal_layer_model = Model(inputs=model.inputs[0], outputs=model.get_layer('temporal_attention_'+str(i)).output)
+        temporal_values.append(
+            np.mean(temporal_layer_model.predict(x_attention_onehot), axis=0)
+            )
+    return temporal_values
+def get_spatial_attention(model):
     spatial_layer_model = Model(
         inputs=model.inputs[0], outputs=model.get_layer('spatial_attention_result').output)
     spatial_value = spatial_layer_model.predict(x_attention_onehot)
@@ -83,8 +91,6 @@ def bezier(t,points,pointsnum):
     return r
 
 def Plot3D(spatial_attention):
-    base_code_dict = {'T': 1, 'A': 2, 'C': 3, 'G': 4} 
-    code_base_dict = {1: 'T', 2: 'A', 3: 'C', 4: 'G'}
     from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
 
@@ -92,8 +98,8 @@ def Plot3D(spatial_attention):
     ax1 = plt.axes(projection='3d')
 
     import numpy as np
-    xstep = 0.2
-    ystep = 0.1
+    xstep = 0.5
+    ystep = 0.2
     xbegin = 1.0
     ybegin = 0.0
     xend = 4.0001
@@ -111,10 +117,10 @@ def Plot3D(spatial_attention):
         
         u = float(nowposy)/float(yend-ybegin)
 
-        point0 = bezier(u,spatial_attention[0],21)
-        point1 = bezier(u,spatial_attention[1],21)
-        point2 = bezier(u,spatial_attention[2],21)
-        point3 = bezier(u,spatial_attention[3],21)
+        point0 = bezier(u,spatial_attention[3],21)
+        point1 = bezier(u,spatial_attention[0],21)
+        point2 = bezier(u,spatial_attention[1],21)
+        point3 = bezier(u,spatial_attention[2],21)
         print(u)
 
         for j in range(Z.shape[1]):
@@ -159,22 +165,21 @@ def SinglePred(usebiofeat=True):
 
     values.tofile('singleall.out',sep=',',format='%s')
 
-load_model = load_model('./WTBestCNN.h5')
+load_model = load_model('./WTBestRNN.h5')
 
 load_model.summary()
-isusebiofeat = True
 #cnn_model = load_model.get_layer('cnn')
 cnn_model = load_model
-spatial_attention = get_spatial_attention(cnn_model,isusebiofeat)
+#rnn_model = load_model.get_layer('rnn')
+rnn_model = load_model
+temporal_attention = get_temporal_attention(rnn_model)
+print(temporal_attention)
+spatial_attention = get_spatial_attention(cnn_model)
 for i in range(4):
     for j in range(21):
         print(str(spatial_attention[i][j]) + ",",end='')
     print('')
 
-#spatial_weights = get_spatial_attention(load_model,isusebiofeat)
-#temporal_weights = get_temporal_attention(load_model,isusebiofeat)
-#map_temporal_attention_to_sum0(spatial_weights)
-#print(temporal_weights)
 
 Plot3D(spatial_attention)
 print('end')

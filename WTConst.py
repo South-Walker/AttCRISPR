@@ -16,7 +16,7 @@ RNNParams = {
     'train_base_learning_rate':0.001,
     'rnn_save_file':'WTBestRNN.h5',
     'rnn_embedding_output':97,
-    'rnn_unit_num':99,
+    'rnn_unit_num':45,
     'rnn_fc_hidden_layer_num':1,
     'rnn_fc_hidden_layer_units_num':166
     }
@@ -43,10 +43,25 @@ FineTuning = {
     'bio_fc_hidden_layer_units_num':87,
     'bio_fc_dropout':0.05
     }
+ParamsRanges = {
+    'CNNParams':
+    {
+        'cnn_fc_hidden_layer_units_num':[200,600],
+        'cnn_filters_num':[30,70],
+        'cnn_last_layer_units_num':[10,110]
+    },
+    'RNNParams':
+    {
+        'rnn_embedding_output':[40,140],
+        'rnn_unit_num':[30,130],
+        'rnn_fc_hidden_layer_units_num':[66,266],
+    }
+    }
 Params = {
-    'data_file':'alldata.pkl',
+    'data_file':'WTData.pkl',
     'CNNParams':CNNParams,
     'RNNParams':RNNParams,
     'EnsembleParams':EnsembleParams,
-    'FineTuning':FineTuning
+    'FineTuning':FineTuning,
+    'ParamsRanges':ParamsRanges
     }

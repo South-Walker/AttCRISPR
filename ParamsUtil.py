@@ -4,6 +4,8 @@ import pandas as pd
 
 from WTConst import Params as params
 
+import os
+#os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 from sklearn.model_selection import train_test_split
 def SplitData(onehot,biofeat,label):    
     random_state=40
