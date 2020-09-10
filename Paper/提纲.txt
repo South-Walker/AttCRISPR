@@ -1,21 +1,62 @@
 
-\begin{itemize}
-    \item Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 最终通过集成学习的方法将二者结合，以获取更好的表现
-    It doesn't belong to any of the above categories of existing approaches.
-    \item Introduce attention mechanism into our model. 
-    As a result, It does not need post hoc explanations techniques based on input perturbation to explain itself. 
-    It is intrinsic interpretable in both temporal and spatial domains.
-In the spatial it's at the nucleotide level , in our word, first-order interpretable, while at the overall level in the temporal domains, in our word, second-order interpretable. Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
-    \item Throught abation analysis and testing a series of possible network structure, 
-    we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
-    which could outperform the current state-of-the-art tool on deepHF dataset.\vspace*{1pt}
-\end{itemize}
+\subsection{Sequence and biological features embedding}
+
+如前叙
+
+\subsubsection{Spatial sequence embedding}
+
+Text  Text 
+
+\subsubsection{Temporal sequence embedding}
+
+Text
+
+\subsubsection{biological features embedding}
+
+Text
+
+\subsection{Neural network architecture}
+
+Text
+
+\subsubsection{Attention module and model in spatial domain}
+
+Text
+
+\subsubsection{Attention module and model in temporal domain}
+
+Text
+
+\subsubsection{Ensemble method boosting model}
+
+Text
+
+\subsection{Datasets and current prediction algorithms}
+
+text
+
+\subsection{Experiments}
+
+text
+
+3.1 Model selection
+ abation analysis
+3.1 空间域序列特征工程
+3.1.1 全局
+3.1.2 局部
+
+3.2 时间域序列特征工程
+3.2.1 全局
+3.2.2 局部
+
+3.3
 
 
 最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
 （我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )
 ( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence.,出于这一信念我们一开始先构建的end2end模型)
-(为了解决rnn-base 网络收敛较慢的问题，时序上pretrain)
+
+
 
 【1】A Programmable Dual-RNA–Guided DNA Endonuclease in Adaptive Bacterial Immunity
 【2】Multiplex Genome Engineering Using CRISPR/Cas Systems

@@ -23,7 +23,10 @@ def HyperParametersSearch(hyperparameters):
         if i == 'nonSearch':
             continue
         params[paramsSetName][i] = name2params(i)
-    return Pipeline(pretrainCNN=True,pretrainRNN=False,ensemble=False,fineTuning=False)
+    if paramsSetName == 'RNNParams':
+        return Pipeline(pretrainCNN=False,pretrainRNN=True)
+    if paramsSetName == 'CNNParams':
+        return Pipeline(pretrainCNN=True,pretrainRNN=False)
 def HyperParameters(paramsRange,paramsSetName):
     space = {
         'nonSearch':
@@ -35,7 +38,7 @@ def HyperParameters(paramsRange,paramsSetName):
     for i in paramsRange[paramsSetName].keys():
         space.update({i:hp.uniform(i,0,1)})
     trials = Trials()
-    result = fmin(HyperParametersSearch, space, algo=tpe.suggest, max_evals=25, trials=trials)
+    result = fmin(HyperParametersSearch, space, algo=tpe.suggest, max_evals=5, trials=trials)
     print('best: ')
     print(result)
 

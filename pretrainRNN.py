@@ -38,9 +38,9 @@ def model(params):
                 Cropping1D(cropping=(i,21-1-i))(decoder_output)
                 )
             )
-
-    for i in range(21):
-        decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
+    #could be removed
+    #for i in range(21):
+        #decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
 
     aat = []
     for i in range(21):
@@ -49,25 +49,19 @@ def model(params):
             atat.append(
                 dot([encoderat[j],decoderat[i]],axes=-1)
                 )
-        aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(keras.layers.concatenate(atat)))
+        at = keras.layers.concatenate(atat)
+        at = Softmax()(at)
+        aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(at))
         
     ctat = []
     for i in range(21):
         weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
-        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
         ctat.append(
-            Reshape((1,params['rnn_unit_num'],))(weightavg)
+            Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False)+decoderat[i])(weightavg)
             )
-    rnn_output = keras.layers.concatenate(ctat,axis=-2)
-    #rnn_output = keras.layers.concatenate([rnn_output,decoder_output])
 
-    time_rnn_embeddedat = []
+    time_rnn_embeddedat = ctat
     for i in range(21):
-        time_rnn_embeddedat.append(
-            Flatten(name='rnn_flatten_'+str(i))(
-                Cropping1D(cropping=(i,21-1-i))(rnn_output)
-                )
-            )
         time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
                                      output_layer_activation='tanh',output_dim=1,output_use_bias=False,
                                      hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
