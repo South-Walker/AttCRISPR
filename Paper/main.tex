@@ -134,6 +134,10 @@ In this paper, our main contributions are as follows:\vspace*{1pt}
 
 \section{Materials and methods}
 
+\subsection{Sequence encoding}
+
+Text
+
 \subsection{Sequence and biological features embedding}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
@@ -151,17 +155,26 @@ Text
 
 Text
 
+\subsubsection{Spatial attention module}
+
+Text
+
+\subsubsection{Temporal attention module}
+
+Text
+
 \subsection{Neural network architecture}
 
-Text
 
-\subsubsection{Attention module and model in spatial domain}
-
-Text
-
-\subsubsection{Attention module and model in temporal domain}
-
-Text
+\begin{figure}[!tpb]%figure2
+    \centerline{\includegraphics[scale=0.5]{category.png}}
+    \caption{The overview of AttCRISPR. 
+    It consists of two components, namely CNNs and RNNs. 
+    The CNN component is used to capture spatial nucleotide preference, 
+    while the RNN component is used to capture temporal nucleotide preference. 
+    Finally, a weighted average method with trainable weight is used to predict activity.}\label{fig:02}
+\end{figure}
+    
 
 \subsubsection{Ensemble method boosting model}
 

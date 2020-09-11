@@ -8,8 +8,21 @@ from keras.optimizers import *
 import keras.backend as K
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from LearnUtil import *
+import math
 
+
+def GaussianKernelBuffer(windowsize=3):
+    gaussian = lambda d: math.exp( -(d*d)*2/windowsize/windowsize ) if abs(d)<=windowsize else 0
+    result = []
+    for i in range(21):
+        resultat = []
+        for j in range(21):
+            resultat.append(gaussian(i-j))
+        result.append(resultat)
+    return result
 def model(params):
+    GaussianBuffer = GaussianKernelBuffer()
+
     onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(onehot_input)
     embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
@@ -36,24 +49,24 @@ def model(params):
 
     #context = Lambda(lambda inp: inp[0]+inp[1])([c_1,c_2])
     context = GlobalAveragePooling1D()(encoder_output)
-    for i in range(21):
-        decoderat[i] = Dense(params['rnn_unit_num'], kernel_initializer='zeros', activation=None,use_bias=False)(decoderat[i])
-    
+
     ######attention######
     aat = []
     for i in range(21):
         atat = []
         for j in range(21):
+            align = dot([encoderat[j],decoderat[i]],axes=-1)
             atat.append(
-                dot([encoderat[j],decoderat[i]],axes=-1)
+                Lambda(lambda inp: inp*GaussianBuffer[i][j])(align)
                 )
         at = keras.layers.concatenate(atat)
-        at = Softmax()(at)
+        #at = Softmax()(at)
         aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(at))
     rnn_output = []
     for i in range(21):
         weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
         weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
+        #weightavg = Lambda(lambda inp: (inp[0]+inp[1])/2)([weightavg,encoderat[i]])
         rnn_output.append(keras.layers.concatenate([context,weightavg,decoderat[i]]))
     time_rnn_embeddedat = rnn_output 
     for i in range(21):
