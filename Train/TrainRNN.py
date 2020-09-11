@@ -1,5 +1,5 @@
 import keras
-from keras.layers import Softmax,Input, Conv2D, Flatten, BatchNormalization, Multiply,Cropping1D,dot, Bidirectional
+from keras.layers import Softmax,GlobalAveragePooling1D,Input, Conv2D, Flatten, BatchNormalization, Multiply,Cropping1D,dot, Bidirectional
 from keras.layers.core import *
 from keras.layers.recurrent import LSTM,GRU
 from keras.models import *
@@ -14,34 +14,32 @@ def model(params):
     embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(onehot_input)
     embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
 
+    ######encoder&decoder######
     encoder = LSTM(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
-    encoder = Bidirectional(encoder,merge_mode='sum',name='encoder_output')
+    encoder = Bidirectional(encoder,merge_mode='sum',name='encoder')
     encoder_output = encoder(embedded)
-    
-    encoderat = []
-    for i in range(21):
-        encoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(encoder_output)
-                )
-            )
+
     decoder_input = keras.layers.concatenate([embedded,encoder_output])
     decoder = LSTM(params['rnn_unit_num'],dropout=0.25,recurrent_dropout=0.25,
-                     return_sequences=True,return_state=False,name='last_gru_output',unroll=True)
-    decoder = Bidirectional(decoder,merge_mode='sum',name='last_bgru_output')
-    decoder_output = decoder(decoder_input)
+                     return_sequences=True,return_state=True,unroll=True)
+    decoder = Bidirectional(decoder,merge_mode='sum',name='decoder')
+    decoder_output,_,c_1,_,c_2 = decoder(decoder_input)
     
+
+    encoderat = []
     decoderat = []
     for i in range(21):
+        encoderat.append(
+            Flatten()(Cropping1D(cropping=(i,21-1-i))(encoder_output)))
         decoderat.append(
-            Flatten()(
-                Cropping1D(cropping=(i,21-1-i))(decoder_output)
-                )
-            )
-    #could be removed
-    #for i in range(21):
-        #decoderat[i] = Dense(params['rnn_unit_num'], activation=None,use_bias=False)(decoderat[i])
+            Flatten()(Cropping1D(cropping=(i,21-1-i))(decoder_output)))
 
+    #context = Lambda(lambda inp: inp[0]+inp[1])([c_1,c_2])
+    context = GlobalAveragePooling1D()(encoder_output)
+    for i in range(21):
+        decoderat[i] = Dense(params['rnn_unit_num'], kernel_initializer='zeros', activation=None,use_bias=False)(decoderat[i])
+    
+    ######attention######
     aat = []
     for i in range(21):
         atat = []
@@ -52,15 +50,12 @@ def model(params):
         at = keras.layers.concatenate(atat)
         at = Softmax()(at)
         aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(at))
-        
-    ctat = []
+    rnn_output = []
     for i in range(21):
         weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
-        ctat.append(
-            Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False)+decoderat[i])(weightavg)
-            )
-
-    time_rnn_embeddedat = ctat
+        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
+        rnn_output.append(keras.layers.concatenate([context,weightavg,decoderat[i]]))
+    time_rnn_embeddedat = rnn_output 
     for i in range(21):
         time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
                                      output_layer_activation='tanh',output_dim=1,output_use_bias=False,
@@ -68,6 +63,7 @@ def model(params):
                                      hidden_layer_activation='relu',dropout=0,
                                      name='rnn_output_at_'+str(i))
     rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='temporal_pos_score')
+    #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
     output = Dense(units=1,kernel_regularizer='l2',name='temporal_score')(rnn_embedded)
     model = Model(inputs=[onehot_input],

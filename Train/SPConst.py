@@ -52,9 +52,9 @@ ParamsRanges = {
     },
     'RNNParams':
     {
-        'rnn_embedding_output':[40,140],
-        'rnn_unit_num':[30,130],
-        'rnn_fc_hidden_layer_units_num':[66,266],
+        'rnn_embedding_output':[10,210],
+        'rnn_unit_num':[10,210],
+        'rnn_fc_hidden_layer_units_num':[20,520],
     }
     }
 Params = {
