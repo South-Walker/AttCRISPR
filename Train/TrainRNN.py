@@ -11,14 +11,16 @@ from LearnUtil import *
 import math
 
 
-def GaussianKernelBuffer(windowsize=3):
-    gaussian = lambda d: math.exp( -(d*d)*2/windowsize/windowsize ) if abs(d)<=windowsize else 0
+def GaussianKernelBuffer(windowsize=8):
+    gaussian = lambda d: math.exp( -(d*d)*2/windowsize/windowsize ) if abs(d)<=windowsize/2 else 0
     result = []
     for i in range(21):
         resultat = []
         for j in range(21):
             resultat.append(gaussian(i-j))
-        result.append(resultat)
+        nresultat = np.array(resultat)
+        result.append(nresultat)
+    return np.array(result)
     return result
 def model(params):
     GaussianBuffer = GaussianKernelBuffer()
@@ -47,9 +49,10 @@ def model(params):
         decoderat.append(
             Flatten()(Cropping1D(cropping=(i,21-1-i))(decoder_output)))
 
-    #context = Lambda(lambda inp: inp[0]+inp[1])([c_1,c_2])
-    context = GlobalAveragePooling1D()(encoder_output)
-
+    context = Lambda(lambda inp: inp[0]+inp[1])([c_1,c_2])
+    #context = GlobalAveragePooling1D()(encoder_output)
+    for i in range(21):
+        decoderat[i] = Dense(params['rnn_unit_num'],activation=None,use_bias=False)(decoderat[i])
     ######attention######
     aat = []
     for i in range(21):
@@ -57,24 +60,27 @@ def model(params):
         for j in range(21):
             align = dot([encoderat[j],decoderat[i]],axes=-1)
             atat.append(
-                Lambda(lambda inp: inp*GaussianBuffer[i][j])(align)
+                align
                 )
         at = keras.layers.concatenate(atat)
-        #at = Softmax()(at)
-        aat.append(Reshape((21,1,),name='temporal_attention_'+str(i))(at))
-    rnn_output = []
+        at = Softmax()(at)
+        at = Reshape((1,21,))(at)
+        aat.append(at)
+    m = keras.layers.concatenate(aat,axis=-2)
+    weight = Lambda(lambda inp: K.constant(GaussianBuffer)*inp ,name = 'temporal_attention')(m)
+    weightavg = Lambda(lambda inp: K.batch_dot(inp[0],inp[1]),name='weight_avg')([weight,encoder_output])
+    rnn_output = (keras.layers.concatenate([weightavg,decoder_output]))
+    time_rnn_embeddedat = []
+
     for i in range(21):
-        weightavg = Lambda(lambda inp: inp[0]*inp[1])([encoder_output ,aat[i]])
-        weightavg = Lambda(lambda inp: K.sum(inp,axis=-2,keepdims=False))(weightavg)
-        #weightavg = Lambda(lambda inp: (inp[0]+inp[1])/2)([weightavg,encoderat[i]])
-        rnn_output.append(keras.layers.concatenate([context,weightavg,decoderat[i]]))
-    time_rnn_embeddedat = rnn_output 
-    for i in range(21):
-        time_rnn_embeddedat[i] = mlp(time_rnn_embeddedat[i],
-                                     output_layer_activation='tanh',output_dim=1,output_use_bias=False,
-                                     hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],
-                                     hidden_layer_activation='relu',dropout=0,
-                                     name='rnn_output_at_'+str(i))
+        now = Flatten()(Cropping1D(cropping=(i,21-1-i))(rnn_output))
+        now = keras.layers.concatenate([context,now])
+        now = mlp(now,
+                  output_layer_activation='tanh',output_dim=1,output_use_bias=False,
+                  hidden_layer_num=params['rnn_fc_hidden_layer_num'],hidden_layer_units_num=params['rnn_fc_hidden_layer_units_num'],                                     
+                  hidden_layer_activation='relu',dropout=0,
+                  name='rnn_output_at_'+str(i))
+        time_rnn_embeddedat.append(now) 
     rnn_embedded = keras.layers.concatenate(time_rnn_embeddedat,name='temporal_pos_score')
     #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)

@@ -25,7 +25,7 @@ EnsembleParams = {
     'rnn_load_file':'SPBestRNN.h5',
     'ensemble_save_file':'SPEnsemble.h5',
     'train_batch_size':16,
-    'train_epochs_num':75,
+    'train_epochs_num':10,
     'train_base_learning_rate':0.00002,
     'bio_fc_hidden_layer_num':1,
     'bio_fc_hidden_layer_units_num':87,

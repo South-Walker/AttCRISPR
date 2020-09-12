@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-pkl = open('alldata.pkl','rb') 
+pkl = open('WTData.pkl','rb') 
 x_onehot =  pickle.load(pkl)
 x_biofeat = pickle.load(pkl)
 y = pickle.load(pkl)
@@ -27,15 +27,10 @@ x_attention_biofeat = x_train_biofeat
 x_attention_seq = x_train_seq
 y_attention = y_train
 def get_temporal_attention(model):
-    temporal_layer_models = []
-    temporal_values = []
-    for i in range(21):
-        print(i)
-        temporal_layer_model = Model(inputs=model.inputs[0], outputs=model.get_layer('temporal_attention_'+str(i)).output)
-        temporal_values.append(
-            np.mean(temporal_layer_model.predict(x_attention_onehot), axis=0)
-            )
-    return temporal_values
+    temporal_layer_model = Model(inputs=model.inputs[0], outputs=model.get_layer('temporal_attention').output)
+    temporal_attention = temporal_layer_model.predict(x_attention_onehot)
+    temporal_value = np.mean(temporal_attention, axis=0)
+    return temporal_value
 def get_spatial_attention(model):
     spatial_layer_model = Model(
         inputs=model.inputs[0], outputs=model.get_layer('spatial_attention_result').output)
@@ -169,7 +164,7 @@ load_model = load_model('./WTBestRNN.h5')
 
 load_model.summary()
 #cnn_model = load_model.get_layer('cnn')
-cnn_model = load_model
+#cnn_model = load_model
 #rnn_model = load_model.get_layer('rnn')
 rnn_model = load_model
 temporal_attention = get_temporal_attention(rnn_model)
