@@ -1,3 +1,4 @@
+import keras
 from keras.models import load_model
 import math
 import pickle
@@ -26,10 +27,53 @@ x_attention_onehot = x_train_onehot
 x_attention_biofeat = x_train_biofeat
 x_attention_seq = x_train_seq
 y_attention = y_train
-def get_temporal_attention(model):
-    temporal_layer_model = Model(inputs=model.inputs[0], outputs=model.get_layer('temporal_attention').output)
+def get_local_temporal_attention(model):
+    temporal_layer_model = Model(inputs=model.inputs[0],outputs=model.get_layer('temporal_attention').output)
     temporal_attention = temporal_layer_model.predict(x_attention_onehot)
     temporal_value = np.mean(temporal_attention, axis=0)
+    for i in range(21):
+        sum = 0
+        for j in range(21):
+            sum+=temporal_value[i][j]
+        for j in range(21):
+            temporal_value[i][j] = temporal_value[i][j]/sum
+    answer = []
+    sums = []
+    for i in range(21):
+        sum = 0
+        for j in range(21):
+            sum += temporal_value[i][j]
+        sums.append(sum)
+    for i in range(21):
+        preanswer = []
+        for k in range(21):
+            time = 10*temporal_value[i][k]/sums[i]+0.5
+            time = int(time)
+            for t in range(time):
+                answer.append('A'+str(i)+','+'B'+str(k))
+    return answer
+def get_temporal_attention(model):
+    temporal_layer_model = Model(inputs=model.inputs[0], outputs=model.get_layer('temporal_attention').output)
+    temporal_score_model = Model(inputs=model.inputs[0], outputs=model.get_layer('last_score').output)
+    last_layer_weight = model.get_layer('temporal_score').get_weights()[0]
+    temporal_attention = temporal_layer_model.predict(x_attention_onehot)
+    temporal_value = np.mean(temporal_attention, axis=0)
+    temporal_score = np.mean(temporal_score_model.predict(x_attention_onehot),axis=0)
+    #can't know
+    for i in range(21):
+        sum = 0
+        count = 0
+        for j in range(21):
+            sum += temporal_value[i][j]
+            count += 1 if temporal_value[i][j]!=0 else 0
+        avg = sum / count
+        sumx_2 = 0
+        for j in range(21):
+            sumx_2 += (temporal_value[i][j]-avg)*(temporal_value[i][j]-avg) if temporal_value[i][j]!=0 else 0
+        sigma = math.sqrt(sumx_2 / count)
+        for j in range(21):
+            temporal_value[i][j] = (temporal_value[i][j]-avg) / sigma if temporal_value[i][j]!=0 else 0
+            temporal_value[i][j] = temporal_value[i][j]/temporal_score[i]
     return temporal_value
 def get_spatial_attention(model):
     spatial_layer_model = Model(
@@ -160,16 +204,15 @@ def SinglePred(usebiofeat=True):
 
     values.tofile('singleall.out',sep=',',format='%s')
 
-load_model = load_model('./WTBestRNN.h5')
-
+load_model = load_model('./WTFineTuning.h5')
 load_model.summary()
-#cnn_model = load_model.get_layer('cnn')
-#cnn_model = load_model
-#rnn_model = load_model.get_layer('rnn')
-rnn_model = load_model
+cnn_model = load_model.get_layer('cnn')
+rnn_model = load_model.get_layer('rnn')
 temporal_attention = get_temporal_attention(rnn_model)
+np.savetxt('global_temporal_attention.csv',temporal_attention,fmt='%.2f',delimiter=',')
 print(temporal_attention)
 spatial_attention = get_spatial_attention(cnn_model)
+print(spatial_attention)
 for i in range(4):
     for j in range(21):
         print(str(spatial_attention[i][j]) + ",",end='')

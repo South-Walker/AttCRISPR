@@ -38,7 +38,7 @@ def HyperParameters(paramsRange,paramsSetName):
     for i in paramsRange[paramsSetName].keys():
         space.update({i:hp.uniform(i,0,1)})
     trials = Trials()
-    result = fmin(HyperParametersSearch, space, algo=tpe.suggest, max_evals=5, trials=trials)
+    result = fmin(HyperParametersSearch, space, algo=tpe.suggest, max_evals=25, trials=trials)
     print('best: ')
     print(result)
 

@@ -9,7 +9,7 @@ Text  Text
 
 \subsubsection{Temporal sequence embedding}
 
-Text
+核苷酸preference representation
 
 \subsubsection{biological features embedding}
 
