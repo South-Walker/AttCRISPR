@@ -57,28 +57,32 @@ def model(params):
             Flatten()(Cropping1D(cropping=(i,21-1-i))(encoder_output)))
         decoderat.append(
             Flatten()(Cropping1D(cropping=(i,21-1-i))(decoder_output)))
-
     ######attention######
     aat = []
     for i in range(21):
         atat = []
         for j in range(21):
+            #important of pos[j] in scoring pos[i]
             align = dot([encoderat[j],decoderat[i]],axes=-1)
             atat.append(
                 align
                 )
         at = keras.layers.concatenate(atat)
         at = Softmax()(at)
+        #at[j] important of pos[j] in scoring pos[i]
         at = Reshape((1,21,))(at)
         aat.append(at)
+    #aat[i][j] important of pos[j] in scoring pos[i]
     m = keras.layers.concatenate(aat,axis=-2)
     weight = Lambda(lambda inp: K.constant(GaussianBuffer)*inp ,name = 'temporal_attention')(m)
     weightavg = Lambda(lambda inp: K.batch_dot(inp[0],inp[1]),name='weight_avg')([weight,encoder_output])
+    context = Dense(params['rnn_unit_num'],activation='tanh',use_bias=True)(context)
     context = Lambda(lambda inp: K.repeat(inp,21))(context)
 
-    embedded = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(embedded)
-    weightavg = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(weightavg)
-    context = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(context)
+    #equal to matrix mul!!! since len(embedded.shape)==3 count(weight)==len(embedded.shape[-1])
+    #embedded = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(embedded)
+    #weightavg = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(weightavg)
+    #context = Dense(params['rnn_last_score_num'],activation=None,use_bias=False)(context)
     context = BatchNormalization()(context)
     weightavg = BatchNormalization()(weightavg)
     
@@ -86,7 +90,7 @@ def model(params):
     rnn_embedded = Lambda(lambda inp: K.sum(inp, axis=-1, keepdims=False),name='last_score')(score)
     #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    output = Dense(units=1,kernel_regularizer='l2',kernel_constraint=keras.constraints.NonNeg(),name='temporal_score',use_bias=False)(rnn_embedded)
+    output = Dense(units=1,kernel_regularizer='l2',kernel_constraint=keras.constraints.NonNeg(),name='temporal_score',activation='sigmoid',use_bias=True)(rnn_embedded)
     model = Model(inputs=[onehot_input],
                  outputs=[output],name='rnn')
     return model
@@ -97,7 +101,7 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
     batch_size = params['train_batch_size']
     learningrate = params['train_base_learning_rate']
     epochs = params['train_epochs_num']
-    m.compile(loss='mse', optimizer=Adamax(lr=learningrate))
+    m.compile(loss='mse', optimizer=Adam(lr=learningrate))
 
     batch_end_callback = LambdaCallback(on_epoch_end=
                                         lambda batch,logs: 

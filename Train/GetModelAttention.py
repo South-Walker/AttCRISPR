@@ -31,6 +31,7 @@ def get_local_temporal_attention(model):
     temporal_layer_model = Model(inputs=model.inputs[0],outputs=model.get_layer('temporal_attention').output)
     temporal_attention = temporal_layer_model.predict(x_attention_onehot)
     temporal_value = np.mean(temporal_attention, axis=0)
+    ##normalize
     for i in range(21):
         sum = 0
         for j in range(21):
@@ -63,6 +64,7 @@ def get_temporal_attention(model):
     for i in range(21):
         sum = 0
         count = 0
+        ##zscore?
         for j in range(21):
             sum += temporal_value[i][j]
             count += 1 if temporal_value[i][j]!=0 else 0

@@ -15,8 +15,10 @@ RNNParams = {
     'train_epochs_num':400,
     'train_base_learning_rate':0.001,
     'rnn_save_file':'WTBestRNN.h5',
-    'rnn_embedding_output':30,
-    'rnn_unit_num':140,
+    ##from 30
+    'rnn_embedding_output':100,
+    ##from 140
+    'rnn_unit_num':100,
     'rnn_last_score_num':250
     }
 EnsembleParams = {
@@ -25,7 +27,7 @@ EnsembleParams = {
     'ensemble_save_file':'WTEnsemble.h5',
     'train_batch_size':128,
     'train_epochs_num':50,
-    'train_base_learning_rate':0.0002,
+    'train_base_learning_rate':0.001,
     'bio_fc_hidden_layer_num':1,
     'bio_fc_hidden_layer_units_num':87,
     'bio_fc_dropout':0.05
