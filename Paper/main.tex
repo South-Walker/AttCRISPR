@@ -58,7 +58,14 @@ In practice, there have been a number of application and toolkit applied in this
  (1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
  Recently we noticed that the last type of method seems to be getting more attention because of huger and huger data set \citep{liu2019computational}. 
 
-Learning-based method, which designed to predict the activity of sgRNAs, is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
+Learning-based method, which designed to predict the on-target activity (or off-target probability) of sgRNAs, 
+ is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
+ In general, the single or multiple base sequences (vary according to the task) and biological features are represented as a multi-dimensional vector $X\in\mathbb{R}^d$, 
+ and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to the number of biological features, these methods can be represented as
+\begin{equation}
+\text{\it y}=Score(\it X)\label{eq:01}\vspace*{-10pt}
+\end{equation}\\
+ where $Score(\cdot)$ depends on the algorithm being selected, and $y$ denotes the predicted value.
  Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
  Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
  In short, what was needed for developer is to trade-off accuracy and interpretability. 
@@ -66,20 +73,61 @@ Learning-based method, which designed to predict the activity of sgRNAs, is esse
  motivated by the empirical assertion, they turn to build a model based conventional machine learning to compete with state of the art deep learning models \citep{MuhammadRafid2020}. 
  On the other hand, input perturbation based feature importance analysis become a preferred components to reveal the importance of features in deep learning models. 
  \citeauthor{Liu2019} use a sliding window of length 2 to extract dimeric as input and rank the position of dimeric by contribution to final output \citep{Liu2019}. 
- One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. Further, SHAP, one of the most prominent of model explain techniques, has been widely used to understand the decision made by the model. 
+ One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. 
+ Further, SHAP, one of the most prominent of model explain techniques, has been widely used to understand the decision made by the model. 
  \citeauthor{wang2019optimized} develope DeepHF, a deep learning based model, and use Deep SHAP to revealed nucleotide contributions \citep{wang2019optimized}. 
  Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks \citep{lundberg2017a}. 
  In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
- Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases \citep{slack2019fooling}, in other word, they could be unreliable and misleading, even on model with excellent performance. 
- In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position (for example, the guanine (G) adjacent to PAM has a positive effect on sgRNA activity), which we'll call the first-order preference in our paper.  
- However they didn't analyzed the preference for sgRNA at the overall level, which we'll call the second-order preference in our paper (for example, could a thymine (T) at 2 bases upstream of the G adjacent to PAM affect the degree of preference for the G?)
- We agree that base on the first-order influence and Bayesian formula can obtain the second-order preference in a statistical sense. However, it is obviously time-consuming task with exponential time complexity.
- In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, but also be comparable to conventional machine learning algorithms in interpretability.
+ Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases \citep{slack2019fooling}, 
+ in other word, they could be unreliable and misleading, even on model with excellent performance. 
+ In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position 
+ for example, the G adjacent to PAM has a positive effect on sgRNA activity as \citeauthor{wang2019optimized} report, 
+ which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation \ref{eq:01} as following
+\begin{equation}
+dy = \sum^{d}_ia_idx_i\label{eq:02}\vspace*{-10pt}
+\end{equation}
+\begin{equation}
+a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}\vspace*{-10pt}
+\end{equation}\\
+ where $x_i$ denotes the $i$-th dimension of the vector $X$, 
+ $a_i$ indicates how dramatically the function changes as $x_i$ changes in a neighborhood of $X$. 
+ Similarly the first-order preference indicates how dramatically the function changes as $x_i$ changes, in other word, the importance of $x_i$.
+ However they didn't analyzed the preference for position $i$ nucleotide at the overall level, 
+ which we'll call the second-order preference in our paper due to its calculation is based on first-order preference, 
+ Specifically, we use a vector $A_i$ to build the first-order preference at position $i$ within sgRNA sequence, then
+\begin{equation}
+y=\sum_i^lW_iA_i\cdot X_i\label{eq:04}\vspace*{-10pt}
+\end{equation}\\
+ where $W$ denotes a non-negative weight matrix, $W_i$ denotes the weight of the $i$-th position, $X_i$ denotes the embedding vector of the nucleotide at $i$-th position.
+ We linearly combine the first-order preference vector of base sequence as following
+\begin{equation}
+\widetilde{A}=BA\label{eq:05}\vspace*{-10pt}
+\end{equation}\\
+ where the weight matrix $B$ is learned through attention mechanism, and we define $A$ as the first-order original preference matrix, 
+ $\widetilde{A}$ as the first-order combine preference matrix (or just first-order preference) to differentiate them.
+ In other words, we build a additive model for the first-order preference, 
+ which means that the first-order preference of the $i$-th position $\widetilde{A_i}$ can be calculated as
+\begin{equation}
+\widetilde{A}_i=\sum_j^lB_{ij}A_i\label{eq:06}\vspace*{-10pt}
+\end{equation}\\
+ Suppose that in Equation \ref{eq:06} the first-order original preference at each position is relatively independent and weight matrix B is independent of any first-order original preference, 
+ then the total differential of the first-order preference at $i$-th position could be written as
+\begin{equation}
+d\widetilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
+\end{equation}\\
+ where $E$ is the identity matrix, and we define $B$ as the second-order preference matrix, 
+ it can explain how a particular pattern containing two nucleotides affects the base sequence, 
+ for example, how does the degree of preference for the G adjacent to PAM be affected by a T at 2 bases upstream?
+ The previous work (even based on conventional machine learning algorithms with high interpretability) 
+ was limited to dimers which can only work on the adjacent base pairs \citep{Liu2019} 
+ or have to perform complex feature engineering \citep{MuhammadRafid2020}.
+ In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, 
+ but also be comparable to conventional machine learning algorithms in interpretability.
 
 \begin{figure}[!tpb]%figure2
-    \centerline{\includegraphics[scale=0.5]{category.png}}
-    \caption{Two categories of the deep learning models used in sgRNA related task. 
-    (a) Model work in spatial domain. (b) Model work in temporal domain.}\label{fig:01}
+\centerline{\includegraphics[scale=0.4]{category.png}}
+\caption{Two categories of the deep learning models used in sgRNA related task. 
+(a) Model work in spatial domain. (b) Model work in temporal domain.}\label{fig:01}
 \end{figure}
     
 Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems \citep{liu2019computational}. 
@@ -114,9 +162,7 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
  They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, hence, enhance the performance of their model \citep{Liu2019,vaswani2017attention}. 
  In our work,the interpretability benefit from attention mechanism is more focused.
 
-
 In this paper, our main contributions are as follows:\vspace*{1pt}
-
 \begin{itemize}
     \item Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
     Finally, the ensemble learning method is used to combine the two to achieve better performance than other models.
@@ -124,18 +170,19 @@ In this paper, our main contributions are as follows:\vspace*{1pt}
     \item Introduce attention mechanism into our model. 
     As a result, It does not need post hoc explanations techniques based on input perturbation to explain itself. 
     It is intrinsic interpretable in both temporal and spatial domains.
-    In the spatial domain it's at the nucleotide level, in our word, first-order interpretable, 
-    while at the overall level in the temporal domain, in our word, second-order interpretable. 
+    In the spatial domain it's at the nucleotide level, in our word, first-order preference, 
+    while at the overall level in the temporal domain, in our word, second-order preference. 
     Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
     \item Throught abation analysis and testing a series of possible network structure, 
     we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
-    which could outperform the current state-of-the-art tool on deepHF dataset.\vspace*{1pt}
+    which could outperform the current state-of-the-art tool on DeepHF dataset.\vspace*{1pt}
 \end{itemize}
 
 \section{Materials and methods}
 
 \subsection{Sequence encoding}
 
+Equation \ref{eq:01} is the inventory flow formula.
 Text
 
 \subsection{Sequence and biological features embedding}
@@ -190,8 +237,18 @@ text
 
 {\ldots}{\ldots} text follows.
 \begin{equation}
-\sum \text{\it x}+ \text{\it y} =\text{\it Z}\label{eq:01}\vspace*{-10pt}
+\sum \text{\it x}+ \text{\it y} =\text{\it Z}\label{eq:0}\vspace*{-10pt}
 \end{equation}
+
+
+
+{\ldots}{\ldots} text follows.
+
+{\ldots}{\ldots} text follows.
+\begin{equation}
+    \partial y = \sum^{len}_ia_i\partial x_i\label{eq:02}\vspace*{-10pt}
+\end{equation}
+
 
 %\enlargethispage{12pt}
 \begin{methods}

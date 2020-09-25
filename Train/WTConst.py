@@ -12,7 +12,7 @@ CNNParams = {
     }
 RNNParams = {
     'train_batch_size':128,
-    'train_epochs_num':400,
+    'train_epochs_num':75,
     'train_base_learning_rate':0.001,
     'rnn_save_file':'WTBestRNN.h5',
     ##from 30
