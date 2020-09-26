@@ -44,7 +44,7 @@ Clustered regularly interspaced short palindromic repeats (CRISPR) / CRIPSR asso
  so to enable editing site-specific within the mammalian genome \citep{jinek2012a,cong2013multiplex,mali2013rnaguided}. CRISPR/Cas9, to a large extent, has developed genetic therapies at the cellular level, 
  while there are still severe medical disadvantage even now which has greatly hindered the further clinical application of the CRISPR/Cas9 systems. 
  One of these disadvantage is due to point mutations caused by off-target effects \citep{rubeis2018risks,kang2016introducing,ishii2017reproductive,liang2015crispr/cas9-mediated}. 
- To overcome this disadvantage, a solution is to engineer CRISPR/Cas9 with higher specificities. 
+ To overcome this disadvantage, a solution is to engineer CRISPR / Cas9 with higher specificities. 
  That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)), 
  Cas9-High Fidelity (SpCas9-HF1) \citep{ishii2017reproductive,slaymaker2016rationally}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
  been developed and bring a significant volume of experimental data, that is to say researchers have to face the difficulty of analyzing such huge and heterogeneous data.
@@ -82,7 +82,7 @@ Learning-based method, which designed to predict the on-target activity (or off-
  in other word, they could be unreliable and misleading, even on model with excellent performance. 
  In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position 
  for example, the G adjacent to PAM has a positive effect on sgRNA activity as \citeauthor{wang2019optimized} report, 
- which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation \ref{eq:01} as following
+ which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation~(\ref{eq:01}) as following
 \begin{equation}
 dy = \sum^{d}_ia_idx_i\label{eq:02}\vspace*{-10pt}
 \end{equation}
@@ -106,11 +106,11 @@ y=\sum_i^lW_iA_i\cdot X_i\label{eq:04}\vspace*{-10pt}
  where the weight matrix $B$ is learned through attention mechanism, and we define $A$ as the first-order original preference matrix, 
  $\widetilde{A}$ as the first-order combine preference matrix (or just first-order preference) to differentiate them.
  In other words, we build a additive model for the first-order preference, 
- which means that the first-order preference of the $i$-th position $\widetilde{A_i}$ can be calculated as
+ which means that the first-order preference of the $i$-th position $\widetilde{A}_i$ can be calculated as
 \begin{equation}
-\widetilde{A}_i=\sum_j^lB_{ij}A_i\label{eq:06}\vspace*{-10pt}
+\widetilde{A}_i=\sum_j^lB_{ij}A_j\label{eq:06}\vspace*{-10pt}
 \end{equation}\\
- Suppose that in Equation \ref{eq:06} the first-order original preference at each position is relatively independent and weight matrix B is independent of any first-order original preference, 
+ Assume that in Equation~(\ref{eq:06}) the first-order original preference at each position is relatively independent and weight matrix B is independent of any first-order original preference, 
  then the total differential of the first-order preference at $i$-th position could be written as
 \begin{equation}
 d\widetilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
@@ -125,13 +125,14 @@ d\widetilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
  but also be comparable to conventional machine learning algorithms in interpretability.
 
 \begin{figure}[!tpb]%figure2
-\centerline{\includegraphics[scale=0.4]{category.png}}
+\centerline{\includegraphics[scale=0.45]{category.png}}
 \caption{Two categories of the deep learning models used in sgRNA related task. 
 (a) Model work in spatial domain. (b) Model work in temporal domain.}\label{fig:01}
 \end{figure}
     
 Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems \citep{liu2019computational}. 
  Most of the deep neural network existing are the combination of recurrent neural network (RNN), convolutional neural network (CNN), fully connected neural network (FNN), and their variants. 
+ As Figure~1\vphantom{\ref{fig:01}} show,  
  We found that the deep learning models used in sgRNA on-target activity (even for off-target effect) prediction tasks in recent years can be divided into the following two categories according to the encoding approach of the sgRNA sequence (sgRNA-DNA sequence pair, for off-target effect prediction):
 
 \begin{enumerate}
@@ -180,54 +181,56 @@ In this paper, our main contributions are as follows:\vspace*{1pt}
 
 \section{Materials and methods}
 
-\subsection{Sequence encoding}
+\subsection{Sequence encoding and embedding}
 
-Equation \ref{eq:01} is the inventory flow formula.
-Text
+For encoding process, we use the complementary base to represent the original base in sgRNA, as others do. 
+Further, we use one-hot encode strategy, which's is to say, we encoding each base in sgRNA into a four-dimensional vector 
+(encode A,T,G,C into [1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1], respectively), called one-hot vector. 
+Then a sgRNA can be considered as a matrix $X_{oh}\in\mathbb{R}^{L\times 4} $, named one-hot matrix (a little sparse, since an one-hot vector is zero in all but one dimension). 
+We believe it is meaningful to regard $X_{oh}$ as a binary image, 
+therefore, it is used as an input of convolutional neural network, which performs well in the image field.
+Meanwhile, as mentioned above, one-hot matrix is a little sparse. 
 
-\subsection{Sequence and biological features embedding}
+To facilitate the training process, we can mapping each one-hot vector into a dense real-valued high-dimensional space, which is called embedding. 
+Concretely speaking, at the matrix level, the formula is as follows
+\begin{equation}
+X_e=X_{oh}E_m\label{eq:08}\vspace*{-10pt}
+\end{equation}\\
+where $X_e$ named embedding matrix, $E_m\in\mathbb{R}^{4\times m}$ is a trainable transformational matrix, $m$ refers to the dimension of embedding space. 
+We believe it is also meaningful to regard nucleotides in the sgRNA sequence as word, and the sgRNA sequence itself as a sentence, 
+Guided by this belief $E_m$ is the word embedding matrix and $X_e$ is the sentence embedding in natural language processing (NLP).
+Therefore, $X_e$ is used as an input of recurrent neural network (or its variant), which performs well in the NLP field.
+In the area of NLP, there have been many methods based on pre-training and unsupervised learning been developed to determine the $E_m$. 
+However, we believe that sgRNA sequence is not a natural language in the true sense, the method above does not apply to it. 
+So $E_m$ will be trained along with the model as a whole. 
 
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-
-\subsubsection{Spatial sequence embedding}
-
-Text  Text 
-
-\subsubsection{Temporal sequence embedding}
-
-Text
-
-\subsubsection{biological features embedding}
-
-Text
-
-\subsubsection{Spatial attention module}
-
-Text
-
-\subsubsection{Temporal attention module}
-
-Text
+Due to each element of $X_{oh}$ is interpretable (representing whether there is a corresponding nucleotide type at the corresponding location), 
+we call $X_{oh}$ the spatial input, and the convolutional neural network work on $X_{oh}$ is method in spatial domain. 
+In other hand, different from $X_{oh}$, $X_e$ can only be explained in the first dimension (representing the embedding vector of corresponding nucleotide type), 
+and embedding vector is difficult for humans to understand. 
+That's why we call $X_e$ the temporal input, and the recurrent neural network (or its variant) work on $X_e$ is method in temporal domain. 
 
 \subsection{Neural network architecture}
 
+Based on the categorization above, we assume that method in spatial domain and in temporal domain are heterogeneous, 
+which can satisfy the diversity premise of ensemble learning. 
+Based on assumption above and ensemble learning, we follow the stacking strategy to develop AttCRISPR 
+which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
+Further, we use attention mechanisms in both spatial and temporal domain respectively to enhance the interpretability of AttCRISPR.
 
-\begin{figure}[!tpb]%figure2
-    \centerline{\includegraphics[scale=0.5]{category.png}}
-    \caption{The overview of AttCRISPR. 
-    It consists of two components, namely CNNs and RNNs. 
-    The CNN component is used to capture spatial nucleotide preference, 
-    while the RNN component is used to capture temporal nucleotide preference. 
-    Finally, a weighted average method with trainable weight is used to predict activity.}\label{fig:02}
-\end{figure}
-    
-
-\subsubsection{Ensemble method boosting model}
+\subsubsection{Method and attention in spatial domain}
 
 Text
 
-\subsection{Datasets and current prediction algorithms}
+\subsubsection{Method and attention in temporal domain}
+
+Text
+
+\subsubsection{Model ensemble following stacking strategy}
+
+Text
+
+\subsection{Datasets and current prediction method}
 
 text
 
@@ -235,59 +238,15 @@ text
 
 text
 
-{\ldots}{\ldots} text follows.
-\begin{equation}
-\sum \text{\it x}+ \text{\it y} =\text{\it Z}\label{eq:0}\vspace*{-10pt}
-\end{equation}
-
-
-
-{\ldots}{\ldots} text follows.
-
-{\ldots}{\ldots} text follows.
-\begin{equation}
-    \partial y = \sum^{len}_ia_i\partial x_i\label{eq:02}\vspace*{-10pt}
-\end{equation}
-
-
-%\enlargethispage{12pt}
-\begin{methods}
 \section{Results}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-text\vspace*{1pt}
-
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-
-\subsection{This is subheading}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-
-\subsubsection{This is subsubheading}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
-
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text.
+Text Text  Text Text Text Text Text
 
 \enlargethispage{6pt}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
 Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
 
 \begin{table}[!t]
 \processtable{This is table caption\label{Tab:01}} {\begin{tabular}{@{}llll@{}}\toprule head1 &
@@ -299,106 +258,42 @@ row4 & row4 & row4 & row4\\\botrule
 \end{tabular}}{This is a footnote}
 \end{table}
 
-\end{methods}
 
 \begin{figure}[!tpb]%figure1
-\fboxsep=0pt\colorbox{gray}{\begin{minipage}[t]{235pt} \vbox to 100pt{\vfill\hbox to
-235pt{\hfill\fontsize{24pt}{24pt}\selectfont FPO\hfill}\vfill}
+\fboxsep=0pt\colorbox{gray}{\begin{minipage}[t]{200pt} \vbox to 100pt{\vfill\hbox to
+200pt{\hfill\fontsize{24pt}{24pt}\selectfont FPO\hfill}\vfill}
 \end{minipage}}
-%\centerline{\includegraphics[scale=0.6]{category.png}}
 \caption{Caption, caption.}\label{fig:02}
 \end{figure}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
 Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-Text 
 
 
 \subsection{Test1}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-
-
-
-
+Text Text  Text
 
 \section{Discussion}
 
 Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text.
-
-
-
-Table~\ref{Tab:01} shows that Text Text Text Text Text  Text Text
-Text Text Text Text. Figure~2\vphantom{\ref{fig:02}} shows that
-the above method Text Text. Text Text Text  Text Text Text Text
-Text Text. Figure~2\vphantom{\ref{fig:02}} shows that the above
-method Text Text. Text Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method Text
-Text.
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     please remove the " % " symbol from \centerline{\includegraphics{fig01.eps}}
-%     as it may ignore the figures.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
+Text
 
 
 \section{Conclusion}
 
 (Table~\ref{Tab:01}) Text Text Text Text Text Text  Text Text Text
 Text Text Text Text Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
-Text Text  Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text Text Text Text Text Text Text Text
 
 Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
 Text Text Text  Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about  text text text text
-
-\begin{enumerate}
-\item this is item, use enumerate
-\item this is item, use enumerate
-\item this is item, use enumerate
-\end{enumerate}
 
 Text Text Text Text Text Text Text Text Text Text Text Text Text
 Text Text Text Text Text Text Text Text.
 Figure~2\vphantom{\ref{fig:02}} shows\vadjust{\pagebreak} that the
 above method  Text Text Text Text Text Text Text Text Text Text
-Text Text.  \citealp{Boffelli03} might want to know about text
-text text text Text Text Text Text Text Text  Text Text Text Text
-Text Text Text Text Text Text Text Text Text Text Text.
 Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text Text Text Text Text Text Text  Text Text.
-\citealp{Boffelli03} might want to know about text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text
 Text Text Text Text Text Text Text\break Text.
 
 Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
