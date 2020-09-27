@@ -1,7 +1,0 @@
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\bin\Debug\OneHotTexture.exe.config
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\bin\Debug\OneHotTexture.exe
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\bin\Debug\OneHotTexture.pdb
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\obj\Debug\OneHotTexture.csprojAssemblyReference.cache
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\obj\Debug\OneHotTexture.csproj.CoreCompileInputs.cache
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\obj\Debug\OneHotTexture.exe
-C:\Users\lenovo\Desktop\PaperDrawer\OneHotTexture\OneHotTexture\obj\Debug\OneHotTexture.pdb

@@ -1,7 +1,0 @@
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\bin\Debug\ConvolutionTexture.exe.config
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\bin\Debug\ConvolutionTexture.exe
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\bin\Debug\ConvolutionTexture.pdb
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\obj\Debug\ConvolutionTexture.csprojAssemblyReference.cache
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\obj\Debug\ConvolutionTexture.csproj.CoreCompileInputs.cache
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\obj\Debug\ConvolutionTexture.exe
-C:\Users\50683\Desktop\AttCRISPR\PaperDrawer\ConvolutionTexture\ConvolutionTexture\obj\Debug\ConvolutionTexture.pdb

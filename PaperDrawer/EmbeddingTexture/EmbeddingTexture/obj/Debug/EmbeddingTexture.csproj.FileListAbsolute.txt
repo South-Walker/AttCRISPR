@@ -1,7 +1,0 @@
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\bin\Debug\EmbeddingTexture.exe.config
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\bin\Debug\EmbeddingTexture.exe
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\bin\Debug\EmbeddingTexture.pdb
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\obj\Debug\EmbeddingTexture.csprojAssemblyReference.cache
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\obj\Debug\EmbeddingTexture.csproj.CoreCompileInputs.cache
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\obj\Debug\EmbeddingTexture.exe
-C:\Users\lenovo\Desktop\AttCRISPR\PaperDrawer\EmbeddingTexture\EmbeddingTexture\obj\Debug\EmbeddingTexture.pdb
