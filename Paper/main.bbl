@@ -177,6 +177,11 @@ Wang, T., Wei, J.~J., Sabatini, D.~M., and Lander, E.~S. (2014).
 \newblock Genetic screens in human cells using the crispr/cas9 system.
 \newblock {\em Science\/}, {\bf 343}(6166), 80--84.
 
+\bibitem[Woo {\em et~al.}(2018)Woo, Park, Lee, and Kweon]{woo2018cbam:}
+Woo, S., Park, J., Lee, J., and Kweon, I.~S. (2018).
+\newblock Cbam: Convolutional block attention module.
+\newblock pages 3--19.
+
 \bibitem[Wu {\em et~al.}(2014)Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng,
   Trevino, Konermann, Chen, {\em et~al.}]{wu2014genome-wide}
 Wu, X., Scott, D.~A., Kriz, A.~J., Chiu, A.~C., Hsu, P., Dadon, D.~B., Cheng,

@@ -1,4 +1,7 @@
-如上所述，method in spatial domain依赖于convolutional neural network 。将sgRNA序列视为一张二值图，利用不同大小的卷积核从图中提取潜在特征。根据这一前提，我们使用了\citeauthor{woo2018cbam}提出的Spatial Attention Module, which 改进CNN在vision tasks中的表现
+进一步而言，
+
+
+utilizes both 
 
 最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
 （我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )
