@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  27 SEP 2020 07:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  27 SEP 2020 21:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -309,7 +309,11 @@ LaTeX Info: Redefining \cite on input line 508.
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count193
 \l__pdf_internal_box=\box52
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux
+
+LaTeX Warning: Label `fig:02' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -485,46 +489,51 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [3]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 258.
+<newcnn.png, id=38, 1701.35625pt x 828.09375pt>
+File: newcnn.png Graphic file (type png)
+<use newcnn.png>
+Package pdftex.def Info: newcnn.png  used on input line 224.
+(pdftex.def)             Requested size: 255.19243pt x 124.2087pt.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 263.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 258.
+(Font)              size <7> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 258.
+(Font)              size <5> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 258.
+(Font)              size <7> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 258.
+(Font)              size <5> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 258.
+(Font)              size <7> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 258.
+(Font)              size <5> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 258.
+(Font)              size <7> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 258.
+(Font)              size <5> substituted on input line 263.
 
 
 LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
-(Font)              using `LY1/phb/m/n' instead on input line 258.
+(Font)              using `LY1/phb/m/n' instead on input line 263.
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 258--258
+Overfull \hbox (12.0pt too wide) in paragraph at lines 263--263
 []$[]$ 
  []
 
@@ -536,7 +545,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[4] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl)
+[4 <c:/Users/50683/Desktop/AttCRISPR/Paper/newcnn.png>] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Extra height:10.0pt when 425.25949pt
@@ -567,20 +576,23 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 3609 strings out of 480608
- 45087 string characters out of 5907536
- 311831 words of memory out of 5000000
- 19426 multiletter control sequences out of 15000+600000
+ 3615 strings out of 480608
+ 45166 string characters out of 5907536
+ 311938 words of memory out of 5000000
+ 19431 multiletter control sequences out of 15000+600000
  592090 words of font info for 123 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,11n,35p,351b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (5 pages, 223694 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (5 pages, 296394 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
+ 107 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

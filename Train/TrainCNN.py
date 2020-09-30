@@ -57,3 +57,14 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
           validation_data=([validate_input],validate_label), 
           callbacks=[batch_end_callback])
     return {'loss': -1*result.Best, 'status': STATUS_OK}
+if __name__ == "__main__":
+    import ParamsUtil
+    from ParamsUtil import *
+    data = Read_Data()
+    input = data['input']
+    label = data['label']
+    input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
+                                                              label['train'],rate=0,intensity=0)
+    train(params['RNNParams'],input_train_onehot,y_train,
+          input['validate']['onehot'],label['validate'],
+          input['test']['onehot'],label['test'])
