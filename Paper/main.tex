@@ -98,22 +98,22 @@ a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}\vspace*{-10pt}
 \begin{equation}
 y=\sum_i^lW_iA_i\cdot X_i\label{eq:04}\vspace*{-10pt}
 \end{equation}\\
- where $W$ denotes a non-negative weight matrix, $W_i$ denotes the weight of the $i$-th position, $X_i$ denotes the embedding vector of the nucleotide at $i$-th position.
+ where $W$ denotes a non-negative weight vector, $W_i$ denotes the weight of the $i$-th position, $X_i$ denotes the embedding vector of the nucleotide at $i$-th position.
  We linearly combine the first-order preference vector of base sequence as following
 \begin{equation}
-\widetilde{A}=BA\label{eq:05}\vspace*{-10pt}
+\tilde{A}=BA\label{eq:05}\vspace*{-10pt}
 \end{equation}\\
  where the weight matrix $B$ is learned through attention mechanism, and we define $A$ as the first-order original preference matrix, 
- $\widetilde{A}$ as the first-order combine preference matrix (or just first-order preference) to differentiate them.
+ $\tilde{A}$ as the first-order combine preference matrix (or just first-order preference) to differentiate them.
  In other words, we build a additive model for the first-order preference, 
- which means that the first-order preference of the $i$-th position $\widetilde{A}_i$ can be calculated as
+ which means that the first-order preference of the $i$-th position $\tilde{A}_i$ can be calculated as
 \begin{equation}
-\widetilde{A}_i=\sum_j^lB_{ij}A_j\label{eq:06}\vspace*{-10pt}
+\tilde{A}_i=\sum_j^lB_{ij}A_j\label{eq:06}\vspace*{-10pt}
 \end{equation}\\
  Assume that in Equation~(\ref{eq:06}) the first-order original preference at each position is relatively independent and weight matrix B is independent of any first-order original preference, 
  then the total differential of the first-order preference at $i$-th position could be written as
 \begin{equation}
-d\widetilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
+d\tilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
 \end{equation}\\
  where $E$ is the identity matrix, and we define $B$ as the second-order preference matrix, 
  it can explain how a particular pattern containing two nucleotides affects the base sequence, 
@@ -246,13 +246,11 @@ $M_s\in\mathbb{R}^{l\times 4}$ with the same as $X_{oh}$ in shape.
 Each element of $M_s$ is constrained to a range of zero to one, implemented by a sigmoid function, which reflects the importance of the corresponding elements of $X_{oh}$.
 The overall spatial attention process can be summarized as:
 \begin{equation}
-X_{mc} = f^{3\times4}(X_{oh})\label{eq:09}\vspace*{-10pt}
+X_{mc} = f^{3\times4}(X_{oh})\label{eq:09}
 \end{equation}
-
 \begin{equation}
-M_s = \sigma(f^{3\times2}([AvgPool(X_{mc});MaxPool(X_{mc})]))\label{eq:10}\vspace*{-10pt}
+M_s = \sigma(f^{3\times2}([AvgPool(X_{mc});MaxPool(X_{mc})]))\label{eq:10}
 \end{equation}
-
 \begin{equation}
 X_{rf} = M_s\otimes X_{oh}\label{eq:11}\vspace*{-10pt}
 \end{equation}\\
@@ -277,11 +275,55 @@ In fact, this corresponds to some early studies concerning the Human (hU6) promo
     The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
     }\label{fig:04}
 \end{figure}
-As Figure~4\vphantom{\ref{fig:04}} show, method in temporal domain relies on the recurrent neural network (or its variant). 
+As Figure~4\vphantom{\ref{fig:04}} show, temporal domain part of AttCRISPR relies on the recurrent neural network (or its variant). 
 As previously mentioned, we mapping each one-hot vector into a dense real-valued high-dimensional space follow the Equation~(\ref{eq:08}), which generates the embedded matrix $X_e$.
 And we regard $X_{e}$ as a sequential data, or temporal data.
 Recurrent neural network (or its variant) has showed outstanding performance in the tasks with temporal data (for instance, natural language processing, sequential recommendation). 
-That's why we prefer to use it to extract potential temporal features.
+That's why we prefer to use it to extract potential temporal features. 
+To be precise, we prefer the architecture of encoder-decoder which has been proven to be effective in Seq2Seq task. 
+Two main differences we have to face are that sgRNA is not a natural language in the traditional sense, and we don't have to translate it to other sequence. 
+To accommodate them, the embedded matrix $X_e$ is used as input of both the encoder and decoder, and the sequence of decoder is to build the first-order preference of sgRNA sequence $\tilde{A}$. 
+As mentioned above, the predicted value $y$ should satisfy the following equation
+\begin{equation}
+y=\sum_i^lW_i\tilde{A}_i\cdot {X_e}_i\label{eq:12}\vspace*{-10pt}
+\end{equation}\\
+where $W$ denotes a non-negative weight vector acquired through a full connection layer, $W_i$ denotes the $i$-th dimension of the vector $W$. 
+Equation~(\ref{eq:12}) is the same formally as Equation~(\ref{eq:04}). 
+On this basis, we apply the idea of attention mechanism which has been widely used in natural language processing tasks to AttCRISPR in the method of temporal domain, 
+and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective,bahdanau2014neural}.
+As the idea of \citeauthor{vaswani2017attention}, Temporal Attention Module satisfies the following equation
+\begin{equation}
+Attention(Q,K,V)=align(Q,K)V\label{eq:12}\vspace*{-10pt}
+\end{equation}\\
+where the $align(\cdot)$ is put forward by \citeauthor{luong2015effective}. 
+$Q$, $K$, $V$ are queries, keys and values matrix accordingly in the paper of \citeauthor{vaswani2017attention}. 
+Specifically, in our attention module they are calculated by the following equation
+\begin{equation}
+K_i=Encoder({X_e}_i,\theta_E,K_{i-1})\label{eq:13}
+\end{equation}
+\begin{equation}
+Q_i=Decoder({X_e}_i,\theta_D,Q_{i-1})\label{eq:14}
+\end{equation}
+\begin{equation}
+V=K\label{eq:15}\vspace*{-10pt}
+\end{equation}\\
+where vector $K_i$, $Q_i$ denotes the $i$-th row of the matrix $K$ and $Q$ accordingly, $Encoder(\cdot)$ and $Decoder(\cdot)$ are independent GRU units, $\theta_E$ and $\theta_D$ denote all the related parameters of GRU networks accordingly. 
+In the actual implementation, we apply the bidirectional GRU networks for better performance, and for the sake of conciseness, we show a conventional GRU network here. 
+The function $align()$ is as follows
+\begin{equation}
+B=align(Q,K)\label{eq:16}
+\end{equation}
+\begin{equation}
+B_i=softmax(Q_iK^T)\otimes G_i\label{eq:17}
+\end{equation}
+\begin{equation}
+G_{ij}=\left\{\begin{matrix}
+exp(\frac{(i-j)^2}{-2\sigma})&,\left | i-j \right |\leqslant \sigma
+\\ 0&,\left | i-j \right |>  \sigma
+\end{matrix}\right.\label{eq:18}\vspace*{-10pt}
+\end{equation}\\
+where the matrix $B\in\mathbb{R}^{l\times l}$ is the second-order preference we need, and vector $B_i$ denotes the $i$-th row of the matrix $B$. 
+In our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in a biological sense. 
 
 \subsubsection{Model ensemble following stacking strategy}
 

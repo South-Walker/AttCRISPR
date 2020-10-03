@@ -65,6 +65,6 @@ if __name__ == "__main__":
     label = data['label']
     input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                               label['train'],rate=0,intensity=0)
-    train(params['RNNParams'],input_train_onehot,y_train,
+    train(params['CNNParams'],input_train_onehot,y_train,
           input['validate']['onehot'],label['validate'],
           input['test']['onehot'],label['test'])

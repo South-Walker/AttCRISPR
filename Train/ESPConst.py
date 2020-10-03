@@ -12,12 +12,13 @@ CNNParams = {
     }
 RNNParams = {
     'train_batch_size':128,
-    'train_epochs_num':50,
-    'train_base_learning_rate':0.001,
-    'rnn_save_file':'WTBestRNN.h5',
-    'rnn_embedding_output':30,
-    'rnn_unit_num':140,
-    'rnn_last_score_num':250
+    'train_epochs_num':100,
+    'train_base_learning_rate':0.0005,
+    'rnn_save_file':'ESPBestRNN.h5',
+    'rnn_window_size':4,
+    'rnn_embedding_output':75,
+    'rnn_last_activation':'sigmoid',
+    'rnn_unit_num':100
     }
 EnsembleParams = {
     'cnn_load_file':'ESPBestCNN.h5',

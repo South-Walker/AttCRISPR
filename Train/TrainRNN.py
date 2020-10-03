@@ -11,7 +11,7 @@ from LearnUtil import *
 import math
 
 
-def GaussianKernelBuffer(windowsize=8):
+def GaussianKernelBuffer(windowsize):
     gaussian = lambda d: math.exp( -(d*d)*2/windowsize/windowsize ) if abs(d)<=windowsize/2 else 0
     result = []
     for i in range(21):
@@ -30,26 +30,22 @@ def GaussianKernelBuffer(windowsize=8):
             result[i][j]*=time
     return np.array(result)
 def model(params):
-    GaussianBuffer = GaussianKernelBuffer()
-
+    GaussianBuffer = GaussianKernelBuffer(params['rnn_window_size'])
     onehot_input = Input(name = 'onehot_input', shape = (21,4, 1,))
     embedded = Conv2D(params['rnn_embedding_output'], (1, 4),strides=(1,4), padding='Valid', activation=None)(onehot_input)
     embedded = Reshape((21,params['rnn_embedding_output'],))(embedded)
     embedded = SpatialDropout1D(0.25)(embedded)
     ######encoder&decoder######
-    encoder = GRU(params['rnn_unit_num'],return_sequences=True,return_state=False,unroll=True)
+    encoder = GRU(params['rnn_unit_num'],return_sequences=True,return_state=True,unroll=True)
     encoder = Bidirectional(encoder,merge_mode='sum',name='encoder')
-    encoder_output = encoder(embedded)
+    encoder_output,ec1,ec2 = encoder(embedded)
 
-    decoder_input = keras.layers.concatenate([embedded,encoder_output])
-    #decoder_input = encoder_output
+    decoder_input = embedded
     decoder = GRU(params['rnn_unit_num'],return_sequences=True,return_state=True,unroll=True,
-                  dropout=0.25,kernel_regularizer='l2',recurrent_regularizer='l2',recurrent_dropout=0.25)
+                  kernel_regularizer=keras.regularizers.l2(0.01),
+                  recurrent_regularizer=keras.regularizers.l2(0.01))
     decoder = Bidirectional(decoder,merge_mode='sum',name='decoder')
-    decoder_output,_,context = decoder(decoder_input)
-    #context = Lambda(lambda inp: inp[1]+inp[0],name='context')([c1,c2])
-    
-
+    decoder_output,dc1,dc2 = decoder(decoder_input)
     encoderat = []
     decoderat = []
     for i in range(21):
@@ -63,34 +59,39 @@ def model(params):
     for i in range(21):
         atat = []
         for j in range(21):
-            #important of pos[j] in scoring pos[i]
+            #importance of pos[j] in scoring pos[i]
             align = dot([encoderat[j],decoderat[i]],axes=-1)
             atat.append(
                 align
                 )
         ## add l2 regular
         at = keras.layers.concatenate(atat)
+        at = BatchNormalization()(at)
         #l2(0.00001) is opt while 0.001 is best
         at = Dense(21,activation='softmax',use_bias=True,activity_regularizer=keras.regularizers.l2(0.00001))(at)
-        #at[j] important of pos[j] in scoring pos[i]
+        #at[j] importance of pos[j] in scoring pos[i]
 
         at = Reshape((1,21,))(at)
         aat.append(at)
-    #aat[i][j] important of pos[j] in scoring pos[i]
+    #aat[i][j] importance of pos[j] in scoring pos[i]
     m = keras.layers.concatenate(aat,axis=-2)
     weight = Lambda(lambda inp: K.constant(GaussianBuffer)*inp ,name = 'temporal_attention')(m)
     weightavg = Lambda(lambda inp: K.batch_dot(inp[0],inp[1]),name='weight_avg')([weight,encoder_output])
-    context = Dense(params['rnn_unit_num'],activation='tanh', use_bias=True)(context)
-    context = Lambda(lambda inp: K.repeat(inp,21))(context)
-
-    context = BatchNormalization()(context)
-    weightavg = BatchNormalization()(weightavg)
     
-    score = Lambda(lambda inp: inp[0]*(inp[1]+inp[2]),name='score')([embedded,weightavg,context])
-    rnn_embedded = Lambda(lambda inp: K.sum(inp, axis=-1, keepdims=False),name='last_score')(score)
+    scoreat = []
+    for i in range(21):
+        tat = Flatten()(Cropping1D(cropping=(i,21-1-i))(weightavg))
+        edat = Flatten()(Cropping1D(cropping=(i,21-1-i))(embedded))
+        tat = Dense(params['rnn_embedding_output'],activation='tanh',use_bias=False)(tat)
+        scoreat.append(
+            dot([tat,edat],axes=-1)
+            )
+    score = keras.layers.concatenate(scoreat)
+    
+    rnn_embedded = score
     #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    output = Dense(units=1,kernel_regularizer='l2',kernel_constraint=keras.constraints.NonNeg(),name='temporal_score',activation='tanh',use_bias=False)(rnn_embedded)
+    output = Dense(units=1,kernel_regularizer=keras.regularizers.l2(0.001),kernel_constraint=keras.constraints.NonNeg(),name='temporal_score',activation=params['rnn_last_activation'],use_bias=False)(rnn_embedded)
     model = Model(inputs=[onehot_input],
                  outputs=[output],name='rnn')
     return model
@@ -126,3 +127,20 @@ if __name__ == "__main__":
     train(params['RNNParams'],input_train_onehot,y_train,
           input['validate']['onehot'],label['validate'],
           input['test']['onehot'],label['test'])
+
+
+    scores = []
+
+    embedding_output = [30,70,100,200]
+    unit_num = [30,100,200,300]
+    for i in range(4):
+        for j in range(4):
+            print('embedding: '+str(embedding_output[i]))
+            print('unit_num: '+str(unit_num[j]))
+            params['RNNParams']['rnn_embedding_output'] = embedding_output[i]
+            params['RNNParams']['rnn_unit_num'] = unit_num[j]
+            thisbest = train(params['RNNParams'],input_train_onehot,y_train,
+                    input['validate']['onehot'],label['validate'],
+                    input['test']['onehot'],label['test'])['loss']
+            scores.append(thisbest)
+            print(scores)

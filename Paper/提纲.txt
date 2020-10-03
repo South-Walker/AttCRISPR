@@ -1,7 +1,5 @@
-进一步而言，
+G is the damping matrix, since a simple belief that the closer the base is to the $i$-th position, the more it affects the $i$-th position normally,
 
-
-utilizes both 
 
 最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
 （我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )

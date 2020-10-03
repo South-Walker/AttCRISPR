@@ -1,5 +1,12 @@
 \begin{thebibliography}{}
 
+\bibitem[Bahdanau {\em et~al.}(2014)Bahdanau, Cho, and
+  Bengio]{bahdanau2014neural}
+Bahdanau, D., Cho, K., and Bengio, Y. (2014).
+\newblock Neural machine translation by jointly learning to align and
+  translate.
+\newblock {\em arXiv: Computation and Language\/}.
+
 \bibitem[Chaudhari {\em et~al.}(2019)Chaudhari, Polatkan, Ramanath, and
   Mithal]{chaudhari2019an}
 Chaudhari, S., Polatkan, G., Ramanath, R., and Mithal, V. (2019).
@@ -111,6 +118,11 @@ Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
 Lundberg, S. and Lee, S. (2017).
 \newblock A unified approach to interpreting model predictions.
 \newblock pages 4768--4777.
+
+\bibitem[Luong {\em et~al.}(2015)Luong, Pham, and Manning]{luong2015effective}
+Luong, M., Pham, H., and Manning, C.~D. (2015).
+\newblock Effective approaches to attention-based neural machine translation.
+\newblock {\em arXiv: Computation and Language\/}.
 
 \bibitem[Mali {\em et~al.}(2013)Mali, Yang, Esvelt, Aach, Guell, Dicarlo,
   Norville, and Church]{mali2013rnaguided}
