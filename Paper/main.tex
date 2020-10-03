@@ -324,7 +324,9 @@ exp(\frac{(i-j)^2}{-2\sigma})&,\left | i-j \right |\leqslant \sigma
 \end{equation}\\
 where the matrix $B\in\mathbb{R}^{l\times l}$ is the second-order preference we need, and vector $B_i$ denotes the $i$-th row of the matrix $B$. 
 In our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in a biological sense. 
-
+G is the damping matrix base on Gaussian function. 
+Since a simple belief that the closer the base is to the $i$-th position, the more it affects the $i$-th position normally, we use the damping matrix G to constrain the network learning. 
+$\sigma$ represents a threshold of length, any base over this length from the position $i$ is not considered to be affected.
 \subsubsection{Model ensemble following stacking strategy}
 
 Text
