@@ -309,7 +309,7 @@ V=K\label{eq:15}\vspace*{-10pt}
 \end{equation}\\
 where vector $K_i$, $Q_i$ denotes the $i$-th row of the matrix $K$ and $Q$ accordingly, $Encoder(\cdot)$ and $Decoder(\cdot)$ are independent GRU units, $\theta_E$ and $\theta_D$ denote all the related parameters of GRU networks accordingly. 
 In the actual implementation, we apply the bidirectional GRU networks for better performance, and for the sake of conciseness, we show a conventional GRU network here. 
-The function $align()$ is as follows
+The function $align(\cdot)$ is as follows
 \begin{equation}
 B=align(Q,K)\label{eq:16}
 \end{equation}
