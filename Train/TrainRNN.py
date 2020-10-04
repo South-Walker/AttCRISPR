@@ -43,9 +43,9 @@ def model(params):
     decoder_input = embedded
     decoder = GRU(params['rnn_unit_num'],return_sequences=True,return_state=True,unroll=True,
                   kernel_regularizer=keras.regularizers.l2(0.01),
-                  recurrent_regularizer=keras.regularizers.l2(0.01))
+                  recurrent_regularizer=keras.regularizers.l2(0.01),dropout=0.25,recurrent_dropout=0.25)
     decoder = Bidirectional(decoder,merge_mode='sum',name='decoder')
-    decoder_output,dc1,dc2 = decoder(decoder_input)
+    decoder_output,dc1,dc2 = decoder(decoder_input,initial_state=[ec1,ec2])
     encoderat = []
     decoderat = []
     for i in range(21):
@@ -91,7 +91,8 @@ def model(params):
     rnn_embedded = score
     #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
-    output = Dense(units=1,kernel_regularizer=keras.regularizers.l2(0.001),kernel_constraint=keras.constraints.NonNeg(),name='temporal_score',activation=params['rnn_last_activation'],use_bias=False)(rnn_embedded)
+    output = Dense(units=1,kernel_regularizer=keras.regularizers.l2(0.001),kernel_constraint=keras.constraints.NonNeg(),
+                   name='temporal_score',activation=params['rnn_last_activation'],use_bias=False)(rnn_embedded)
     model = Model(inputs=[onehot_input],
                  outputs=[output],name='rnn')
     return model
@@ -124,23 +125,10 @@ if __name__ == "__main__":
     label = data['label']
     input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                               label['train'],rate=0,intensity=0)
-    train(params['RNNParams'],input_train_onehot,y_train,
-          input['validate']['onehot'],label['validate'],
-          input['test']['onehot'],label['test'])
-
-
     scores = []
-
-    embedding_output = [30,70,100,200]
-    unit_num = [30,100,200,300]
-    for i in range(4):
-        for j in range(4):
-            print('embedding: '+str(embedding_output[i]))
-            print('unit_num: '+str(unit_num[j]))
-            params['RNNParams']['rnn_embedding_output'] = embedding_output[i]
-            params['RNNParams']['rnn_unit_num'] = unit_num[j]
-            thisbest = train(params['RNNParams'],input_train_onehot,y_train,
+    for i in range(20):
+        thisbest = train(params['RNNParams'],input_train_onehot,y_train,
                     input['validate']['onehot'],label['validate'],
                     input['test']['onehot'],label['test'])['loss']
-            scores.append(thisbest)
-            print(scores)
+        scores.append(thisbest)
+        print(scores)
