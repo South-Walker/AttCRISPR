@@ -293,19 +293,17 @@ On this basis, we apply the idea of attention mechanism which has been widely us
 and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective,bahdanau2014neural}.
 As the idea of \citeauthor{vaswani2017attention}, Temporal Attention Module satisfies the following equation
 \begin{equation}
-Attention(Q,K,V)=align(Q,K)V\label{eq:12}\vspace*{-10pt}
+Attention(Q,K,V)=align(Q,K)V\label{eq:13}\vspace*{-10pt}
 \end{equation}\\
 where the $align(\cdot)$ is put forward by \citeauthor{luong2015effective}. 
 $Q$, $K$, $V$ are queries, keys and values matrix accordingly in the paper of \citeauthor{vaswani2017attention}. 
 As Figure~5\vphantom{\ref{fig:05}} show, in our attention module they are calculated by the following equation
 \begin{equation}
-K_i=Encoder({X_e}_i,\theta_E,K_{i-1})\label{eq:13}
-\end{equation}
-\begin{equation}
-Q_i=Decoder({X_e}_i,\theta_D,Q_{i-1})\label{eq:14}
-\end{equation}
-\begin{equation}
-V=K\label{eq:15}\vspace*{-10pt}
+\left\{\begin{matrix}
+K_i=Encoder({X_e}_i,\theta_E,K_{i-1})
+\\ Q_i=Decoder({X_e}_i,\theta_D,Q_{i-1})
+\\V=K 
+\end{matrix}\right.\label{eq:14}\vspace*{-10pt}
 \end{equation}\\
 where vector $K_i$, $Q_i$ denotes the $i$-th row of the matrix $K$ and $Q$ accordingly, $Encoder(\cdot)$ and $Decoder(\cdot)$ are independent GRU units, $\theta_E$ and $\theta_D$ denote all the related parameters of GRU networks accordingly. 
 In the actual implementation, we apply the bidirectional GRU networks for better performance, and for the sake of conciseness, we show a conventional GRU network here. 
@@ -323,10 +321,15 @@ exp(\frac{(i-j)^2}{-2\sigma})&,\left | i-j \right |\leqslant \sigma
 \end{matrix}\right.\label{eq:18}\vspace*{-10pt}
 \end{equation}\\
 where the matrix $B\in\mathbb{R}^{l\times l}$ is the second-order preference we need, and vector $B_i$ denotes the $i$-th row of the matrix $B$. 
-In our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
 $G\in\mathbb{R}^{l\times l}$ is the damping matrix base on Gaussian function. 
 Since a simple belief that the closer the base is to the $i$-th position, the more it affects the $i$-th position normally, we use the damping matrix G to constrain the network learning. 
 $\sigma$ represents a threshold of length, any base over this length from the position $i$ is not considered to be affected.
+Further, if we think of the values matrix as a vector form of the first-order preference $A$ in Equation~(\ref{eq:05}), we can reach the following equation
+\begin{equation}
+\tilde{A}=BV\label{eq:19}\vspace*{-10pt}
+\end{equation}\\
+according to above, values matrix $V$ comes from the hidden states of a bidirectional GRU networks, which is usually hard to understand and explain.
+While $B$ is the second-order preference matrix obtained by the attention mechanism, in our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
 \subsubsection{Model ensemble following stacking strategy}
 
 Text
