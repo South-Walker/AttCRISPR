@@ -63,8 +63,8 @@ Learning-based method, which designed to predict the on-target activity (or off-
  In general, the single or multiple base sequences (vary according to the task) and biological features are represented as a multi-dimensional vector $X\in\mathbb{R}^d$, 
  and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to the number of biological features, these methods can be represented as
 \begin{equation}
-\text{\it y}=Score(\it X)\label{eq:01}\vspace*{-10pt}
-\end{equation}\\
+\text{\it y}=Score(\it X)\label{eq:01}
+\end{equation}
  where $Score(\cdot)$ depends on the algorithm being selected, and $y$ denotes the predicted value.
  Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
  Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
@@ -84,11 +84,11 @@ Learning-based method, which designed to predict the on-target activity (or off-
  for example, the G adjacent to PAM has a positive effect on sgRNA activity as \citeauthor{wang2019optimized} report, 
  which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation~(\ref{eq:01}) as following
 \begin{equation}
-dy = \sum^{d}_ia_idx_i\label{eq:02}\vspace*{-10pt}
+dy = \sum^{d}_ia_idx_i\label{eq:02}
 \end{equation}
 \begin{equation}
-a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}\vspace*{-10pt}
-\end{equation}\\
+a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}
+\end{equation}
  where $x_i$ denotes the $i$-th dimension of the vector $X$, 
  $a_i$ indicates how dramatically the function changes as $x_i$ changes in a neighborhood of $X$. 
  Similarly the first-order preference indicates how dramatically the function changes as $x_i$ changes, in other word, the importance of $x_i$.
@@ -96,25 +96,40 @@ a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}\vspace*{-10pt}
  which we'll call the second-order preference in our paper due to its calculation is based on first-order preference, 
  Specifically, we use a vector $A_i$ to build the first-order preference at position $i$ within sgRNA sequence, then
 \begin{equation}
-y=\sum_i^lW_iA_i\cdot X_i\label{eq:04}\vspace*{-10pt}
-\end{equation}\\
+y=\sum_i^lW_iA_i\cdot X_i\label{eq:04}
+\end{equation}
  where $W$ denotes a non-negative weight vector, $W_i$ denotes the weight of the $i$-th position, $X_i$ denotes the embedding vector of the nucleotide at $i$-th position.
  We linearly combine the first-order preference vector of base sequence as following
 \begin{equation}
-\tilde{A}=BA\label{eq:05}\vspace*{-10pt}
-\end{equation}\\
+\tilde{A}=BA\label{eq:05}
+\end{equation}
  where the weight matrix $B$ is learned through attention mechanism, and we define $A$ as the first-order original preference matrix, 
  $\tilde{A}$ as the first-order combine preference matrix (or just first-order preference) to differentiate them.
  In other words, we build a additive model for the first-order preference, 
  which means that the first-order preference of the $i$-th position $\tilde{A}_i$ can be calculated as
 \begin{equation}
-\tilde{A}_i=\sum_j^lB_{ij}A_j\label{eq:06}\vspace*{-10pt}
-\end{equation}\\
+\tilde{A}_i=\sum_j^lB_{ij}A_j\label{eq:06}
+\end{equation}
  Assume that in Equation~(\ref{eq:06}) the first-order original preference at each position is relatively independent and weight matrix B is independent of any first-order original preference, 
  then the total differential of the first-order preference at $i$-th position could be written as
 \begin{equation}
-d\tilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
-\end{equation}\\
+d\tilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}
+\end{equation}
+
+\begin{figure}[!tpb]%figure2
+    \centerline{\includegraphics[width=86mm]{category.png}}
+    \caption{Two categories of the deep learning models used in sgRNA related task. 
+    (a) Model work in spatial domain. 
+    In spatial domain, the base sequence is encoded into a binary matrix (or a binary image). 
+    Since convolution has great advantages in extracting spatial features, the convolutional neural network is an excellent tool in spatial domain. 
+    (b) Model work in temporal domain. 
+    In temporal domain, the base sequence (represented by the binary matrix) is embedded into a sequance of high-dimensional vector, 
+    in which the recurrent neural network perform better.
+    In addition, we note that the last layers of neural network are usually full connection structure (not necessarily), 
+    which greatly increases the difficulty of understanding the decisions of model.
+    }\label{fig:01}
+\end{figure}
+        
  where $E$ is the identity matrix, and we define $B$ as the second-order preference matrix, 
  it can explain how a particular pattern containing two nucleotides affects the base sequence, 
  for example, how does the degree of preference for the G adjacent to PAM be affected by a T at 2 bases upstream?
@@ -124,12 +139,6 @@ d\tilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}\vspace*{-10pt}
  In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, 
  but also be comparable to conventional machine learning algorithms in interpretability.
 
-\begin{figure}[!tpb]%figure2
-\centerline{\includegraphics[scale=0.45]{category.png}}
-\caption{Two categories of the deep learning models used in sgRNA related task. 
-(a) Model work in spatial domain. (b) Model work in temporal domain.}\label{fig:01}
-\end{figure}
-    
 Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems \citep{liu2019computational}. 
  Most of the deep neural network existing are the combination of recurrent neural network (RNN), convolutional neural network (CNN), fully connected neural network (FNN), and their variants. 
  As Figure~1\vphantom{\ref{fig:01}} show,  
@@ -160,10 +169,10 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
  that is to say some specific nucleotide and base position need more attention compared to others. 
  The above is the premise of introducing attention mechanism. Strictly speaking, we are not the first to bring attention mechanisms into this field. 
  The most similar approach to ours is the work based on transformer by \citeauthor{Liu2019}. 
- They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, hence, enhance the performance of their model \citep{Liu2019,vaswani2017attention}. 
+ They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, 
+ hence, enhance the performance of their model \citep{Liu2019,vaswani2017attention}. 
  In our work,the interpretability benefit from attention mechanism is more focused.
-
-In this paper, our main contributions are as follows:\vspace*{1pt}
+ In this paper, our main contributions are as follows:\vspace*{1pt}
 \begin{itemize}
     \item Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
     Finally, the ensemble learning method is used to combine the two to achieve better performance than other models.
@@ -194,8 +203,8 @@ Meanwhile, as mentioned above, one-hot matrix is a little sparse.
 To facilitate the training process, we can mapping each one-hot vector into a dense real-valued high-dimensional space, which is called embedding. 
 Concretely speaking, at the matrix level, the formula is as follows
 \begin{equation}
-X_e=X_{oh}E_m\label{eq:08}\vspace*{-10pt}
-\end{equation}\\
+X_e=X_{oh}E_m\label{eq:08}
+\end{equation}
 where $X_e$ named embedding matrix, $E_m\in\mathbb{R}^{4\times m}$ is a trainable transformational matrix, $m$ refers to the dimension of embedding space. 
 We believe it is also meaningful to regard nucleotides in the sgRNA sequence as word, and the sgRNA sequence itself as a sentence, 
 Guided by this belief $E_m$ is the word embedding matrix and $X_e$ is the sentence embedding in natural language processing (NLP).
@@ -221,7 +230,7 @@ Further, we apply attention mechanisms in both spatial and temporal domain respe
 \subsubsection{Method and attention in spatial domain}
 
 \begin{figure}[!tpb]%figure2
-    \centerline{\includegraphics[scale=0.15]{CNNv2.png}}
+    \centerline{\includegraphics[width=86mm]{CNNv2.png}}
     \caption{The architecture of spatial domain method in AttCRISPR. 
     The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. 
     Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel).
@@ -234,7 +243,7 @@ According to the foregoing, the Spatial Attention Module proposed by \citeauthor
 which was used to improve the performance of CNN in vision tasks.
 
 \begin{figure}[!tpb]%figure3
-    \centerline{\includegraphics[scale=0.37]{spatialmodule.png}}
+    \centerline{\includegraphics[width=86mm]{spatialmodule.png}}
     \caption{Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$.
     Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer.
     A sigmoid is used to map the final result to a range of zero to one.
@@ -242,25 +251,22 @@ which was used to improve the performance of CNN in vision tasks.
 \end{figure}
 
 As Figure~3\vphantom{\ref{fig:03}} show, Given an one-hot map $X_{oh}$, spatial attention module generating spatial attention matrix 
-$M_s\in\mathbb{R}^{l\times 4}$ with the same as $X_{oh}$ in shape. 
-Each element of $M_s$ is constrained to a range of zero to one, implemented by a sigmoid function, which reflects the importance of the corresponding elements of $X_{oh}$.
+$A_s\in\mathbb{R}^{l\times 4}$ with the same as $X_{oh}$ in shape. 
+Each element of $A_s$ is constrained to a range of zero to one, implemented by a sigmoid function, which reflects the importance of the corresponding elements of $X_{oh}$.
 The overall spatial attention process can be summarized as:
 \begin{equation}
-X_{mc} = f^{3\times4}(X_{oh})\label{eq:09}
+\left\{\begin{matrix}
+X_{mc} = f^{3\times4}(X_{oh})
+\\A_s = \sigma(f^{3\times2}([AvgPool(X_{mc});MaxPool(X_{mc})]))
+\\X_{rf} = A_s\otimes X_{oh}
+\end{matrix}\right.\label{eq:11}
 \end{equation}
-\begin{equation}
-M_s = \sigma(f^{3\times2}([AvgPool(X_{mc});MaxPool(X_{mc})]))\label{eq:10}
-\end{equation}
-\begin{equation}
-X_{rf} = M_s\otimes X_{oh}\label{eq:11}\vspace*{-10pt}
-\end{equation}\\
-
 where $f^{p\times q}$ represents a convolution operation with the filter size of $p\times q$, 
 $p,q\in\mathbb{Z}^{+}$, $X_{mc}$ is a multi-channel map generated by $X_{oh}$, $\sigma$ denotes the sigmoid function, 
 AvgPool denotes the average-pooling operation, MaxPool denotes the max-pooling operation, $\otimes$ denotes element-wise multiplication.
 
-Spatial attention matrix $M_s$ formally conforms to our proposed definition of first-order preference (each element of $X_{oh}$ is multiplied by the corresponding element of $M_s$), 
-in other word, element of $M_s$ reveal how important the corresponding elements in $X_{oh}$ is. 
+Spatial attention matrix $A_s$ formally conforms to our proposed definition of first-order preference (each element of $X_{oh}$ is multiplied by the corresponding element of $A_s$), 
+in other word, element of $A_s$ reveal how important the corresponding elements in $X_{oh}$ is. 
 We think it can reveal the preference of the scoring function at each position. 
 For instance, follow the encoding rules above, train spatial domain part of AttCRISPR with the WT-SpCas9 dataset. 
 Then take the average of all spatial attention matrix, and the element in the first row and third column are closer to 1, which means when calculate the final score, 
@@ -268,9 +274,8 @@ G typically may have a important contribution at first position within sgRNA seq
 In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
 
 \subsubsection{Method and attention in temporal domain}
-
 \begin{figure}[!tpb]%figure4
-    \centerline{\includegraphics[scale=0.15]{CNNv2.png}}
+    \centerline{\includegraphics[width=86mm]{temporalmodule.png}}
     \caption{The architecture of temporal domain method in AttCRISPR. 
     The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
     }\label{fig:04}
@@ -285,16 +290,16 @@ Two main differences we have to face are that sgRNA is not a natural language in
 To accommodate them, the embedded matrix $X_e$ is used as input of both the encoder and decoder, and the sequence of decoder is to build the first-order preference of sgRNA sequence $\tilde{A}$. 
 As mentioned above, the predicted value $y$ should satisfy the following equation
 \begin{equation}
-y=\sum_i^lW_i\tilde{A}_i\cdot {X_e}_i\label{eq:12}\vspace*{-10pt}
-\end{equation}\\
+y=\sum_i^lW_i\tilde{A}_i\cdot {X_e}_i\label{eq:12}
+\end{equation}
 where $W\in\mathbb{R}^l$ denotes a non-negative weight vector acquired through a full connection layer, $W_i$ denotes the $i$-th dimension of the vector $W$. 
 Equation~(\ref{eq:12}) is the same formally as Equation~(\ref{eq:04}). 
 On this basis, we apply the idea of attention mechanism which has been widely used in natural language processing tasks to AttCRISPR in the method of temporal domain, 
 and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective,bahdanau2014neural}.
 As the idea of \citeauthor{vaswani2017attention}, Temporal Attention Module satisfies the following equation
 \begin{equation}
-Attention(Q,K,V)=align(Q,K)V\label{eq:13}\vspace*{-10pt}
-\end{equation}\\
+Attention(Q,K,V)=align(Q,K)V\label{eq:13}
+\end{equation}
 where the $align(\cdot)$ is put forward by \citeauthor{luong2015effective}. 
 $Q$, $K$, $V$ are queries, keys and values matrix accordingly in the paper of \citeauthor{vaswani2017attention}. 
 As Figure~5\vphantom{\ref{fig:05}} show, in our attention module they are calculated by the following equation
@@ -303,8 +308,8 @@ As Figure~5\vphantom{\ref{fig:05}} show, in our attention module they are calcul
 K_i=Encoder({X_e}_i,\theta_E,K_{i-1})
 \\ Q_i=Decoder({X_e}_i,\theta_D,Q_{i-1})
 \\V=K 
-\end{matrix}\right.\label{eq:14}\vspace*{-10pt}
-\end{equation}\\
+\end{matrix}\right.\label{eq:14}
+\end{equation}
 where vector $K_i$, $Q_i$ denotes the $i$-th row of the matrix $K$ and $Q$ accordingly, $Encoder(\cdot)$ and $Decoder(\cdot)$ are independent GRU units, $\theta_E$ and $\theta_D$ denote all the related parameters of GRU networks accordingly. 
 In the actual implementation, we apply the bidirectional GRU networks for better performance, and for the sake of conciseness, we show a conventional GRU network here. 
 The function $align(\cdot)$ is as follows
@@ -318,16 +323,16 @@ B_i=softmax(Q_iK^T)\otimes G_i\label{eq:17}
 G_{ij}=\left\{\begin{matrix}
 exp(\frac{(i-j)^2}{-2\sigma})&,\left | i-j \right |\leqslant \sigma
 \\ 0&,\left | i-j \right |>  \sigma
-\end{matrix}\right.\label{eq:18}\vspace*{-10pt}
-\end{equation}\\
+\end{matrix}\right.\label{eq:18}
+\end{equation}
 where the matrix $B\in\mathbb{R}^{l\times l}$ is the second-order preference we need, and vector $B_i$ denotes the $i$-th row of the matrix $B$. 
 $G\in\mathbb{R}^{l\times l}$ is the damping matrix base on Gaussian function. 
 Since a simple belief that the closer the base is to the $i$-th position, the more it affects the $i$-th position normally, we use the damping matrix G to constrain the network learning. 
 $\sigma$ represents a threshold of length, any base over this length from the position $i$ is not considered to be affected.
 Further, if we think of the values matrix as a vector form of the first-order preference $A$ in Equation~(\ref{eq:05}), we can reach the following equation
 \begin{equation}
-\tilde{A}=BV\label{eq:19}\vspace*{-10pt}
-\end{equation}\\
+\tilde{A}=BV\label{eq:19}
+\end{equation}
 according to above, values matrix $V$ comes from the hidden states of a bidirectional GRU networks, which is usually hard to understand and explain.
 While $B$ is the second-order preference matrix obtained by the attention mechanism, in our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
 \subsubsection{Model ensemble following stacking strategy}
@@ -379,20 +384,6 @@ Text
 
 (Table~\ref{Tab:01}) Text Text Text Text Text Text  Text Text Text
 Text Text Text Text Text Text  Text Text Text Text Text Text.
-
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text  Text Text Text Text Text Text  Text Text.
-
-Text Text Text Text Text Text Text Text Text Text Text Text Text
-Text Text Text Text Text Text Text Text.
-Figure~2\vphantom{\ref{fig:02}} shows\vadjust{\pagebreak} that the
-above method  Text Text Text Text Text Text Text Text Text Text
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text Text Text Text Text\break Text.
-
-Figure~2\vphantom{\ref{fig:02}} shows that the above method  Text
-Text Text Text\vspace*{-10pt}
-
 
 \section*{Acknowledgements}
 
