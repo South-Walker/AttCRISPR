@@ -26,18 +26,18 @@
 \citation{lundberg2017a}
 \citation{slack2019fooling}
 \citation{wang2019optimized}
-\citation{Liu2019}
-\citation{MuhammadRafid2020}
-\citation{liu2019computational}
 \newlabel{eq:01}{{1}{2}}
 \newlabel{eq:02}{{2}{2}}
 \newlabel{eq:03}{{3}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Two categories of the deep learning models used in sgRNA related task. (a) Model work in spatial domain. (b) Model work in temporal domain.}}{2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Two categories of the deep learning models used in sgRNA related task. (a) Model work in spatial domain. In spatial domain, the base sequence is encoded into a binary matrix (or a binary image). Since convolution has great advantages in extracting spatial features, the convolutional neural network is an excellent tool in spatial domain. (b) Model work in temporal domain. In temporal domain, the base sequence (represented by the binary matrix) is embedded into a sequance of high-dimensional vector, in which the recurrent neural network perform better. In addition, we note that the last layers of neural network are usually full connection structure (not necessarily), which greatly increases the difficulty of understanding the decisions of model. }}{2}\protected@file@percent }
 \newlabel{fig:01}{{1}{2}}
 \newlabel{eq:04}{{4}{2}}
 \newlabel{eq:05}{{5}{2}}
 \newlabel{eq:06}{{6}{2}}
 \newlabel{eq:07}{{7}{2}}
+\citation{Liu2019}
+\citation{MuhammadRafid2020}
+\citation{liu2019computational}
 \citation{lin2018off-target}
 \citation{kim2018deep}
 \citation{chuai2018deepcrispr}
@@ -66,36 +66,24 @@
 \citation{luong2015effective}
 \citation{bahdanau2014neural}
 \citation{vaswani2017attention}
+\citation{luong2015effective}
+\citation{vaswani2017attention}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). Finally, a simple convolutional neural network is applied.}}{4}\protected@file@percent }
 \newlabel{fig:02}{{2}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid is used to map the final result to a range of zero to one. }}{4}\protected@file@percent }
 \newlabel{fig:03}{{3}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
-\newlabel{eq:09}{{9}{4}}
-\newlabel{eq:10}{{10}{4}}
-\newlabel{eq:11}{{11}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{4}\protected@file@percent }
-\newlabel{fig:04}{{4}{4}}
+\newlabel{eq:11}{{9}{4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{4}\protected@file@percent }
-\newlabel{eq:12}{{12}{4}}
-\citation{luong2015effective}
-\citation{vaswani2017attention}
-\newlabel{eq:13}{{13}{5}}
-\newlabel{eq:14}{{14}{5}}
-\newlabel{eq:16}{{15}{5}}
-\newlabel{eq:17}{{16}{5}}
-\newlabel{eq:18}{{17}{5}}
-\newlabel{eq:19}{{18}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{5}\protected@file@percent }
-\newlabel{Tab:01}{{1}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{5}\protected@file@percent }
+\newlabel{eq:12}{{10}{4}}
+\newlabel{eq:13}{{11}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{5}\protected@file@percent }
+\newlabel{fig:04}{{4}{5}}
+\newlabel{eq:14}{{12}{5}}
+\newlabel{eq:16}{{13}{5}}
+\newlabel{eq:17}{{14}{5}}
+\newlabel{eq:18}{{15}{5}}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{bahdanau2014neural}{{1}{2014}{{Bahdanau {\em  et~al.}}}{{Bahdanau, Cho, and Bengio}}}
@@ -125,7 +113,17 @@
 \bibcite{vaswani2017attention}{{25}{2017}{{Vaswani {\em  et~al.}}}{{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin}}}
 \bibcite{wang2019optimized}{{26}{2019}{{Wang {\em  et~al.}}}{{Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou, Shi, Lan, {\em  et~al.}}}}
 \bibcite{wang2014genetic}{{27}{2014}{{Wang {\em  et~al.}}}{{Wang, Wei, Sabatini, and Lander}}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{6}\protected@file@percent }
+\newlabel{Tab:01}{{1}{6}}
+\newlabel{eq:19}{{16}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}\protected@file@percent }
 \bibcite{woo2018cbam:}{{28}{2018}{{Woo {\em  et~al.}}}{{Woo, Park, Lee, and Kweon}}}
 \bibcite{wu2014genome-wide}{{29}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{30}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
-\global\@namedef{@lastpage@}{6}
+\global\@namedef{@lastpage@}{7}
