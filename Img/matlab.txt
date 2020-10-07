@@ -1,17 +1,12 @@
-e=21
-l=e*10+1
-
-
-i=ones(1,l)
-j=0:0.1:e
-z=exp((-(i-j).^2)/6)
-plot3(i,j,z),grid on
-hold on
-i=ones(1,l)+1
-j=0:0.1:e
-z=exp((-(i-j).^2)/6)
-plot3(i,j,z)
-i=ones(1,l)+2
-j=0:0.1:e
-z=exp((-(i-j).^2)/6)
-plot3(i,j,z)
+e=5
+b=1
+l=(e-b)*10+1
+time=0
+while(time<e)
+    i=ones(1,l)+time
+    j=b:0.1:e
+    z=exp((-(i-j).^2)/6)
+    plot3(i,j,z),grid on
+    hold on
+    time=time+1
+end
