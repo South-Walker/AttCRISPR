@@ -61,6 +61,10 @@
 \citation{cong2013multiplex}
 \citation{jinek2012a}
 \citation{mali2013rnaguided}
+\citation{vaswani2017attention}
+\citation{luong2015effective}
+\citation{bahdanau2014neural}
+\citation{vaswani2017attention}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). Finally, a simple convolutional neural network is applied.}}{4}\protected@file@percent }
 \newlabel{fig:02}{{2}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid is used to map the final result to a range of zero to one. }}{4}\protected@file@percent }
@@ -70,19 +74,13 @@
 \newlabel{eq:11}{{8}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{4}\protected@file@percent }
 \newlabel{fig:04}{{4}{4}}
-\citation{vaswani2017attention}
-\citation{luong2015effective}
-\citation{bahdanau2014neural}
-\citation{vaswani2017attention}
 \citation{luong2015effective}
 \citation{vaswani2017attention}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{bahdanau2014neural}{{1}{2014}{{Bahdanau {\em  et~al.}}}{{Bahdanau, Cho, and Bengio}}}
-\bibcite{chaudhari2019an}{{2}{2019}{{Chaudhari {\em  et~al.}}}{{Chaudhari, Polatkan, Ramanath, and Mithal}}}
-\bibcite{chuai2018deepcrispr}{{3}{2018}{{Chuai {\em  et~al.}}}{{Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu, Chen, Duan, {\em  et~al.}}}}
-\bibcite{cong2013multiplex}{{4}{2013}{{Cong {\em  et~al.}}}{{Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu, Jiang, Marraffini, {\em  et~al.}}}}
-\bibcite{huang2018improving}{{5}{2018}{{Huang {\em  et~al.}}}{{Huang, Zhao, Dou, Wen, and Chang}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces wait2write }}{5}\protected@file@percent }
+\newlabel{fig:03}{{5}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{5}\protected@file@percent }
 \newlabel{eq:13}{{9}{5}}
 \newlabel{eq:14}{{10}{5}}
@@ -90,8 +88,6 @@
 \newlabel{eq:17}{{12}{5}}
 \newlabel{eq:18}{{13}{5}}
 \newlabel{eq:19}{{14}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{5}\protected@file@percent }
-\newlabel{Tab:01}{{1}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{5}\protected@file@percent }
@@ -99,6 +95,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{5}\protected@file@percent }
+\bibcite{chaudhari2019an}{{2}{2019}{{Chaudhari {\em  et~al.}}}{{Chaudhari, Polatkan, Ramanath, and Mithal}}}
+\bibcite{chuai2018deepcrispr}{{3}{2018}{{Chuai {\em  et~al.}}}{{Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu, Chen, Duan, {\em  et~al.}}}}
+\bibcite{cong2013multiplex}{{4}{2013}{{Cong {\em  et~al.}}}{{Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu, Jiang, Marraffini, {\em  et~al.}}}}
+\bibcite{huang2018improving}{{5}{2018}{{Huang {\em  et~al.}}}{{Huang, Zhao, Dou, Wen, and Chang}}}
 \bibcite{ishii2017reproductive}{{6}{2017}{{Ishii}}{{Ishii}}}
 \bibcite{jinek2012a}{{7}{2012}{{Jinek {\em  et~al.}}}{{Jinek, Chylinski, Fonfara, Hauer, Doudna, and Charpentier}}}
 \bibcite{kang2016introducing}{{8}{2016}{{Kang {\em  et~al.}}}{{Kang, He, Huang, Yu, Chen, Gao, Sun, and Fan}}}
@@ -125,3 +125,5 @@
 \bibcite{wu2014genome-wide}{{29}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{30}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
 \global\@namedef{@lastpage@}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{6}\protected@file@percent }
+\newlabel{Tab:01}{{1}{6}}
