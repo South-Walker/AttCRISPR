@@ -26,6 +26,8 @@
 \citation{lundberg2017a}
 \citation{slack2019fooling}
 \citation{wang2019optimized}
+\citation{Liu2019}
+\citation{MuhammadRafid2020}
 \newlabel{eq:01}{{1}{2}}
 \newlabel{eq:02}{{2}{2}}
 \newlabel{eq:03}{{3}{2}}
@@ -33,10 +35,7 @@
 \newlabel{fig:01}{{1}{2}}
 \newlabel{eq:04}{{4}{2}}
 \newlabel{eq:05}{{5}{2}}
-\newlabel{eq:06}{{6}{2}}
-\newlabel{eq:07}{{7}{2}}
-\citation{Liu2019}
-\citation{MuhammadRafid2020}
+\newlabel{eq:07}{{6}{2}}
 \citation{liu2019computational}
 \citation{lin2018off-target}
 \citation{kim2018deep}
@@ -57,33 +56,26 @@
 \citation{vaswani2017attention}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Materials and methods}{3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.1}}Sequence encoding and embedding}{3}\protected@file@percent }
-\newlabel{eq:08}{{8}{3}}
+\newlabel{eq:08}{{7}{3}}
 \citation{woo2018cbam:}
 \citation{cong2013multiplex}
 \citation{jinek2012a}
 \citation{mali2013rnaguided}
-\citation{vaswani2017attention}
-\citation{luong2015effective}
-\citation{bahdanau2014neural}
-\citation{vaswani2017attention}
-\citation{luong2015effective}
-\citation{vaswani2017attention}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). Finally, a simple convolutional neural network is applied.}}{4}\protected@file@percent }
 \newlabel{fig:02}{{2}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid is used to map the final result to a range of zero to one. }}{4}\protected@file@percent }
 \newlabel{fig:03}{{3}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
-\newlabel{eq:11}{{9}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{4}\protected@file@percent }
-\newlabel{eq:12}{{10}{4}}
-\newlabel{eq:13}{{11}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{5}\protected@file@percent }
-\newlabel{fig:04}{{4}{5}}
-\newlabel{eq:14}{{12}{5}}
-\newlabel{eq:16}{{13}{5}}
-\newlabel{eq:17}{{14}{5}}
-\newlabel{eq:18}{{15}{5}}
+\newlabel{eq:11}{{8}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{4}\protected@file@percent }
+\newlabel{fig:04}{{4}{4}}
+\citation{vaswani2017attention}
+\citation{luong2015effective}
+\citation{bahdanau2014neural}
+\citation{vaswani2017attention}
+\citation{luong2015effective}
+\citation{vaswani2017attention}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{bahdanau2014neural}{{1}{2014}{{Bahdanau {\em  et~al.}}}{{Bahdanau, Cho, and Bengio}}}
@@ -91,6 +83,22 @@
 \bibcite{chuai2018deepcrispr}{{3}{2018}{{Chuai {\em  et~al.}}}{{Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu, Chen, Duan, {\em  et~al.}}}}
 \bibcite{cong2013multiplex}{{4}{2013}{{Cong {\em  et~al.}}}{{Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu, Jiang, Marraffini, {\em  et~al.}}}}
 \bibcite{huang2018improving}{{5}{2018}{{Huang {\em  et~al.}}}{{Huang, Zhao, Dou, Wen, and Chang}}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{5}\protected@file@percent }
+\newlabel{eq:13}{{9}{5}}
+\newlabel{eq:14}{{10}{5}}
+\newlabel{eq:16}{{11}{5}}
+\newlabel{eq:17}{{12}{5}}
+\newlabel{eq:18}{{13}{5}}
+\newlabel{eq:19}{{14}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{5}\protected@file@percent }
+\newlabel{Tab:01}{{1}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{5}\protected@file@percent }
 \bibcite{ishii2017reproductive}{{6}{2017}{{Ishii}}{{Ishii}}}
 \bibcite{jinek2012a}{{7}{2012}{{Jinek {\em  et~al.}}}{{Jinek, Chylinski, Fonfara, Hauer, Doudna, and Charpentier}}}
 \bibcite{kang2016introducing}{{8}{2016}{{Kang {\em  et~al.}}}{{Kang, He, Huang, Yu, Chen, Gao, Sun, and Fan}}}
@@ -113,17 +121,7 @@
 \bibcite{vaswani2017attention}{{25}{2017}{{Vaswani {\em  et~al.}}}{{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin}}}
 \bibcite{wang2019optimized}{{26}{2019}{{Wang {\em  et~al.}}}{{Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou, Shi, Lan, {\em  et~al.}}}}
 \bibcite{wang2014genetic}{{27}{2014}{{Wang {\em  et~al.}}}{{Wang, Wei, Sabatini, and Lander}}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{6}\protected@file@percent }
-\newlabel{Tab:01}{{1}{6}}
-\newlabel{eq:19}{{16}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}\protected@file@percent }
 \bibcite{woo2018cbam:}{{28}{2018}{{Woo {\em  et~al.}}}{{Woo, Park, Lee, and Kweon}}}
 \bibcite{wu2014genome-wide}{{29}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{30}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
-\global\@namedef{@lastpage@}{7}
+\global\@namedef{@lastpage@}{6}
