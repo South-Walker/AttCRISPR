@@ -329,9 +329,20 @@ Further, if we think of the values matrix as a vector form of the first-order pr
 \end{equation}
 according to above, values matrix $V$ comes from the hidden states of a bidirectional GRU networks, which is usually hard to understand and explain.
 While $B$ is the second-order preference matrix obtained by the attention mechanism, in our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
+
 \subsubsection{Model ensemble following stacking strategy}
 
-Text
+As \citeauthor{wang2019optimized,Li2016ProteinSS,Wang2016ProteinSS} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
+And we use a simple full connection network to extract the indirect features, and call the output of fully connection network $y_{bio}$. 
+As mentioned above, we assume that method in spatial domain and in temporal domain are heterogeneous, which can satisfy the diversity premise of ensemble learning.
+That's why we follow the stacking strategy, integrate the methods in time domain and space domain. 
+Specifically, the $y_{bio}$, the spatial output $y_{s}$ and the temporal output $y_{t}$ we got earlier are concatenated and then weighted averaging is performed through a full connection layer as follow
+\begin{equation}
+y=W[y_{bio};y_s;y_t]\label{eq:20}
+\end{equation}
+where, $y$ is the final prediction value of AttCRISPR, $W$ is the weight learned by the full connection network. 
+In the actual implementation, we freeze the network in the spatial domain and temporal domain at first, in order to make our network focused on learning the weight $w$.
+Later in the process, in the fine tuning of AttCRISPR, the parameters of the entire network are adjusted.
 
 \subsection{Datasets and current prediction method}
 
