@@ -25,7 +25,7 @@ def GaussianKernelBuffer(windowsize):
         sum=0
         for j in range(21):
             sum+=result[i][j]
-        time=42/sum
+        time=21/sum
         for j in range(21):
             result[i][j]*=time
     return np.array(result)
