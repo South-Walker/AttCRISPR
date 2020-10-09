@@ -10,14 +10,18 @@ CNNParams = {
     'cnn_conv_num':3,
     'cnn_last_layer_units_num':54
     }
+from keras.optimizers import *
 RNNParams = {
     'train_batch_size':128,
-    'train_epochs_num':40,
-    'train_base_learning_rate':0.001,
+    'train_epochs_num':2000,
+    'train_base_learning_rate':0.0001,
+    'optimizer':Adamax,
     'rnn_save_file':'WTBestRNN.h5',
     'rnn_window_size':8,
     'rnn_embedding_output':60,
     'rnn_last_activation':'sigmoid',
+    'rnn_use_context_state':True,
+    'rnn_last_use_bias':False,
     'rnn_unit_num':100
     }
 EnsembleParams = {

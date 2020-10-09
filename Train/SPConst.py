@@ -12,12 +12,13 @@ CNNParams = {
     }
 RNNParams = {
     'train_batch_size':128,
-    'train_epochs_num':400,
+    'train_epochs_num':40,
     'train_base_learning_rate':0.0005,
     'rnn_save_file':'SPBestRNN.h5',
     'rnn_window_size':4,
     'rnn_embedding_output':75,
     'rnn_last_activation':'linear',
+    'rnn_use_context_state':True,
     'rnn_unit_num':100
     }
 EnsembleParams = {

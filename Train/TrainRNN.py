@@ -45,7 +45,10 @@ def model(params):
                   kernel_regularizer=keras.regularizers.l2(0.01),
                   recurrent_regularizer=keras.regularizers.l2(0.01),dropout=0.25,recurrent_dropout=0.25)
     decoder = Bidirectional(decoder,merge_mode='sum',name='decoder')
-    decoder_output,dc1,dc2 = decoder(decoder_input,initial_state=[ec1,ec2])
+    if params['rnn_use_context_state']:
+        decoder_output,dc1,dc2 = decoder(decoder_input,initial_state=[ec1,ec2])  
+    else:
+        decoder_output,dc1,dc2 = decoder(decoder_input)
     encoderat = []
     decoderat = []
     for i in range(21):
@@ -92,7 +95,8 @@ def model(params):
     #magic
     rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
     output = Dense(units=1,kernel_regularizer=keras.regularizers.l2(0.001),kernel_constraint=keras.constraints.NonNeg(),
-                   name='temporal_score',activation=params['rnn_last_activation'],use_bias=False)(rnn_embedded)
+                   name='temporal_score',activation=params['rnn_last_activation'],
+                   use_bias=params['rnn_last_use_bias'])(rnn_embedded)
     model = Model(inputs=[onehot_input],
                  outputs=[output],name='rnn')
     return model
@@ -103,7 +107,8 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
     batch_size = params['train_batch_size']
     learningrate = params['train_base_learning_rate']
     epochs = params['train_epochs_num']
-    m.compile(loss='mse', optimizer=Adam(lr=learningrate))
+    optimizer = params['optimizer']
+    m.compile(loss='mse', optimizer=optimizer(lr=learningrate))
 
     batch_end_callback = LambdaCallback(on_epoch_end=
                                         lambda batch,logs: 
@@ -125,8 +130,9 @@ if __name__ == "__main__":
     label = data['label']
     input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                               label['train'],rate=0,intensity=0)
+
     scores = []
-    for i in range(20):
+    for i in range(3,4):
         thisbest = train(params['RNNParams'],input_train_onehot,y_train,
                     input['validate']['onehot'],label['validate'],
                     input['test']['onehot'],label['test'])['loss']
