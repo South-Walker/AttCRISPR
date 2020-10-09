@@ -273,6 +273,12 @@ Then take the average of all spatial attention matrix, and the element in the fi
 G typically may have a important contribution at first position within sgRNA sequence. 
 In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
 \subsubsection{Method and attention in temporal domain}
+
+\begin{figure}[!tpb]%figure3
+    \centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
+    \caption{wait2write
+    }\label{fig:03}
+\end{figure}
 As Figure~4\vphantom{\ref{fig:04}} show, temporal domain part of AttCRISPR relies on the recurrent neural network (or its variant). 
 As previously mentioned, we mapping each one-hot vector into a dense real-valued high-dimensional space follow the Equation~(\ref{eq:08}), which generates the embedded matrix $X_e$.
 And we regard $X_{e}$ as a sequential data, or temporal data.
