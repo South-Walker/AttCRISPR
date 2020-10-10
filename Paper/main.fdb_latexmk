@@ -1,18 +1,18 @@
 # Fdb version 3
-["bibtex main"] 1602315406 "main.aux" "main.bbl" "main" 1602315790
+["bibtex main"] 1602331620 "main.aux" "main.bbl" "main" 1602331662
   "./natbib.bst" 1448423386 24933 42b4e40b98087b4f67530d4f93d64cf6 ""
   "document.bib" 1602244294 62602 021e883ef7013de7633e99faceaedd12 ""
-  "main.aux" 1602315790 9483 1047a5277fc1f66f4dddb6d4c59043ee "pdflatex"
+  "main.aux" 1602331661 9541 c8d4f196beef86e28679bbe93d758c83 "pdflatex"
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1602315788 "c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex" "c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf" "main" 1602315790
+  "main.blg"
+["pdflatex"] 1602331660 "c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex" "c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf" "main" 1602331662
   "CNNv2.png" 1601435030 81662 e714ab500d784a992ae663f3bcf22a5c ""
   "OUP_First_SBk_Bot_8401.eps" 1448423386 407286 4fa903bd4dd12be3b981d5cd3c5ce8ec ""
   "array.sty" 1448423386 13051 affdca7d3e0293c3522f0fe8fb254afb ""
   "bioinfo.cls" 1448423386 30453 26127260d22405311d70a75d7092469a ""
-  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux" 1602315790 9483 1047a5277fc1f66f4dddb6d4c59043ee ""
-  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex" 1602315787 32282 453333a91e07f482fe2e16599978b37d ""
+  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux" 1602331661 9541 c8d4f196beef86e28679bbe93d758c83 ""
+  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.tex" 1602331659 32988 80a1a56a7a69931ac7ae58957b027c9c ""
   "c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc" 1597920643 6938 5135be6a8802f13a7faf296d1959a1ab ""
   "c:/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1597920318 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/phvb8y.tfm" 1597920643 4676 6115e86a5717ebd14d3380f482c7b416 ""
@@ -113,17 +113,17 @@
   "crop.sty" 1448423386 12565 e6f9ba5ff334bf858515867a0a573153 ""
   "flushend.sty" 1448423386 5110 4612226a520e954eb087fba78e1a0a02 ""
   "graphicx.sty" 1448423386 7880 e5b92297fb192340acd8794d6a22b953 ""
-  "main.aux" 1602315790 9483 1047a5277fc1f66f4dddb6d4c59043ee "pdflatex"
-  "main.bbl" 1602315406 10270 4ff644789f54d66c5e8da501db62e3d1 "bibtex main"
-  "main.tex" 1602315787 32282 453333a91e07f482fe2e16599978b37d ""
+  "main.aux" 1602331661 9541 c8d4f196beef86e28679bbe93d758c83 "pdflatex"
+  "main.bbl" 1602331621 10270 4ff644789f54d66c5e8da501db62e3d1 "bibtex main"
+  "main.tex" 1602331659 32988 80a1a56a7a69931ac7ae58957b027c9c ""
   "natbib.sty" 1448423386 34226 b58b1fa5f3ade89cdf17cb61154dea2e ""
   "spatialmodule.png" 1601906961 64224 790d38a81488f4d2567772e36f6ec3cc ""
   "stfloats.sty" 1448423386 9600 b6785ed5a305717e5c3e25f3f7ac7280 ""
   "temporalattentionmodule.png" 1602234186 27393 98952353b7a72b9d19b487c40cd84850 ""
   "temporalmodule.png" 1602059527 36124 09842c163421c959257d89ef89278fbd ""
   (generated)
-  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.log"
-  "main.pdf"
-  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf"
   "main.log"
+  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf"
+  "main.pdf"
   "main.aux"
+  "c:/Users/50683/Desktop/AttCRISPR/Paper/main.log"

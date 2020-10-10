@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  10 OCT 2020 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  10 OCT 2020 20:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -565,64 +565,64 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [5 <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalattentionmodule.png>]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 389.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 393.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 389.
+(Font)              size <7> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 389.
+(Font)              size <5> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 389.
+(Font)              size <7> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 389.
+(Font)              size <5> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 389.
+(Font)              size <7> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 389.
+(Font)              size <5> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 389.
+(Font)              size <7> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 389.
+(Font)              size <5> substituted on input line 393.
 
 
 LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
-(Font)              using `LY1/phb/m/n' instead on input line 389.
+(Font)              using `LY1/phb/m/n' instead on input line 393.
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 389--389
+Overfull \hbox (12.0pt too wide) in paragraph at lines 393--393
 []$[]$ 
  []
 
 (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl)
-Overfull \vbox (82.0pt too high) has occurred while \output is active []
+Overfull \vbox (5.5pt too high) has occurred while \output is active []
 
-Extra height:0.0pt when 605.0pt
+Extra height:0.0pt when 681.5pt
 
-Overfull \vbox (82.0pt too high) has occurred while \output is active []
+Overfull \vbox (5.5pt too high) has occurred while \output is active []
 
-(2)Left:605.0pt Right:523.0pt Output:605.0pt
+(2)Left:681.5pt Right:676.0pt Output:681.5pt
 - LAST -
 Extra skip:0.0pt
-Left:605.0pt
-Right:523.0pt
-Output:605.0pt
+Left:681.5pt
+Right:676.0pt
+Output:681.5pt
 
-Overfull \vbox (82.0pt too high) has occurred while \output is active []
+Overfull \vbox (5.5pt too high) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -650,13 +650,13 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3663 strings out of 480608
  46004 string characters out of 5907536
- 322005 words of memory out of 5000000
+ 325345 words of memory out of 5000000
  19476 multiletter control sequences out of 15000+600000
  592296 words of font info for 128 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,11n,35p,926b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (6 pages, 418354 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (6 pages, 418949 bytes).
 PDF statistics:
  127 PDF objects out of 1000 (max. 8388607)
  85 compressed objects within 1 object stream

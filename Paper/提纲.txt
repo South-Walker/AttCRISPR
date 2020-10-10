@@ -1,2 +1,2 @@
-The dataset we used for training, validation and testing is built by \citeauthor{wang2019optimized} \citep{wang2019optimized}, 我们从其原始数据中提取了,55604, 58617, 56888 sgRNAs () with activity(使用insertion/deletion（indel）值表示) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. 
-( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence. 出于这一信念我们一开始先构建的end2end模型)
+xxx 等人implemente a tenfold shuffled validation to evaluate the stability of the performance of DeepHF.
+具体而言，each set 被划分成3部分，76.5的训练集，15%的测试集和8.5%的验证集
