@@ -26,7 +26,8 @@ def model(params,cnn_trainable=False,rnn_trainable=False,load_weight=False):
                 hidden_layer_activation='relu',dropout=params['bio_fc_dropout'],
                 name='biofeat_embedding')
     output = keras.layers.concatenate([x,x_bio])
-    output = Dense(units=1,kernel_initializer=keras.initializers.RandomNormal(mean=0.3, stddev=0.05),bias_initializer='zero')(output)
+    output = Dense(units=1,kernel_initializer=keras.initializers.RandomNormal(mean=0.3, stddev=0.05),
+                   use_bias=False,bias_initializer='zero',name='last_weight_avg')(output)
     model = Model(inputs=[onehot_input, biological_input],
                  outputs=[output])
     if load_weight:
@@ -56,6 +57,9 @@ def train(params,
           verbose=2,
           validation_data=([validate_input,validate_biofeat],validate_label),
           callbacks=[batch_end_callback])
+
+    weight = m.get_layer('last_weight_avg').get_weights()
+    print(weight)
     return {'loss': -1*result.Best, 'status': STATUS_OK}
 
 

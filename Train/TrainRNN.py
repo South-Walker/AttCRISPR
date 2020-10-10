@@ -130,7 +130,8 @@ if __name__ == "__main__":
     label = data['label']
     input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],
                                                               label['train'],rate=0,intensity=0)
-
+    params['RNNParams']['rnn_embedding_output'] = 150
+    params['RNNParams']['rnn_unit_num'] = 100
     scores = []
     for i in range(3,4):
         thisbest = train(params['RNNParams'],input_train_onehot,y_train,
