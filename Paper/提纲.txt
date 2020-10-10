@@ -1,17 +1,2 @@
-As \citeauthor{wang2019optimized} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
-And we use a simple full connection network to extract the indirect features, and call the output of fully connection network $y_{bio}$. 
-As mentioned above, we assume that method in spatial domain and in temporal domain are heterogeneous, which can satisfy the diversity premise of ensemble learning.
-That's why we follow the stacking strategy, integrate the methods in time domain and space domain. 
-Specifically, the $y_{bio}$, the spatial output $y_{s}$ and the temporal output $y_{t}$ we got earlier are concatenated and then weighted averaging is performed through a full connection layer as follow
-y=W[y_{bio};y_s;y_t]
-\begin{equation}
-y=W[y_{bio};y_s;y_t]\label{eq:20}
-\end{equation}
-where, $y$ is the final prediction value of AttCRISPR, $W$ is the weight learned by the full connection network. 
-In the actual implementation, we freeze the network in the spatial domain and temporal domain at first, in order to make our network focused on learning the weight $w$.
-Later in the process, in the fine tuning of AttCRISPR, the parameters of the entire network are adjusted.
-
-最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
-（我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )
-( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence.,出于这一信念我们一开始先构建的end2end模型)
-
+The dataset we used for training, validation and testing is built by \citeauthor{wang2019optimized} \citep{wang2019optimized}, 我们从其原始数据中提取了,55604, 58617, 56888 sgRNAs () with activity(使用insertion/deletion（indel）值表示) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. 
+( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence. 出于这一信念我们一开始先构建的end2end模型)
