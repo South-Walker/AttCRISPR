@@ -227,9 +227,11 @@ Further, we apply attention mechanisms in both spatial and temporal domain respe
 \begin{figure}[!tpb]%figure2
     \centerline{\includegraphics[width=86mm]{CNNv2.png}}
     \caption{The architecture of spatial domain method in AttCRISPR. 
-    The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. 
+    The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. 
     Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel).
-    Finally, a simple convolutional neural network is applied.}\label{fig:02}
+    A simple convolutional neural network followed is applied to extract potential feature representation of sgRNA sequence.
+    In the last step, we flatten the output of convolutional neural network into a one dimensional vector and 
+    use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}\label{fig:02}
 \end{figure}
 As Figure~2\vphantom{\ref{fig:02}} show, method in spatial domain relies on the convolutional neural network. 
 As previously mentioned, sgRNA sequence has been encoded into a $21\times 4$ one-hot matrix $X_{oh}$, and we regard $X_{oh}$ as a binary image. 
@@ -241,7 +243,8 @@ which was used to improve the performance of CNN in vision tasks.
     \centerline{\includegraphics[width=86mm]{spatialmodule.png}}
     \caption{Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$.
     Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer.
-    A sigmoid is used to map the final result to a range of zero to one.
+    A sigmoid function is used to map the final result to a range of zero to one at last, 
+    which generates the spatial attention matrix $A_s$.
     }\label{fig:03}
 \end{figure}
 
@@ -262,7 +265,8 @@ AvgPool denotes the average-pooling operation, MaxPool denotes the max-pooling o
 \begin{figure}[!tpb]%figure4
     \centerline{\includegraphics[width=86mm]{temporalmodule.png}}
     \caption{The architecture of temporal domain method in AttCRISPR. 
-    The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
+    The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
+    Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module.
     }\label{fig:04}
 \end{figure}
 Spatial attention matrix $A_s$ formally conforms to our proposed definition of first-order preference (each element of $X_{oh}$ is multiplied by the corresponding element of $A_s$), 
@@ -273,12 +277,6 @@ Then take the average of all spatial attention matrix, and the element in the fi
 G typically may have a important contribution at first position within sgRNA sequence. 
 In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
 \subsubsection{Method and attention in temporal domain}
-
-\begin{figure}[!tpb]%figure3
-    \centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
-    \caption{wait2write
-    }\label{fig:03}
-\end{figure}
 As Figure~4\vphantom{\ref{fig:04}} show, temporal domain part of AttCRISPR relies on the recurrent neural network (or its variant). 
 As previously mentioned, we mapping each one-hot vector into a dense real-valued high-dimensional space follow the Equation~(\ref{eq:08}), which generates the embedded matrix $X_e$.
 And we regard $X_{e}$ as a sequential data, or temporal data.
@@ -330,6 +328,11 @@ Further, if we think of the values matrix as a vector form of the first-order pr
 according to above, values matrix $V$ comes from the hidden states of a bidirectional GRU networks, which is usually hard to understand and explain.
 While $B$ is the second-order preference matrix obtained by the attention mechanism, in our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
 
+\begin{figure}[!tpb]%figure3
+    \centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
+    \caption{wait2write
+    }\label{fig:03}
+\end{figure}
 \subsubsection{Model ensemble following stacking strategy}
 
 As \citeauthor{wang2019optimized,Li2016ProteinSS,Wang2016ProteinSS} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
@@ -352,12 +355,26 @@ The dataset we used for training, validation and testing is built by \citeauthor
 We extracted 55604, 58617, 56888 sgRNAs with activity (represented by insertion/deletion (indel)) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively, from its source data. 
 As far as we know, the best performance on this dataset is the DeepHF of \citeauthor{wang2019optimized} currently, which base on deep learning and bidirectional LSTM architecture. 
 DeepHF achieved Spearman correlation coefficients of 0.867, 0.862 and 0.860 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. 
-Another tool worth noting is CRISPRpred(SEQ), which is based on conventional machine learning and need complicated human feature engineering exercise \cite{MuhammadRafid2020}. 
+Another tool worth noting is CRISPRpred(SEQ), which is based on conventional machine learning and need complicated human feature engineering exercise \citep{MuhammadRafid2020}. 
 They also test their tool with this dataset and achieved Spearman correlation coefficients of 0.838, 0.830 and 0.821 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively (without any hyperparameter tuning).
+\citeauthor{wang2019optimized} implemente a tenfold shuffled validation to evaluate the stability of the performance of DeepHF.
+To be more specific, each set is shuffled and divided into three parts, 76.5\%, 15\% and 8.5\% of the relevant data was used as the training, test and validation set respectively in a single experiment. 
+The experiment is repeated ten times with the results recorded and averaged finally.
+In order to make the comparison apples to apples, we will follow this strategy to design experiments.
 
 \subsection{Experiments}
 
 text
+
+\begin{table}[!t]
+    \processtable{This is table caption\label{Tab:01}} {\begin{tabular}{@{}llll@{}}\toprule head1 &
+    head2 & head3 & head4\\\midrule
+    row1 & row1 & row1 & row1\\
+    row2 & row2 & row2 & row2\\
+    row3 & row3 & row3 & row3\\
+    row4 & row4 & row4 & row4\\\botrule
+    \end{tabular}}{This is a footnote}
+\end{table}
 
 \section{Results}
 
@@ -383,15 +400,6 @@ Text Text Text Text Text Text  Text Text Text Text Text Text.
 \section*{Acknowledgements}
 
 Text
-\begin{table}[!t]
-    \processtable{This is table caption\label{Tab:01}} {\begin{tabular}{@{}llll@{}}\toprule head1 &
-    head2 & head3 & head4\\\midrule
-    row1 & row1 & row1 & row1\\
-    row2 & row2 & row2 & row2\\
-    row3 & row3 & row3 & row3\\
-    row4 & row4 & row4 & row4\\\botrule
-    \end{tabular}}{This is a footnote}
-\end{table}
     
 \vspace*{-12pt}
 

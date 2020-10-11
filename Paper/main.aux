@@ -61,19 +61,19 @@
 \citation{cong2013multiplex}
 \citation{jinek2012a}
 \citation{mali2013rnaguided}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). A simple convolutional neural network followed is applied to extract potential feature representation of sgRNA sequence. In the last step, we flatten the output of convolutional neural network into a one dimensional vector and use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}}{4}\protected@file@percent }
+\newlabel{fig:02}{{2}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid function is used to map the final result to a range of zero to one at last, which generates the spatial attention matrix $A_s$. }}{4}\protected@file@percent }
+\newlabel{fig:03}{{3}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module. }}{4}\protected@file@percent }
+\newlabel{fig:04}{{4}{4}}
+\newlabel{eq:11}{{8}{4}}
 \citation{vaswani2017attention}
 \citation{luong2015effective}
 \citation{bahdanau2014neural}
 \citation{vaswani2017attention}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). Finally, a simple convolutional neural network is applied.}}{4}\protected@file@percent }
-\newlabel{fig:02}{{2}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid is used to map the final result to a range of zero to one. }}{4}\protected@file@percent }
-\newlabel{fig:03}{{3}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
-\newlabel{eq:11}{{8}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. }}{4}\protected@file@percent }
-\newlabel{fig:04}{{4}{4}}
 \citation{luong2015effective}
 \citation{vaswani2017attention}
 \citation{wang2019optimized}
@@ -84,8 +84,7 @@
 \citation{wang2019optimized}
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces wait2write }}{5}\protected@file@percent }
-\newlabel{fig:03}{{5}{5}}
+\citation{wang2019optimized}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{5}\protected@file@percent }
 \newlabel{eq:13}{{9}{5}}
 \newlabel{eq:14}{{10}{5}}
@@ -93,6 +92,8 @@
 \newlabel{eq:17}{{12}{5}}
 \newlabel{eq:18}{{13}{5}}
 \newlabel{eq:19}{{14}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces wait2write }}{5}\protected@file@percent }
+\newlabel{fig:03}{{5}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
 \newlabel{eq:20}{{15}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }

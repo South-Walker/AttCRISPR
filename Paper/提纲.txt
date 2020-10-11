@@ -1,2 +1,2 @@
-xxx 等人implemente a tenfold shuffled validation to evaluate the stability of the performance of DeepHF.
-具体而言，each set 被划分成3部分，76.5的训练集，15%的测试集和8.5%的验证集
+
+ 随后，the temporal attention module生成了各个碱基位置上的first-order preference $\tilde{A}$，a $21\times e$ matrix (or a vector set), $\tile{A}$中的每个行向量与对应位置的碱基嵌入进行点积运算，生成各个位置的得分，which通过一个全连接层进行加权平均，从而achieve the temporal output $y_t$.
