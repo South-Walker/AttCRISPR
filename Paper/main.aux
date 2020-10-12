@@ -61,21 +61,22 @@
 \citation{cong2013multiplex}
 \citation{jinek2012a}
 \citation{mali2013rnaguided}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). A simple convolutional neural network followed is applied to extract potential feature representation of sgRNA sequence. In the last step, we flatten the output of convolutional neural network into a one dimensional vector and use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}}{4}\protected@file@percent }
-\newlabel{fig:02}{{2}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid function is used to map the final result to a range of zero to one at last, which generates the spatial attention matrix $A_s$. }}{4}\protected@file@percent }
-\newlabel{fig:03}{{3}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module. }}{4}\protected@file@percent }
-\newlabel{fig:04}{{4}{4}}
-\newlabel{eq:11}{{8}{4}}
 \citation{vaswani2017attention}
 \citation{luong2015effective}
 \citation{bahdanau2014neural}
 \citation{vaswani2017attention}
 \citation{luong2015effective}
 \citation{vaswani2017attention}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). A simple convolutional neural network followed is applied to extract potential feature representation of sgRNA sequence. In the last step, we flatten the output of convolutional neural network into a one dimensional vector and use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}}{4}\protected@file@percent }
+\newlabel{fig:02}{{2}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid function is used to map the final result to a range of zero to one at last, which generates the spatial first-order preference matrix $A_s$. }}{4}\protected@file@percent }
+\newlabel{fig:03}{{3}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
+\newlabel{eq:11}{{8}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{4}\protected@file@percent }
+\newlabel{eq:13}{{9}{4}}
+\newlabel{eq:14}{{10}{4}}
 \citation{wang2019optimized}
 \citation{Li2016ProteinSS}
 \citation{Wang2016ProteinSS}
@@ -85,18 +86,15 @@
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
 \citation{wang2019optimized}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{5}\protected@file@percent }
-\newlabel{eq:13}{{9}{5}}
-\newlabel{eq:14}{{10}{5}}
 \newlabel{eq:16}{{11}{5}}
 \newlabel{eq:17}{{12}{5}}
 \newlabel{eq:18}{{13}{5}}
 \newlabel{eq:19}{{14}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces wait2write }}{5}\protected@file@percent }
-\newlabel{fig:03}{{5}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
 \newlabel{eq:20}{{15}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module. Next, the temporal attention module generates the first-order preference $\tilde  {A}$, a $21\times e$ matrix (or a vector set). Each of the row vectors in matrix $\tilde  {A}$ represents the base preference of sgRNA at the corresponding position, we use their dot product with the corresponding row vector in embedded $X_e$ to build the score of corresponding position. Hence, a full connection layer is used to weighted average them and achieve the temporal output $y_t$. }}{5}\protected@file@percent }
+\newlabel{fig:04}{{4}{5}}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{bahdanau2014neural}{{1}{2014}{{Bahdanau {\em  et~al.}}}{{Bahdanau, Cho, and Bengio}}}
@@ -105,6 +103,15 @@
 \bibcite{cong2013multiplex}{{4}{2013}{{Cong {\em  et~al.}}}{{Cong, Ran, Cox, Lin, Barretto, Habib, Hsu, Wu, Jiang, Marraffini, {\em  et~al.}}}}
 \bibcite{huang2018improving}{{5}{2018}{{Huang {\em  et~al.}}}{{Huang, Zhao, Dou, Wen, and Chang}}}
 \bibcite{ishii2017reproductive}{{6}{2017}{{Ishii}}{{Ishii}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Details of temporal attention module. To generate the first order preference vector in the $i$ position of sgRNA $\tilde  {A}_i$. First, the $i$-th row vector of the querys matrix $Q_i$ is multiplied by the transpose of the keys mateix $K^T$, and apply a softmax function to obtain a preliminary weights vector on the values. Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation\nobreakspace  {}(12\hbox {}) has shown. $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde  {A}$ come from the product of $B$ and values matrix $V$. Although it's not shown above, it is also worth noting that, a full connection layer with L2 constraints is used to generates a transformation matrix in order to ensure $\tilde  {A}_i$ and ${X_e} _i$ are in the same vector space. Temporal attention module generates the temporal first-order preference matrix $\tilde  {A}$ and the temporal second-order preference matrix $B$. }}{6}\protected@file@percent }
+\newlabel{fig:05}{{5}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  The naming convention code and brief description of the methods compared in our work}}{6}\protected@file@percent }
+\newlabel{Tab:01}{{1}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}\protected@file@percent }
 \bibcite{jinek2012a}{{7}{2012}{{Jinek {\em  et~al.}}}{{Jinek, Chylinski, Fonfara, Hauer, Doudna, and Charpentier}}}
 \bibcite{kang2016introducing}{{8}{2016}{{Kang {\em  et~al.}}}{{Kang, He, Huang, Yu, Chen, Gao, Sun, and Fan}}}
 \bibcite{kim2018deep}{{9}{2018}{{Kim {\em  et~al.}}}{{Kim, Min, Song, Jung, Choi, Kim, Lee, Yoon, and Kim}}}
@@ -131,11 +138,4 @@
 \bibcite{woo2018cbam:}{{30}{2018}{{Woo {\em  et~al.}}}{{Woo, Park, Lee, and Kweon}}}
 \bibcite{wu2014genome-wide}{{31}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{32}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
-\global\@namedef{@lastpage@}{6}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces This is table caption}}{6}\protected@file@percent }
-\newlabel{Tab:01}{{1}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Test1}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}\protected@file@percent }
+\global\@namedef{@lastpage@}{7}
