@@ -10,3 +10,7 @@ while(time<e)
     hold on
     time=time+1
 end
+title('Damping Function')
+xlabel('i')
+ylabel('j')
+zlabel('rate')
