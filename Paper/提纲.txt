@@ -1,5 +1,14 @@
+\item 
+如何基于注意力机制，在局部与全局的角度上理解AttCRISPR做出的决策 （ ）
+\vspace*{1pt}
+\end{itemize}
 
-最近基于残差网络的讨论似乎揭示了（xxx等人）残差块可以辅助过深或过复杂的神经网络的学习。（残差思想首次在该任务中运用）
-（我们使用insertion/deletion（indel）值表示sgRNA的活性标签，其虽然not equal to real gene knockout efficiency.但有研究证明其与后者有良好的相关性[nc]，而且after genome editing ,PCR-amplifing the target sequences for deep sequencing, the indel rate induced by Cas9 nucleases is enable to be direct measured )
-( the functional and structural information of a biological sequence are intrinsically encoded within its primary sequence.,出于这一信念我们一开始先构建的end2end模型)
+3.3
+注意力机制带来的可解释性
+bringing insight to the design of high-activity sgRNA 
+3.3.1
+空间注意力机制带来的全局可解释性
 
+3.3.2
+时间注意力机制带来的局部可解释性
+一阶

@@ -69,8 +69,8 @@ Learning-based method, which designed to predict the on-target activity (or off-
  Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
  Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
  In short, what was needed for developer is to trade-off accuracy and interpretability. 
- \citeauthor{MuhammadRafid2020} consider deep-learning-based models as black boxs and believe they lack interpretability, 
- motivated by the empirical assertion, they turn to build a model based conventional machine learning to compete with state of the art deep learning models \citep{MuhammadRafid2020}. 
+ \citeauthor{MuhammadRafid2020} consider deep-learning models as black boxs and believe they lack interpretability, 
+ motivated by the empirical assertion, they turn to build a model based conventional machine learning to compete with state-of-the-art deep learning models \citep{MuhammadRafid2020}. 
  On the other hand, input perturbation based feature importance analysis become a preferred components to reveal the importance of features in deep learning models. 
  \citeauthor{Liu2019} use a sliding window of length 2 to extract dimeric as input and rank the position of dimeric by contribution to final output \citep{Liu2019}. 
  One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. 
@@ -169,7 +169,7 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
  In our work,the interpretability benefit from attention mechanism is more focused.
  In this paper, our main contributions are as follows:\vspace*{1pt}
 \begin{itemize}
-    \item Present a novel deep-learning-based model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
+    \item Present a novel deep-learning model, which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
     Finally, the ensemble learning method is used to combine the two to achieve better performance than other models.
     It doesn't belong to any of the above categories of existing approaches.
     \item Introduce attention mechanism into our model. 
@@ -178,7 +178,7 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
     In the spatial domain it's at the nucleotide level, in our word, first-order preference, 
     while at the overall level in the temporal domain, in our word, second-order preference. 
     Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
-    \item Throught abation analysis and testing a series of possible network structure, 
+    \item Throught ablation analysis and testing a series of possible network structure, 
     we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
     which could outperform the current state-of-the-art tool on DeepHF dataset.\vspace*{1pt}
 \end{itemize}
@@ -227,9 +227,11 @@ Further, we apply attention mechanisms in both spatial and temporal domain respe
 \begin{figure}[!tpb]%figure2
     \centerline{\includegraphics[width=86mm]{CNNv2.png}}
     \caption{The architecture of spatial domain method in AttCRISPR. 
-    The input of the method is encoded sgRNA sequence, a $21\times 4$ one-hot matrix. 
+    The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. 
     Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel).
-    Finally, a simple convolutional neural network is applied.}\label{fig:02}
+    A simple convolutional neural network followed is applied to extract potential feature representation of sgRNA sequence.
+    In the last step, we flatten the output of convolutional neural network into a one dimensional vector and 
+    use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}\label{fig:02}
 \end{figure}
 As Figure~2\vphantom{\ref{fig:02}} show, method in spatial domain relies on the convolutional neural network. 
 As previously mentioned, sgRNA sequence has been encoded into a $21\times 4$ one-hot matrix $X_{oh}$, and we regard $X_{oh}$ as a binary image. 
@@ -241,7 +243,8 @@ which was used to improve the performance of CNN in vision tasks.
     \centerline{\includegraphics[width=86mm]{spatialmodule.png}}
     \caption{Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$.
     Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer.
-    A sigmoid is used to map the final result to a range of zero to one.
+    A sigmoid function is used to map the final result to a range of zero to one at last, 
+    which generates the spatial first-order preference matrix $A_s$.
     }\label{fig:03}
 \end{figure}
 
@@ -259,12 +262,6 @@ X_{mc} = f^{3\times4}(X_{oh})
 where $f^{p\times q}$ represents a convolution operation with the filter size of $p\times q$, 
 $p,q\in\mathbb{Z}^{+}$, $X_{mc}$ is a multi-channel map generated by $X_{oh}$, $\sigma$ denotes the sigmoid function, 
 AvgPool denotes the average-pooling operation, MaxPool denotes the max-pooling operation, $\otimes$ denotes element-wise multiplication.
-\begin{figure}[!tpb]%figure4
-    \centerline{\includegraphics[width=86mm]{temporalmodule.png}}
-    \caption{The architecture of temporal domain method in AttCRISPR. 
-    The input of the method is embedding sgRNA sequence, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
-    }\label{fig:04}
-\end{figure}
 Spatial attention matrix $A_s$ formally conforms to our proposed definition of first-order preference (each element of $X_{oh}$ is multiplied by the corresponding element of $A_s$), 
 in other word, element of $A_s$ reveal how important the corresponding elements in $X_{oh}$ is. 
 We think it can reveal the preference of the scoring function at each position. 
@@ -273,12 +270,6 @@ Then take the average of all spatial attention matrix, and the element in the fi
 G typically may have a important contribution at first position within sgRNA sequence. 
 In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
 \subsubsection{Method and attention in temporal domain}
-
-\begin{figure}[!tpb]%figure3
-    \centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
-    \caption{wait2write
-    }\label{fig:03}
-\end{figure}
 As Figure~4\vphantom{\ref{fig:04}} show, temporal domain part of AttCRISPR relies on the recurrent neural network (or its variant). 
 As previously mentioned, we mapping each one-hot vector into a dense real-valued high-dimensional space follow the Equation~(\ref{eq:08}), which generates the embedded matrix $X_e$.
 And we regard $X_{e}$ as a sequential data, or temporal data.
@@ -288,6 +279,7 @@ To be precise, we prefer the architecture of encoder-decoder which has been prov
 Two main differences we have to face are that sgRNA is not a natural language in the traditional sense, and we don't have to translate it to other sequence. 
 To accommodate them, the embedded matrix $X_e$ is used as input of both the encoder and decoder, and the sequence of decoder is to build the first-order preference of sgRNA sequence $\tilde{A}$. 
 As mentioned above, the predicted value $y$ should satisfy Equation~(\ref{eq:05}). 
+
 On this basis, we apply the idea of attention mechanism which has been widely used in natural language processing tasks to AttCRISPR in the method of temporal domain, 
 and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective,bahdanau2014neural}.
 As the idea of \citeauthor{vaswani2017attention}, Temporal Attention Module satisfies the following equation
@@ -296,6 +288,7 @@ Attention(Q,K,V)=align(Q,K)V\label{eq:13}
 \end{equation}
 where the $align(\cdot)$ is put forward by \citeauthor{luong2015effective}. 
 $Q$, $K$, $V$ are queries, keys and values matrix accordingly in the paper of \citeauthor{vaswani2017attention}. 
+
 As Figure~5\vphantom{\ref{fig:05}} show, in our attention module they are calculated by the following equation
 \begin{equation}
 \left\{\begin{matrix}
@@ -329,29 +322,124 @@ Further, if we think of the values matrix as a vector form of the first-order pr
 \end{equation}
 according to above, values matrix $V$ comes from the hidden states of a bidirectional GRU networks, which is usually hard to understand and explain.
 While $B$ is the second-order preference matrix obtained by the attention mechanism, in our belief, the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal the effect of the base at position $j$ on position $i$ in the biological sense. 
+\begin{figure}[!tpb]%figure4
+    \centerline{\includegraphics[width=86mm]{temporalmodule.png}}
+    \caption{The architecture of temporal domain method in AttCRISPR. 
+    The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. 
+    Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module.
+    Next, the temporal attention module generates the first-order preference $\tilde{A}$, a $21\times e$ matrix (or a vector set). 
+    Each of the row vectors in matrix $\tilde{A}$ represents the base preference of sgRNA at the corresponding position, we use their dot product with the corresponding row vector in embedded $X_e$ to build the score of corresponding position. 
+    Hence, a full connection layer is used to weighted average them and achieve the temporal output $y_t$.
+    }\label{fig:04}
+\centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
+\caption{        
+    Details of temporal attention module. 
+    To generate the first order preference vector in the $i$ position of sgRNA $\tilde{A}_i$. 
+    First, the $i$-th row vector of the querys matrix $Q_i$ is multiplied by the transpose of the keys mateix $K^T$, and apply a softmax function to obtain a preliminary weights vector on the values. 
+    Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation~(\ref{eq:17}) has shown. 
+    $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). 
+    Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde{A}$ come from the product of $B$ and values matrix $V$.
+    Although it's not shown above, it is also worth noting that, a full connection layer with L2 constraints is used to generates a transformation matrix in order to ensure $\tilde{A}_i$ and ${X_e} _i$ are in the same vector space. 
+    Temporal attention module generates the temporal first-order preference matrix $\tilde{A}$ and the temporal second-order preference matrix $B$.
+    }\label{fig:05}
+\end{figure}
+
 \subsubsection{Model ensemble following stacking strategy}
 
-Text
+As \citeauthor{wang2019optimized,Li2016ProteinSS,Wang2016ProteinSS} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
+It's worth noting that in the work of \citeauthor{wang2019optimized}, hand-crafted biological features didn't be normalized. 
+Since the wide range of data distribution, we believe it makes sense to normalize it, and we preprocess they based on the standard score (Z-Score).
+
+Then we use a simple full connection network to extract the indirect features, and call the output of fully connection network $y_{bio}$. 
+As mentioned above, we assume that method in spatial domain and in temporal domain are heterogeneous, which can satisfy the diversity premise of ensemble learning.
+That's why we follow the stacking strategy, integrate the methods in time domain and space domain. 
+Specifically, the $y_{bio}$, the spatial output $y_{s}$ and the temporal output $y_{t}$ we got earlier are concatenated and then weighted averaging is performed through a full connection layer as follow
+\begin{equation}
+y=W[y_{bio};y_s;y_t]\label{eq:20}
+\end{equation}
+where, $y$ is the final prediction value of AttCRISPR, $W$ is the weight learned by the full connection network. 
+In the actual implementation, we freeze the network in the spatial domain and temporal domain at first, in order to make our network focused on learning the weight $W$.
+Later in the process, in the fine tuning of AttCRISPR, the parameters of the entire network are adjusted.
 
 \subsection{Datasets and current prediction method}
 
-text
+The dataset we used for training, validation and testing is built by \citeauthor{wang2019optimized} \citep{wang2019optimized}. 
+We extracted 55604, 58617, 56888 sgRNAs with activity (represented by insertion/deletion (indel)) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively, from its source data. 
+As far as we know, the best performance on this dataset is the DeepHF of \citeauthor{wang2019optimized} currently, which base on deep learning and bidirectional LSTM architecture. 
+DeepHF achieved Spearman correlation coefficients of 0.867, 0.862 and 0.860 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. 
+
+Another tool worth noting is CRISPRpred(SEQ), which is based on conventional machine learning and need complicated human feature engineering exercise \citep{MuhammadRafid2020}. 
+They also test their tool with this dataset and achieved Spearman correlation coefficients of 0.838, 0.830 and 0.821 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively (without any hyperparameter tuning).
+
+\citeauthor{wang2019optimized} implemente a tenfold shuffled validation to evaluate the stability of the performance of DeepHF.
+To be more specific, each set is shuffled and divided into three parts, 76.5\%, 15\% and 8.5\% of the relevant data was used as the training, test and validation set respectively in a single experiment. 
+The experiment is repeated ten times with the results recorded and averaged finally.
+In order to make the comparison apples to apples, we will follow this strategy to design experiments.
 
 \subsection{Experiments}
 
-text
+Two different sets of experiments are carried out in our work. 
+The first one is designed for ablation analysis of AttCRISPR. 
+We compare the performance of end2end method (without any hand-crafted biological features) in both spatial and temporal domain. 
+Furthermore, we test the ensemble method based on the same strategy, which proved that the ensemble of method in both spatial and temporal domain can significantly improve the performance. 
+
+The second experiment is designed to compare the performance of AttCRISPR and other current prediction method. 
+In order to make the comparison apples to apples, we reduce the dimensionality of the same hand-crafted biological features as DeepHF's, 
+which has been shown to enhance the predictability of a deep-learning model greatly, with a multilayer perceptron. 
+Then follow the Equation~(\ref{eq:20}) to achieve the final prediction value. 
+AttCRISPR (with the hand-crafted biological features) performs better on all three data sets than DeepHF, the current state-of-the-art. 
+
+\begin{table}[!tpb]
+    \processtable{The methods compared in our work and brief description of these methods\label{Tab:01}} 
+    {\begin{tabular}{@{}lllp{3.5cm}l@{}}\toprule
+        Method & Neural & End2end & Description\\\midrule
+        CNN$^*$ & Yes & Yes & Naive convolutional neural network\\
+        RNN$^*$ & Yes & Yes & Bidirectional long short-term memory neural network\\
+        XGBoost$^*$ & No & Yes & Extreme Gradient Boosting regression tree\\
+        MLP$^*$ & Yes & Yes & Multilayer perceptron\\
+        DeepHF$^*$ & Yes & No & Bidirectional long short-term memory neural network (with hand-crafted biological features)\\
+        CRISPRpred(SEQ)$^{\#}$ & No & No & A conventional machine learning pipeline\\
+        SpAC & Yes & Yes & Spatial AttCRISPR\\
+        TAC & Yes & Yes & Temporal AttCRISPR\\
+        EnAC & Yes & Yes & Ensemble AttCRISPR (without hand-crafted biological features)\\
+        StAC & Yes & No & Standard AttCRISPR\\
+        \botrule
+    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: The method with superscript of $^*$ and $^{\#}$ is reported by \citeauthor{wang2019optimized} and \citeauthor{MuhammadRafid2020} respectively. 
+We use the conclusion of corresponding paper as the performance indicators of the model directly. 
+Specially, CRISPRpred(SEQ) take another set of hand-crafted sequence-based feature to improve performance.}
+\end{table}
+
+Our baselines have a comprehensive coverage of the methods tested in these datasets. 
+In Table~\ref{Tab:01}, we annotate some properties of these baselines (is/isn't neural models, is/isn't end2end models)
+All the experiments were carried out in Python 3.6 using Keras 2.2.4 and one GeForce RTX 2080Ti Super was used for training and testing if needed. 
 
 \section{Results}
 
+We designed experiments to address the following questions:
+\begin{itemize}
+    \item 
+    Whether the stacking of method in spatial domain and temporal domain can get better performance then use these method alone? 
+    $\rightarrow$ Section~\ref{section:stacking}
+    \item 
+    How does AttCRISPR perform compared to current state-of-the-art methods, covering both conventional machine learning and deep-learning models? 
+    $\rightarrow$ Section~\ref{section:comparison}
+    \item 
+    How can researcher understand the decisions make by AttCRISPR locally and globally, based on attention mechanisms? 
+    $\rightarrow$ Section~\ref{section:interpretability}
+    \vspace*{1pt}
+\end{itemize}
+
+\subsection{Model building and stacking}\label{section:stacking}
+
 Text
 
-\enlargethispage{6pt}
+\subsection{Comparison to current methods}\label{section:comparison}
 
 Text
 
-\subsection{Test1}
+\subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
 
-Text Text  Text
+Text
 
 \section{Discussion}
 
@@ -359,27 +447,17 @@ Text
 
 \section{Conclusion}
 
-(Table~\ref{Tab:01}) Text Text Text Text Text Text  Text Text Text
-Text Text Text Text Text Text  Text Text Text Text Text Text.
+Text
 
 \section*{Acknowledgements}
 
 Text
-\begin{table}[!t]
-    \processtable{This is table caption\label{Tab:01}} {\begin{tabular}{@{}llll@{}}\toprule head1 &
-    head2 & head3 & head4\\\midrule
-    row1 & row1 & row1 & row1\\
-    row2 & row2 & row2 & row2\\
-    row3 & row3 & row3 & row3\\
-    row4 & row4 & row4 & row4\\\botrule
-    \end{tabular}}{This is a footnote}
-\end{table}
     
 \vspace*{-12pt}
 
 \section*{Funding}
 
-This work has beenText  Text Text.\vspace*{-12pt}
+ text.\vspace*{-12pt}
 
 \bibliographystyle{natbib}
 %\bibliographystyle{achemnat}

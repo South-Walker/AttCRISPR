@@ -80,6 +80,12 @@ Kleinstiver, B.~P., Pattanayak, V., Prew, M.~S., Tsai, S.~Q., Nguyen, N.~T.,
   off-target effects.
 \newblock {\em Nature\/}, {\bf 529}(7587), 490--495.
 
+\bibitem[Li and Yu(2016)Li and Yu]{Li2016ProteinSS}
+Li, Z. and Yu, Y. (2016).
+\newblock Protein secondary structure prediction using cascaded convolutional
+  and recurrent neural networks.
+\newblock {\em ArXiv\/}, {\bf abs/1604.07176}.
+
 \bibitem[Liang {\em et~al.}(2015)Liang, Xu, Zhang, Ding, Huang, Zhang, Lv, Xie,
   Chen, Li, {\em et~al.}]{liang2015crispr/cas9-mediated}
 Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
@@ -182,6 +188,12 @@ Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
 \newblock Optimized crispr guide rna design for two high-fidelity cas9 variants
   by deep learning.
 \newblock {\em Nature Communications\/}, {\bf 10}(1), 4284--4284.
+
+\bibitem[Wang {\em et~al.}(2016)Wang, Peng, Ma, and Xu]{Wang2016ProteinSS}
+Wang, S., Peng, J., Ma, J., and Xu, J. (2016).
+\newblock Protein secondary structure prediction using deep convolutional
+  neural fields.
+\newblock {\em Scientific Reports\/}, {\bf 6}.
 
 \bibitem[Wang {\em et~al.}(2014)Wang, Wei, Sabatini, and
   Lander]{wang2014genetic}

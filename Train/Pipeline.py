@@ -40,4 +40,4 @@ def Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuning=False
                 cnn_trainable=True,rnn_trainable=True,load_weight=True)
     return r
 if __name__ == "__main__":
-    Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuning=True) 
+    Pipeline(pretrainCNN=False,pretrainRNN=False,ensemble=True,fineTuning=False) 
