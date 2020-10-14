@@ -1,3 +1,14 @@
-看时具体的实验描述（架构，代号，优化器，调优方法）
+\item 
+如何基于注意力机制，在局部与全局的角度上理解AttCRISPR做出的决策 （ ）
+\vspace*{1pt}
+\end{itemize}
 
-Our baselines have a comprehensive coverage of the methods tested in these datasets. In (Table~\ref{Tab:01}), 我们标注了这些baselines的一些性质（with/without neural models, with/without hand-crafted feature）
+3.3
+注意力机制带来的可解释性
+bringing insight to the design of high-activity sgRNA 
+3.3.1
+空间注意力机制带来的全局可解释性
+
+3.3.2
+时间注意力机制带来的局部可解释性
+一阶

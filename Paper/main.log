@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  12 OCT 2020 20:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  14 OCT 2020 16:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -550,83 +550,169 @@ Package pdftex.def Info: temporalmodule.png  used on input line 326.
 <temporalattentionmodule.png, id=48, 479.54156pt x 187.45032pt>
 File: temporalattentionmodule.png Graphic file (type png)
 <use temporalattentionmodule.png>
-Package pdftex.def Info: temporalattentionmodule.png  used on input line 336.
+Package pdftex.def Info: temporalattentionmodule.png  used on input line 334.
 (pdftex.def)             Requested size: 244.6937pt x 95.64987pt.
+
+
+LaTeX Warning: Float too large for page by 54.04523pt on input line 345.
+
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[5 <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalmodule.png>]
-Underfull \hbox (badness 2591) in paragraph at lines 395--396
-[]\LY1/ptm/m/n/8 In Table 1[], we annotate some properties of these baselines
- []
+[5 <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalmodule.png> <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalattentionmodule.png>]
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 407.
 
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 409.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 409.
+(Font)              size <7> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 409.
+(Font)              size <5> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 409.
+(Font)              size <7> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 409.
+(Font)              size <5> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 409.
+(Font)              size <7> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 409.
+(Font)              size <5> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 409.
+(Font)              size <7> substituted on input line 407.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 409.
+(Font)              size <5> substituted on input line 407.
 
 
-LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
-(Font)              using `LY1/phb/m/n' instead on input line 409.
-
-
-Overfull \hbox (12.0pt too wide) in paragraph at lines 409--409
-[]$[]$ 
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/ptm/m/n/7.5 Naive convolutional neural
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/ptm/m/n/7.5 Bidirectional long short-term
+ []
 
- (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/ptm/m/n/7.5 Extreme Gradient Boosting
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/ptm/m/n/7.5 Bidirectional long short-term
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 407--407
+\LY1/ptm/m/n/7.5 memory neural network (with
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 407--407
+[]|\LY1/ptm/m/n/7.5 Ensemble AttCRISPR (without
+ []
+
+
+LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
+(Font)              using `LY1/phb/m/n' instead on input line 407.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/phb/m/n/7.5 Naive convolutional neural
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/phb/m/n/7.5 Bidirectional long short-term
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/phb/m/n/7.5 Extreme Gradient Boosting
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--407
+[]|\LY1/phb/m/n/7.5 Bidirectional long short-term
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 407--407
+\LY1/phb/m/n/7.5 memory neural network (with
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 407--407
+[]|\LY1/phb/m/n/7.5 Ensemble AttCRISPR (without
+ []
+
+(c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[6 <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalattentionmodule.png>])
-Extra height:10.0pt when 343.0pt
+[6])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:0.0pt when 344.0pt
+Extra height:20.0pt when 329.5pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(2)Left:344.0pt Right:344.0pt Output:344.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:20.0pt when 330.5pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:20.0pt when 331.5pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:20.0pt when 332.5pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:20.0pt when 333.5pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:0.0pt when 334.5pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+(2)Left:334.5pt Right:326.0pt Output:334.5pt
 - LAST -
 Extra skip:0.0pt
-Left:344.0pt
-Right:344.0pt
-Output:344.0pt
+Left:334.5pt
+Right:326.0pt
+Output:334.5pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -647,15 +733,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3663 strings out of 480608
- 46004 string characters out of 5907536
- 307397 words of memory out of 5000000
- 19476 multiletter control sequences out of 15000+600000
+ 3666 strings out of 480608
+ 46068 string characters out of 5907536
+ 305986 words of memory out of 5000000
+ 19479 multiletter control sequences out of 15000+600000
  592296 words of font info for 128 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,12n,35p,1476b,318s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (7 pages, 435860 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (7 pages, 437210 bytes).
 PDF statistics:
  136 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream
