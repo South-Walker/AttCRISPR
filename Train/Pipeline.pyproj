@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{376d6d5c-bf87-4115-8776-0ed0d7ef7522}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GetModelAttention.py</StartupFile>
+    <StartupFile>Validation.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,8 +23,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ESPConst.py" />
-    <Compile Include="Faker.py" />
     <Compile Include="HyperParametersSearch.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="testModule.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrainRNN.py">
@@ -50,6 +52,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TestH5.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WTConst.py">

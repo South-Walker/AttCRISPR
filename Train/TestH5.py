@@ -8,7 +8,7 @@ def get_score_at_test(model,input,label,issave=True,savepath=None):
     return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2)
 
 from ParamsUtil import *
-data = Read_Data()
+data = ReadData()
 from keras.models import load_model
 model = load_model('WTBestCNN.h5')
 print(get_score_at_test(model,

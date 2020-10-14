@@ -37,7 +37,7 @@ def model(params):
                  outputs=[output],name='cnn')
     return model
 
-def train(params,train_input,train_label,validate_input,validate_label,test_input,test_label):
+def train(params,train_input,train_label,test_input,test_label,issave=True):
     result = Result()
     m = model(params)
     batch_size = params['train_batch_size']
@@ -48,19 +48,21 @@ def train(params,train_input,train_label,validate_input,validate_label,test_inpu
     batch_end_callback = LambdaCallback(on_epoch_end=
                                         lambda batch,logs: 
                                         print(get_score_at_test(m,test_input,result,test_label,
-                                                                issave=True,savepath=params['cnn_save_file'])))
+                                                                issave=issave,savepath=params['cnn_save_file'])))
 
     m.fit(train_input,train_label,
           batch_size=batch_size,
           epochs=epochs,
           verbose=2,
-          validation_data=([validate_input],validate_label), 
+          validation_split=0.1,
           callbacks=[batch_end_callback])
     return {'loss': -1*result.Best, 'status': STATUS_OK}
 if __name__ == "__main__":
     import ParamsUtil
     from ParamsUtil import *
-    data = Read_Data()
+    dataset = 'WT'
+    data = ReadData(dataset)
+    params = GetParams(dataset)
     input = data['input']
     label = data['label']
     input_train_onehot,input_train_biofeat,y_train = AddNoise(input['train']['onehot'],input['train']['biofeat'],

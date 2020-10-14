@@ -2,8 +2,16 @@ import math
 import numpy as np
 import pandas as pd
 
-from WTConst import Params as params
-
+def GetParams(dataset):
+    if dataset == 'WT':
+        from WTConst import Params as params
+    elif dataset == 'ESP':
+        from ESPConst import Params as params
+    elif dataset == 'SP':
+        from SPConst import Params as params
+    else:
+        raise Exception('No this dataset!')
+    return params
 import os
 #os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 from sklearn.model_selection import train_test_split
@@ -20,30 +28,59 @@ def ZScore(biofeat):
         for j in range(len(biofeat)):
             biofeat[j][i] = (biofeat[j][i]-avg) / sigma
 
+#### the same as method of Wang et al. ####
+def load_data_kf(X,X_biofeat,y):
+    from sklearn.model_selection import ShuffleSplit
+    train_test_data = []
+    kf = ShuffleSplit(n_splits=10, test_size=0.15, random_state=33)
+    for train_index, test_index in kf.split(X):
+        X_train, X_train_biofeat, X_test, X_test_biofeat = X[train_index],X_biofeat[train_index], X[test_index],X_biofeat[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+        
+        train_test_data.append((X_train,X_train_biofeat,X_test,X_test_biofeat,y_train,y_test))
+    return train_test_data
+def ReadValidationData(dataset):
+    params = GetParams(dataset)
+    pkl = open(params['data_file'],'rb')
+    x_onehot = pickle.load(pkl)
+    x_biofeat = pickle.load(pkl)
+    ZScore(x_biofeat)
+    label = pickle.load(pkl)
+    x_seq = pickle.load(pkl)
+    dataslist = load_data_kf(x_onehot,x_biofeat,label)
+    datas = []
+    for d in dataslist:
+        data = {'input':
+                {'train':{'onehot':d[0],'biofeat':d[1]},
+                 'test':{'onehot':d[2],'biofeat':d[3]}
+                },
+                'label':
+                {'train':d[4],
+                'test':d[5]
+                }
+                }
+        datas.append(data)
+    return datas
 def SplitData(onehot,biofeat,label):    
     random_state=40
     test_size = 0.15
     validate_size = 0.1
-    x_train_validate_onehot, x_test_onehot, y_train_validate, y_test = train_test_split(onehot, label, test_size=test_size, random_state=random_state)
-    x_train_validate_biofeat, x_test_biofeat, _, _ = train_test_split(biofeat, label, test_size=test_size, random_state=random_state)
-    
-    x_train_onehot, x_validate_onehot, y_train, y_validate = train_test_split(x_train_validate_onehot, y_train_validate, test_size=validate_size, random_state=random_state)
-    x_train_biofeat, x_validate_biofeat, _, _ = train_test_split(x_train_validate_biofeat, y_train_validate, test_size=validate_size, random_state=random_state)
+    x_train_onehot, x_test_onehot, y_train, y_test = train_test_split(onehot, label, test_size=test_size, random_state=random_state)
+    x_train_biofeat, x_test_biofeat, _, _ = train_test_split(biofeat, label, test_size=test_size, random_state=random_state)
     data = {'input':
             {'train':{'onehot':x_train_onehot,'biofeat':x_train_biofeat},
-             'validate':{'onehot':x_validate_onehot,'biofeat':x_validate_biofeat},
              'test':{'onehot':x_test_onehot,'biofeat':x_test_biofeat}
              },
             'label':
             {'train':y_train,
-             'validate':y_validate,
              'test':y_test
              }
             }
     return data
 
 import pickle
-def Read_Data():
+def ReadData(dataset):
+    params = GetParams(dataset)
     pkl = open(params['data_file'],'rb')
     x_onehot = pickle.load(pkl)
     x_biofeat = pickle.load(pkl)
