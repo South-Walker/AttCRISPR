@@ -24,8 +24,8 @@ If you want to train the standard AttCRISPR from scratch one way is to run as fo
 ```bash
 python AttCRISPRDemo.py WT
 ```
-where WT can be replaced by ESP and SP, which means using the corresponding data set. 
-This work will take a lots of time, and that why we suggest you to custom your own script and run it in parallel 
+where WT can be replaced by ESP and SP, which means using the corresponding data set (wild-type SpCas9, enhanced SpCas9 and Cas9-High Fidelity, respectively). 
+This work will take a lots of time, and that why we suggest you to custom your own script and run it in parallel. 
 
 ### Main files and directorys description
 * [Train/TrainCNN.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/TrainCNN.py) and 
@@ -38,4 +38,6 @@ contain the code of the complete pipeline of training the standard AttCRISPR.
 * [Train/WTConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/WTConst.py), 
 [Train/ESPConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/ESPConst.py) and 
 [Train/SPConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/SPConst.py), 
-the detailed parameters of the corresponding dataset
+the detailed parameters of the corresponding dataset.
+* [Validation.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/Validation.py) contain the code of validation.
+* [Util](https://github.com/South-Walker/AttCRISPR/tree/master/Util) Tools to separate source data into different pkl.
