@@ -19,7 +19,23 @@ The required software/packages are:
 * pandas=1.1.0
 * hyperopt
 
-### Files description
+### Demo
+If you want to train the standard AttCRISPR from scratch one way is to run as follow
+```bash
+python AttCRISPRDemo.py WT
+```
+where WT can be replaced by ESP and SP, which means using the corresponding data set. 
+This work will take a lots of time, and that why we suggest you to custom your own script and run it in parallel 
+
+### Main files and directorys description
 * [Train/TrainCNN.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/TrainCNN.py) and 
 [Train/TrainRNN.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/TrainRNN.py), 
 contain the code of the model's architecture in spatial and temporal domain respectively.
+* [Train/Ensemble.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/Ensemble.py) 
+contain the code of the ensemble model of spatial and temporal (with/without hand-crafted biological features).
+* [Train/Pipeline.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/Pipeline.py) 
+contain the code of the complete pipeline of training the standard AttCRISPR.  
+* [Train/WTConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/WTConst.py), 
+[Train/ESPConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/ESPConst.py) and 
+[Train/SPConst.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/SPConst.py), 
+the detailed parameters of the corresponding dataset
