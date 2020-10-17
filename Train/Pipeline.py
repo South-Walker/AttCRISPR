@@ -32,4 +32,4 @@ def Pipeline(dataset,pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuni
                 cnn_trainable=True,rnn_trainable=True,load_weight=True)
     return r
 if __name__ == "__main__":
-    Pipeline('WT',pretrainCNN=False,pretrainRNN=False,ensemble=True,fineTuning=False) 
+    Pipeline('WT',pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuning=True) 

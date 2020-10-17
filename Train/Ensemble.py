@@ -36,13 +36,16 @@ def model(params,withbiofeature=True,cnn_trainable=False,rnn_trainable=False,loa
     if load_weight:
         model.load_weights(params['ensemble_load_file']) 
     return model
+    if load_weight:
+        model.load_weights(params['ensemble_load_file']) 
+    return model
 
 def train(params,
           train_input,train_biofeat,train_label,
-          test_input,test_biofeat,test_label,
+          test_input,test_biofeat,test_label,withbiofeature,
           cnn_trainable=False,rnn_trainable=False,load_weight=False,issave=True):
     result = Result()
-    m = model(params,
+    m = model(params,withbiofeature=withbiofeature,
               cnn_trainable=cnn_trainable,rnn_trainable=rnn_trainable,load_weight=load_weight)
     batch_size = params['train_batch_size']
     learningrate = params['train_base_learning_rate']

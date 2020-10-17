@@ -8,11 +8,18 @@ def get_score_at_test(model,input,label,issave=True,savepath=None):
     return 'MES:' + str(mse),'Spearman:' + str(spearmanr) , 'r2:' + str(r2)
 
 from ParamsUtil import *
-data = ReadData()
+
+dataset = 'WT'
+datas = ReadValidationData(dataset)
 from keras.models import load_model
-model = load_model('WTBestCNN.h5')
-print(get_score_at_test(model,
-                        data['input']['test']['onehot'],data['label']['test']))
-model = load_model('WTBestRNN.h5')
-print(get_score_at_test(model,
-                        data['input']['test']['onehot'],data['label']['test']))
+params = GetParams(dataset)
+filename = params['CNNParams']['cnn_save_file']
+time=0
+for data in datas:
+    time+=1
+    model = load_model('WTBestCNN.h5'+'_'+str(time))
+    print(get_score_at_test(model,
+                            data['input']['test']['onehot'],data['label']['test']))
+    #model = load_model('WTBestRNN.h5')
+    #print(get_score_at_test(model,
+                        #data['input']['test']['onehot'],data['label']['test']))

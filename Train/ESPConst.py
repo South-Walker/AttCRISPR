@@ -13,7 +13,7 @@ CNNParams = {
 from keras.optimizers import *
 RNNParams = {
     'train_batch_size':128,
-    'train_epochs_num':2000,
+    'train_epochs_num':1000,
     'train_base_learning_rate':0.0001,
     'optimizer':Adamax,
     'rnn_save_file':'ESPBestRNN.h5',
@@ -22,16 +22,17 @@ RNNParams = {
     'rnn_last_activation':'linear',
     'rnn_last_use_bias':True,
     'rnn_use_context_state':True,
-    'rnn_unit_num':200
+    'rnn_unit_num':200,
+    'rnn_last_dropout':0.40
     }
 
 EnsembleParams = {
     'cnn_load_file':'ESPBestCNN.h5',
     'rnn_load_file':'ESPBestRNN.h5',
     'ensemble_save_file':'ESPEnsemble.h5',
-    'train_batch_size':16,
-    'train_epochs_num':75,
-    'train_base_learning_rate':0.00002,
+    'train_batch_size':128,
+    'train_epochs_num':20,
+    'train_base_learning_rate':0.00005,
     'bio_fc_hidden_layer_num':1,
     'bio_fc_hidden_layer_units_num':87,
     'bio_fc_dropout':0.05

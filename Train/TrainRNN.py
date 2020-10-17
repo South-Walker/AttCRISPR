@@ -93,7 +93,7 @@ def model(params):
     
     rnn_embedded = score
     #magic
-    rnn_embedded = Dropout(rate=0.05)(rnn_embedded)
+    rnn_embedded = Dropout(rate=params['rnn_last_dropout'])(rnn_embedded)
     output = Dense(units=1,kernel_regularizer=keras.regularizers.l2(0.001),kernel_constraint=keras.constraints.NonNeg(),
                    name='temporal_score',activation=params['rnn_last_activation'],
                    use_bias=params['rnn_last_use_bias'])(rnn_embedded)
