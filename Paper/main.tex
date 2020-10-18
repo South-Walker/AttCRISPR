@@ -414,11 +414,14 @@ In Table~\ref{Tab:01}, we annotate some properties of these baselines (is/isn't 
 All the experiments were carried out in Python 3.6 using Keras 2.2.4 and one GeForce RTX 2080Ti Super was used for training and testing if needed. 
 
 \section{Results}
-
+\begin{figure*}[!tpb]%figure4
+    \centerline{\includegraphics[width=178mm]{baselinewithoutbiofeat.eps}}
+    \caption{wait2write}\label{fig:06}
+    \end{figure*}
 We designed experiments to address the following questions:
 \begin{itemize}
     \item 
-    Whether the stacking of method in spatial domain and temporal domain can get better performance then use these method alone? 
+    In the absence of hand-crafted biological features, whether the stacking of method in spatial domain and temporal domain can get better performance then use these method alone? 
     $\rightarrow$ Section~\ref{section:stacking}
     \item 
     How does AttCRISPR perform compared to current state-of-the-art methods, covering both conventional machine learning and deep-learning models? 
@@ -432,6 +435,21 @@ We designed experiments to address the following questions:
 \subsection{Model building and stacking}\label{section:stacking}
 
 Text
+\begin{table}[!tpb]
+    \processtable{wait2write\label{Tab:02}} 
+    {\begin{tabular}{@{}llll@{}}\toprule
+        Method & WT-SpCas9 & eSpCas9(1.1) & SpCas9-HF1\\\midrule
+        XGBoost & 0.845 & 0.831 & 0.818\\
+        MLP & 0.842 & 0.846 & 0.844\\
+        CNN & 0.846 & 0.831 & 0.834\\
+        RNN & 0.856 & 0.849 & 0.851\\
+        TAC & 0.857 & 0.844 & 0.851\\
+        SpAC & 0.862 & 0.854 & 0.857\\
+        \textbf{EnAC} & \textbf{0.868} & \textbf{0.859} & \textbf{0.862}\\
+        CRISPRpred(SEQ) & 0.838 & 0.830 & 0.821\\
+        \botrule
+    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: wait2write}
+\end{table}
 
 \subsection{Comparison to current methods}\label{section:comparison}
 

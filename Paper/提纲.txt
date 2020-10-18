@@ -1,7 +1,7 @@
-\item 
-如何基于注意力机制，在局部与全局的角度上理解AttCRISPR做出的决策 （ ）
-\vspace*{1pt}
-\end{itemize}
+3.1
+在表2中，我们罗列了the stacking of method 及单独的method in spatial domain and temporal domain的表现，时间域AttCRISPR在前述3个数据集上的测试得到的斯皮尔曼相关系数为0.857、0.844、0.851，空间域AttCRISPR对应的为0.862，0.854，0.857，而集成的AttCRISPR对应的为0.868，0.859，0.862， 正如图6（a-c）中所示，the stacking of method in both 时间域与空间域,能够比单独使用单一方法获得更好的性能. 除此之外，在表2中，其他的一些不使用hand-crafted biological features的方法也被记录（使用对应文献中报导的值），可以发现，目前已知被报导的不使用手制特征的方法中，表现最优秀的是xxx等人提出的RNN方法(按照我们的分类可以归为时间域方法), with Spearman correlation coefficients of 0.856,0.849, 0.851. 显然集成的AttCRISPR更为优秀，分别在斯皮尔曼相关系数上提高了0.012，0.010，0.011.因此，在下一部分中，我们将基于等式15，使用hand-crafted biological features来提高AttCRISPR的性能，并将其与当前最先进的方法DeepHF进行比较。
+
+3.2
 
 3.3
 注意力机制带来的可解释性
