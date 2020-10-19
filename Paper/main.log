@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  18 OCT 2020 22:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  19 OCT 2020 09:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -657,11 +657,11 @@ Underfull \hbox (badness 1142) in paragraph at lines 407--407
  []
 
 Package epstopdf Info: Source file: <baselinewithoutbiofeat.eps>
-(epstopdf)                    date: 2020-10-18 14:17:41
-(epstopdf)                    size: 443805 bytes
+(epstopdf)                    date: 2020-10-18 16:36:17
+(epstopdf)                    size: 441558 bytes
 (epstopdf)             Output file: <baselinewithoutbiofeat-eps-converted-to.pdf>
-(epstopdf)                    date: 2020-10-18 14:18:21
-(epstopdf)                    size: 138151 bytes
+(epstopdf)                    date: 2020-10-19 09:31:12
+(epstopdf)                    size: 129591 bytes
 (epstopdf)             Command: <repstopdf --outfile=baselinewithoutbiofeat-eps-converted-to.pdf baselinewithoutbiofeat.eps>
 (epstopdf)             \includegraphics on input line 418.
 Package epstopdf Info: Output file is already uptodate.
@@ -679,9 +679,6 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
@@ -689,39 +686,46 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [7 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithoutbiofeat-eps-converted-to.pdf>])
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 302.5pt
+Extra height:10.0pt when 316.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 303.5pt
+Extra height:10.0pt when 317.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 304.5pt
+Extra height:10.0pt when 318.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 305.5pt
+Extra height:10.0pt when 319.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 306.5pt
+Extra height:10.0pt when 320.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:0.0pt when 307.5pt
+Extra height:10.0pt when 321.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(2)Left:307.5pt Right:299.0pt Output:307.5pt
+Extra height:10.0pt when 322.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 323.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 324.0pt
+Extra height:0.0pt when 325.0pt
+(2)Left:325.0pt Right:308.0pt Output:325.0pt
 - LAST -
 Extra skip:0.0pt
-Left:307.5pt
-Right:299.0pt
-Output:307.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+Left:325.0pt
+Right:308.0pt
+Output:325.0pt
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
@@ -741,13 +745,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  3675 strings out of 480608
  46366 string characters out of 5907536
- 302902 words of memory out of 5000000
+ 304527 words of memory out of 5000000
  19487 multiletter control sequences out of 15000+600000
  593427 words of font info for 129 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 39i,12n,35p,1476b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,12n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (8 pages, 572431 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (8 pages, 564146 bytes).
 PDF statistics:
  204 PDF objects out of 1000 (max. 8388607)
  106 compressed objects within 2 object streams
