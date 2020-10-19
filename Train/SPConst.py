@@ -29,11 +29,11 @@ EnsembleParams = {
     'cnn_load_file':'SPBestCNN.h5',
     'rnn_load_file':'SPBestRNN.h5',
     'ensemble_save_file':'SPEnsemble.h5',
-    'train_batch_size':16,
-    'train_epochs_num':10,
-    'train_base_learning_rate':0.00002,
-    'bio_fc_hidden_layer_num':1,
-    'bio_fc_hidden_layer_units_num':87,
+    'train_batch_size':128,
+    'train_epochs_num':20,
+    'train_base_learning_rate':0.00005,
+    'bio_fc_hidden_layer_num':2,
+    'bio_fc_hidden_layer_units_num':150,
     'bio_fc_dropout':0.05
     }
 FineTuning = {
@@ -41,11 +41,11 @@ FineTuning = {
     'rnn_load_file':'SPBestRNN.h5',
     'ensemble_load_file':'SPEnsemble.h5',
     'ensemble_save_file':'SPFineTuning.h5',
-    'train_batch_size':16,
-    'train_epochs_num':300,
+    'train_batch_size':128,
+    'train_epochs_num':100,
     'train_base_learning_rate':0.00002,
-    'bio_fc_hidden_layer_num':1,
-    'bio_fc_hidden_layer_units_num':87,
+    'bio_fc_hidden_layer_num':2,
+    'bio_fc_hidden_layer_units_num':150,
     'bio_fc_dropout':0.05
     }
 ParamsRanges = {

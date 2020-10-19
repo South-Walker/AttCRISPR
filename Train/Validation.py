@@ -78,7 +78,38 @@ def ValidateEnsemble(dataset,withbiofeature=False,validateall=True,validateat=0)
              withbiofeature=withbiofeature)
         result.append(r['loss'])
         print(result)
+
+def ValidateFineTuning(dataset,validateall=True,validateat=0):
+    datas = ReadValidationData(dataset)
+    result = []
+    time = 0
+    params = GetParams(dataset)
+    cnnfilename = params['FineTuning']['cnn_load_file']
+    rnnfilename = params['FineTuning']['rnn_load_file']
+    ensemblefilename = params['FineTuning']['ensemble_load_file']
+    finetuningfilename = params['FineTuning']['ensemble_save_file']
+    for data in datas:
+        time += 1
+        if not validateall:
+            if validateat > time:
+                continue
+            elif validateat < time:
+                break
+        input = data['input']
+        label = data['label']
+        params['FineTuning']['cnn_load_file'] = cnnfilename+'_'+str(time)
+        params['FineTuning']['rnn_load_file'] = rnnfilename+'_'+str(time)
+        params['FineTuning']['ensemble_load_file'] = ensemblefilename+'_'+str(time)
+        params['FineTuning']['ensemble_save_file'] = finetuningfilename+'_'+str(time)
+        r = None
+        r = Ensemble(params['FineTuning'],input['train']['onehot'],input['train']['biofeat'],label['train'],
+             input['test']['onehot'],input['test']['biofeat'],label['test'],issave=True,
+             withbiofeature=True,rnn_trainable=True,cnn_trainable=True)
+        result.append(r['loss'])
+        print(result)
 if __name__ == "__main__":
     #ValidateRNN('ESP',validateall=False,validateat=1)
     #ValidateCNN('ESP',validateall=True)
-    ValidateEnsemble('WT',withbiofeature=False,validateall=True)
+    #ValidateEnsemble('WT',withbiofeature=False,validateall=True)
+    #ValidateEnsemble('WT',withbiofeature=True,validateall=True)
+    ValidateFineTuning('WT',validateall=True,validateat=0)
