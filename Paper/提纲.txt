@@ -1,8 +1,3 @@
-3.1
-In Table~\ref{Tab:02}, we list the performance of methods in spatial or temporal domain and the stacking of methods. Temporal AttCRISPR, TAC for short, achieved Spearman correlation coefficients of 0.857, 0.844, 0.851 in above three dataset. Spatial AttCRISPR, SpAC for short, corresponds to 0.862, 0.854, 0.857. In the absence of hand-crafted biological features. Ensemble AttCRISPR achieve the best performance of our knowledge, corresponds to 0.868, 0.859, 0.862. 
-In addition, in Table~\ref{Tab:02}, the performance of other methods without using hand-crafted biological features, are also recorded. 可以发现，目前已知被报导的不使用手制特征的方法中，表现最优秀的是xxx等人提出的RNN方法(按照我们的分类可以归为时间域方法), with Spearman correlation coefficients of 0.856,0.849, 0.851. 显然集成的AttCRISPR更为优秀.
-
-As Figure~1\vphantom{\ref{fig:01}} show正如图6（a-c）中所示，the stacking of method in both 时间域与空间域is the most predictive,能够比单独使用单一方法获得更好的性能. 因此，在下一部分中，我们将基于等式15，使用hand-crafted biological features来提高AttCRISPR的性能，并将其与当前最先进的方法DeepHF进行比较。
 
 3.2
 
@@ -15,3 +10,8 @@ bringing insight to the design of high-activity sgRNA
 3.3.2
 时间注意力机制带来的局部可解释性
 一阶
+
+
+
+讨论
+同样使用了手制特征进行增强，AttCRISPR增强的幅度没有DeepHF大（写数值），这可能是因为
