@@ -1,6 +1,8 @@
+fig7
+
 
 3.2
-
+As shown in Table~\ref{Tab:03}, in the absence of hand-crafted biological features, AttCRISPR has significant advantages over DeepHF in predictability. Further, integration with the hand-crafted biological features can also improve the performance of AttCRISPR, and achieve Spearman correlation coefficients of 0.872, 0.867 and 0.867 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. Meanwhile, current state-of-the-art method, DeepHF achieve 0.867, 0.862 and 0.860 respectively. After integrating with biological features, the performance gap between AttCRISPR and DeepHF is shortened, while AttCRISPR still has better performance. In addition, we also compare the standard deviation of data obtained in ten test, which are shown in Table~\ref{Tab:03}. 它似乎揭示了AttCRISPR相较于DeepHF具有很好的stability
 3.3
 注意力机制带来的可解释性
 bringing insight to the design of high-activity sgRNA 

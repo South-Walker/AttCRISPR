@@ -68,6 +68,8 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmr8y.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmr8y.tfm
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/natbib.sty
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/natbib.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux
@@ -221,6 +223,15 @@ INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithoutbiofeat-eps-converte
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithoutbiofeat-eps-converted-to.pdf
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithoutbiofeat-eps-converted-to.pdf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmb8y.tfm
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat.eps
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat.eps
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat.eps
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat.eps
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf
+INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmri8y.tfm
@@ -234,6 +245,7 @@ INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
+INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb

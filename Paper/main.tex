@@ -1,5 +1,6 @@
 \documentclass{bioinfo}
 \copyrightyear{2020} \pubyear{2020}
+\usepackage{booktabs}
 
 \access{Advance Access Publication Date: Day Month Year}
 \appnotes{Manuscript Category}
@@ -405,7 +406,6 @@ AttCRISPR (with the hand-crafted biological features) performs better on all thr
         StAC & Yes & No & Standard AttCRISPR\\
         \botrule
     \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: The method with superscript of $^*$ and $^{\#}$ is reported by \citeauthor{wang2019optimized} and \citeauthor{MuhammadRafid2020} respectively. 
-We use the conclusion of corresponding paper as the performance indicators of the model directly. 
 Specially, CRISPRpred(SEQ) take another set of hand-crafted sequence-based feature to improve performance.}
 \end{table}
 
@@ -414,10 +414,14 @@ In Table~\ref{Tab:01}, we annotate some properties of these baselines (is/isn't 
 All the experiments were carried out in Python 3.6 using Keras 2.2.4 and one GeForce RTX 2080Ti Super was used for training and testing if needed. 
 
 \section{Results}
-\begin{figure*}[!tpb]%figure4
-    \centerline{\includegraphics[width=178mm]{baselinewithoutbiofeat.eps}}
-    \caption{wait2write}\label{fig:06}
-    \end{figure*}
+\begin{figure}[!tpb]%figure4
+    \centerline{\includegraphics[width=86mm]{baselinewithoutbiofeat.eps}}
+    \caption{In the absence of hand-crafted biological features, performance of different algorithms for sgRNA activity prediction. 
+    (a)-(c) The performance of Temporal AttCRISPR, Spatial AttCRISPR and Ensemble AttCRISPR. 
+    The half-violin plots show the mean and distribution of the Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests. 
+    (e)-(g) In the absence of hand-crafted biological features, the performance of all prediction methods in these datasets as far as we know. 
+    The $mean \pm s.d.$ of the Spearman correlation coefficient between predicted and measured sgRNA activity scores are shown in the bar plots.}\label{fig:06}
+\end{figure}
 We designed experiments to address the following questions:
 \begin{itemize}
     \item 
@@ -442,30 +446,59 @@ Ensemble AttCRISPR achieve the best performance of our knowledge, corresponds to
 In addition, in Table~\ref{Tab:02}, the performance of other methods without using hand-crafted biological features, are also recorded. 
 Regardless of the method we developed, RNN reported by \citeauthor{wang2019optimized}, which can be categorized as the method in temporal domain, 
 is the most predictive with Spearman correlation coefficients of 0.856, 0.849, 0.851. 
-It's obvious that the ensemble AttCRISPR is better at prediction (Figure~6\vphantom{\ref{fig:06}}a-c). 
+It's obvious that the ensemble AttCRISPR is better at prediction (Figure~6\vphantom{\ref{fig:06}} a-c). 
 Furthermore, the prediction ability of models could be boosted by addition of other hand-crafted biological features, which can't be obtained directly by sequence information. 
 
 Hence, the second experiment is designed to compare the performance of standard AttCRISPR (hand-crafted biological features are used to improve performance of ensemble AttCRISPR)
  and current state-of-the-art method, DeepHF (the RNN mentioned above integrated with hand-crafted biological features).
 \begin{table}[!tpb]
-    \processtable{wait2write\label{Tab:02}} 
-    {\begin{tabular}{@{}llll@{}}\toprule
+    \processtable{
+    Performance comparisons for different methods in the absence of hand-crafted biological features 
+    (take Spearman correlation coefficient as evaluation index)\label{Tab:02}} 
+    {\begin{tabular}{@{}lccc@{}}\toprule
         Method & WT-SpCas9 & eSpCas9(1.1) & SpCas9-HF1\\\midrule
-        XGBoost & 0.845 & 0.831 & 0.818\\
-        MLP & 0.842 & 0.846 & 0.844\\
-        CNN & 0.846 & 0.831 & 0.834\\
-        RNN & 0.856 & 0.849 & 0.851\\
+        XGBoost$^*$ & 0.845 & 0.831 & 0.818\\
+        MLP$^*$ & 0.842 & 0.846 & 0.844\\
+        CNN$^*$ & 0.846 & 0.831 & 0.834\\
+        RNN$^*$ & 0.856 & 0.849 & 0.851\\
         TAC & 0.857 & 0.844 & 0.851\\
         SpAC & 0.862 & 0.854 & 0.857\\
-        \textbf{EnAC} & \textbf{0.868} & \textbf{0.859} & \textbf{0.862}\\
-        CRISPRpred(SEQ) & 0.838 & 0.830 & 0.821\\
+        EnAC & \textbf{0.868} & \textbf{0.859} & \textbf{0.862}\\
+        CRISPRpred(SEQ)$^{\#}$ & 0.838 & 0.830 & 0.821\\
         \botrule
-    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: wait2write}
+    \end{tabular}}{}
+    \processtable{
+    Performance comparisons for methods before and after integrating with hand-crafted biological features
+(take Spearman correlation coefficient as evaluation index)\label{Tab:03}} 
+    {\begin{tabular}{lcccccc}\toprule
+        & \multicolumn{2}{c}{WT-SpCas9} & \multicolumn{2}{c}{eSpCas9(1.1)} & \multicolumn{2}{c}{SpCas9-HF} \\ 
+        \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \noalign{\smallskip} 
+        Method & Mean  & \begin{tabular}[c]{@{}l@{}}Std Dev\\ ($\times 10^{-3}$)\end{tabular} & Mean & \begin{tabular}[c]{@{}l@{}}Std Dev\\ ($\times 10^{-3}$)\end{tabular} & Mean & \begin{tabular}[c]{@{}l@{}}Std Dev\\ ($\times 10^{-3}$)\end{tabular} \\ \hline
+        RNN$^*$ & 0.856 & 3.33 & 0.849 & 5.00 & 0.851 & 4.11 \\
+        EnAC   & 0.868 & 2.66 & 0.859 & 4.66 & 0.862 & 3.19 \\
+        DeepHF$^*$ & 0.867 & \textbf{2.37} & 0.862 & 4.24 & 0.860 & 3.21 \\
+        StAC   & \textbf{0.872} & 2.55 & \textbf{0.867} & \textbf{3.71} & \textbf{0.867} & \textbf{2.65} \\
+     \botrule
+\end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: 
+The method with superscript of $^*$ and $^{\#}$ is reported by \citeauthor{wang2019optimized} and \citeauthor{MuhammadRafid2020} respectively. 
+In the tables, we use the results reported in the relevant paper as the performance of the method directly.}
 \end{table}
 
 \subsection{Comparison to current methods}\label{section:comparison}
 
-text
+In order to make the comparison apples to apples, 
+we follow Equation~(\ref{eq:20}) to modify the ensemble method and design the control experiment using the same strategy to validate the conclusion that integrating with hand-crafted biological features can improve the predictive performance of methods. 
+What's more, we compare the standard AttCRISPR and current state-of-the-art method, DeepHF, and show the results in Table~\ref{Tab:03}. 
+
+As shown in Table~\ref{Tab:03}, in the absence of hand-crafted biological features, AttCRISPR has significant advantages over DeepHF in predictability. 
+Further, integration with the hand-crafted biological features can also improve the performance of AttCRISPR, and achieve Spearman correlation coefficients of 0.872, 0.867 and 0.867 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1 respectively. Meanwhile, current state-of-the-art method, DeepHF achieve 0.867, 0.862 and 0.860 respectively. 
+After integrating with biological features, the performance gap between AttCRISPR and DeepHF is shortened, while AttCRISPR still has better performance. In addition, we also compare the standard deviation of data obtained in ten tests, which are shown in Table~\ref{Tab:03}. 
+It reveal that AttCRISPR is more stable than DeepHF.
+
+\begin{figure}[!tpb]%figure4
+    \centerline{\includegraphics[width=86mm]{baselinewithbiofeat.eps}}
+    \caption{wait2write}\label{fig:07}
+\end{figure}
 
 \subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
 
@@ -481,22 +514,13 @@ Text
 
 \section*{Acknowledgements}
 
-Text
-    
-\vspace*{-12pt}
+Text\vspace*{-12pt}
 
 \section*{Funding}
 
  text.\vspace*{-12pt}
 
 \bibliographystyle{natbib}
-%\bibliographystyle{achemnat}
-%\bibliographystyle{plainnat}
-%\bibliographystyle{abbrv}
-%\bibliographystyle{bioinformatics}
-%
-%\bibliographystyle{plain}
-%
 \bibliography{document}
 
 \end{document}
