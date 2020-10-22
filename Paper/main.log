@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 OCT 2020 19:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 OCT 2020 20:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -732,53 +732,20 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [7 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf>])
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:20.0pt when 284.5pt
+Extra height:10.0pt when 298.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+Extra height:0.0pt when 299.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:20.0pt when 285.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:20.0pt when 286.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:20.0pt when 287.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:20.0pt when 288.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:0.0pt when 289.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(2)Left:289.5pt Right:281.0pt Output:289.5pt
+(2)Left:299.0pt Right:299.0pt Output:299.0pt
 - LAST -
 Extra skip:0.0pt
-Left:289.5pt
-Right:281.0pt
-Output:289.5pt
+Left:299.0pt
+Right:299.0pt
+Output:299.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -801,13 +768,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  3739 strings out of 480608
  47378 string characters out of 5907536
- 302102 words of memory out of 5000000
+ 303630 words of memory out of 5000000
  19546 multiletter control sequences out of 15000+600000
  593427 words of font info for 129 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,19n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (8 pages, 603857 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (8 pages, 604030 bytes).
 PDF statistics:
  270 PDF objects out of 1000 (max. 8388607)
  121 compressed objects within 2 object streams
