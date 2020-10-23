@@ -507,13 +507,27 @@ The box plot show the mean and distribution of Spearman correlation coefficient 
 
 \subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
 
-Text
+To some extent, the attention module in the AttCRISPR can help us to understand the decisions it makes. 
+In the following sections, we will analyze the insight into activity of sgRNA bring through the attention mechanism at both global and local levels. 
+
+In the following content, when we use the word, global, we are referring to rules thats are common throughout the data set. 
+If assumed the method with strong generalization ability, it might mean that these rules is common in the corresponding Cas9 system.
+On the other hand, local refers to the rules applicable to a certain sgRNA. 
+We believe that the locally interpretable is very helpful in the design and optimization of sgRNA.
 \begin{figure*}[!tpb]%figure4
     \centerline{\includegraphics[width=178mm]{spatialattention.eps}}
-    \caption{
-        wait2write
-    }\label{fig:06}
+    \caption{wait2write}\label{fig:06}
 \end{figure*}
+
+\subsubsection{Globally interpretable}
+
+At global level, a important question we want AttCRISPR to answer is which nucleotide it prefers at each position on the sequence. 
+In fact, \citeauthor{wang2019optimized} has already answered this question in detail with the DeepSHAP method.
+Leaving aside nucleotides, just consider the importance of each position, the method of \citeauthor{Liu2019} goes some way to answering this question. 
+
+\subsubsection{Locally interpretable}
+
+Text
 
 \section{Discussion}
 

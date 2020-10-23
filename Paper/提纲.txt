@@ -1,6 +1,4 @@
-AttCRISPR架构中的注意力模块可以在一定层面上帮助我们理解其决策. 在下文中我们将在全局与局部两个级别分析 the insight to the design of high-activity sgRNA bring by the 注意力机制。 
-3.3.1
-在接下来的内容中，当我们提到全局时，指的是在整个数据集中通用的规律，在承认模型具有强泛化能力时，这也意味着这一规律是在对应的Cas9系统中通用的。在全局层次，我们想让AttCRISPR回答我们的问题是，在某个位置上，它更喜欢哪种核苷酸？实际上，关于整个问题，wang et al 已经使用DeepSHAP方法做了详细的解答（若不考虑核苷酸，仅仅分析碱基重要性plot的方法也很有借鉴意义）。而在我们的工作中，不需要其余的事后解释技术，只需要分析空间注意力模块产生的first-order preference即可（不使用时间注意力模块是因为时间域AttCRISPR产生的first-order preference是向量形式的，这会给我们的理解带来困难）。具体而言，我们将数据集中的每个sgRNA输入到空间域的AttCRISPR中，为了获取空间注意力模块的输出并取均值，结果经过ZScore正则化后，得到最终的first-order preference矩阵，如图8所示
+而在我们的工作中，不需要其余的事后解释技术，只需要分析空间注意力模块产生的first-order preference即可（不使用时间注意力模块是因为时间域AttCRISPR产生的first-order preference是向量形式的，这会给我们的理解带来困难）。具体而言，我们将数据集中的每个sgRNA输入到空间域的AttCRISPR中，为了获取空间注意力模块的输出并取均值，结果经过ZScore正则化后，得到最终的first-order preference矩阵，如图8所示
 图8中结果的结果与wang等人基本一致，都捕捉到了。。。。。。，这在一定程度上也说明了在sgRNA活性预测问题上，注意力机制可以给模型带来可解释性。
 
 
