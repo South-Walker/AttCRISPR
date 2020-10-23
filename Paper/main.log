@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  21 OCT 2020 20:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  23 OCT 2020 15:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -328,7 +328,11 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count197
 \l__pdf_internal_box=\box52
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux
+
+LaTeX Warning: Label `fig:06' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -726,26 +730,28 @@ Package pdftex.def Info: baselinewithbiofeat-eps-converted-to.pdf  used on input
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+Package epstopdf Info: Source file: <spatialattention.eps>
+(epstopdf)                    date: 2020-10-23 15:34:23
+(epstopdf)                    size: 432333 bytes
+(epstopdf)             Output file: <spatialattention-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-10-23 15:38:29
+(epstopdf)                    size: 164664 bytes
+(epstopdf)             Command: <repstopdf --outfile=spatialattention-eps-converted-to.pdf spatialattention.eps>
+(epstopdf)             \includegraphics on input line 512.
+Package epstopdf Info: Output file is already uptodate.
+<spatialattention-eps-converted-to.pdf, id=124, 506.89375pt x 483.8075pt>
+File: spatialattention-eps-converted-to.pdf Graphic file (type pdf)
+<use spatialattention-eps-converted-to.pdf>
+Package pdftex.def Info: spatialattention-eps-converted-to.pdf  used on input line 512.
+(pdftex.def)             Requested size: 506.45905pt x 483.40767pt.
  (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[7 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf>])
-Extra height:10.0pt when 298.0pt
-
+[7 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:0.0pt when 299.0pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(2)Left:299.0pt Right:299.0pt Output:299.0pt
-- LAST -
-Extra skip:0.0pt
-Left:299.0pt
-Right:299.0pt
-Output:299.0pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -754,7 +760,55 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[8
+[8 <c:/Users/50683/Desktop/AttCRISPR/Paper/spatialattention-eps-converted-to.pdf>])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 163.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 164.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 165.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 166.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 167.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 168.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 169.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 170.0pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:10.0pt when 171.0pt
+Extra height:0.0pt when 172.0pt
+(2)Left:172.0pt Right:155.0pt Output:172.0pt
+- LAST -
+Extra skip:0.0pt
+Left:172.0pt
+Right:155.0pt
+Output:172.0pt
+
+Overfull \hbox (252.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[9
 
 ] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
 
@@ -764,20 +818,23 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 3739 strings out of 480608
- 47378 string characters out of 5907536
- 303630 words of memory out of 5000000
- 19546 multiletter control sequences out of 15000+600000
+ 3745 strings out of 480608
+ 47609 string characters out of 5907536
+ 295141 words of memory out of 5000000
+ 19551 multiletter control sequences out of 15000+600000
  593427 words of font info for 129 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 39i,19n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,19n,35p,1476b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (8 pages, 604030 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (9 pages, 764775 bytes).
 PDF statistics:
- 270 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
+ 333 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
