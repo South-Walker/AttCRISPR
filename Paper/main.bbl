@@ -27,6 +27,15 @@ Cong, L., Ran, F.~A., Cox, D.~D., Lin, S., Barretto, R. P.~J., Habib, N., Hsu,
 \newblock Multiplex genome engineering using crispr/cas systems.
 \newblock {\em Science\/}, {\bf 339}(6121), 819--823.
 
+\bibitem[Doench {\em et~al.}(2014)Doench, Hartenian, Graham, Tothova, Hegde,
+  Smith, Sullender, Ebert, Xavier, and Root]{Doench2014}
+Doench, J.~G., Hartenian, E., Graham, D.~B., Tothova, Z., Hegde, M., Smith, I.,
+  Sullender, M., Ebert, B.~L., Xavier, R.~J., and Root, D.~E. (2014).
+\newblock Rational design of highly active sgrnas for crispr-cas9-mediated gene
+  inactivation.
+\newblock {\em Nature biotechnology\/}, {\bf 32}(12), 1262--1267.
+\newblock 25184501[pmid].
+
 \bibitem[Huang {\em et~al.}(2018)Huang, Zhao, Dou, Wen, and
   Chang]{huang2018improving}
 Huang, J., Zhao, W.~X., Dou, H., Wen, J., and Chang, E.~Y. (2018).
@@ -200,6 +209,12 @@ Wang, S., Peng, J., Ma, J., and Xu, J. (2016).
 Wang, T., Wei, J.~J., Sabatini, D.~M., and Lander, E.~S. (2014).
 \newblock Genetic screens in human cells using the crispr/cas9 system.
 \newblock {\em Science\/}, {\bf 343}(6166), 80--84.
+
+\bibitem[Wong {\em et~al.}(2015)Wong, Liu, and Wang]{Wong2015}
+Wong, N., Liu, W., and Wang, X. (2015).
+\newblock Wu-crispr: characteristics of functional guide rnas for the
+  crispr/cas9 system.
+\newblock {\em Genome Biology\/}, {\bf 16}(1), 218.
 
 \bibitem[Woo {\em et~al.}(2018)Woo, Park, Lee, and Kweon]{woo2018cbam:}
 Woo, S., Park, J., Lee, J., and Kweon, I.~S. (2018).

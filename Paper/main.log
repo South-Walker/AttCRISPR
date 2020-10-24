@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  23 OCT 2020 20:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  24 OCT 2020 20:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -328,11 +328,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count197
 \l__pdf_internal_box=\box52
-) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux
-
-LaTeX Warning: Label `fig:06' multiply defined.
-
-)
+) (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -573,7 +569,7 @@ Package pdftex.def Info: temporalmodule.png  used on input line 327.
 <temporalattentionmodule.png, id=48, 479.54156pt x 187.45032pt>
 File: temporalattentionmodule.png Graphic file (type png)
 <use temporalattentionmodule.png>
-Package pdftex.def Info: temporalattentionmodule.png  used on input line 335.
+Package pdftex.def Info: temporalattentionmodule.png  used on input line 337.
 (pdftex.def)             Requested size: 244.6937pt x 95.64987pt.
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
@@ -581,101 +577,101 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [5 <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalmodule.png> <c:/Users/50683/Desktop/AttCRISPR/Paper/temporalattentionmodule.png>]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 408.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 410.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 408.
+(Font)              size <7> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 408.
+(Font)              size <5> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 408.
+(Font)              size <7> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 408.
+(Font)              size <5> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 408.
+(Font)              size <7> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 408.
+(Font)              size <5> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 408.
+(Font)              size <7> substituted on input line 410.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 408.
+(Font)              size <5> substituted on input line 410.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/ptm/m/n/7.5 Naive convolutional neural
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/ptm/m/n/7.5 Bidirectional long short-term
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/ptm/m/n/7.5 Extreme Gradient Boosting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/ptm/m/n/7.5 Bidirectional long short-term
  []
 
 
-Underfull \hbox (badness 2065) in paragraph at lines 408--408
+Underfull \hbox (badness 2065) in paragraph at lines 410--410
 \LY1/ptm/m/n/7.5 memory neural network (with
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 408--408
+Underfull \hbox (badness 1142) in paragraph at lines 410--410
 []|\LY1/ptm/m/n/7.5 Ensemble AttCRISPR (without
  []
 
 
 LaTeX Font Warning: Font shape `LY1/phb/b/n' undefined
-(Font)              using `LY1/phb/m/n' instead on input line 408.
+(Font)              using `LY1/phb/m/n' instead on input line 410.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/phb/m/n/7.5 Naive convolutional neural
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/phb/m/n/7.5 Bidirectional long short-term
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/phb/m/n/7.5 Extreme Gradient Boosting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--408
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 []|\LY1/phb/m/n/7.5 Bidirectional long short-term
  []
 
 
-Underfull \hbox (badness 2065) in paragraph at lines 408--408
+Underfull \hbox (badness 2065) in paragraph at lines 410--410
 \LY1/phb/m/n/7.5 memory neural network (with
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 408--408
+Underfull \hbox (badness 1142) in paragraph at lines 410--410
 []|\LY1/phb/m/n/7.5 Ensemble AttCRISPR (without
  []
 
@@ -686,12 +682,12 @@ Package epstopdf Info: Source file: <baselinewithoutbiofeat.eps>
 (epstopdf)                    date: 2020-10-19 09:31:12
 (epstopdf)                    size: 129591 bytes
 (epstopdf)             Command: <repstopdf --outfile=baselinewithoutbiofeat-eps-converted-to.pdf baselinewithoutbiofeat.eps>
-(epstopdf)             \includegraphics on input line 418.
+(epstopdf)             \includegraphics on input line 420.
 Package epstopdf Info: Output file is already uptodate.
 <baselinewithoutbiofeat-eps-converted-to.pdf, id=55, 506.89375pt x 519.9425pt>
 File: baselinewithoutbiofeat-eps-converted-to.pdf Graphic file (type pdf)
 <use baselinewithoutbiofeat-eps-converted-to.pdf>
-Package pdftex.def Info: baselinewithoutbiofeat-eps-converted-to.pdf  used on input line 418.
+Package pdftex.def Info: baselinewithoutbiofeat-eps-converted-to.pdf  used on input line 420.
 (pdftex.def)             Requested size: 244.6937pt x 250.9897pt.
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
@@ -699,17 +695,17 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [6 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithoutbiofeat-eps-converted-to.pdf>]
-Underfull \hbox (badness 1394) in paragraph at lines 469--469
+Underfull \hbox (badness 1394) in paragraph at lines 471--471
 []\LY1/phb/b/n/7.5 Table 2. Performance comparisons for different methods in
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 482--482
+Underfull \hbox (badness 1205) in paragraph at lines 484--484
 \LY1/phb/b/n/7.5 integrating with hand-crafted biological features (take Spearman
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 493--497
+Underfull \hbox (badness 2310) in paragraph at lines 495--499
 \LY1/ptm/m/n/8 Further, integration with the hand-crafted biological features can
  []
 
@@ -720,12 +716,12 @@ Package epstopdf Info: Source file: <baselinewithbiofeat.eps>
 (epstopdf)                    date: 2020-10-20 22:07:39
 (epstopdf)                    size: 33904 bytes
 (epstopdf)             Command: <repstopdf --outfile=baselinewithbiofeat-eps-converted-to.pdf baselinewithbiofeat.eps>
-(epstopdf)             \includegraphics on input line 499.
+(epstopdf)             \includegraphics on input line 501.
 Package epstopdf Info: Output file is already uptodate.
 <baselinewithbiofeat-eps-converted-to.pdf, id=123, 506.89375pt x 241.90375pt>
 File: baselinewithbiofeat-eps-converted-to.pdf Graphic file (type pdf)
 <use baselinewithbiofeat-eps-converted-to.pdf>
-Package pdftex.def Info: baselinewithbiofeat-eps-converted-to.pdf  used on input line 499.
+Package pdftex.def Info: baselinewithbiofeat-eps-converted-to.pdf  used on input line 501.
 (pdftex.def)             Requested size: 244.6937pt x 116.7732pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -737,14 +733,14 @@ Package epstopdf Info: Source file: <spatialattention.eps>
 (epstopdf)                    date: 2020-10-23 15:38:29
 (epstopdf)                    size: 164664 bytes
 (epstopdf)             Command: <repstopdf --outfile=spatialattention-eps-converted-to.pdf spatialattention.eps>
-(epstopdf)             \includegraphics on input line 518.
+(epstopdf)             \includegraphics on input line 520.
 Package epstopdf Info: Output file is already uptodate.
 <spatialattention-eps-converted-to.pdf, id=124, 506.89375pt x 483.8075pt>
 File: spatialattention-eps-converted-to.pdf Graphic file (type pdf)
 <use spatialattention-eps-converted-to.pdf>
-Package pdftex.def Info: spatialattention-eps-converted-to.pdf  used on input line 518.
+Package pdftex.def Info: spatialattention-eps-converted-to.pdf  used on input line 520.
 (pdftex.def)             Requested size: 506.45905pt x 483.40767pt.
- (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
+
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
@@ -752,10 +748,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [7 <c:/Users/50683/Desktop/AttCRISPR/Paper/baselinewithbiofeat-eps-converted-to.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+ (c:/Users/50683/Desktop/AttCRISPR/Paper/main.bbl
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
@@ -763,40 +756,26 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [8 <c:/Users/50683/Desktop/AttCRISPR/Paper/spatialattention-eps-converted-to.pdf>])
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 266.5pt
+Extra height:10.0pt when 450.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 267.5pt
+Extra height:10.0pt when 451.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 268.5pt
+Extra height:10.0pt when 452.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:10.0pt when 269.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 270.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.0pt when 271.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:0.0pt when 272.5pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(2)Left:272.5pt Right:272.0pt Output:272.5pt
+Extra height:10.0pt when 453.25949pt
+Extra height:0.0pt when 454.25949pt
+(2)Left:454.25949pt Right:453.519pt Output:454.25949pt
 - LAST -
 Extra skip:0.0pt
-Left:272.5pt
-Right:272.0pt
-Output:272.5pt
+Left:454.25949pt
+Right:453.519pt
+Output:454.25949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -805,9 +784,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[9
-
-] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
+[9] (c:/Users/50683/Desktop/AttCRISPR/Paper/main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.75pt have occurred.
@@ -815,20 +792,17 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 3745 strings out of 480608
- 47609 string characters out of 5907536
- 301141 words of memory out of 5000000
- 19551 multiletter control sequences out of 15000+600000
+ 3748 strings out of 480608
+ 47704 string characters out of 5907536
+ 318907 words of memory out of 5000000
+ 19554 multiletter control sequences out of 15000+600000
  593427 words of font info for 129 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,19n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (9 pages, 765743 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (9 pages, 768042 bytes).
 PDF statistics:
  333 PDF objects out of 1000 (max. 8388607)
  135 compressed objects within 2 object streams

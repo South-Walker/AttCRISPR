@@ -7,49 +7,53 @@ Warning--I'm ignoring Liu2019's extra "note" field
 --line 134 of file document.bib
 Warning--I'm ignoring Liu2019's extra "note" field
 --line 135 of file document.bib
+Warning--I'm ignoring Doench2014's extra "note" field
+--line 388 of file document.bib
+Warning--I'm ignoring Doench2014's extra "note" field
+--line 389 of file document.bib
 Warning--empty journal in huang2018improving
 Warning--empty journal in lundberg2017a
 Warning--empty journal in vaswani2017attention
 Warning--empty journal in woo2018cbam:
-You've used 32 entries,
+You've used 34 entries,
             2378 wiz_defined-function locations,
-            708 strings with 10980 characters,
-and the built_in function-call counts, 18598 in all, are:
-= -- 1588
-> -- 1461
+            727 strings with 11513 characters,
+and the built_in function-call counts, 19788 in all, are:
+= -- 1685
+> -- 1559
 < -- 9
-+ -- 452
-- -- 445
-* -- 1911
-:= -- 3311
-add.period$ -- 162
-call.type$ -- 32
-change.case$ -- 196
-chr.to.int$ -- 31
-cite$ -- 36
-duplicate$ -- 673
-empty$ -- 1017
-format.name$ -- 485
-if$ -- 3571
++ -- 482
+- -- 475
+* -- 2041
+:= -- 3527
+add.period$ -- 173
+call.type$ -- 34
+change.case$ -- 208
+chr.to.int$ -- 33
+cite$ -- 38
+duplicate$ -- 713
+empty$ -- 1083
+format.name$ -- 517
+if$ -- 3799
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 32
-newline$ -- 164
-num.names$ -- 128
-pop$ -- 220
+missing$ -- 34
+newline$ -- 175
+num.names$ -- 136
+pop$ -- 231
 preamble$ -- 1
-purify$ -- 196
+purify$ -- 208
 quote$ -- 0
-skip$ -- 444
+skip$ -- 468
 stack$ -- 0
-substring$ -- 1025
-swap$ -- 156
+substring$ -- 1089
+swap$ -- 164
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 288
+type$ -- 306
 warning$ -- 4
-while$ -- 143
+while$ -- 151
 width$ -- 0
-write$ -- 411
-(There were 6 warnings)
+write$ -- 439
+(There were 8 warnings)
