@@ -104,9 +104,9 @@ a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}
 where the weight matrix $B\in\mathbb{R}^{l\times l}$ is learned through attention mechanism. 
 Then the predicted value can be expressed as
 \begin{equation}
-y=\sum_i^lW_i\tilde{A}_i\cdot {X_e}_i\label{eq:05}
+y=W \cdot \tilde{A} {X_e}^{T}\label{eq:05}
 \end{equation}
- where $W\in\mathbb{R}^l$ denotes a non-negative weight vector, $W_i$ denotes the weight of the $i$-th position, ${X_e}_i$ denotes the embedding vector of the nucleotide at $i$-th position.
+ where $W\in\mathbb{R}^l$ denotes a non-negative weight vector. 
  Assume that in Equation~(\ref{eq:04}) the first-order original preference at each position is relatively independent and weight matrix $B$ is independent of any first-order original preference, 
  then the total differential of the first-order preference at $i$-th position $\tilde{A}_i$ could be written as
 \begin{equation}
