@@ -47,19 +47,15 @@ def get_local_temporal_attention(model,index):
     #second = second_layer_model.predict(onehot)
     second = second_layer_model.predict(onehot)
     second = np.mean(second,axis=0)
-    baseline = np.matmul(baseline,second)
+    for j in range(second.shape[1]):
+        sum = 0
+        for i in range(second.shape[0]):
+            sum+=second[i][j]
+        for i in range(second.shape[0]):
+            second[i][j] = second[i][j]/sum
+    np.savetxt(str(index)+'_second.csv',second,fmt='%.5f',delimiter=',')
     np.savetxt(str(index)+'.csv',baseline,fmt='%.5f',delimiter=',')
-    return None
 def get_temporal_attention(model):
-    
-    second_layer_model = Model(
-        inputs=model.inputs[0],outputs=model.get_layer('temporal_attention').output)
-    #second = second_layer_model.predict(onehot)
-    second = second_layer_model.predict(x_attention_onehot)
-    second = np.mean(second,axis=0)
-    scale = np.sum(second)/21
-
-
     last_layer_weight = model.get_layer('temporal_score').get_weights()[0].reshape((-1))
     temporal_layer_model = Model(
         inputs=model.inputs[0], outputs=model.get_layer('score_at_each_position').output)
@@ -67,9 +63,7 @@ def get_temporal_attention(model):
     score_at_each_position = temporal_layer_model.predict(x_attention_onehot)
     baseline = np.mean(score_at_each_position, axis=0)
     baseline = np.multiply(baseline,last_layer_weight)
-    baseline = baseline * scale
     np.savetxt('baseline.csv',baseline,fmt='%.5f',delimiter=',')
-    return None
 def get_spatial_attention(model):
     spatial_layer_model = Model(
         inputs=model.inputs[0], outputs=model.get_layer('spatial_attention_result').output)
@@ -204,8 +198,8 @@ cnnmodeldict = {'WT':'WTBestCNN.h5','ESP':'ESPBestCNN.h5','SP':'SPBestCNN.h5'}
 dataname = 'WT'
 ReadData(dataname)
 rnn_model = load_model('./'+rnnmodeldict[dataname])
-get_local_temporal_attention(rnn_model,7882)
 get_temporal_attention(rnn_model)
+get_local_temporal_attention(rnn_model,7882)
 
 
 cnn_model = load_model('./'+cnnmodeldict[dataname])
