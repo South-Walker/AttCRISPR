@@ -590,11 +590,21 @@ At global level we calculated the scores of all sgRNA, then average the scores a
 }\label{fig:opt}
 \end{figure}
 
-Next,
+The second question we want AttCRISPR to answer is why it give two low scores at position 14 and 16. 
+In practice, we will try to answer this question with second-order preference. 
+Let AttCRISPR output the second-order preference matrix $B$ corresponding to the source sgRNA, and show it in Figure~\ref{fig:heatmap}. 
+It is obvious that a few unusual bright spots appear in the red box in Figure~\ref{fig:heatmap}. 
+We believe that tells us the nucleotide at position 15 has a great effect on the score of position 14 andd 16 (instead of position 13 or 17, which corresponding position are relatively dim in color). 
+As shown in Table~\ref{Tab:optimum}, in source sgRNA there are three consecutive Ts at position 14, 15 and 16, and this may reveal that multiple consecutive Us on sgRNA would leads to low on-target activity of sgRNA, which is consistent with earlier report \citep{wu2014genome-wide}. 
 
 \begin{figure}[!tpb]
     \centerline{\includegraphics[width=86mm]{secondorder.eps}}
-    \caption{wait2write}\label{fig:heatmap}
+    \caption{The visualization of second-order preference matrix $B$, 
+the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde{A}$ at position $i$. 
+The warmer the color, the more important it is. 
+In the red box, a few unusual bright spots appear. 
+To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
+}\label{fig:heatmap}
 \end{figure}
 
 \section{Discussion}
