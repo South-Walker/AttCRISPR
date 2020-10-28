@@ -1,12 +1,17 @@
-
 3.3.2
-局部可解释性
-一阶
+At local level, 我们将研究一个案例（包含三个具有细微差别的sgRNA），并回答两个重要问题。首先，如何基于local interpretability去优化一个sgRNA,使其具有更好的on-target活性。
+其次，模型造成该sgRNA低活的原因是什么。
 
-don't need to exhaustively search for 高活性sgRNA
+关于第一个问题，我们从数据集中挑选了三条sgRNA（如表四所示），我们将其中活性最低的sgRNA（索引为8493，活性标签值为0.831，方便起见，下称原始sgRNA）输入到时间域AttCRISPR中，基于式5（与权重的计算用Hadamard product而不是dot product，从而得到向量结果）得到其在每一位置上的评分，结果如图9所示，可以看出其在14,16位置上的得分显著的低于平均值（实际上6，11位上的得分也值得关注，然而我们并没有在数据库中找到可以对比的sgRNA数据），用C替换其在14位上的T，会得到索引为8491的sgRNA，which在数据库中的活性标签值为0.861，用C替换其在16位上的T，会得到索引为8492的sgRNA，which在数据库中的活性标签值为0.869.由此我们可以认为，AttCRISPR拥有的局部可解释性可以帮助我们优化sgRNA活性without exhaustively search。
+
+接下来，我们要让AttCRISPR回答的第二个问题是为什么它对原始sgRNA的14，16位碱基给出了一个低评分？实际上（具体而言），我们将尝试使用second-order preference来回答这一问题。
+让AttCRISPR输出原始sgRNA的second-order preference matrix $B$, 并可视化如图10. 可以发现，14，16位置对应的红框区有几个反常的光亮，我们认为这说明了14与16位置上的评分在很大程度上受到了15位的影响（而不是13与17位，他们对应的位置相对暗淡）。而原始sgRNA中14，15，16位置是3个连续的T
+
 
 
 讨论
 同样使用了手制特征进行增强，AttCRISPR增强的幅度没有DeepHF大(差距缩短)，这可能是因为
+
+我们有个猜想，用一个3x3卷积沿二阶注意力对角线方向移动，可以找到对模型决策有重要影响的3碱基聚合体
 
 当前架构的AttCRISPR 聚焦于预测conventional sgRNA的活性for SpCas9(??) which 具有PAM 基于NGG。它能被简单扩展到other Cas9 species or variants,乃至脱靶预测任务上

@@ -556,6 +556,29 @@ Some of them are consistent with the conclusion accepted current.
 
 \subsubsection{Local interpretability}
 
+\begin{table}[!tpb]
+    \processtable{Three sgRNA and their activity \label{Tab:optimum}} 
+    {\begin{tabular}{@{}lll@{}}\toprule
+        Index & sgRNA & Activity \\\midrule
+        8493 & ACATGACTTTGGATTTCCCCAGG & 0.831\\
+        8492 & ACATGACTTTGGATTCCCCCAGG & 0.869\\
+        8491 & ACATGACTTTGGACTTCCCCAGG & 0.861\\
+        \botrule
+    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{
+\emph{Index} represents its index in the source data (Supplementary Data 1), 
+\emph{Activity} represents its activity reported in WT-SpCas9 dataset. }
+\end{table}
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm]{local0.eps}}
+    \caption{
+The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
+The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. 
+At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. }\label{fig:opt}
+\end{figure}
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm]{secondorder.eps}}
+    \caption{wait2write}\label{fig:heatmap}
+\end{figure}
 Text
 
 \section{Discussion}
