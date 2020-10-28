@@ -1,12 +1,16 @@
+图10
+》横纵坐标的意义
+》颜色的意义
+》红框的意义
+》红框中有什么
+
 3.3.2
-At local level, 我们将研究一个案例（包含三个具有细微差别的sgRNA），并回答两个重要问题。首先，如何基于local interpretability去优化一个sgRNA,使其具有更好的on-target活性。
-其次，模型造成该sgRNA低活的原因是什么。
-
-关于第一个问题，我们从数据集中挑选了三条sgRNA（如表四所示），我们将其中活性最低的sgRNA（索引为8493，活性标签值为0.831，方便起见，下称原始sgRNA）输入到时间域AttCRISPR中，基于式5（与权重的计算用Hadamard product而不是dot product，从而得到向量结果）得到其在每一位置上的评分，结果如图9所示，可以看出其在14,16位置上的得分显著的低于平均值（实际上6，11位上的得分也值得关注，然而我们并没有在数据库中找到可以对比的sgRNA数据），用C替换其在14位上的T，会得到索引为8491的sgRNA，which在数据库中的活性标签值为0.861，用C替换其在16位上的T，会得到索引为8492的sgRNA，which在数据库中的活性标签值为0.869.由此我们可以认为，AttCRISPR拥有的局部可解释性可以帮助我们优化sgRNA活性without exhaustively search。
-
-接下来，我们要让AttCRISPR回答的第二个问题是为什么它对原始sgRNA的14，16位碱基给出了一个低评分？实际上（具体而言），我们将尝试使用second-order preference来回答这一问题。
-让AttCRISPR输出原始sgRNA的second-order preference matrix $B$, 并可视化如图10. 可以发现，14，16位置对应的红框区有几个反常的光亮，我们认为这说明了14与16位置上的评分在很大程度上受到了15位的影响（而不是13与17位，他们对应的位置相对暗淡）。而原始sgRNA中14，15，16位置是3个连续的T
-
+The second question we want AttCRISPR to answer is why it give two low scores at position 14 and 16? 
+in practice, we will try to answer this question with second-order preference. 
+Let AttCRISPR output the second-order preference matrix $B$ corresponding to the source sgRNA, and show it in Figure~\ref{fig:heatmap}. 
+可以发现，14，16位置对应的红框区有几个反常的光亮，我们认为这说明了14与16位置上的评分在很大程度上受到了15位的影响（而不是13与17位，他们对应的位置相对暗淡）。而原始sgRNA中14，15，16位置是3个连续的Ts, 这可能揭示了sgRNA上多个连续的Ts（或者说Us）leads to low sgRNA 活性，这与等人的发现一致
+Genome-wide binding of the CRISPR endonuclease Cas9 in
+mammalian cells. Nat. Biotechnol. 32, 670–676 (2014).
 
 
 讨论

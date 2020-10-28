@@ -556,6 +556,19 @@ Some of them are consistent with the conclusion accepted current.
 
 \subsubsection{Local interpretability}
 
+At local level, we will analyze a case (consisting of three sgRNAs as Table~\ref{Tab:optimum} show), then answer two imortant question based on the local interpretability. 
+First, how to optimize a sgRNA with local interpretability to make it have more on-target activity. 
+Second, in the eyes of AttCRISPR, what are the reasons for the low activity of the sgRNA. 
+
+For the first question, we input the least-active sgRNA in Table~\ref{Tab:optimum} (with the index of 8493 and the activity of 0.831, call source sgRNA for convenience) into the temporal AttCRISPR. 
+The score of each position is obtained based on Equation~(\ref{eq:05}) (the calculated symbol with $W$ is Hadamard product instead of dot product, in order to achieve the result in vector form), 
+and the results are shown in Figure~\ref{fig:opt}. 
+Acording to Figure~\ref{fig:opt}, scores at position 14 and 16 of source sgRNA are significantly below the base line 
+(in fact, the scores at position 6 and 11 is also noteworthy, however, we don't find sgRNA in the dataset for comparison). 
+If replaced the T at position 14 with C, would generate the same sgRNA as the one with index of 8491, which is with a activity value of 0.861. 
+If replaced the T at position 16 with C, would generate the same sgRNA as the one with index of 8492, which is with a activity value of 0.869. 
+Therefore, we could conclude that the local interpretability is helpful for us to optimize the sgRNA without exhaustively search.
+
 \begin{table}[!tpb]
     \processtable{Three sgRNA and their activity \label{Tab:optimum}} 
     {\begin{tabular}{@{}lll@{}}\toprule
@@ -573,13 +586,16 @@ Some of them are consistent with the conclusion accepted current.
     \caption{
 The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
 The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. 
-At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. }\label{fig:opt}
+At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. 
+}\label{fig:opt}
 \end{figure}
+
+Next,
+
 \begin{figure}[!tpb]
     \centerline{\includegraphics[width=86mm]{secondorder.eps}}
     \caption{wait2write}\label{fig:heatmap}
 \end{figure}
-Text
 
 \section{Discussion}
 
