@@ -129,7 +129,16 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Preference for each position-dependent nucleotide on the sgRNA sequence. (a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRAN. The numbers below indicated the position of the nucleotides on-target DNA. (d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. Each position-dependent nucleotide is a control point. The coordinates of the control points on the vertical axis represent the degree of preference, and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRAN. The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. }}{8}\protected@file@percent }
 \newlabel{fig:spatialattention}{{8}{8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.2}}Local interpretability}{8}\protected@file@percent }
+\newlabel{section:local}{{{{3.3}.2}}{8}}
 \citation{wu2014genome-wide}
+\citation{wang2019optimized}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Three sgRNA and their activity }}{9}\protected@file@percent }
+\newlabel{Tab:optimum}{{4}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. }}{9}\protected@file@percent }
+\newlabel{fig:opt}{{9}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The visualization of second-order preference matrix $B$, the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde  {A}$ at position $i$. The warmer the color, the more important it is. In the red box, a few unusual bright spots appear. To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16. }}{9}\protected@file@percent }
+\newlabel{fig:heatmap}{{10}{9}}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{bahdanau2014neural}{{1}{2014}{{Bahdanau {\em  et~al.}}}{{Bahdanau, Cho, and Bengio}}}
@@ -144,14 +153,6 @@
 \bibcite{kim2018deep}{{10}{2018}{{Kim {\em  et~al.}}}{{Kim, Min, Song, Jung, Choi, Kim, Lee, Yoon, and Kim}}}
 \bibcite{kim2019spcas9}{{11}{2019}{{Kim {\em  et~al.}}}{{Kim, Kim, Lee, Min, Bae, Choi, Park, Jung, Yoon, and Kim}}}
 \bibcite{kleinstiver2016high-fidelity}{{12}{2016}{{Kleinstiver {\em  et~al.}}}{{Kleinstiver, Pattanayak, Prew, Tsai, Nguyen, Zheng, and Joung}}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Three sgRNA and their activity }}{9}\protected@file@percent }
-\newlabel{Tab:optimum}{{4}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. }}{9}\protected@file@percent }
-\newlabel{fig:opt}{{9}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The visualization of second-order preference matrix $B$, the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde  {A}$ at position $i$. The warmer the color, the more important it is. In the red box, a few unusual bright spots appear. To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16. }}{9}\protected@file@percent }
-\newlabel{fig:heatmap}{{10}{9}}
 \bibcite{Li2016ProteinSS}{{13}{2016}{{Li and Yu}}{{Li and Yu}}}
 \bibcite{liang2015crispr/cas9-mediated}{{14}{2015}{{Liang {\em  et~al.}}}{{Liang, Xu, Zhang, Ding, Huang, Zhang, Lv, Xie, Chen, Li, {\em  et~al.}}}}
 \bibcite{lin2018off-target}{{15}{2018}{{Lin and Wong}}{{Lin and Wong}}}
@@ -175,3 +176,4 @@
 \bibcite{wu2014genome-wide}{{33}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{34}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
 \global\@namedef{@lastpage@}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{10}\protected@file@percent }

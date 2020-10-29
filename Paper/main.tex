@@ -554,7 +554,7 @@ The above discussion shows that, in the task of sgRNA activity prediction,
 attention mechanism can help us understand the decision made by AttCRISPR and reveal the insight into activity of sgRNA. 
 Some of them are consistent with the conclusion accepted current. 
 
-\subsubsection{Local interpretability}
+\subsubsection{Local interpretability}\label{section:local}
 
 At local level, we will analyze a case (consisting of three sgRNAs as Table~\ref{Tab:optimum} show), then answer two imortant question based on the local interpretability. 
 First, how to optimize a sgRNA with local interpretability to make it have more on-target activity. 
@@ -609,21 +609,44 @@ To be more specific, the nucleotide at position 15 has a great effect on the fir
 
 \section{Discussion}
 
-Text
+In this article, we have introduced a new prediction methods, called AttCRISPR for the activity of sgRNA. 
+For the first time, we take the ensemble of both spatial and temporal domain to predict the on-target activity of sgRNA. 
+Throught ablation analysis and testing a series of possible network structure, we demonstrate that the ensemble method performs better than other methods on this task. 
+In addition, we apply attention modules in both the spatial and temporal parts of AttCRISPR, 
+and design two experiments combined with some early reports to prove that attention mechanisms can help researcher understand the decisions made by model which make it easy to optimize low activity sgRNA without exhaustively search. 
+
+In Section~\ref{section:stacking}, we have tested both spatial and temporal domain AttCRISPR, and CNN (method in spatial domain), RNN (method in temporal domain) which reported by \citeauthor{wang2019optimized} in the absence of hand-crafted biological features. 
+A worth noticing point is that there is a gap between spatial AttCRISPR and CNN, though the performance of temporal AttCRISPR is basically the same as that of RNN. 
+We suspect there are two possible reasons. 
+One is that attention modules can significantly improve the performance of the model, which is short of experimental validation, 
+and the other is the performance of the method in spatial domain is underestimated. 
+
+In Section~\ref{section:comparison}, also integrating with hand-srafted biological features to improve the predictive performance, the performance gap between AttCRISPR and DeepHF is shortened, while AttCRISPR still has better performance. 
+This may be a natural belief that with the primary biological sequence we can predict the functional and structural information. 
+Therefore, there is a limit to the improvement of the performance by integrating with hand-srafed biological features. 
+
+In Figure~\ref{fig:heatmap} of Section~\ref{section:local}, we note that the brightness at coordinates (14, 15) and (16, 15) exceeds (14, 13) and (16, 17). 
+In other words, there are two unusual bright spots at coordinates (14, 15) and (16, 15). 
+This could explain that the nucleotide trimer at position 14, 15, 16 has a great influence on the decision made by AttCRISPR. 
+We believe that we can use a carefully designed $3\times 3$ convolution kernel, and move it along the diagonal of the second-order preference matrix $B$, 
+in order to find all kind of nucleotide trimer that have a great influence on the decision made by AttCRISPR. 
+However, due to the lack of validation method, we don't implement it in our work. 
+
+The current architecture of AttCRISPR focuses on predicting the on-target activity of conventional sgRNA which have a PAM based on NGG. 
+However it can be extended to other Cas9 species, variants or off-target task easily. 
 
 \section{Conclusion}
 
-Text
-
-\section*{Acknowledgements}
-
-Text
-\vspace*{-12pt}
-
-\section*{Funding}
-
-Text
-\vspace*{-12pt}
+In this paper, all the existing prediction method of sgRNA on-target activity are categorized as encoding-based spatial domain method and embedding-based temporal domain method, 
+according to the processing method of input sgRNA. 
+Then, we develop AttCRISPR, a ensemble method of both spatial method and temporal method follow the stacking strategy with strong interpretability. 
+AttCRISPR prove that the ensemble method have a better performance in the datasets of DeepHF
+and can compete with the current state-of-the-art method. 
+In addition, AttCRISPR apply attention mechanisms in both the temporal and spatial part, 
+and we explain the decisions made by AttCRISPR through the attention module which is consistent with earlier reports. 
+Further, we also point out that the output of the attention module can be used to optimize the low-activity sgRNA without exhaustively search, 
+and our optimization results are verified with available experimental data. 
+To our knowledge, this is the first time that the attentional mechanim is used to reveal the reasons influencing on-target activity of sgRNA, and assist sgRNA design.  
 
 \bibliographystyle{natbib}
 \bibliography{document}

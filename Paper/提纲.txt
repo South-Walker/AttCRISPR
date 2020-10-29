@@ -1,8 +1,2 @@
+结论
 
-
-讨论
-同样使用了手制特征进行增强，AttCRISPR增强的幅度没有DeepHF大(差距缩短)，这可能是因为
-
-我们有个猜想，用一个3x3卷积沿二阶注意力对角线方向移动，可以找到对模型决策有重要影响的3碱基聚合体
-
-当前架构的AttCRISPR 聚焦于预测conventional sgRNA的活性for SpCas9(??) which 具有PAM 基于NGG。它能被简单扩展到other Cas9 species or variants,乃至脱靶预测任务上
