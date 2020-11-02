@@ -1,18 +1,5 @@
 \begin{thebibliography}{}
 
-\bibitem[Bahdanau {\em et~al.}(2014)Bahdanau, Cho, and
-  Bengio]{bahdanau2014neural}
-Bahdanau, D., Cho, K., and Bengio, Y. (2014).
-\newblock Neural machine translation by jointly learning to align and
-  translate.
-\newblock {\em arXiv: Computation and Language\/}.
-
-\bibitem[Chaudhari {\em et~al.}(2019)Chaudhari, Polatkan, Ramanath, and
-  Mithal]{chaudhari2019an}
-Chaudhari, S., Polatkan, G., Ramanath, R., and Mithal, V. (2019).
-\newblock An attentive survey of attention models.
-\newblock {\em arXiv: Learning\/}.
-
 \bibitem[Chuai {\em et~al.}(2018)Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu,
   Chen, Duan, {\em et~al.}]{chuai2018deepcrispr}
 Chuai, G., Ma, H., Yan, J., Chen, M., Hong, N., Xue, D., Zhou, C., Zhu, C.,
@@ -33,15 +20,7 @@ Doench, J.~G., Hartenian, E., Graham, D.~B., Tothova, Z., Hegde, M., Smith, I.,
   Sullender, M., Ebert, B.~L., Xavier, R.~J., and Root, D.~E. (2014).
 \newblock Rational design of highly active sgrnas for crispr-cas9-mediated gene
   inactivation.
-\newblock {\em Nature biotechnology\/}, {\bf 32}(12), 1262--1267.
-\newblock 25184501[pmid].
-
-\bibitem[Huang {\em et~al.}(2018)Huang, Zhao, Dou, Wen, and
-  Chang]{huang2018improving}
-Huang, J., Zhao, W.~X., Dou, H., Wen, J., and Chang, E.~Y. (2018).
-\newblock Improving sequential recommendation with knowledge-enhanced memory
-  networks.
-\newblock pages 505--514.
+\newblock {\em Nat. Biotechnol.}, {\bf 32}(12), 1262--1267.
 
 \bibitem[Ishii(2017)Ishii]{ishii2017reproductive}
 Ishii, T. (2017).
@@ -71,15 +50,15 @@ Kang, X., He, W., Huang, Y., Yu, Q., Chen, Y., Gao, X., Sun, X., and Fan, Y.
 Kim, H.~K., Min, S., Song, M., Jung, S., Choi, J.~W., Kim, Y., Lee, S., Yoon,
   S., and Kim, H. (2018).
 \newblock Deep learning improves prediction of crispr-cpf1 guide rna activity.
-\newblock {\em Nature Biotechnology\/}, {\bf 36}(3), 239--241.
+\newblock {\em Nat. Biotechnol.}, {\bf 36}(3), 239--241.
 
 \bibitem[Kim {\em et~al.}(2019)Kim, Kim, Lee, Min, Bae, Choi, Park, Jung, Yoon,
   and Kim]{kim2019spcas9}
 Kim, H.~K., Kim, Y., Lee, S., Min, S., Bae, J.~Y., Choi, J.~W., Park, J., Jung,
-  D., Yoon, S., and Kim, H. (2019).
-\newblock Spcas9 activity prediction by deepspcas9, a deep learning–based
-  model with high generalization performance.
-\newblock {\em Science Advances\/}, {\bf 5}(11).
+  D., Yoon, S., and Kim, H.~H. (2019).
+\newblock Spcas9 activity prediction by deepspcas9, a deep
+  learning{\textendash}based model with high generalization performance.
+\newblock {\em Sci. Adv.}, {\bf 5}(11).
 
 \bibitem[Kleinstiver {\em et~al.}(2016)Kleinstiver, Pattanayak, Prew, Tsai,
   Nguyen, Zheng, and Joung]{kleinstiver2016high-fidelity}
@@ -89,12 +68,6 @@ Kleinstiver, B.~P., Pattanayak, V., Prew, M.~S., Tsai, S.~Q., Nguyen, N.~T.,
   off-target effects.
 \newblock {\em Nature\/}, {\bf 529}(7587), 490--495.
 
-\bibitem[Li and Yu(2016)Li and Yu]{Li2016ProteinSS}
-Li, Z. and Yu, Y. (2016).
-\newblock Protein secondary structure prediction using cascaded convolutional
-  and recurrent neural networks.
-\newblock {\em ArXiv\/}, {\bf abs/1604.07176}.
-
 \bibitem[Liang {\em et~al.}(2015)Liang, Xu, Zhang, Ding, Huang, Zhang, Lv, Xie,
   Chen, Li, {\em et~al.}]{liang2015crispr/cas9-mediated}
 Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
@@ -103,10 +76,10 @@ Liang, P., Xu, Y., Zhang, X., Ding, C., Huang, R., Zhang, Z., Lv, J., Xie, X.,
 \newblock {\em Protein \& Cell\/}, {\bf 6}(5), 363--372.
 
 \bibitem[Lin and Wong(2018)Lin and Wong]{lin2018off-target}
-Lin, J. and Wong, K. (2018).
-\newblock Off-target predictions in crispr-cas9 gene editing using deep
-  learning.
-\newblock {\em Bioinformatics\/}, {\bf 34}(17).
+Lin, J. and Wong, K.-C. (2018).
+\newblock {Off-target predictions in CRISPR-Cas9 gene editing using deep
+  learning}.
+\newblock {\em Bioinformatics\/}, {\bf 34}(17), i656--i663.
 
 \bibitem[Liu {\em et~al.}(2019a)Liu, Zhang, and Zhang]{liu2019computational}
 Liu, G., Zhang, Y., and Zhang, T. (2019a).
@@ -121,7 +94,6 @@ Liu, Q., He, D., and Xie, L. (2019b).
   crispr-cas system using attention boosted deep learning and network-based
   gene feature.
 \newblock {\em PLoS computational biology\/}, {\bf 15}(10), e1007480--e1007480.
-\newblock 31658261[pmid].
 
 \bibitem[Liu {\em et~al.}(2020)Liu, Cheng, Liu, Li, and Liu]{liu2020deep}
 Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
@@ -129,15 +101,11 @@ Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
   prediction.
 \newblock {\em BMC Bioinformatics\/}, {\bf 21}(1), 51.
 
-\bibitem[Lundberg and Lee(2017)Lundberg and Lee]{lundberg2017a}
-Lundberg, S. and Lee, S. (2017).
-\newblock A unified approach to interpreting model predictions.
-\newblock pages 4768--4777.
-
-\bibitem[Luong {\em et~al.}(2015)Luong, Pham, and Manning]{luong2015effective}
-Luong, M., Pham, H., and Manning, C.~D. (2015).
-\newblock Effective approaches to attention-based neural machine translation.
-\newblock {\em arXiv: Computation and Language\/}.
+\bibitem[{Luong} {\em et~al.}(2015){Luong}, {Pham}, and
+  {Manning}]{luong2015effective}
+{Luong}, M.-T., {Pham}, H., and {Manning}, C.~D. (2015).
+\newblock {Effective Approaches to Attention-based Neural Machine Translation}.
+\newblock {\em arXiv e-prints\/}, page arXiv:1508.04025.
 
 \bibitem[Mali {\em et~al.}(2013)Mali, Yang, Esvelt, Aach, Guell, Dicarlo,
   Norville, and Church]{mali2013rnaguided}
@@ -160,13 +128,6 @@ Rubeis, G. and Steger, F. (2018).
   analysis.
 \newblock {\em Asian Bioethics Review\/}, {\bf 10}(2), 133--141.
 
-\bibitem[Slack {\em et~al.}(2019)Slack, Hilgard, Jia, Singh, and
-  Lakkaraju]{slack2019fooling}
-Slack, D., Hilgard, S., Jia, E., Singh, S., and Lakkaraju, H. (2019).
-\newblock Fooling lime and shap: Adversarial attacks on post hoc explanation
-  methods.
-\newblock {\em arXiv: Learning\/}.
-
 \bibitem[Slaymaker {\em et~al.}(2016)Slaymaker, Gao, Zetsche, Scott, Yan, and
   Zhang]{slaymaker2016rationally}
 Slaymaker, I.~M., Gao, L., Zetsche, B., Scott, D.~A., Yan, W.~X., and Zhang, F.
@@ -181,14 +142,15 @@ Song, M., Kim, H.~K., Lee, S., Kim, Y., Seo, S.-Y., Park, J., Choi, J.~W.,
   and Kim, H.~H. (2020).
 \newblock Sequence-specific prediction of the efficiencies of adenine and
   cytosine base editors.
-\newblock {\em Nature Biotechnology\/}.
+\newblock {\em Nat. Biotechnol.}, {\bf 38}(9), 1037--1043.
 
-\bibitem[Vaswani {\em et~al.}(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
-  Gomez, Kaiser, and Polosukhin]{vaswani2017attention}
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N.,
-  Kaiser, L., and Polosukhin, I. (2017).
-\newblock Attention is all you need.
-\newblock pages 5998--6008.
+\bibitem[{Vaswani} {\em et~al.}(2017){Vaswani}, {Shazeer}, {Parmar},
+  {Uszkoreit}, {Jones}, {Gomez}, {Kaiser}, and
+  {Polosukhin}]{vaswani2017attention}
+{Vaswani}, A., {Shazeer}, N., {Parmar}, N., {Uszkoreit}, J., {Jones}, L.,
+  {Gomez}, A.~N., {Kaiser}, L., and {Polosukhin}, I. (2017).
+\newblock {Attention Is All You Need}.
+\newblock {\em arXiv e-prints\/}, page arXiv:1706.03762.
 
 \bibitem[Wang {\em et~al.}(2019)Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou,
   Shi, Lan, {\em et~al.}]{wang2019optimized}
@@ -196,13 +158,13 @@ Wang, D., Zhang, C., Wang, B., Li, B., Wang, Q., Liu, D., Wang, H., Zhou, Y.,
   Shi, L., Lan, F., {\em et~al.} (2019).
 \newblock Optimized crispr guide rna design for two high-fidelity cas9 variants
   by deep learning.
-\newblock {\em Nature Communications\/}, {\bf 10}(1), 4284--4284.
+\newblock {\em Nat. Communications\/}, {\bf 10}(1), 4284--4284.
 
 \bibitem[Wang {\em et~al.}(2016)Wang, Peng, Ma, and Xu]{Wang2016ProteinSS}
 Wang, S., Peng, J., Ma, J., and Xu, J. (2016).
 \newblock Protein secondary structure prediction using deep convolutional
   neural fields.
-\newblock {\em Scientific Reports\/}, {\bf 6}.
+\newblock {\em Sci. Rep.}, {\bf 6}(1), 18962.
 
 \bibitem[Wang {\em et~al.}(2014)Wang, Wei, Sabatini, and
   Lander]{wang2014genetic}
@@ -218,8 +180,11 @@ Wong, N., Liu, W., and Wang, X. (2015).
 
 \bibitem[Woo {\em et~al.}(2018)Woo, Park, Lee, and Kweon]{woo2018cbam:}
 Woo, S., Park, J., Lee, J., and Kweon, I.~S. (2018).
-\newblock Cbam: Convolutional block attention module.
-\newblock pages 3--19.
+\newblock {CBAM:} convolutional block attention module.
+\newblock In V.~Ferrari, M.~Hebert, C.~Sminchisescu, and Y.~Weiss, editors,
+  {\em Proceedings of the European Conference on Computer Vision (ECCV)
+  2018\/}, volume 11211 of {\em Lecture Notes in Computer Science\/}, pages
+  3--19. Springer.
 
 \bibitem[Wu {\em et~al.}(2014)Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng,
   Trevino, Konermann, Chen, {\em et~al.}]{wu2014genome-wide}
@@ -227,7 +192,7 @@ Wu, X., Scott, D.~A., Kriz, A.~J., Chiu, A.~C., Hsu, P., Dadon, D.~B., Cheng,
   A.~W., Trevino, A.~E., Konermann, S., Chen, S., {\em et~al.} (2014).
 \newblock Genome-wide binding of the crispr endonuclease cas9 in mammalian
   cells.
-\newblock {\em Nature Biotechnology\/}, {\bf 32}(7), 670--676.
+\newblock {\em Nat. Biotechnol.}, {\bf 32}(7), 670--676.
 
 \bibitem[Zhang {\em et~al.}(2020)Zhang, Dai, and Dai]{zhang2020c-rnncrispr:}
 Zhang, G., Dai, Z., and Dai, X. (2020).

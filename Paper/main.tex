@@ -77,10 +77,11 @@ Learning-based method, which designed to predict the on-target activity (or off-
  One regret is that subject to the processing of the input sgRNA sequence, their analysis can not exactly on the nucleotide class. 
  Further, SHAP, one of the most prominent of model explain techniques, has been widely used to understand the decision made by the model. 
  \citeauthor{wang2019optimized} develope DeepHF, a deep learning based model, and use Deep SHAP to revealed nucleotide contributions \citep{wang2019optimized}. 
- Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks \citep{lundberg2017a}. 
+ Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks. 
  In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
- Moreover, recent work indicates that model explain techniques, which based post hoc explanations techniques and input perturbations, could be fooled to generate meaningless explanations instead of reflecting the underlying biases \citep{slack2019fooling}, 
- in other word, they could be unreliable and misleading, even on model with excellent performance. 
+ 
+ wait2write
+ 
  In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position 
  for example, the G adjacent to PAM has a positive effect on sgRNA activity as \citeauthor{wang2019optimized} report, 
  which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation~(\ref{eq:01}) as following
@@ -148,7 +149,7 @@ Deep neural network has shown its power in the study of CRISPR/Cas9 and its impr
     It is worth noting that \citeauthor{zhang2020c-rnncrispr:} adds bidirectional gated recurrent unit (BGRU, in short), a RNN variant, after pooling layer of classic CNN network \citep{zhang2020c-rnncrispr:}. 
     Our explanation is that BGRU assists CNN to extract spatial features in one dimension, under this belief it belong to this category. 
     \item Methods in temporal domain. 
-    Although RNN-based network have been shown effective to improve the performance of the model with temporal sequential input, especially in natural language processing and sequential recommendation\citep{huang2018improving}, 
+    Although RNN-based network have been shown effective to improve the performance of the model with temporal sequential input, especially in natural language processing and sequential recommendation, 
     RNN be not used for gRNA activity prediction, until recently \citep{wang2019optimized,liu2020deep,Liu2019}. 
     They consider the nucleotides(can also dimer or polymer) in the sgRNA sequence as word, and the sgRNA sequence itself as a sentence (from 5' to 3'), then a trainable matrix (could be either supervised or unsupervised) is used to project the word to the dense real-valued space. 
     This technology is called embedding, which generates the base embedding. RNN further encoding the base embedding into a sequence of hidden state vector. 
@@ -159,7 +160,7 @@ Deep neural network has shown its power in the study of CRISPR/Cas9 and its impr
     To summarise, RNN has limited representation power in capturing spatial feature. Furthermore, hidden state vector representation is usually hard to understand and explain.
 \end{enumerate}
 
-Attention mechanism has demonstrated its power in Natural Language Processing, Statistical Learning, Speech and Computer Vision \citep{chaudhari2019an}. 
+Attention mechanism has demonstrated its power in Natural Language Processing, Statistical Learning, Speech and Computer Vision. 
  It makes model tends to focus selectively on parts of the input which is help in performing the task effectively. 
  Previous observation have shown that Cas9 preferentially binds sgRNAs containing purines but not pyrimidines \citep{wang2014genetic} and multiple thymine in the spacer impairing sgRNA activity \citep{wu2014genome-wide}, 
  that is to say some specific nucleotide and base position need more attention compared to others. 
@@ -282,7 +283,7 @@ To accommodate them, the embedded matrix $X_e$ is used as input of both the enco
 As mentioned above, the predicted value $y$ should satisfy Equation~(\ref{eq:05}). 
 
 On this basis, we apply the idea of attention mechanism which has been widely used in natural language processing tasks to AttCRISPR in the method of temporal domain, 
-and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective,bahdanau2014neural}.
+and name it Temporal Attention Module \citep{vaswani2017attention,luong2015effective}.
 As the idea of \citeauthor{vaswani2017attention}, Temporal Attention Module satisfies the following equation
 \begin{equation}
 Attention(Q,K,V)=align(Q,K)V\label{eq:13}
@@ -349,7 +350,7 @@ While $B$ is the second-order preference matrix obtained by the attention mechan
 
 \subsubsection{Model ensemble following stacking strategy}
 
-As \citeauthor{wang2019optimized,Li2016ProteinSS,Wang2016ProteinSS} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
+As \citeauthor{wang2019optimized,Wang2016ProteinSS} have shown, some indirect sgRNA features, which can't be obtained directly by deep learning, including position accessibilities of secondary structure, stem–loop of secondary structure, melting temperature, and GC content are strongly associated with sgRNA activity. 
 It's worth noting that in the work of \citeauthor{wang2019optimized}, hand-crafted biological features didn't be normalized. 
 Since the wide range of data distribution, we believe it makes sense to normalize it, and we preprocess they based on the standard score (Z-Score).
 
