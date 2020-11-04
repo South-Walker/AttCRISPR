@@ -9,11 +9,11 @@
 \citation{ishii2017reproductive}
 \citation{slaymaker2016rationally}
 \citation{kleinstiver2016high-fidelity}
+\newlabel{^_1}{{}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}\protected@file@percent }
 \citation{wang2019optimized}
 \citation{chuai2018deepcrispr}
 \citation{liu2019computational}
-\newlabel{^_1}{{}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}\protected@file@percent }
 \citation{Song2020}
 \citation{kim2018deep}
 \citation{kim2019spcas9}
@@ -23,18 +23,7 @@
 \citation{Liu2019}
 \citation{wang2019optimized}
 \citation{wang2019optimized}
-\citation{wang2019optimized}
-\citation{Liu2019}
-\citation{MuhammadRafid2020}
 \citation{liu2019computational}
-\newlabel{eq:01}{{1}{2}}
-\newlabel{eq:02}{{2}{2}}
-\newlabel{eq:03}{{3}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Two categories of the deep learning models used in sgRNA related task. (a) Model work in spatial domain. In spatial domain, the base sequence is encoded into a binary matrix (or a binary image). Since convolution has great advantages in extracting spatial features, the convolutional neural network is an excellent tool in spatial domain. (b) Model work in temporal domain. In temporal domain, the base sequence (represented by the binary matrix) is embedded into a sequance of high-dimensional vector, in which the recurrent neural network perform better. In addition, we note that the last layers of neural network are usually full connection structure (not necessarily), which greatly increases the difficulty of understanding the decisions of model. }}{2}\protected@file@percent }
-\newlabel{fig:category}{{1}{2}}
-\newlabel{eq:04}{{4}{2}}
-\newlabel{eq:05}{{5}{2}}
-\newlabel{eq:07}{{6}{2}}
 \citation{lin2018off-target}
 \citation{kim2018deep}
 \citation{chuai2018deepcrispr}
@@ -45,6 +34,9 @@
 \citation{Liu2019}
 \citation{Liu2019}
 \citation{Liu2019}
+\newlabel{eq:01}{{1}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Two categories of the deep learning models used in sgRNA related task. (a) Model work in spatial domain. In spatial domain, the base sequence is encoded into a binary matrix (or a binary image). Since convolution has great advantages in extracting spatial features, the convolutional neural network is an excellent tool in spatial domain. (b) Model work in temporal domain. In temporal domain, the base sequence (represented by the binary matrix) is embedded into a sequance of high-dimensional vector, in which the recurrent neural network perform better. In addition, we note that the last layers of neural network are usually full connection structure (not necessarily), which greatly increases the difficulty of understanding the decisions of model. }}{2}\protected@file@percent }
+\newlabel{fig:category}{{1}{2}}
 \citation{wang2014genetic}
 \citation{wu2014genome-wide}
 \citation{Liu2019}
@@ -52,8 +44,12 @@
 \citation{vaswani2017attention}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Materials and methods}{3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.1}}Sequence encoding and embedding}{3}\protected@file@percent }
-\newlabel{eq:08}{{7}{3}}
+\newlabel{eq:08}{{2}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Neural network architecture}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}First-order preference and second-order preference}{3}\protected@file@percent }
+\newlabel{eq:linear}{{3}{3}}
+\newlabel{eq:02}{{4}{3}}
+\newlabel{eq:superlinear}{{5}{3}}
 \citation{woo2018cbam:}
 \citation{cong2013multiplex}
 \citation{jinek2012a}
@@ -67,14 +63,13 @@
 \newlabel{fig:CNN}{{2}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$. Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer. A sigmoid function is used to map the final result to a range of zero to one at last, which generates the spatial first-order preference matrix $A_s$. }}{4}\protected@file@percent }
 \newlabel{fig:spatialmodule}{{3}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.1}}Method and attention in spatial domain}{4}\protected@file@percent }
+\newlabel{eq:04}{{6}{4}}
+\newlabel{eq:05}{{7}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in spatial domain}{4}\protected@file@percent }
 \newlabel{eq:11}{{8}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.2}}Method and attention in temporal domain}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Method and attention in temporal domain}{4}\protected@file@percent }
 \newlabel{eq:13}{{9}{4}}
 \newlabel{eq:14}{{10}{4}}
-\newlabel{eq:16}{{11}{4}}
-\newlabel{eq:17}{{12}{4}}
-\newlabel{eq:18}{{13}{4}}
 \citation{wang2019optimized}
 \citation{Wang2016ProteinSS}
 \citation{wang2019optimized}
@@ -82,28 +77,31 @@
 \citation{wang2019optimized}
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
-\citation{wang2019optimized}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module. Next, the temporal attention module generates the first-order preference $\tilde  {A}$, a $21\times e$ matrix (or a vector set). Each of the row vectors in matrix $\tilde  {A}$ represents the base preference of sgRNA at the corresponding position, we use their dot product with the corresponding row vector in embedded $X_e$ to build the score of corresponding position. Hence, a full connection layer is used to weighted average them and achieve the temporal output $y_t$. }}{5}\protected@file@percent }
-\newlabel{fig:04}{{4}{5}}
+\newlabel{eq:16}{{11}{5}}
+\newlabel{eq:17}{{12}{5}}
+\newlabel{eq:18}{{13}{5}}
 \newlabel{eq:19}{{14}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.3}}Model ensemble following stacking strategy}{5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Details of temporal attention module. To generate the first order preference vector in the $i$ position of sgRNA $\tilde  {A}_i$. First, the $i$-th row vector of the querys matrix $Q_i$ is multiplied by the transpose of the keys mateix $K^T$, and apply a softmax function to obtain a preliminary weights vector on the values. Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation\nobreakspace  {}(12\hbox {}) has shown. $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde  {A}$ come from the product of $B$ and values matrix $V$. Although it's not shown above, it is also worth noting that, a full connection layer with L2 constraints is used to generates a transformation matrix in order to ensure $\tilde  {A}_i$ and ${X_e} _i$ are in the same vector space. Temporal attention module generates the temporal first-order preference matrix $\tilde  {A}$ and the temporal second-order preference matrix $B$. }}{5}\protected@file@percent }
-\newlabel{fig:05}{{5}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.2}.4}}Model ensemble following stacking strategy}{5}\protected@file@percent }
 \newlabel{eq:20}{{15}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Datasets and current prediction method}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The architecture of temporal domain method in AttCRISPR. The input of the method is embedding sgRNA sequence $X_e$, a $21\times e$ embedding matrix, where $e$ is the dimension of a nucleotide embedding vector. Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module. Next, the temporal attention module generates the first-order preference $\tilde  {A}$, a $21\times e$ matrix (or a vector set). Each of the row vectors in matrix $\tilde  {A}$ represents the base preference of sgRNA at the corresponding position, we use their dot product with the corresponding row vector in embedded $X_e$ to build the score of corresponding position. Hence, a full connection layer is used to weighted average them and achieve the temporal output $y_t$. }}{5}\protected@file@percent }
+\newlabel{fig:04}{{4}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Details of temporal attention module. To generate the first order preference vector in the $i$ position of sgRNA $\tilde  {A}_i$. First, the $i$-th row vector of the querys matrix $Q_i$ is multiplied by the transpose of the keys mateix $K^T$, and apply a softmax function to obtain a preliminary weights vector on the values. Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation\nobreakspace  {}(12\hbox {}) has shown. $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde  {A}$ come from the product of $B$ and values matrix $V$. Although it's not shown above, it is also worth noting that, a full connection layer with L2 constraints is used to generates a transformation matrix in order to ensure $\tilde  {A}_i$ and ${X_e} _i$ are in the same vector space. Temporal attention module generates the temporal first-order preference matrix $\tilde  {A}$ and the temporal second-order preference matrix $B$. }}{5}\protected@file@percent }
+\newlabel{fig:05}{{5}{5}}
+\citation{wang2019optimized}
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
 \citation{wang2019optimized}
-\citation{wang2019optimized}
-\citation{MuhammadRafid2020}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The methods compared in our work and brief description of these methods}}{6}\protected@file@percent }
 \newlabel{Tab:baseline}{{1}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiments}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces In the absence of hand-crafted biological features, performance of different algorithms for sgRNA activity prediction. (a)-(c) The performance of Temporal AttCRISPR, Spatial AttCRISPR and Ensemble AttCRISPR. The half-violin plots show the mean and distribution of the Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests. (d)-(f) In the absence of hand-crafted biological features, the performance of all prediction methods in these datasets as far as we know. The $mean \pm s.d.$ of the Spearman correlation coefficient between predicted and measured sgRNA activity scores are shown in the bar plots.}}{6}\protected@file@percent }
 \newlabel{fig:06}{{6}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Model building and stacking}{6}\protected@file@percent }
 \newlabel{section:stacking}{{{3.1}}{6}}
+\citation{wang2019optimized}
+\citation{MuhammadRafid2020}
 \citation{wang2019optimized}
 \citation{Liu2019}
 \citation{wang2014genetic}
@@ -115,10 +113,10 @@
 \newlabel{Tab:withbiofeature}{{3}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Comparison to current methods}{7}\protected@file@percent }
 \newlabel{section:comparison}{{{3.2}}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.3}}Interpretability of the AttCRISPR}{7}\protected@file@percent }
-\newlabel{section:interpretability}{{{3.3}}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Performance comparisons for methods before and after integrating with hand-crafted biological features, where DeepHF is the RNN integrated with hand-crafted biological features, and StAC is the EnAC integrated with hand-crafted biological features. The box plot show the mean and distribution of Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests. }}{7}\protected@file@percent }
 \newlabel{fig:07}{{7}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.3}}Interpretability of the AttCRISPR}{7}\protected@file@percent }
+\newlabel{section:interpretability}{{{3.3}}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.1}}Global interpretability}{7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Preference for each position-dependent nucleotide on the sgRNA sequence. (a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRAN. The numbers below indicated the position of the nucleotides on-target DNA. (d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. Each position-dependent nucleotide is a control point. The coordinates of the control points on the vertical axis represent the degree of preference, and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRAN. The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. }}{8}\protected@file@percent }
 \newlabel{fig:spatialattention}{{8}{8}}
@@ -133,7 +131,6 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{9}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The visualization of second-order preference matrix $B$, the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde  {A}$ at position $i$. The warmer the color, the more important it is. In the red box, a few unusual bright spots appear. To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16. }}{9}\protected@file@percent }
 \newlabel{fig:heatmap}{{10}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}\protected@file@percent }
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{chuai2018deepcrispr}{{1}{2018}{{Chuai {\em  et~al.}}}{{Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu, Chen, Duan, {\em  et~al.}}}}
@@ -165,3 +162,4 @@
 \bibcite{wu2014genome-wide}{{27}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{28}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
 \global\@namedef{@lastpage@}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{10}\protected@file@percent }

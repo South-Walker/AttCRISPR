@@ -172,18 +172,11 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/phvb8y.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/phvro8y.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmri8y.tfm
 INPUT c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmr8y.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmri8y.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmri8y.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/category.png
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/category.png
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/category.png
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/phvb8y.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/phvro8y.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/ly1/ptmb8y.tfm
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/CNNv2.png
 INPUT c:/Users/50683/Desktop/AttCRISPR/Paper/CNNv2.png
@@ -278,7 +271,6 @@ INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb

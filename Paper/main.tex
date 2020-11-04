@@ -10,8 +10,7 @@
 
 \subtitle{Sequence analysis}
 
-\title[short Title]{AttCRISPR : an spacetime interpretable model for on-target activity of sgRNA prediction
-}
+\title[short Title]{AttCRISPR : a spacetime interpretable model for prediction of sgRNA on-target activity}
 \author[Xiao \textit{et~al}.]{Liming Xiao\,$^{\text{\sfb 1}}$, Yunqi Wan\,$^{\text{\sfb 1}}$ and Zhenran Jiang\,$^{\text{\sfb 1,}*}$}
 \address{$^{\text{\sf 1}}$Department of Computer Science \& Technology, East China Normal University, Shanghai, 200062, China.}
 
@@ -22,13 +21,18 @@
 \editor{Associate Editor: XXXXXXX}
 
 \abstract{\textbf{Motivation:} More and more higher specificities Cas9 variants are developed to avoid the off-target effect, which bring a significant volume of experimental data. 
-Conventional machine learning performance poorly on these datasets, while model based on deep learning are often lack of interpretability, which makes it difficult for researchers to understand its decisions. 
+Conventional machine learning performance poorly on these datasets, while model based on deep learning are often lack of interpretability, which makes it difficult for researchers to understand its decisions, 
+not to mention to design high-activity sgRNA with the insights brought by the model. 
 Moreover, neither the deep learning based model with existing structure can not satisfy enough precision at such huge datasets.\\
-\textbf{Results:} To overcome it, we design and implement AttCRISPR, a deep learning based model to predict the on-target activity. 
-Our model was trained and tested on the biggest dataset, DeepHF dataset, as far as we know for performance evaluation. 
-AttCRISPR achieves the best performance on DeepHF dataset, yielding an average spearman value of 0.99\%, 0.99\%, 0.99\% (corresponding to WT-SpCas9, eSpCas9(1.1), SpCas9-HF1) under tenfold shuffled validation. 
-In addition, another advantage of AttCRISPR over other well-perform methods is that it is intrinsic interpretable and does not rely on other post hoc explanations techniques. 
-In this paper, We design a set of algorithm to reveal the biological significance of the decision maked by AttCRISPR from the global and local perspectives at sgRNA overall level and nucleotide level.\\
+\textbf{Results:} To overcome these, we design and implement AttCRISPR, a intrinsic interpretable method based on deep learning to predict the on-target activity. 
+In this paper, we find that based on the preprocessing of the input base sequence, the deep learning models can be divided into two categories, 
+methods in spatial domain with the input of encoded base sequence and in temporal domain with the input of embedded base sequence. 
+Based on the categorization above, we assume that spatial and temporal method are heterogeneous, and use a full connection layer to stack them, which achieve a better performance. 
+Our model was trained and tested on the biggest dataset, the same dataset as DeepHF used, as far as we know for performance evaluation. 
+In addition, benefits from two attention modules, spatial and temporal attention modules, AttCRISPR has strong interpretability. 
+Through them, we can understand the decisions made by AttCRISPR at both global and local levels without other post hoc explanations techniques. 
+Further, interpretability can be used to help us design and optimize sgRNA activity without exhaustively search. 
+AttCRISPR can compete with state-of-the-art method in these datasets, and achieves an average spearman value of 0.872, 0.867, 0.867 (corresponding to WT-SpCas9, eSpCas9(1.1), SpCas9-HF1) under tenfold shuffled validation. \\
 \textbf{Availability:} The example code are available at \href{https://github.com/South-Walker/AttCRISPR}{https://github.com/South-Walker/AttCRISPR}\\
 \textbf{Contact:} \href{xlm@xiaoliming96.com}{xlm@xiaoliming96.com}\\
 \textbf{Supplementary information:} Supplementary data are available at \textit{Bioinformatics}
@@ -50,8 +54,7 @@ Clustered regularly interspaced short palindromic repeats (CRISPR) / CRIPSR asso
 
 The activity of chosen sgRNA sequence determines the success of genome editing, however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system.
  Some optimum sgRNAs can hit almost all targers alleles, while anothers don't even show activity \citep{wang2019optimized}.
- This fact indicates that it's meaningful to explore an efficient approaches to guide sgRNA design. 
-
+ This fact indicates that it's meaningful to explore an efficient approaches to predict sgRNA activity and even guide sgRNA design. 
 
 In practice, there have been a number of application and toolkit applied in this task. In the earlier studies, methods in silico are categorized into three types: 
  (1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
@@ -62,7 +65,7 @@ Learning-based method, which designed to predict the on-target activity (or off-
  In general, the single or multiple base sequences (vary according to the task) and biological features are represented as a multi-dimensional vector $X\in\mathbb{R}^d$, 
  and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to the number of biological features, these methods can be represented as
 \begin{equation}
-\text{\it y}=Score(\it X)\label{eq:01}
+ y=Score( X)\label{eq:01}
 \end{equation}
  where $Score(\cdot)$ depends on the algorithm being selected, and $y$ denotes the predicted value.
  Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
@@ -77,43 +80,14 @@ Learning-based method, which designed to predict the on-target activity (or off-
  \citeauthor{wang2019optimized} develope DeepHF, a deep learning based model, and use Deep SHAP to revealed nucleotide contributions \citep{wang2019optimized}. 
  Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks. 
  In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
- 
- wait2write
- 
- In addition, as far as we know, all the interpretable deep learning models today can only analyze the preference of on-target activity (or off-target probability) on specific nucleotide species and position 
- for example, the G adjacent to PAM has a positive effect on sgRNA activity as \citeauthor{wang2019optimized} report, 
- which we'll call the first-order preference in our paper, due to it's similar to the total differential of $y$ in Equation~(\ref{eq:01}) as following
-\begin{equation}
-dy = \sum^{d}_ia_idx_i\label{eq:02}
-\end{equation}
-\begin{equation}
-a_i=\frac{\partial}{\partial x_i} Score(X)\label{eq:03}
-\end{equation}
- where $x_i$ denotes the $i$-th dimension of the vector $X$, 
- $a_i$ indicates how dramatically the function changes as $x_i$ changes in a neighborhood of $X$. 
- Similarly the first-order preference indicates how dramatically the function changes as $x_i$ changes, in other word, the importance of $x_i$.
- However they didn't analyzed the preference for position $i$ nucleotide at the overall level, 
- which we'll call the second-order preference in our paper due to its calculation is based on first-order preference, 
 
- Specifically, we use a vector $A_i$ to build the first-order original preference at position $i$ within sgRNA sequence, then
- define $\tilde{A}$ as the first-order combine preference matrix (or just first-order preference), which means $\tilde{A}$ can be expressed linearly by $A$ as follow
-\begin{equation}
-\tilde{A}=BA\label{eq:04}
-\end{equation}
-where the weight matrix $B\in\mathbb{R}^{l\times l}$ is learned through attention mechanism. 
-Then the predicted value can be expressed as
-\begin{equation}
-y=W \cdot \tilde{A} {X_e}^{T}\label{eq:05}
-\end{equation}
- where $W\in\mathbb{R}^l$ denotes a non-negative weight vector. 
- Assume that in Equation~(\ref{eq:04}) the first-order original preference at each position is relatively independent and weight matrix $B$ is independent of any first-order original preference, 
- then the total differential of the first-order preference at $i$-th position $\tilde{A}_i$ could be written as
-\begin{equation}
-d\tilde{A}_i=\sum_j^lB_{ij}EdA_j\label{eq:07}
-\end{equation}
-where $E$ is the identity matrix, and we call $B$ as the second-order preference matrix, 
-it can explain how a particular pattern containing two nucleotides affects the base sequence, 
-for example, how does the degree of preference for the G adjacent to PAM be affected by a T at 2 bases upstream?
+ Beyond that, existing analysis of the models interpretability are all at global level, and result is a general pattern in the datasets. 
+For example, which position has a great impact on the final decision of the model and which position-dependent nucleotide has a positive impact on the activity. 
+Lack of analysis at local level. 
+For example, which structure causes the low activity of a certain nucleotide sequence and how to improve its activity with a few modification. 
+In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, 
+but also with strong interpretability that can be comparable to conventional machine learning method.
+
 
 \begin{figure}[!tpb]%figure2
     \centerline{\includegraphics[width=86mm]{category.png}}
@@ -128,11 +102,6 @@ for example, how does the degree of preference for the G adjacent to PAM be affe
     which greatly increases the difficulty of understanding the decisions of model.
     }\label{fig:category}
 \end{figure}
- The previous work (even based on conventional machine learning algorithms with high interpretability) 
- was limited to dimers which can only work on the adjacent base pairs \citep{Liu2019} 
- or have to perform complex feature engineering \citep{MuhammadRafid2020}.
- In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, 
- but also be comparable to conventional machine learning algorithms in interpretability.
 
 Deep neural network has shown its power in the study of CRISPR/Cas9 and its improved Systems \citep{liu2019computational}. 
  Most of the deep neural network existing are the combination of recurrent neural network (RNN), convolutional neural network (CNN), fully connected neural network (FNN), and their variants. 
@@ -175,8 +144,7 @@ Attention mechanism has demonstrated its power in Natural Language Processing, S
     \item Introduce attention mechanism into our model. 
     As a result, It does not need post hoc explanations techniques based on input perturbation to explain itself. 
     It is intrinsic interpretable in both temporal and spatial domains.
-    In the spatial domain it's at the nucleotide level, in our word, first-order preference, 
-    while at the overall level in the temporal domain, in our word, second-order preference. 
+    In the spatial domain it's at global level, while at local level in the temporal domain. 
     Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
     \item Throught ablation analysis and testing a series of possible network structure, 
     we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
@@ -221,6 +189,39 @@ which can satisfy the diversity premise of ensemble learning.
 Based on assumption above and ensemble learning, we follow the stacking strategy to develop AttCRISPR 
 which can extract potential feature representation of sgRNA sequence in both spatial and temporal domain parallelly. 
 Further, we apply attention mechanisms in both spatial and temporal domain respectively to enhance the interpretability of AttCRISPR.
+
+\subsubsection{First-order preference and second-order preference}
+
+Before introducing the neural network architecture of AttCRISPR, Let's define first-order preference and second-order preference for convenience. 
+Taking a simple linear regression model as an example, for input $X$ in Equation~(\ref{eq:01}), $y$ in Equation~(\ref{eq:01}) is as following
+ \begin{equation}
+y = AX\label{eq:linear}
+\end{equation}
+where $A \in\mathbb{R}^d$, the total differential of $y$ in Equation~(\ref{eq:linear}) is as following
+ \begin{equation}
+dy = \sum^{d}_iA_idX_i\label{eq:02}
+\end{equation}
+where $A_i$ and $X_i$ denotes the $i$-th dimension of the vector $X$ and $A$, 
+$A_i$ indicates how dramatically the function changes as $X_i$ changes in a neighborhood of $X$, 
+in other word, the importance of $X_i$. 
+That's why we'll call $A$ first-order preference in our paper. 
+Specifically, we use a vector $A_i$ to build the first-order original preference at position $i$ within sgRNA sequence, 
+and $X_i$ is an embeddedness of the $i$-th feature, then $A$ and $X$ are two matrix. 
+Further, the final result can be weighted by a trainable non-negative weight vector $W\in\mathbb{R}^l$, as follow
+\begin{equation}
+y=W \cdot AX^{T}\label{eq:superlinear}
+\end{equation}
+then we define $\tilde{A}$ as the first-order combine preference matrix (or just first-order preference), which means $\tilde{A}$ can be expressed linearly by $A$ as follow
+\begin{equation}
+\tilde{A}=BA\label{eq:04}
+\end{equation}
+where the weight matrix $B\in\mathbb{R}^{l\times l}$ is learned through attention mechanism, 
+which we'll call the second-order preference matrix in our paper due to its calculation is based on first-order preference, 
+it can explain how a particular pattern containing two nucleotides affects the base sequence. 
+Then the predicted value can be expressed as
+\begin{equation}
+y=W \cdot \tilde{A} {X_e}^{T}\label{eq:05}
+\end{equation}
 
 \subsubsection{Method and attention in spatial domain}
 
@@ -269,6 +270,7 @@ For instance, follow the encoding rules above, train spatial domain part of AttC
 Then take the average of all spatial attention matrix, and the element in the first row and third column are closer to 1, which means when calculate the final score, 
 G typically may have a important contribution at first position within sgRNA sequence. 
 In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
+
 \subsubsection{Method and attention in temporal domain}
 As Figure~\ref{fig:04} show, temporal domain part of AttCRISPR relies on the recurrent neural network (or its variant). 
 As previously mentioned, we mapping each one-hot vector into a dense real-valued high-dimensional space follow the Equation~(\ref{eq:08}), which generates the embedded matrix $X_e$.
@@ -316,7 +318,7 @@ where the matrix $B\in\mathbb{R}^{l\times l}$ is the second-order preference we 
 $G\in\mathbb{R}^{l\times l}$ is the damping matrix base on Gaussian function. 
 Since a simple belief that the closer the base is to the $i$-th position, the more it affects the $i$-th position normally, we use the damping matrix G to constrain the network learning. 
 $\sigma$ represents a threshold of length, any base over this length from the position $i$ is not considered to be affected.
-Further, if we think of the values matrix as a vector form of the first-order preference $A$ in Equation~(\ref{eq:05}), we can reach the following equation
+Further, if we think of the values matrix as a vector form of the first-order preference $A$ in Equation~(\ref{eq:04}), we can reach the following equation
 \begin{equation}
 \tilde{A}=BV\label{eq:19}
 \end{equation}
