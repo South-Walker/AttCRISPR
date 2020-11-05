@@ -3,57 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: natbib.bst
 Database file #1: document.bib
-Warning--I'm ignoring Liu2019's extra "note" field
---line 134 of file document.bib
-Warning--I'm ignoring Liu2019's extra "note" field
---line 135 of file document.bib
-Warning--I'm ignoring Doench2014's extra "note" field
---line 388 of file document.bib
-Warning--I'm ignoring Doench2014's extra "note" field
---line 389 of file document.bib
-Warning--empty journal in huang2018improving
-Warning--empty journal in lundberg2017a
-Warning--empty journal in vaswani2017attention
-Warning--empty journal in woo2018cbam:
-You've used 34 entries,
+You've used 28 entries,
             2378 wiz_defined-function locations,
-            727 strings with 11513 characters,
-and the built_in function-call counts, 19788 in all, are:
-= -- 1685
-> -- 1559
-< -- 9
-+ -- 482
-- -- 475
-* -- 2041
-:= -- 3527
-add.period$ -- 173
-call.type$ -- 34
-change.case$ -- 208
-chr.to.int$ -- 33
-cite$ -- 38
-duplicate$ -- 713
-empty$ -- 1083
-format.name$ -- 517
-if$ -- 3799
+            710 strings with 10792 characters,
+and the built_in function-call counts, 17613 in all, are:
+= -- 1498
+> -- 1387
+< -- 7
++ -- 428
+- -- 425
+* -- 1845
+:= -- 3074
+add.period$ -- 149
+call.type$ -- 28
+change.case$ -- 170
+chr.to.int$ -- 27
+cite$ -- 28
+duplicate$ -- 649
+empty$ -- 969
+format.name$ -- 457
+if$ -- 3426
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 34
-newline$ -- 175
-num.names$ -- 136
-pop$ -- 231
+missing$ -- 28
+newline$ -- 143
+num.names$ -- 114
+pop$ -- 176
 preamble$ -- 1
-purify$ -- 208
+purify$ -- 170
 quote$ -- 0
-skip$ -- 468
+skip$ -- 440
 stack$ -- 0
-substring$ -- 1089
-swap$ -- 164
+substring$ -- 1029
+swap$ -- 189
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 306
-warning$ -- 4
-while$ -- 151
+type$ -- 252
+warning$ -- 0
+while$ -- 130
 width$ -- 0
-write$ -- 439
-(There were 8 warnings)
+write$ -- 368
