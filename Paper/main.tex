@@ -20,8 +20,8 @@
 
 \editor{Associate Editor: XXXXXXX}
 
-\abstract{\textbf{Motivation:} More and more higher specificities Cas9 variants are developed to avoid the off-target effect, which bring a significant volume of experimental data. 
-Conventional machine learning performance poorly on these datasets, while model based on deep learning are often lack of interpretability, which makes it difficult for researchers to understand its decisions, 
+\abstract{\textbf{Motivation:} More and more Cas9 variants with higher specificities are developed to avoid the off-target effect, which bring a significant volume of experimental data. 
+Conventional machine learning performs poorly on these datasets, while model based on deep learning are often lack of interpretability, which makes it difficult for researchers to understand its decisions, 
 not to mention to design high-activity sgRNA with the insights brought by the model. 
 Moreover, neither the deep learning based model with existing structure can not satisfy enough precision at such huge datasets.\\
 \textbf{Results:} To overcome these, we design and implement AttCRISPR, a intrinsic interpretable method based on deep learning to predict the on-target activity. 
@@ -31,10 +31,10 @@ Based on the categorization above, we assume that spatial and temporal method ar
 Our model was trained and tested on the biggest dataset, the same dataset as DeepHF used, as far as we know for performance evaluation. 
 In addition, benefits from two attention modules, spatial and temporal attention modules, AttCRISPR has strong interpretability. 
 Through them, we can understand the decisions made by AttCRISPR at both global and local levels without other post hoc explanations techniques. 
-Further, interpretability can be used to help us design and optimize sgRNA activity without exhaustively search. 
+Further, interpretability AttCRISPR can be used to guide researcher to design sgRNA with higher activity, in order to reduce the experimental cost. 
 AttCRISPR can compete with state-of-the-art method in these datasets, and achieves an average spearman value of 0.872, 0.867, 0.867 (corresponding to WT-SpCas9, eSpCas9(1.1), SpCas9-HF1) under tenfold shuffled validation. \\
 \textbf{Availability:} The example code are available at \href{https://github.com/South-Walker/AttCRISPR}{https://github.com/South-Walker/AttCRISPR}\\
-\textbf{Contact:} \href{xlm@xiaoliming96.com}{xlm@xiaoliming96.com}\\
+\textbf{Contact:} \href{zrjiang@cs.ecnu.edu.cn}{zrjiang@cs.ecnu.edu.cn}\\
 \textbf{Supplementary information:} Supplementary data are available at \textit{Bioinformatics}
 online.}
 
@@ -42,33 +42,35 @@ online.}
 
 \section{Introduction}
 
-Clustered regularly interspaced short palindromic repeats (CRISPR) / CRIPSR associated protein 9 (Cas9) systems is preferred over other biological research and human medicine technologies now, beacuse of it's efficiency, 
- robustness and programmability.  Cas9 nucleases can be directed by short guide RNAs (sgRNAs) to introduce site-specific DNA double-stranded breaks in target, 
- so to enable editing site-specific within the mammalian genome \citep{jinek2012a,cong2013multiplex,mali2013rnaguided}. CRISPR/Cas9, to a large extent, has developed genetic therapies at the cellular level, 
- while there are still severe medical disadvantage even now which has greatly hindered the further clinical application of the CRISPR/Cas9 systems. 
- One of these disadvantage is due to point mutations caused by off-target effects \citep{rubeis2018risks,kang2016introducing,ishii2017reproductive,liang2015crispr/cas9-mediated}. 
- To overcome this disadvantage, a solution is to engineer CRISPR / Cas9 with higher specificities. 
- That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)), 
- Cas9-High Fidelity (SpCas9-HF1) \citep{ishii2017reproductive,slaymaker2016rationally}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
- been developed and bring a significant volume of experimental data, that is to say researchers have to face the difficulty of analyzing such huge and heterogeneous data.
+Clustered regularly interspaced short palindromic repeats (CRISPR) / CRIPSR associated protein 9 (Cas9) systems is preferred over other biological research and human medicine technologies now, 
+beacuse of it's efficiency, robustness and programmability. 
+Cas9 nucleases can be directed by short guide RNAs (sgRNAs) to introduce site-specific DNA double-stranded breaks in target, 
+so to enable editing site-specific regions within the mammalian genome \citep{jinek2012a,cong2013multiplex,mali2013rnaguided}. 
+CRISPR/Cas9, to a large extent, has developed genetic therapies at the cellular level, 
+while there are still severe medical disadvantages even now which has greatly hindered the further clinical application of the CRISPR/Cas9 systems. 
+One of these disadvantages is due to point mutations caused by off-target effect \citep{rubeis2018risks,kang2016introducing,ishii2017reproductive,liang2015crispr/cas9-mediated}. 
+To overcome this disadvantage, a solution is to engineer CRISPR / Cas9 with higher specificities. 
+That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)), 
+Cas9-High Fidelity (SpCas9-HF1) \citep{ishii2017reproductive,slaymaker2016rationally}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
+been developed and bring a significant volume of experimental data, that is to say researchers have to face the difficulty of analyzing such huge and heterogeneous data.
 
-The activity of chosen sgRNA sequence determines the success of genome editing, however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system.
- Some optimum sgRNAs can hit almost all targers alleles, while anothers don't even show activity \citep{wang2019optimized}.
- This fact indicates that it's meaningful to explore an efficient approaches to predict sgRNA activity and even guide sgRNA design. 
+The activity of chosen sgRNA sequence determines the efficiency of genome editing, 
+however distinctly fluctuant behaviors have been observed for the performance of different sgRNAs, even in the same Cas9 system. 
+This fact indicates that it's meaningful to explore an efficient approach to predict sgRNA activity and even guide sgRNA design. 
 
 In practice, there have been a number of application and toolkit applied in this task. In the earlier studies, methods in silico are categorized into three types: 
- (1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
- Recently we noticed that the last type of method seems to be getting more attention because of huger and huger data set \citep{liu2019computational}. 
+(1) alignment-based, (2) hypothesis-driven and (3) learning-based \citep{chuai2018deepcrispr}. 
+Recently we noticed that the last type of method seems to be getting more attention because of huger and huger datasets \citep{liu2019computational}. 
 
 Learning-based method, which designed to predict the on-target activity (or off-target probability) of sgRNAs, 
- is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
- In general, the single or multiple base sequences (vary according to the task) and biological features are represented as a multi-dimensional vector $X\in\mathbb{R}^d$, 
- and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to the number of biological features, these methods can be represented as
+is essentially a computational model built by machine learning algorithm, not only conventional machine learning but also deep learning algorithm. 
+In general, the single or multiple base sequences (vary according to the task) and biological features are represented as a multi-dimensional vector $X\in\mathbb{R}^d$, 
+and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to the number of biological features, these methods can be represented as
 \begin{equation}
  y=Score( X)\label{eq:01}
 \end{equation}
  where $Score(\cdot)$ depends on the algorithm being selected, and $y$ denotes the predicted value.
- Some studies on HT\_ABE and HT\_CBE have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the data set reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
+ Some studies on HT\_ABE and HT\_CBE (two gene editing tools grew out of CRISPR) have shown that deep learning based models often outperformed conventional machine learning, when the number of sgRNAs in the dataset reached a certain level \citep{Song2020,kim2018deep,kim2019spcas9}. 
  Per contra, conventional machine learning algorithms, such as linear regression, logistic regression and the decision tree, are often more interpretable due to the fewer parameters and clearer mathematical assumptions. 
  In short, what was needed for developer is to trade-off accuracy and interpretability. 
  \citeauthor{MuhammadRafid2020} consider deep-learning models as black boxs and believe they lack interpretability, 
@@ -90,7 +92,7 @@ but also with strong interpretability that can be comparable to conventional mac
 
 
 \begin{figure}[!tpb]%figure2
-    \centerline{\includegraphics[width=86mm]{category.png}}
+    \centerline{\includegraphics[width=86mm]{NEWcategory.png}}
     \caption{Two categories of the deep learning models used in sgRNA related task. 
     (a) Model work in spatial domain. 
     In spatial domain, the base sequence is encoded into a binary matrix (or a binary image). 
@@ -110,7 +112,7 @@ Deep neural network has shown its power in the study of CRISPR/Cas9 and its impr
 
 \begin{enumerate}
     \item Methods in spatial domain. 
-    Some previous studies have used model based CNN to predict gRNA on-target activity or off-target effects \citep{lin2018off-target,kim2018deep,chuai2018deepcrispr}. 
+    Some previous studies have used model based CNN to predict gRNA on-target activity or off-target effect \citep{lin2018off-target,kim2018deep,chuai2018deepcrispr}. 
     They process sgRNA base sequence inputs with the help of one-hot encoding idea. 
     In other words, they regard it as two-dimensional image data, and use convolution layer to extracte potential features in spatial domain, 
     It is worth noting that \citeauthor{zhang2020c-rnncrispr:} adds bidirectional gated recurrent unit (BGRU, in short), a RNN variant, after pooling layer of classic CNN network \citep{zhang2020c-rnncrispr:}. 
@@ -391,7 +393,7 @@ The second experiment is designed to compare the performance of AttCRISPR and ot
 In order to make the comparison apples to apples, we reduce the dimensionality of the same hand-crafted biological features as DeepHF's, 
 which has been shown to enhance the predictability of a deep-learning model greatly, with a multilayer perceptron. 
 Then follow the Equation~(\ref{eq:20}) to achieve the final prediction value. 
-AttCRISPR (with the hand-crafted biological features) performs better on all three data sets than DeepHF, the current state-of-the-art. 
+AttCRISPR (with the hand-crafted biological features) performs better on all three datasets than DeepHF, the current state-of-the-art. 
 
 \begin{table}[!tpb]
     \processtable{The methods compared in our work and brief description of these methods\label{Tab:baseline}} 
@@ -513,19 +515,19 @@ The box plot show the mean and distribution of Spearman correlation coefficient 
 To some extent, the attention module in the AttCRISPR can help us to understand the decisions it makes. 
 In the following sections, we will analyze the insight into activity of sgRNA bring through the attention mechanism at both global and local levels. 
 
-In the following content, when we use the word, global, we are referring to rules thats are common throughout the data set. 
+In the following content, when we use the word, global, we are referring to rules thats are common throughout the dataset. 
 If assumed the method with strong generalization ability, it might mean that these rules is common in the corresponding Cas9 system.
 On the other hand, local refers to the rules applicable to a certain sgRNA. 
 We believe that the local interpretability is very helpful in the design and optimization of sgRNA.
 \begin{figure*}[!tpb]
     \centerline{\includegraphics[width=178mm]{spatialattention.eps}}
     \caption{Preference for each position-dependent nucleotide on the sgRNA sequence. 
-(a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRAN. 
+(a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRNA. 
 The numbers below indicated the position of the nucleotides on-target DNA. 
 (d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. 
 Each position-dependent nucleotide is a control point. 
 The coordinates of the control points on the vertical axis represent the degree of preference, 
-and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRAN.
+and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRNA.
 The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. 
 }\label{fig:spatialattention}
 \end{figure*}
@@ -648,6 +650,12 @@ and we explain the decisions made by AttCRISPR through the attention module whic
 Further, we also point out that the output of the attention module can be used to optimize the low-activity sgRNA without exhaustively search, 
 and our optimization results are verified with available experimental data. 
 To our knowledge, this is the first time that the attentional mechanim is used to reveal the reasons influencing on-target activity of sgRNA, and assist sgRNA design.  
+
+
+\section*{Funding}
+
+This work was partially supported by grants from the National Key R\&D Program of China (2019YFA0110802 and 2019YFA0802800).
+\\\\\emph{Conflict of Interest}: none declared.\vspace*{-12pt}
 
 \bibliographystyle{natbib}
 \bibliography{document}
