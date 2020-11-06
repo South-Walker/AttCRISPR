@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  5 NOV 2020 22:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  6 NOV 2020 10:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -744,12 +744,12 @@ Package epstopdf Info: Source file: <local0.eps>
 (epstopdf)                    date: 2020-10-27 14:55:30
 (epstopdf)                    size: 28616 bytes
 (epstopdf)             Command: <repstopdf --outfile=local0-eps-converted-to.pdf local0.eps>
-(epstopdf)             \includegraphics on input line 588.
+(epstopdf)             \includegraphics on input line 587.
 Package epstopdf Info: Output file is already uptodate.
 <local0-eps-converted-to.pdf, id=252, 244.915pt x 156.585pt>
 File: local0-eps-converted-to.pdf Graphic file (type pdf)
 <use local0-eps-converted-to.pdf>
-Package pdftex.def Info: local0-eps-converted-to.pdf  used on input line 588.
+Package pdftex.def Info: local0-eps-converted-to.pdf  used on input line 587.
 (pdftex.def)             Requested size: 244.6937pt x 156.44841pt.
 Package epstopdf Info: Source file: <secondorder.eps>
 (epstopdf)                    date: 2020-10-27 14:34:27
@@ -758,15 +758,15 @@ Package epstopdf Info: Source file: <secondorder.eps>
 (epstopdf)                    date: 2020-10-27 14:55:32
 (epstopdf)                    size: 10793 bytes
 (epstopdf)             Command: <repstopdf --outfile=secondorder-eps-converted-to.pdf secondorder.eps>
-(epstopdf)             \includegraphics on input line 604.
+(epstopdf)             \includegraphics on input line 603.
 Package epstopdf Info: Output file is already uptodate.
 <secondorder-eps-converted-to.pdf, id=253, 244.915pt x 187.70125pt>
 File: secondorder-eps-converted-to.pdf Graphic file (type pdf)
 <use secondorder-eps-converted-to.pdf>
-Package pdftex.def Info: secondorder-eps-converted-to.pdf  used on input line 604.
+Package pdftex.def Info: secondorder-eps-converted-to.pdf  used on input line 603.
 (pdftex.def)             Requested size: 244.6937pt x 187.53754pt.
 
-Underfull \hbox (badness 1024) in paragraph at lines 627--630
+Underfull \hbox (badness 1024) in paragraph at lines 626--629
 \LY1/ptm/m/n/8 sequence we can predict the functional and structural information.
  []
 
@@ -779,7 +779,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [9 <c:/Users/50683/Desktop/AttCRISPR/Paper/local0-eps-converted-to.pdf> <c:/Users/50683/Desktop/AttCRISPR/Paper/secondorder-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 657--659
+Underfull \hbox (badness 10000) in paragraph at lines 656--658
 
  []
 
@@ -841,7 +841,7 @@ Here is how much of TeX's memory you used:
  1145 hyphenation exceptions out of 8191
  39i,19n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (10 pages, 802161 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (10 pages, 801925 bytes).
 PDF statistics:
  367 PDF objects out of 1000 (max. 8388607)
  146 compressed objects within 2 object streams
