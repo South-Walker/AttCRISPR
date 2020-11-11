@@ -5,24 +5,24 @@ The style file: natbib.bst
 Database file #1: document.bib
 You've used 28 entries,
             2378 wiz_defined-function locations,
-            710 strings with 10792 characters,
-and the built_in function-call counts, 17613 in all, are:
-= -- 1498
+            711 strings with 10800 characters,
+and the built_in function-call counts, 17693 in all, are:
+= -- 1506
 > -- 1387
 < -- 7
 + -- 428
 - -- 425
-* -- 1845
-:= -- 3074
+* -- 1855
+:= -- 3083
 add.period$ -- 149
 call.type$ -- 28
 change.case$ -- 170
 chr.to.int$ -- 27
 cite$ -- 28
-duplicate$ -- 649
-empty$ -- 969
+duplicate$ -- 650
+empty$ -- 979
 format.name$ -- 457
-if$ -- 3426
+if$ -- 3444
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 28
@@ -32,15 +32,15 @@ pop$ -- 176
 preamble$ -- 1
 purify$ -- 170
 quote$ -- 0
-skip$ -- 440
+skip$ -- 439
 stack$ -- 0
-substring$ -- 1029
+substring$ -- 1053
 swap$ -- 189
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 252
 warning$ -- 0
-while$ -- 130
+while$ -- 131
 width$ -- 0
 write$ -- 368

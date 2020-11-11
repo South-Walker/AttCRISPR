@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  6 NOV 2020 10:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.20)  11 NOV 2020 20:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -685,6 +685,11 @@ Underfull \hbox (badness 1205) in paragraph at lines 487--487
  []
 
 
+Underfull \hbox (badness 1009) in paragraph at lines 457--491
+[]\LY1/ptm/m/n/8 Further experiment is designed to compare the performance of
+ []
+
+
 Underfull \hbox (badness 2310) in paragraph at lines 498--502
 \LY1/ptm/m/n/8 Further, integration with the hand-crafted biological features can
  []
@@ -703,9 +708,6 @@ File: baselinewithbiofeat-eps-converted-to.pdf Graphic file (type pdf)
 <use baselinewithbiofeat-eps-converted-to.pdf>
 Package pdftex.def Info: baselinewithbiofeat-eps-converted-to.pdf  used on input line 504.
 (pdftex.def)             Requested size: 244.6937pt x 116.7732pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 Package epstopdf Info: Source file: <spatialattention.eps>
 (epstopdf)                    date: 2020-10-23 15:34:23
 (epstopdf)                    size: 432333 bytes
@@ -713,13 +715,19 @@ Package epstopdf Info: Source file: <spatialattention.eps>
 (epstopdf)                    date: 2020-10-23 15:38:29
 (epstopdf)                    size: 164664 bytes
 (epstopdf)             Command: <repstopdf --outfile=spatialattention-eps-converted-to.pdf spatialattention.eps>
-(epstopdf)             \includegraphics on input line 523.
+(epstopdf)             \includegraphics on input line 518.
 Package epstopdf Info: Output file is already uptodate.
 <spatialattention-eps-converted-to.pdf, id=123, 506.89375pt x 483.8075pt>
 File: spatialattention-eps-converted-to.pdf Graphic file (type pdf)
 <use spatialattention-eps-converted-to.pdf>
-Package pdftex.def Info: spatialattention-eps-converted-to.pdf  used on input line 523.
+Package pdftex.def Info: spatialattention-eps-converted-to.pdf  used on input line 518.
 (pdftex.def)             Requested size: 506.45905pt x 483.40767pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
 [][] 
@@ -744,12 +752,12 @@ Package epstopdf Info: Source file: <local0.eps>
 (epstopdf)                    date: 2020-10-27 14:55:30
 (epstopdf)                    size: 28616 bytes
 (epstopdf)             Command: <repstopdf --outfile=local0-eps-converted-to.pdf local0.eps>
-(epstopdf)             \includegraphics on input line 587.
+(epstopdf)             \includegraphics on input line 583.
 Package epstopdf Info: Output file is already uptodate.
 <local0-eps-converted-to.pdf, id=252, 244.915pt x 156.585pt>
 File: local0-eps-converted-to.pdf Graphic file (type pdf)
 <use local0-eps-converted-to.pdf>
-Package pdftex.def Info: local0-eps-converted-to.pdf  used on input line 587.
+Package pdftex.def Info: local0-eps-converted-to.pdf  used on input line 583.
 (pdftex.def)             Requested size: 244.6937pt x 156.44841pt.
 Package epstopdf Info: Source file: <secondorder.eps>
 (epstopdf)                    date: 2020-10-27 14:34:27
@@ -758,20 +766,17 @@ Package epstopdf Info: Source file: <secondorder.eps>
 (epstopdf)                    date: 2020-10-27 14:55:32
 (epstopdf)                    size: 10793 bytes
 (epstopdf)             Command: <repstopdf --outfile=secondorder-eps-converted-to.pdf secondorder.eps>
-(epstopdf)             \includegraphics on input line 603.
+(epstopdf)             \includegraphics on input line 599.
 Package epstopdf Info: Output file is already uptodate.
 <secondorder-eps-converted-to.pdf, id=253, 244.915pt x 187.70125pt>
 File: secondorder-eps-converted-to.pdf Graphic file (type pdf)
 <use secondorder-eps-converted-to.pdf>
-Package pdftex.def Info: secondorder-eps-converted-to.pdf  used on input line 603.
+Package pdftex.def Info: secondorder-eps-converted-to.pdf  used on input line 599.
 (pdftex.def)             Requested size: 244.6937pt x 187.53754pt.
 
-Underfull \hbox (badness 1024) in paragraph at lines 626--629
+Underfull \hbox (badness 1024) in paragraph at lines 622--625
 \LY1/ptm/m/n/8 sequence we can predict the functional and structural information.
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (252.0pt too wide) has occurred while \output is active
@@ -779,7 +784,7 @@ Overfull \hbox (252.0pt too wide) has occurred while \output is active
  []
 
 [9 <c:/Users/50683/Desktop/AttCRISPR/Paper/local0-eps-converted-to.pdf> <c:/Users/50683/Desktop/AttCRISPR/Paper/secondorder-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 656--658
+Underfull \hbox (badness 10000) in paragraph at lines 650--652
 
  []
 
@@ -791,30 +796,26 @@ Underfull \hbox (badness 4205) in paragraph at lines 106--109
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 546.7175pt
+Extra height:28.0pt when 471.75949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 547.7175pt
+Extra height:28.0pt when 472.75949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 548.7175pt
+Extra height:28.0pt when 473.75949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:28.0pt when 549.7175pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:28.0pt when 550.7175pt
-Extra height:0.0pt when 551.7175pt
-(2)Left:551.7175pt Right:543.435pt Output:551.7175pt
+Extra height:28.0pt when 474.75949pt
+Extra height:0.0pt when 475.75949pt
+(2)Left:475.75949pt Right:471.519pt Output:475.75949pt
 - LAST -
 Extra skip:0.0pt
-Left:551.7175pt
-Right:543.435pt
-Output:551.7175pt
+Left:475.75949pt
+Right:471.519pt
+Output:475.75949pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -835,13 +836,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  3743 strings out of 480608
  47837 string characters out of 5907536
- 322147 words of memory out of 5000000
+ 318347 words of memory out of 5000000
  19549 multiletter control sequences out of 15000+600000
  588762 words of font info for 122 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  39i,19n,35p,1476b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvro8ac.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (10 pages, 801925 bytes).
+Output written on c:/Users/50683/Desktop/AttCRISPR/Paper/main.pdf (10 pages, 801590 bytes).
 PDF statistics:
  367 PDF objects out of 1000 (max. 8388607)
  146 compressed objects within 2 object streams

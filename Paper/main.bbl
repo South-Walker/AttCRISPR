@@ -58,7 +58,7 @@ Kim, H.~K., Kim, Y., Lee, S., Min, S., Bae, J.~Y., Choi, J.~W., Park, J., Jung,
   D., Yoon, S., and Kim, H.~H. (2019).
 \newblock Spcas9 activity prediction by deepspcas9, a deep
   learning{\textendash}based model with high generalization performance.
-\newblock {\em Sci. Adv.}, {\bf 5}(11).
+\newblock {\em Sci. Adv.}, {\bf 5}(11), eaax9249.
 
 \bibitem[Kleinstiver {\em et~al.}(2016)Kleinstiver, Pattanayak, Prew, Tsai,
   Nguyen, Zheng, and Joung]{kleinstiver2016high-fidelity}
@@ -85,7 +85,7 @@ Lin, J. and Wong, K.-C. (2018).
 Liu, G., Zhang, Y., and Zhang, T. (2019a).
 \newblock Computational approaches for effective crispr guide rna design and
   evaluation.
-\newblock {\em Computational and structural biotechnology journal\/}, {\bf 18},
+\newblock {\em Computational and Structural Biotechnology Journal\/}, {\bf 18},
   35--44.
 
 \bibitem[Liu {\em et~al.}(2019b)Liu, He, and Xie]{Liu2019}
@@ -93,7 +93,7 @@ Liu, Q., He, D., and Xie, L. (2019b).
 \newblock Prediction of off-target specificity and cell-specific fitness of
   crispr-cas system using attention boosted deep learning and network-based
   gene feature.
-\newblock {\em PLoS computational biology\/}, {\bf 15}(10), e1007480--e1007480.
+\newblock {\em PLoS Computational Biology\/}, {\bf 15}(10), e1007480--e1007480.
 
 \bibitem[Liu {\em et~al.}(2020)Liu, Cheng, Liu, Li, and Liu]{liu2020deep}
 Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
@@ -198,7 +198,7 @@ Wu, X., Scott, D.~A., Kriz, A.~J., Chiu, A.~C., Hsu, P., Dadon, D.~B., Cheng,
 Zhang, G., Dai, Z., and Dai, X. (2020).
 \newblock C-rnncrispr: Prediction of crispr/cas9 sgrna activity using
   convolutional and recurrent neural networks.
-\newblock {\em Computational and structural biotechnology journal\/}, {\bf 18},
+\newblock {\em Computational and Structural Biotechnology Journal\/}, {\bf 18},
   344--354.
 
 \end{thebibliography}
