@@ -21,18 +21,21 @@
 \editor{Associate Editor: XXXXXXX}
 
 \abstract{\textbf{Motivation:} More and more Cas9 variants with higher specificities are developed to avoid the off-target effect, which bring a significant volume of experimental data. 
-Conventional machine learning performs poorly on these datasets, while the models based on deep learning are often lack of interpretability, which makes it difficult for researchers to understand its decisions, 
-not to mention to design high-activity sgRNA with the insights brought by the model. 
-Moreover, neither of the deep learning based model with existing structure can not satisfy enough precision at such huge datasets.\\
+Conventional machine learning performs poorly on these datasets, while the models based on deep learning are often lack of interpretability, 
+which makes researchers have to trade-off accuracy and interpretability. 
+We believe it is necessary to develope a model which can not only match deep learning based model in performance, 
+but also with strong interpretability that can be comparable to conventional machine learning method.\\
 \textbf{Results:} To overcome these problems, we design and implement AttCRISPR, an intrinsic interpretable method based on deep learning to predict the on-target activity. 
 In this paper, we find that based on the preprocessing of the input base sequence, the deep learning models can be divided into two categories, 
-methods in spatial domain with the input of encoded base sequence and in temporal domain with the input of embedded base sequence. 
-Based on the categorization above, we assume that spatial and temporal method are heterogeneous, and use a full connection layer to stack them, which achieve a better performance. 
-Our model was trained and tested on the biggest dataset, the same dataset as DeepHF used, as far as we know for performance evaluation. 
+encoded-based methods and embedded-based methods. 
+Based on the categorization above, we assume encoded-based methods and embedded-based methods are heterogeneous, and use a full connection layer to stack them, which achieve a better performance. 
+Our model is trained and tested on the DeepHF dataset for performance evaluation. 
+AttCRISPR can compete with state-of-the-art method in these datasets, and achieves an average spearman value of 0.872, 0.867, 0.867 (corresponding to WT-SpCas9, eSpCas9(1.1), SpCas9-HF1) with the same evaluation strategy. 
 In addition, benefits from two attention modules, spatial and temporal attention modules, AttCRISPR has strong interpretability. 
 Through them, we can understand the decisions made by AttCRISPR at both global and local levels without other post hoc explanations techniques. 
-Further, interpretability AttCRISPR can be used to guide researcher to design sgRNA with higher activity, in order to reduce the experimental cost. 
-AttCRISPR can compete with state-of-the-art method in these datasets, and achieves an average spearman value of 0.872, 0.867, 0.867 (corresponding to WT-SpCas9, eSpCas9(1.1), SpCas9-HF1) under tenfold shuffled validation. \\
+With the trained model, we reveal the preference for each position-dependent nucleotide on the sgRNA sequence in each dataset at global level. 
+And at local level, we prove that interpretability of AttCRISPR can be used to guide researcher to design sgRNA with higher activity, in order to reduce the experimental cost. 
+\\
 \textbf{Availability:} The example code are available at \href{https://github.com/South-Walker/AttCRISPR}{https://github.com/South-Walker/AttCRISPR}\\
 \textbf{Contact:} \href{zrjiang@cs.ecnu.edu.cn}{zrjiang@cs.ecnu.edu.cn}\\
 \textbf{Supplementary information:} Supplementary data are available at \textit{Bioinformatics}
@@ -51,7 +54,7 @@ while there are still severe medical disadvantages even now which has greatly hi
 One of these disadvantages is due to unexpected insertion and deletion caused by off-target effect \citep{rubeis2018risks,kang2016introducing,ishii2017reproductive,liang2015crispr/cas9-mediated}. 
 To overcome this disadvantage, a solution is to engineer CRISPR / Cas9 with higher specificities. 
 That's why more and more higher specificities Cas9 variants, such as enhanced SpCas9 (eSpCas9(1.1)), 
-Cas9-High Fidelity (SpCas9-HF1) \citep{ishii2017reproductive,slaymaker2016rationally}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
+Cas9-High Fidelity (SpCas9-HF1) \citep{slaymaker2016rationally,ishii2017reproductive}, hyper-accurate Cas9 (HypaCas9) \citep{kleinstiver2016high-fidelity}, 
 been developed and bring a significant volume of experimental data, which means that researchers have to face the difficulty of analyzing such huge and heterogeneous data.
 
 The activity of chosen sgRNA sequence determines the efficiency of genome editing, 
@@ -83,11 +86,11 @@ and $d=l+b$, where $l$ refers to the length of base sequences and $b$ refers to 
  Deep SHAP is a compositional approximation of SHAP values since it is challenged to computate SHAP values exactly, especially for a complex deep neural networks. 
  In our understanding, the method based on input perturbation often requires better generalization ability of the model (even for artificial ridiculous noise data). 
 
- In addition, existing analysis of the models interpretability are all at global level, and result is a general pattern in the datasets. 
+ In addition, the interpretability of existing models are all at global level, and result is a general pattern in the datasets. 
 For example, which position has a great impact on the final decision of the model and which position-dependent nucleotide has a positive impact on the activity. 
 Lack of analysis at local level. 
 For example, which structure causes the low activity of a certain nucleotide sequence and how to improve its activity with a few modification. 
-In light of the above, we believe it is essential to develope a model which can not only match deep learning based model in performance, 
+In light of the above, we believe it is necessary to develope a model which can not only match deep learning based model in performance, 
 but also with strong interpretability that can be comparable to conventional machine learning method.
 
 
@@ -137,7 +140,7 @@ Attention mechanism has demonstrated its power in NLP, Statistical Learning, Spe
  The above is the premise of introducing attention mechanism. Strictly speaking, we are not the first to bring attention mechanisms into this field. 
  The most similar approach to ours is the work based on transformer by \citeauthor{Liu2019}. 
  They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, 
- hence, enhance the performance of their model \citep{Liu2019,vaswani2017attention}. 
+ hence, enhance the performance of their model \citep{vaswani2017attention,Liu2019}. 
  In our work,the interpretability benefit from attention mechanism is more focused. 
  Our main contributions are as follows:\vspace*{1pt}
 \begin{itemize}
@@ -149,16 +152,20 @@ Attention mechanism has demonstrated its power in NLP, Statistical Learning, Spe
     In the spatial domain it's at global level, while at local level in the temporal domain. 
     Thus, it is transformed from a black box to an intrinsically interpretable model with the performance of deep learning based model. 
     \item Throught ablation analysis and testing a series of possible network structures, 
-    we find there are multiple components and strategy can improve the performance of our model and constructed AttCRISPR, 
+    we find there are multiple components and strategy can improve the performance of AttCRISPR, 
     which could outperform current state-of-the-art tools on DeepHF dataset.\vspace*{1pt}
 \end{itemize}
 
 \section{Materials and methods}
+\subsection{Datasets}
+
+The dataset we used for training, validation and testing is built by \citeauthor{wang2019optimized}. 
+We extracted 55604, 58617, 56888 sgRNAs with activity (represented by insertion/deletion (indel)) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively, from its source data. 
 
 \subsection{Sequence encoding and embedding}
 
-For encoding process, we use the complementary base to represent the original base in sgRNA, as others do. 
-Further, we use one-hot encode strategy, which's is to say, we encoding each base in sgRNA into a four-dimensional vector 
+For encoding process, we use the complementary base to represent the original base in sgRNA. 
+Further, we use one-hot encode strategy, that is to say, we encoding each base in sgRNA into a four-dimensional vector 
 (encode A,T,G,C into [1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1], respectively), called one-hot vector. 
 Then a sgRNA can be considered as a matrix $X_{oh}\in\mathbb{R}^{l\times4} $, named one-hot matrix (a little sparse, since an one-hot vector is zero in all but one dimension). 
 We believe it is meaningful to regard $X_{oh}$ as a binary image, 
@@ -166,7 +173,7 @@ therefore, it is used as an input of convolutional neural network, which perform
 Meanwhile, as mentioned above, one-hot matrix is a little sparse. 
 
 To facilitate the training process, we can mapping each one-hot vector into a dense real-valued high-dimensional space, which is called embedding. 
-Concretely speaking, at the matrix level, the formula is as follows
+In summarized, at the matrix level, the formula is as follows
 \begin{equation}
 X_e=X_{oh}E_m\label{eq:08}
 \end{equation}
@@ -176,10 +183,10 @@ Guided by this belief $E_m$ is the word embedding matrix and $X_e$ is the senten
 Therefore, $X_e$ is used as an input of RNN (or its variant), which performs well in the NLP field.
 
 Due to each element of $X_{oh}$ is interpretable (representing whether there is a corresponding nucleotide type at the corresponding location), 
-we call $X_{oh}$ the spatial input, and the convolutional neural network work on $X_{oh}$ is method in spatial domain. 
+we call $X_{oh}$ the spatial input, and the CNN work on $X_{oh}$ is method in spatial domain. 
 In other hand, different from $X_{oh}$, $X_e$ can only be explained in the first dimension (representing the embedding vector of corresponding nucleotide type), 
 and embedding vector is difficult for humans to understand. 
-That's why we call $X_e$ the temporal input, and the RNN (or its variant) work on $X_e$ is method in temporal domain. 
+That's why we call $X_e$ the temporal input, and the RNN (or its variant) work on $X_e$ belongs to the method in temporal domain. 
 
 \subsection{Neural network architecture}
 
@@ -191,7 +198,7 @@ Further, we apply attention mechanisms in both spatial and temporal domain to en
 
 \subsubsection{First-order preference and second-order preference}
 
-Before introducing the neural network architecture of AttCRISPR, Let's define first-order preference and second-order preference for convenience. 
+In order to introduce the neural network architecture of AttCRISPR, Let's define first-order preference and second-order preference for convenience. 
 Taking a simple linear regression model as an example, for input $X$ in Equation~(\ref{eq:01}), $y$ in Equation~(\ref{eq:01}) is as following
  \begin{equation}
 y = AX\label{eq:linear}
@@ -268,7 +275,7 @@ We think it can reveal the preference of the scoring function at each position.
 For instance, follow the encoding rules above, we train spatial domain part of AttCRISPR with the WT-SpCas9 dataset. 
 Then take the average of all spatial attention matrix, and the element in the first row and third column are closer to 1, which means when calculate the final score, 
 G typically may have a important contribution at first position within sgRNA sequence. 
-In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{cong2013multiplex,jinek2012a,mali2013rnaguided}.
+In fact, this corresponds to some early studies concerning the Human (hU6) promoter, which is believed to require G as the first nucleotide of its transcript \citep{jinek2012a,cong2013multiplex,mali2013rnaguided}.
 
 \subsubsection{Method in temporal domain}
 As Figure~\ref{fig:04} show, temporal domain part of AttCRISPR relies on the RNN (or its variant). 
@@ -343,7 +350,6 @@ We believe that the $j$-th dimension of $B_i$, denoted as $B_{ij}$, can reveal t
     Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation~(\ref{eq:17}) has shown. 
     $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). 
     Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde{A}$ come from the product of $B$ and values matrix $V$.
-    Although it's not shown above, it is also worth noting that, a full connection layer with L2 constraints is used to generates a transformation matrix in order to ensure $\tilde{A}_i$ and ${X_e} _i$ are in the same vector space. 
     Temporal attention module generates the temporal first-order preference matrix $\tilde{A}$ and the temporal second-order preference matrix $B$.
     }\label{fig:05}
 \end{figure}
@@ -357,7 +363,7 @@ It's worth noting that in the work of \citeauthor{wang2019optimized}, hand-craft
 Since the wide range of data distribution, we believe it makes sense to normalize it, and we preprocess they based on the standard score (Z-Score).
 
 Then we use a simple full connection network to extract the indirect features, and call the output of fully connection network $y_{bio}$. 
-As mentioned above, we assume that the method in spatial domain and in temporal domain are heterogeneous, which can satisfy the diversity premise of ensemble learning.
+As mentioned above, we assume that the method in spatial domain and in temporal domain can satisfy the diversity premise of ensemble learning.
 That's why we follow the stacking strategy, to integrate the methods in time domain and space domain. 
 Specifically, the $y_{bio}$, the spatial output $y_{s}$ and the temporal output $y_{t}$ we got earlier are concatenated and then weighted averaging is performed through a full connection layer as follow
 \begin{equation}
@@ -367,20 +373,16 @@ where, $y$ is the final prediction value of AttCRISPR, $W$ is the weight learned
 In the actual implementation, we freeze the network in the spatial domain and temporal domain firstly, in order to make our network focused on learning the weight $W$.
 Then the parameters of the entire network are adjusted in the fine tuning of AttCRISPR.
 
-\subsection{Datasets and current prediction method}
+\subsection{Current prediction method}
 
-The dataset we used for training, validation and testing is built by \citeauthor{wang2019optimized} \citep{wang2019optimized}. 
-We extracted 55604, 58617, 56888 sgRNAs with activity (represented by insertion/deletion (indel)) for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively, from its source data. 
-As far as we know, the best performance on this dataset is the DeepHF of \citeauthor{wang2019optimized} currently, which is based on deep learning and bidirectional LSTM architecture. 
-DeepHF achieved Spearman correlation coefficients of 0.867, 0.862 and 0.860 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively. 
-
+As far as we know, DeepHF, the state-of-the-art method, 
+achieved Spearman correlation coefficients of 0.867, 0.862 and 0.860 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively \citep{wang2019optimized}. 
 Another tool worth noting is CRISPRpred(SEQ), which is based on conventional machine learning and need complicated human feature engineering exercise \citep{MuhammadRafid2020}. 
 They also test their tool with this dataset and achieved Spearman correlation coefficients of 0.838, 0.830 and 0.821 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively (without any hyperparameter tuning).
 
-\citeauthor{wang2019optimized} implemente a tenfold shuffled validation to evaluate the stability of the performance of DeepHF.
+In order to make the comparison apples to apples, we follow the same strategy as \citeauthor{wang2019optimized} to design our experiments.
 To be more specific, each set is shuffled and divided into three parts, 76.5\%, 15\% and 8.5\% of the relevant data was used as the training, test and validation set respectively in a single experiment. 
 The experiment is repeated ten times with the results recorded and averaged finally.
-In order to make the comparison apples to apples, we will follow this strategy to design experiments.
 
 \subsection{Experiment design}
 
@@ -427,6 +429,17 @@ All of the experiments were carried out in Python 3.6 using Keras 2.2.4 and one 
     (d)-(f) In the absence of hand-crafted biological features, the performance of all prediction methods in these datasets as far as we know. 
     The $mean \pm s.d.$ of the Spearman correlation coefficient between predicted and measured sgRNA activity scores are shown in the bar plots.}\label{fig:06}
 \end{figure}
+
+\begin{figure}[!tpb]%figure4
+    \centerline{\includegraphics[width=86mm]{baselinewithbiofeat.eps}}
+    \caption{
+Performance comparisons for the methods before and after integrating with hand-crafted biological features, 
+where DeepHF is the RNN integrated with hand-crafted biological features, 
+and StAC is the EnAC integrated with hand-crafted biological features. 
+The box plot show the mean and distribution of Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests.
+}\label{fig:07}
+\end{figure}
+
 We designed experiments to address the following questions:
 \begin{itemize}
     \item 
@@ -491,29 +504,6 @@ In the tables, we use the results reported in the relevant papers as the perform
 
 \subsection{Performance comparison with current methods}\label{section:comparison}
 
-In order to make the comparison apples to apples, 
-we follow Equation~(\ref{eq:20}) to modify the ensemble method and design the control experiment using the same strategy to validate the conclusion that integrating with hand-crafted biological features can improve the predictive performance of methods. 
-What's more, we compare the standard AttCRISPR and DeepHF (Table~\ref{Tab:withbiofeature}). 
-
-As shown in Table~\ref{Tab:withbiofeature}, in the absence of hand-crafted biological features, AttCRISPR has significant advantages over DeepHF in predictability. 
-Further, integration with the hand-crafted biological features can also improve the performance of AttCRISPR, and achieve Spearman correlation coefficients of 0.872, 0.867 and 0.867 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively. Meanwhile, DeepHF achieve 0.867, 0.862 and 0.860 respectively. 
-After integrating with biological features, the performance gap between AttCRISPR and DeepHF is shortened, while AttCRISPR still has better performance. In addition, we also compare the standard deviation of data obtained in ten tests, which are also shown in Table~\ref{Tab:withbiofeature}. 
-It reveal that AttCRISPR is more stable than DeepHF.
-
-\begin{figure}[!tpb]%figure4
-    \centerline{\includegraphics[width=86mm]{baselinewithbiofeat.eps}}
-    \caption{
-Performance comparisons for the methods before and after integrating with hand-crafted biological features, 
-where DeepHF is the RNN integrated with hand-crafted biological features, 
-and StAC is the EnAC integrated with hand-crafted biological features. 
-The box plot show the mean and distribution of Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests.
-}\label{fig:07}
-\end{figure}
-
-\subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
-
-In the following sections, we will analyze the insight into activity of sgRNA bring through the attention mechanism at both global and local levels 
-to validate the attention module in the AttCRISPR can help us to understand the decisions. 
 \begin{figure*}[!tpb]
     \centerline{\includegraphics[width=178mm]{spatialattention.eps}}
     \caption{Preference for each position-dependent nucleotide on the sgRNA sequence. 
@@ -527,6 +517,19 @@ The contour plots at the bottom show the area of position-dependent nucleotides 
 }\label{fig:spatialattention}
 \end{figure*}
 
+In order to make the comparison apples to apples, 
+we follow Equation~(\ref{eq:20}) to modify the ensemble method and design the control experiment using the same strategy to validate the conclusion that integrating with hand-crafted biological features can improve the predictive performance of methods. 
+What's more, we compare the standard AttCRISPR and DeepHF (Table~\ref{Tab:withbiofeature}). 
+
+As shown in Table~\ref{Tab:withbiofeature}, in the absence of hand-crafted biological features, AttCRISPR has significant advantages over DeepHF in predictability. 
+Further, integration with the hand-crafted biological features can also improve the performance of AttCRISPR, and achieve Spearman correlation coefficients of 0.872, 0.867 and 0.867 for WT-SpCas9, eSpCas9(1.1) and SpCas9-HF1, respectively. Meanwhile, DeepHF achieve 0.867, 0.862 and 0.860 respectively. 
+After integrating with biological features, the performance gap between AttCRISPR and DeepHF is shortened, while AttCRISPR still has better performance. In addition, we also compare the standard deviation of data obtained in ten tests, which are also shown in Table~\ref{Tab:withbiofeature}. 
+It reveal that AttCRISPR is more stable than DeepHF.
+
+\subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
+
+In the following sections, we will analyze the insight into activity of sgRNA bring through the attention mechanism at both global and local levels 
+to validate the attention module in the AttCRISPR can help us to understand the decisions. 
 \subsubsection{Global interpretability}
 
 At global level, a important question we expect AttCRISPR to answer is which nucleotide it prefers at each position on the sequence. 
@@ -552,6 +555,7 @@ The above discussion shows that, in the task of sgRNA activity prediction,
 attention mechanism can help us understand the decision made by AttCRISPR and reveal the insight into activity of sgRNA. 
 Some of them are consistent with the current accepted conclusion. 
 
+
 \subsubsection{Local interpretability}\label{section:local}
 
 At local level, we analyze a case (consisting of three sgRNAs as Table~\ref{Tab:optimum} show), 
@@ -568,42 +572,12 @@ If replaced the T at position 14 with C, would generate the same sgRNA as the on
 If replaced the T at position 16 with C, would generate the same sgRNA as the one with index of 8492, which is with a activity value of 0.869. 
 Therefore, we could conclude that the local interpretability is helpful for us to optimize the sgRNA without exhaustively search.
 
-\begin{table}[!tpb]
-    \processtable{Three sgRNA and their activity \label{Tab:optimum}} 
-    {\begin{tabular}{@{}lll@{}}\toprule
-        Index & sgRNA & Activity \\\midrule
-        8493 & ACATGACTTTGGATTTCCCCAGG & 0.831\\
-        8492 & ACATGACTTTGGATTCCCCCAGG & 0.869\\
-        8491 & ACATGACTTTGGACTTCCCCAGG & 0.861\\
-        \botrule
-    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: 
-    \emph{Activity} of sgRNA represents the activity reported in WT-SpCas9 dataset (Supplementary Data 1). }
-\end{table}
-\begin{figure}[!tpb]
-    \centerline{\includegraphics[width=86mm]{local0.eps}}
-    \caption{
-The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
-The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. 
-At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. 
-}\label{fig:opt}
-\end{figure}
-
 The second question we expect AttCRISPR to answer is why it give two low scores at position 14 and 16. 
 In practice, we will try to answer this question with second-order preference. 
 Let AttCRISPR output the second-order preference matrix $B$ corresponding to the source sgRNA, and show it in Figure~\ref{fig:heatmap}. 
 It is obvious that a few unusual bright spots appear in the red box in Figure~\ref{fig:heatmap}. 
 We believe that tells us the nucleotide at position 15 has a great effect on the score of position 14 and 16 (instead of position 13 or 17, which corresponding position are relatively dim in color). 
 As shown in Table~\ref{Tab:optimum}, in source sgRNA there are three consecutive Ts at position 14, 15 and 16, and this may reveal that multiple consecutive Us on sgRNA would leads to low on-target activity of sgRNA, which is consistent with earlier report \citep{wu2014genome-wide}. 
-
-\begin{figure}[!tpb]
-    \centerline{\includegraphics[width=86mm]{secondorder.eps}}
-    \caption{The visualization of second-order preference matrix $B$, 
-the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde{A}$ at position $i$. 
-The warmer the color, the more important it is. 
-In the red box, a few unusual bright spots appear. 
-To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
-}\label{fig:heatmap}
-\end{figure}
 
 \section{Discussion}
 
@@ -635,6 +609,35 @@ However it can be extended to other Cas9 species, variants or off-target task ea
 
 \section{Conclusion}
 
+\begin{table}[!tpb]
+    \processtable{Three sgRNA and their activity \label{Tab:optimum}} 
+    {\begin{tabular}{@{}lll@{}}\toprule
+        Index & sgRNA & Activity \\\midrule
+        8493 & ACATGACTTTGGATTTCCCCAGG & 0.831\\
+        8492 & ACATGACTTTGGATTCCCCCAGG & 0.869\\
+        8491 & ACATGACTTTGGACTTCCCCAGG & 0.861\\
+        \botrule
+    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: 
+    \emph{Activity} of sgRNA represents the activity reported in WT-SpCas9 dataset (Supplementary Data 1). }
+\end{table}
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm]{local0.eps}}
+    \caption{
+The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
+The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. 
+At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. 
+}\label{fig:opt}
+\end{figure}
+
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm]{secondorder.eps}}
+    \caption{The visualization of second-order preference matrix $B$, 
+the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde{A}$ at position $i$. 
+The warmer the color, the more important it is. 
+In the red box, a few unusual bright spots appear. 
+To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
+}\label{fig:heatmap}
+\end{figure}
 In this paper, we develop AttCRISPR, a ensemble method of both spatial method and temporal method follow the stacking strategy with strong interpretability. 
 AttCRISPR prove that the ensemble method have a better performance in the datasets of DeepHF
 and can compete with the current state-of-the-art method. 
