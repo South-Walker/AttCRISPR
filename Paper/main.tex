@@ -10,7 +10,7 @@
 
 \subtitle{Sequence analysis}
 
-\title[sgRNA on-target activity]{AttCRISPR : a spacetime interpretable model for prediction of sgRNA on-target activity}
+\title[sgRNA on-target activity prediction]{AttCRISPR : a spacetime interpretable model for prediction of sgRNA on-target activity}
 \author[Xiao \textit{et~al}.]{Liming Xiao\,$^{\text{\sfb 1}}$, Yunqi Wan\,$^{\text{\sfb 1}}$ and Zhenran Jiang\,$^{\text{\sfb 1,}*}$}
 \address{$^{\text{\sf 1}}$School of Computer Science \& Technology, East China Normal University, Shanghai, 200062, China.}
 
@@ -23,12 +23,12 @@
 \abstract{\textbf{Motivation:} More and more Cas9 variants with higher specificities are developed to avoid the off-target effect, which bring a significant volume of experimental data. 
 Conventional machine learning performs poorly on these datasets, while the methods based on deep learning are often lack of interpretability, 
 which makes researchers have to trade-off accuracy and interpretability. 
-It is necessary to develope a method which can not only match deep learning based methods in performance, 
+It is necessary to develop a method which can not only match deep learning based methods in performance, 
 but also with strong interpretability that can be comparable to conventional machine learning methods.\\
 \textbf{Results:} To overcome these problems, we design and implement AttCRISPR, an intrinsic interpretable method based on deep learning to predict the on-target activity. 
 The advantage of AttCRISPR lies in using the ensemble learning strategy to stack available encoded-based methods and embedded-based methods with strong interpretability. 
 Comparison with the state-of-the-art methods (WT-SpCas9, eSpCas9(1.1), SpCas9-HF1), AttCRISPR can achieve an average spearman value of 0.872, 0.867, 0.867, respectively on several public datasets, which is superior to these methods. 
-Furthermore, AttCRISPR has strong interpretability benefits from two attention modules, spatial and temporal attention modules. 
+Furthermore, benefits from two attention modules, spatial and temporal attention modules, AttCRISPR has strong interpretability. 
 Through them, we can understand the decisions made by AttCRISPR at both global and local levels without other post hoc explanations techniques. 
 With the trained model, we reveal the preference for each position-dependent nucleotide on the sgRNA (small guide RNA) sequence in each dataset at global level. 
 And at local level, we prove that interpretability of AttCRISPR can be used to guide researcher to design sgRNA with higher activity. \\
@@ -631,8 +631,8 @@ In the red box, a few unusual bright spots appear.
 To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
 }\label{fig:heatmap}
 \end{figure}
-In this paper, we develop AttCRISPR, a ensemble method of both spatial method and temporal method follow the stacking strategy with strong interpretability. 
-AttCRISPR prove that the ensemble method have a better performance in the datasets of DeepHF
+In this paper, we develop AttCRISPR, an ensemble method of both spatial method and temporal method follow the stacking strategy with strong interpretability. 
+AttCRISPR prove that the ensemble methods have a better performance in the datasets of DeepHF
 and can compete with current state-of-the-art methods. 
 In addition, AttCRISPR apply attention mechanisms in both the temporal and spatial part, 
 and we explain the decisions made by AttCRISPR through the attention module which is consistent with earlier reports. 
