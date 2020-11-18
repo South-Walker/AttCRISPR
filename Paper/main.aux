@@ -29,8 +29,6 @@
 \citation{Liu2019}
 \citation{wang2019optimized}
 \citation{liu2020deep}
-\citation{wang2014genetic}
-\citation{wu2014genome-wide}
 \citation{Liu2019}
 \citation{vaswani2017attention}
 \citation{Liu2019}
@@ -43,9 +41,9 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Sequence encoding and embedding}{3}\protected@file@percent }
 \newlabel{eq:08}{{1}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Neural network architecture}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.3}.1}}First-order preference and second-order preference}{3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The architecture of spatial domain method in AttCRISPR. The input of the method is encoded sgRNA sequence $X_{oh}$, a $21\times 4$ one-hot matrix. Then refine it through a spatial attention module, which could tell us the importance of a specific matrix element (or just say, pixel). A simple CNN followed is applied to extract potential feature representation of sgRNA sequence. In the last step, we flatten the output of CNN network into a one dimensional vector and use a multilayer perceptron with sigmoid activation function to achieve the spatial output $y_s$.}}{3}\protected@file@percent }
 \newlabel{fig:CNN}{{2}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.3}.1}}First-order preference and second-order preference}{3}\protected@file@percent }
 \newlabel{eq:linear}{{2}{3}}
 \newlabel{eq:02}{{3}{3}}
 \newlabel{eq:superlinear}{{4}{3}}
@@ -60,6 +58,9 @@
 \citation{vaswani2017attention}
 \citation{luong2015effective}
 \citation{vaswani2017attention}
+\citation{Wang2016ProteinSS}
+\citation{wang2019optimized}
+\citation{wang2019optimized}
 \newlabel{eq:11}{{7}{4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.3}.3}}Method in temporal domain}{4}\protected@file@percent }
 \newlabel{eq:13}{{8}{4}}
@@ -69,44 +70,44 @@
 \newlabel{eq:16}{{10}{4}}
 \newlabel{eq:17}{{11}{4}}
 \newlabel{eq:18}{{12}{4}}
-\citation{Wang2016ProteinSS}
-\citation{wang2019optimized}
-\citation{wang2019optimized}
+\newlabel{eq:19}{{13}{4}}
 \citation{wang2019optimized}
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
 \citation{wang2019optimized}
 \citation{MuhammadRafid2020}
-\newlabel{eq:19}{{13}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{2.3}.4}}Ensemble model following stacking strategy}{5}\protected@file@percent }
 \newlabel{eq:20}{{14}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{2.4}}Experiment design}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The methods compared in our work and brief description of these methods}}{5}\protected@file@percent }
 \newlabel{Tab:baseline}{{1}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  Performance comparisons for different methods in the absence of hand-crafted biological features (take Spearman correlation coefficient as evaluation index)}}{5}\protected@file@percent }
 \newlabel{Tab:withoutbiofeature}{{2}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces  Performance comparisons for the methods before and after integrating with hand-crafted biological features (take Spearman correlation coefficient as evaluation index)}}{5}\protected@file@percent }
 \newlabel{Tab:withbiofeature}{{3}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}\protected@file@percent }
 \citation{wang2019optimized}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preference for each position-dependent nucleotide on the sgRNA sequence. (a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRNA. The numbers below indicated the position of the nucleotides on-target DNA. (d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. Each position-dependent nucleotide is a control point. The coordinates of the control points on the vertical axis represent the degree of preference, and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRNA. The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. }}{6}\protected@file@percent }
+\newlabel{fig:spatialattention}{{4}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Model building and stacking}{6}\protected@file@percent }
+\newlabel{section:stacking}{{{3.1}}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Performance comparison}{6}\protected@file@percent }
+\newlabel{section:comparison}{{{3.2}}{6}}
 \citation{wang2019optimized}
 \citation{Liu2019}
 \citation{wang2014genetic}
 \citation{Wong2015}
 \citation{Doench2014}
 \citation{wu2014genome-wide}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Model building and stacking}{6}\protected@file@percent }
-\newlabel{section:stacking}{{{3.1}}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Performance comparison}{6}\protected@file@percent }
-\newlabel{section:comparison}{{{3.2}}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.3}}Interpretability of the AttCRISPR}{6}\protected@file@percent }
-\newlabel{section:interpretability}{{{3.3}}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.1}}Global interpretability}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.2}}Local interpretability}{6}\protected@file@percent }
-\newlabel{section:local}{{{{3.3}.2}}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preference for each position-dependent nucleotide on the sgRNA sequence. (a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRNA. The numbers below indicated the position of the nucleotides on-target DNA. (d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. Each position-dependent nucleotide is a control point. The coordinates of the control points on the vertical axis represent the degree of preference, and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRNA. The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. }}{7}\protected@file@percent }
-\newlabel{fig:spatialattention}{{4}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. The bar plot reveals the score at each position, while the line of dashes reveals the average scores which can be used as a base line. }}{7}\protected@file@percent }
+\newlabel{fig:opt}{{5}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.3}}Interpretability of the AttCRISPR}{7}\protected@file@percent }
+\newlabel{section:interpretability}{{{3.3}}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.1}}Global interpretability}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The visualization of second-order preference matrix $B$, the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde  {A}$ at position $i$. The warmer the color, the more important it is. In the red box, a few unusual bright spots appear. To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16. }}{7}\protected@file@percent }
+\newlabel{fig:heatmap}{{6}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.3}.2}}Local interpretability}{7}\protected@file@percent }
+\newlabel{section:local}{{{{3.3}.2}}{7}}
 \bibstyle{natbib}
 \bibdata{document}
 \bibcite{chuai2018deepcrispr}{{1}{2018}{{Chuai {\em  et~al.}}}{{Chuai, Ma, Yan, Chen, Hong, Xue, Zhou, Zhu, Chen, Duan, {\em  et~al.}}}}
@@ -129,11 +130,6 @@
 \bibcite{rubeis2018risks}{{18}{2018}{{Rubeis and Steger}}{{Rubeis and Steger}}}
 \bibcite{slaymaker2016rationally}{{19}{2016}{{Slaymaker {\em  et~al.}}}{{Slaymaker, Gao, Zetsche, Scott, Yan, and Zhang}}}
 \bibcite{Song2020}{{20}{2020}{{Song {\em  et~al.}}}{{Song, Kim, Lee, Kim, Seo, Park, Choi, Jang, Shin, Min, Quan, Kim, Kang, Yoon, and Kim}}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. }}{8}\protected@file@percent }
-\newlabel{fig:opt}{{5}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The visualization of second-order preference matrix $B$, the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde  {A}$ at position $i$. The warmer the color, the more important it is. In the red box, a few unusual bright spots appear. To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16. }}{8}\protected@file@percent }
-\newlabel{fig:heatmap}{{6}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}\protected@file@percent }
 \bibcite{vaswani2017attention}{{21}{2017}{{{Vaswani} {\em  et~al.}}}{{{Vaswani}, {Shazeer}, {Parmar}, {Uszkoreit}, {Jones}, {Gomez}, {Kaiser}, and {Polosukhin}}}}
 \bibcite{wang2019optimized}{{22}{2019}{{Wang {\em  et~al.}}}{{Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou, Shi, Lan, {\em  et~al.}}}}
 \bibcite{Wang2016ProteinSS}{{23}{2016}{{Wang {\em  et~al.}}}{{Wang, Peng, Ma, and Xu}}}
@@ -142,4 +138,6 @@
 \bibcite{woo2018cbam:}{{26}{2018}{{Woo {\em  et~al.}}}{{Woo, Park, Lee, and Kweon}}}
 \bibcite{wu2014genome-wide}{{27}{2014}{{Wu {\em  et~al.}}}{{Wu, Scott, Kriz, Chiu, Hsu, Dadon, Cheng, Trevino, Konermann, Chen, {\em  et~al.}}}}
 \bibcite{zhang2020c-rnncrispr:}{{28}{2020}{{Zhang {\em  et~al.}}}{{Zhang, Dai, and Dai}}}
-\global\@namedef{@lastpage@}{9}
+\global\@namedef{@lastpage@}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}\protected@file@percent }

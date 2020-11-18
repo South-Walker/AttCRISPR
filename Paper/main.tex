@@ -114,9 +114,7 @@ we found that the deep learning models used in sgRNA on-target activity (even fo
 
 Attention mechanism has demonstrated its power in NLP, Statistical Learning, Speech and Computer Vision. 
  It makes model tends to focus selectively on parts of the input, which is help in performing the task effectively. 
- Previous observation have shown that Cas9 preferentially binds sgRNAs containing purines but not pyrimidines \citep{wang2014genetic} and multiple thymine in the spacer impairing sgRNA activity \citep{wu2014genome-wide}, 
- that is to say some specific nucleotides and base position need more attention compared to others. 
- The above is the premise of introducing attention mechanism. Strictly speaking, we are not the first to bring attention mechanisms into this field. 
+ Strictly speaking, we are not the first to bring attention mechanisms into this field. 
  The most similar approach to ours is the work based on transformer by \citeauthor{Liu2019}. 
  They use transformer, a components based on attention mechanism, instead of RNN to improve the ability of temporal feature extraction, 
  hence, enhance the performance of their model \citep{vaswani2017attention,Liu2019}. 
@@ -249,7 +247,7 @@ In fact, this corresponds to some early studies concerning the Human (hU6) promo
 
 \subsubsection{Method in temporal domain}
 \begin{figure}[tpb]%figure4
-    \centerline{\includegraphics[width=86mm]{temporalmodule.png}}
+    \centerline{\includegraphics[width=86mm,height=100mm]{temporalmodule.png}}
     \caption{The architecture of temporal domain method in AttCRISPR. 
     The input of the method is embedding sgRNA sequence $X_e$. 
     Then Keys $K$, Values $V$ and Queries $Q$ is generated through a classic encoder-decoder structure which is need for temporal attention module.
@@ -371,6 +369,8 @@ Our baselines have a comprehensive coverage of the methods tested in these datas
 In Table~\ref{Tab:baseline}, we annotate some properties of these baselines (is/isn't neural models, is/isn't end2end models)
 All of the experiments were carried out in Python 3.6 using Keras 2.2.4 and one GeForce RTX 2080Ti Super was used for training and testing if needed. 
 
+\section{Results}
+
 \begin{table}[!tpb]
     \processtable{
     Performance comparisons for different methods in the absence of hand-crafted biological features 
@@ -404,7 +404,18 @@ The method with superscript of $^*$ and $^{\#}$ is reported by \citeauthor{wang2
 In the tables, we use the results reported in the relevant papers as the performance of the method directly.}
 \end{table}
 
-\section{Results}
+\begin{figure*}[!tb]
+    \centerline{\includegraphics[width=178mm,height=160mm]{spatialattention.eps}}
+    \caption{Preference for each position-dependent nucleotide on the sgRNA sequence. 
+(a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRNA. 
+The numbers below indicated the position of the nucleotides on-target DNA. 
+(d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. 
+Each position-dependent nucleotide is a control point. 
+The coordinates of the control points on the vertical axis represent the degree of preference, 
+and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRNA.
+The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. 
+}\label{fig:spatialattention}
+\end{figure*}
 
 We design experiments to address the following questions:
 \begin{itemize}
@@ -434,7 +445,7 @@ It's obvious that the ensemble AttCRISPR is better at prediction (Supplementary 
 Furthermore, the prediction ability of models could be boosted by addition of other hand-crafted biological features, which can't be obtained directly by sequence information. 
 
 Further experiment is designed to compare the performance of standard AttCRISPR (hand-crafted biological features are used to improve performance of ensemble AttCRISPR)
- and DeepHF, which is a current state-of-the-art method. 
+ and DeepHF, which is a current state-of-the-art method.\vspace*{-10pt}
 
 \subsection{Performance comparison}\label{section:comparison}
 
@@ -452,23 +463,18 @@ It reveal that AttCRISPR is more stable than DeepHF.
 
 \subsection{Interpretability of the AttCRISPR}\label{section:interpretability}
 
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm,height=60mm]{local0.eps}}
+    \caption{
+The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
+The bar plot reveals the score at each position, while the line of dashes reveals the average scores which can be used as a base line. 
+}\label{fig:opt}
+\end{figure}
+
 In the following sections, we will analyze the insight into activity of sgRNA bring through the attention mechanism at both global and local levels 
 to validate the attention module in the AttCRISPR can help us to understand the decisions. 
 
 \subsubsection{Global interpretability}
-
-\begin{figure*}[!tpb]
-    \centerline{\includegraphics[width=178mm]{spatialattention.eps}}
-    \caption{Preference for each position-dependent nucleotide on the sgRNA sequence. 
-(a)-(c) Bars show the score of preference after standardization, and the higher the number, the more positive it is for activity of sgRNA. 
-The numbers below indicated the position of the nucleotides on-target DNA. 
-(d)-(f) Preference surfaces for each position-dependent nucleotide fitted with Bézier surfaces. 
-Each position-dependent nucleotide is a control point. 
-The coordinates of the control points on the vertical axis represent the degree of preference, 
-and the higher the position-dependent nucleotide corresponding to the control point is, the more positive it is for the activity of sgRNA.
-The contour plots at the bottom show the area of position-dependent nucleotides which have different contribution to the activity of sgRNA. 
-}\label{fig:spatialattention}
-\end{figure*}
 
 At global level, an important question we expect AttCRISPR to answer is which nucleotide it prefers at each position on the sequence. 
 In fact, \citeauthor{wang2019optimized} has already answered this question in detail with the DeepSHAP method.
@@ -494,6 +500,15 @@ attention mechanism can help us understand the decision made by AttCRISPR and re
 
 \subsubsection{Local interpretability}\label{section:local}
 
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm,height=60mm]{secondorder.eps}}
+    \caption{The visualization of second-order preference matrix $B$, 
+the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde{A}$ at position $i$. 
+The warmer the color, the more important it is. 
+In the red box, a few unusual bright spots appear. 
+To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
+}\label{fig:heatmap}
+\end{figure}
 At local level, we analyze a case (consisting of three sgRNAs as Supplementary Tab. S1 show), 
 then we expect AttCRISPR to answer two imortant questions based on the local interpretability. 
 First, how can we optimize a sgRNA to have more on-target activity. 
@@ -513,7 +528,9 @@ In practice, we will try to answer this question with second-order preference.
 Let AttCRISPR output the second-order preference matrix $B$ corresponding to the source sgRNA, and show it in Figure~\ref{fig:heatmap}. 
 It is obvious that a few unusual bright spots appear in the red box in Figure~\ref{fig:heatmap}, 
 which show that the nucleotide at position 15 has a great effect on the score of position 14 and 16 (instead of position 13 or 17, which corresponding position are relatively dim in color). 
-As shown in Supplementary Tab. S1, in source sgRNA there are three consecutive Ts at position 14, 15 and 16, and this may reveal that multiple consecutive Us on sgRNA would leads to low on-target activity of sgRNA, which is consistent with earlier report \citep{wu2014genome-wide}. 
+As shown in Supplementary Tab. S1, in source sgRNA there are three consecutive Ts at position 14, 15 and 16, 
+and this may reveal that multiple consecutive Us on sgRNA would leads to low on-target activity of sgRNA, 
+which is consistent with earlier report \citep{wu2014genome-wide}.\vspace*{-19pt} 
 
 \section{Discussion}
 
@@ -524,35 +541,16 @@ In addition, we apply attention modules in both the spatial and temporal parts o
 and design two experiments combined with some early reports to prove that attention mechanisms can help researcher understand the decisions made by model which make it easy to optimize low activity sgRNA without exhaustively search. 
 
 As shown in Figure~\ref{fig:heatmap}, we note that the brightness at coordinates (14, 15) and (16, 15) exceeds (14, 13) and (16, 17). 
-In other words, there are two unusual bright spots at coordinates (14, 15) and (16, 15). 
 This could explain that the nucleotide trimer at position 14, 15, 16 has a great influence on the decision made by AttCRISPR. 
 We believe that we can use a carefully designed $3\times 3$ convolution kernel, and move it along the diagonal of the second-order preference matrix $B$, 
 in order to find all kind of nucleotide trimer that have a great influence on the decision made by AttCRISPR. 
 Further experiments may be need to validate. 
 
 Current architecture of AttCRISPR focuses on predicting the on-target activity of conventional sgRNA which have a PAM based on NGG. 
-However it can be extended to other Cas9 species, variants or off-target task easily. 
+However it can be extended to other Cas9 species, variants or off-target task easily.\vspace*{-19pt}
 
 \section{Conclusion}
 
-\begin{figure}[!tpb]
-    \centerline{\includegraphics[width=86mm]{local0.eps}}
-    \caption{
-The scores of sgRNA with index of 8493 obtained by the temporal AttCRISPR. 
-The bar plot reveals the score at each position at local level, while the line of dashes reveals the scores at global level. 
-At global level we calculated the scores of all sgRNA, then average the scores at each position to obtain the global level which can be used as base line and is helpful to judge the relative height of the scores. 
-}\label{fig:opt}
-\end{figure}
-
-\begin{figure}[!tpb]
-    \centerline{\includegraphics[width=86mm]{secondorder.eps}}
-    \caption{The visualization of second-order preference matrix $B$, 
-the elements in the $i$-th row and the $j$-th column represent the influence of nucleotide at position $j$ when generate the first-order preference $\tilde{A}$ at position $i$. 
-The warmer the color, the more important it is. 
-In the red box, a few unusual bright spots appear. 
-To be more specific, the nucleotide at position 15 has a great effect on the first-order preference at positon 14 and 16.
-}\label{fig:heatmap}
-\end{figure}
 In this paper, we develop AttCRISPR, an ensemble method of both spatial method and temporal method follow the stacking strategy with strong interpretability. 
 AttCRISPR prove that the ensemble methods have a better performance in the datasets of DeepHF
 and can compete with current state-of-the-art methods. 
@@ -560,8 +558,7 @@ In addition, AttCRISPR apply attention mechanisms in both the temporal and spati
 and we explain the decisions made by AttCRISPR through the attention module which is consistent with earlier reports. 
 Further, we also discovered that the output of the attention module can be used to optimize the low-activity sgRNA without exhaustively search, 
 and our optimization results are verified with available experimental data. 
-To our knowledge, this is the first time that the attentional mechanim is used to reveal the reasons influencing on-target activity of sgRNA, and assist sgRNA design.  
-
+To our knowledge, this is the first time that the attentional mechanim is used to reveal the reasons influencing on-target activity of sgRNA, and assist sgRNA design.\vspace*{-20pt}
 
 \section*{Funding}
 
