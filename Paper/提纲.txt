@@ -1,1 +1,59 @@
-(注意式9！！！！！！！！)
+Supplementary Fig. S1
+
+\begin{figure}[!tpb]%figure3
+    \centerline{\includegraphics[width=86mm]{spatialmodule.png}}
+    \caption{Details of spatial attention module. A convolution layer is used to generate multi-channel map from $X_{oh}$.
+    Then concatenated the output of both max-pooling and average-pooling method and forward it to the last convolution layer.
+    A sigmoid function is used to map the final result to a range of zero to one at last, 
+    which generates the spatial first-order preference matrix $A_s$.
+    }\label{fig:spatialmodule}
+\end{figure}
+
+Supplementary Fig. S2
+\begin{figure}[tpb]
+\centerline{\includegraphics[width=86mm]{temporalattentionmodule.png}}
+\caption{        
+    Details of temporal attention module. 
+    To generate the first order preference vector in the $i$ position of sgRNA $\tilde{A}_i$. 
+    First, the $i$-th row vector of the querys matrix $Q_i$ is multiplied by the transpose of the keys mateix $K^T$, and apply a softmax function to obtain a preliminary weights vector on the values. 
+    Second, to favor the alignment points near $i$, the weights vector obtained is multiplied element-by-element by the $i$-th row vector of the damping matrix $G$, as Equation~(\ref{eq:17}) has shown. 
+    $G_{ij}$ can be regarded as the result of place a Gaussian distribution centered around $i$, then sampling the position $j$ (a scaling factor is used to ensure the sum of $G_I$ is $l$). 
+    Then we achieve the second-order preference matrix $B$, it is also a weights matrix on the values. So the first-order preference matrix $\tilde{A}$ come from the product of $B$ and values matrix $V$.
+    Temporal attention module generates the temporal first-order preference matrix $\tilde{A}$ and the temporal second-order preference matrix $B$.
+    }\label{fig:05}
+\end{figure}
+
+Supplementary Fig. S3
+\begin{figure}[!tpb]
+    \centerline{\includegraphics[width=86mm]{baselinewithoutbiofeat.eps}}
+    \caption{In the absence of hand-crafted biological features, performance of different algorithms for sgRNA activity prediction. 
+    (a)-(c) The performance of Temporal AttCRISPR, Spatial AttCRISPR and Ensemble AttCRISPR. 
+    The half-violin plots show the mean and distribution of the Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests. 
+    (d)-(f) In the absence of hand-crafted biological features, the performance of all prediction methods in these datasets as far as we know. 
+    The $mean \pm s.d.$ of the Spearman correlation coefficient between predicted and measured sgRNA activity scores are shown in the bar plots.}\label{fig:06}
+\end{figure}
+
+Supplementary Fig. S4
+\begin{figure}[!tpb]%figure4
+    \centerline{\includegraphics[width=86mm]{baselinewithbiofeat.eps}}
+    \caption{
+Performance comparisons for the methods before and after integrating with hand-crafted biological features, 
+where DeepHF is the RNN integrated with hand-crafted biological features, 
+and StAC is the EnAC integrated with hand-crafted biological features. 
+The box plot show the mean and distribution of Spearman correlation coefficient between predicted and measured sgRNA activity scores over all tests.
+}\label{fig:07}
+\end{figure}
+
+Supplementary Tab. S1
+
+\begin{table}[!tpb]
+    \processtable{Three sgRNA and their activity \label{Tab:optimum}} 
+    {\begin{tabular}{@{}lll@{}}\toprule
+        Index & sgRNA & Activity \\\midrule
+        8493 & ACATGACTTTGGATTTCCCCAGG & 0.831\\
+        8492 & ACATGACTTTGGATTCCCCCAGG & 0.869\\
+        8491 & ACATGACTTTGGACTTCCCCAGG & 0.861\\
+        \botrule
+    \end{tabular}}\footnotesize\setlength{\parindent}{2em}{\emph{Note}: 
+    \emph{Activity} of sgRNA represents the activity reported in WT-SpCas9 dataset (Supplementary Data 1). }
+\end{table}
