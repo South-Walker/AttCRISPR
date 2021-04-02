@@ -16,8 +16,7 @@ def Pipeline(dataset,pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuni
         r = CNN(params['CNNParams'],input['train']['onehot'],label['train'],
              input['test']['onehot'],label['test'])
     if pretrainRNN:
-        r = RNN(params['CNNParams'],input['train']['onehot'],label['train'],
-             input['validate']['onehot'],label['validate'],
+        r = RNN(params['RNNParams'],input['train']['onehot'],label['train'],
              input['test']['onehot'],label['test'])
     if ensemble:
         input_train_onehot,input_train_biofeat,y_train = input['train']['onehot'],input['train']['biofeat'],label['train']
