@@ -103,7 +103,7 @@ Liu, Q., Cheng, X., Liu, G., Li, B., and Liu, X. (2020).
   {Manning}]{luong2015effective}
 {Luong}, M.-T., {Pham}, H., and {Manning}, C.~D. (2015).
 \newblock {Effective Approaches to Attention-based Neural Machine Translation}.
-\newblock {\em arXiv e-prints\/}, page arXiv:1508.04025.
+\newblock {\em arXiv preprints\/}, page arXiv:1508.04025.
 
 \bibitem[Mali {\em et~al.}(2013)Mali, Yang, Esvelt, Aach, Guell, Dicarlo,
   Norville, and Church]{mali2013rnaguided}
@@ -148,7 +148,7 @@ Song, M., Kim, H.~K., Lee, S., Kim, Y., Seo, S.-Y., Park, J., Choi, J.~W.,
 {Vaswani}, A., {Shazeer}, N., {Parmar}, N., {Uszkoreit}, J., {Jones}, L.,
   {Gomez}, A.~N., {Kaiser}, L., and {Polosukhin}, I. (2017).
 \newblock {Attention Is All You Need}.
-\newblock {\em arXiv e-prints\/}, page arXiv:1706.03762.
+\newblock {\em arXiv preprint\/}, page arXiv:1706.03762.
 
 \bibitem[Wang {\em et~al.}(2019)Wang, Zhang, Wang, Li, Wang, Liu, Wang, Zhou,
   Shi, Lan, {\em et~al.}]{wang2019optimized}

@@ -23,12 +23,12 @@ def Pipeline(dataset,pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuni
         r = Ensemble(params['EnsembleParams'],
                  input['train']['onehot'],input['train']['biofeat'],label['train'],
                  input['test']['onehot'],input['test']['biofeat'],label['test'],
-                 cnn_trainable=False,rnn_trainable=False)
+                 withbiofeature=True,cnn_trainable=False,rnn_trainable=False)
     if fineTuning:
         r = Ensemble(params['FineTuning'],
                 input['train']['onehot'],input['train']['biofeat'],label['train'],
                 input['test']['onehot'],input['test']['biofeat'],label['test'],
-                cnn_trainable=True,rnn_trainable=True,load_weight=True)
+                withbiofeature=True,cnn_trainable=True,rnn_trainable=True,load_weight=True)
     return r
 if __name__ == "__main__":
     Pipeline('WT',pretrainCNN=False,pretrainRNN=False,ensemble=False,fineTuning=True) 
