@@ -25,9 +25,9 @@ If you want to train the standard AttCRISPR from scratch one way is to run as fo
 python AttCRISPRDemo.py WT
 ```
 where WT can be replaced by ESP and SP, which means using the corresponding data set (wild-type SpCas9, enhanced SpCas9 and Cas9-High Fidelity, respectively). 
-This work will take a lots of time, and that why we suggest you to custom your own script and run it in parallel. 
+This work will take a lot of time, and that is why we suggest you customise your own script and run it in parallel. 
 
-### Main files and directorys description
+### Main files and directories description
 * [Train/TrainCNN.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/TrainCNN.py) and 
 [Train/TrainRNN.py](https://github.com/South-Walker/AttCRISPR/blob/master/Train/TrainRNN.py), 
 contain the code of the model's architecture in spatial and temporal domain respectively.
